@@ -9,6 +9,6 @@
  */
 
 angular.module('saludWebApp')
-   .controller('ProfileCtrl', function($scope,Profile) {       
+   .controller('ProfileInformationCtrl', function($scope,Profile) {       
         $scope.data  = Profile.query(); 
 });

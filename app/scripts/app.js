@@ -28,7 +28,7 @@ angular
         controller: 'AboutCtrl'
       })
       .when('/profileInformation', {
-        templateUrl: 'views/profileInformation.html',
+        templateUrl: 'views/profileinformation.html',
         controller: 'ProfileInformationCtrl'
       })
       .otherwise({

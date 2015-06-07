@@ -441,4 +441,7 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
+
+  // Tarea destinada al despliegue en Heroku
+  grunt.registerTask('heroku', ['build']);
 };

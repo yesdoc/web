@@ -27,9 +27,13 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/profileInformation', {
+      .when('/profileInformation/:id', {
         templateUrl: 'views/profileinformation.html',
         controller: 'ProfileInformationCtrl'
+      })
+      .when('/profileInformation/:id/edit', {
+        templateUrl: 'views/profileinformation-edit.html',
+        controller: 'ProfileinformationEditCtrl'
       })
       .otherwise({
         redirectTo: '/'

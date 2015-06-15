@@ -12,9 +12,10 @@
 
 
 angular.module('saludWebApp')
-   .controller('ProfileInformationCtrl', function($scope,Profile,$routeParams) {       
-
-        var data = Profile.get({id: $routeParams.id},function(){
+   .controller('ProfileInformationCtrl', function($scope,$cookies,Profile,$routeParams) {       
+        $cookies.put('profile_id', $routeParams.id);
+        var profile_id=$cookies.get('profile_id');
+        var data = Profile.get({id: profile_id},function(){
             var profile=data.resource;
             profile.gender=profile.gender.name;
             $scope.profile=profile;

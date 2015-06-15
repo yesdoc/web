@@ -8,9 +8,9 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('ProfileInformationEditCtrl', function ($scope,$window,Profile,Gender,$routeParams) {
-        
-        var p = Profile.get({id: $routeParams.id},function(){//p is profile
+  .controller('ProfileInformationEditCtrl', function ($scope,$window,$cookies,Profile,Gender) {
+        var profile_id=$cookies.get('profile_id');
+        var p = Profile.get({id: profile_id},function(){//p is profile
             var profile = p.resource;
             profile.gender_id=profile.gender.id;
             $scope.profile=profile;
@@ -19,7 +19,7 @@ angular.module('saludWebApp')
             });
         }); 
         $scope.updateProfile = function(){
-            Profile.update({"id":p.resource.id},p.resource,function(){
+            Profile.update({"id":p.resource.id},$scope.profile,function(){
                 $window.location=('/#/profileInformation/'+p.resource.id);
             });
         };

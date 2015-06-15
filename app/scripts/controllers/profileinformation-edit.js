@@ -19,7 +19,7 @@ angular.module('saludWebApp')
             });
         }); 
         $scope.updateProfile = function(){
-            p.$update(function(){
+            Profile.update({"id":p.resource.id},p.resource,function(){
                 alert("Saved");
             });
         };

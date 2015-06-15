@@ -8,11 +8,11 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('ProfileInformationEditCtrl', function ($scope,Profile,Gender,$routeParams) {
+  .controller('ProfileInformationEditCtrl', function ($scope,$window,Profile,Gender,$routeParams) {
         
         var p = Profile.get({id: $routeParams.id},function(){//p is profile
             var profile = p.resource;
-            profile.gender=profile.gender;
+            profile.gender_id=profile.gender.id;
             $scope.profile=profile;
             var genders_data = Gender.query(function(){
                 $scope.genders = genders_data[0].data.genders;
@@ -20,7 +20,7 @@ angular.module('saludWebApp')
         }); 
         $scope.updateProfile = function(){
             Profile.update({"id":p.resource.id},p.resource,function(){
-                alert("Saved");
+                $window.location=('/#/profileInformation/'+p.resource.id);
             });
         };
   });

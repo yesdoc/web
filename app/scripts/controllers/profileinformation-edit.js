@@ -20,7 +20,7 @@ angular.module('saludWebApp')
         }); 
         $scope.updateProfile = function(){
             Profile.update({"id":p.resource.id},$scope.profile,function(){
-                $window.location=('/#/profileInformation/'+p.resource.id);
+                $window.location=('/#/myProfileInformation');
             });
         };
   });

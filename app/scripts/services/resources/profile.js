@@ -9,7 +9,7 @@
  */
 angular.module('saludWebApp')
   .factory('Profile', function ($resource) {
-    return $resource('http://localhost:9000/var/profile.json/:id',
+    return $resource('https://yesdoc-api.herokuapp.com/profiles/:id',
         { id: '@_id' },
         { update: { 
             method: 'PUT' }

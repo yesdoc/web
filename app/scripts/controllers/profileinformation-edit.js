@@ -15,7 +15,7 @@ angular.module('saludWebApp')
             profile.gender_id=profile.gender.id;
             $scope.profile=profile;
             var genders_data = Gender.query(function(){
-                $scope.genders = genders_data[0].data.genders;
+                $scope.genders = genders_data.resource;
             });
         }); 
         $scope.updateProfile = function(){

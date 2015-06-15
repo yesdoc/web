@@ -9,8 +9,9 @@
  */
 angular.module('saludWebApp')
   .factory('Gender', function ($resource) {
-    return $resource('http://localhost:9000/var/gender.json/:id',
+    return $resource('https://yesdoc-api.herokuapp.com/genders/:id',
         { id: '@_id' },
+        { query: {method: 'GET', isArray: false }},
         { update: { 
             method: 'PUT' }
         }   

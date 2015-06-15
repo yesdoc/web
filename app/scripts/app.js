@@ -31,13 +31,17 @@ angular
         templateUrl: 'views/profileinformation-new.html',
         controller: 'ProfileInformationNewCtrl'
       })
-      .when('/profileInformation/:id', {
+      .when('/myProfileInformation/', {
         templateUrl: 'views/profileinformation.html',
         controller: 'ProfileInformationCtrl'
       })
-      .when('/profileInformation/:id/edit', {
+      .when('/myProfileInformation/edit', {
         templateUrl: 'views/profileinformation-edit.html',
         controller: 'ProfileInformationEditCtrl'
+      })
+      .when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
       })
       .otherwise({
         redirectTo: '/'

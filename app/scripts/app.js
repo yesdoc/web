@@ -43,6 +43,18 @@ angular
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
+      .when('/measurements/new', {
+        templateUrl: 'views/measurement-new.html',
+        controller: 'MeasurementNewCtrl'
+      })
+      .when('/measurements/:id', {
+        templateUrl: 'views/profilemeasurements.html',
+        controller: 'ProfileMeasurementsCtrl'
+      })
+      .when('/measurements/:id/edit', {
+        templateUrl: 'views/measurement-edit.html',
+        controller: 'MeasurementEditCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

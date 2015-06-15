@@ -1,0 +1,26 @@
+<div class="bs-callout bs-callout-success" aria-label="Left Align">
+    <div class="row">
+        <div class="pull-right">
+           <a class="btn btn-default btn-sm" ng-href="#/measurements/new">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+               Nueva Medición
+           </a>
+        </div>
+    <h4>Mediciones</h4> 
+    </div>
+    <div class="row " ng-repeat="measurement in measurements">
+        <div class="col-md-3">{{measurement.measurement_type.name}}:  {{measurement.value}} {{measurement.measurement_unit.symbol}}</div>
+        <div class="col-md-3">{{measurement.datetime}}</div>
+        <div class="col-md-3">{{measurement.measurement_source.name}}</div>
+        <div class="col-md-1">
+            <a type="button" class="btn pull-right btn-xs" ng-href="#/measurements/{{measurement.id}}/edit">
+                <span class="glyphicon glyphicon-edit text-success" aria-hidden="true"></span>
+            </a>
+        </div>
+        <div class="col-md-1">
+            <a type="button" class="btn pull-right btn-xs">
+                <span class="glyphicon glyphicon-share-alt text-success" aria-hidden="true"></span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -15,23 +15,24 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'mgcrea.ngStrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
+      })
+      .when('/logoff', {
+        templateUrl: 'views/logoff.html',
+        controller: 'LogoffCtrl'
       })
       .when('/profileInformation/new', {
         templateUrl: 'views/profileinformation-new.html',
         controller: 'ProfileInformationNewCtrl'
       })
-      .when('/myProfileInformation/', {
+      .when('/myProfileInformation', {
         templateUrl: 'views/profileinformation.html',
         controller: 'ProfileInformationCtrl'
       })
@@ -47,7 +48,7 @@ angular
         templateUrl: 'views/measurement-new.html',
         controller: 'MeasurementNewCtrl'
       })
-      .when('/measurements/:id', {
+      .when('/profileMeasurements', {
         templateUrl: 'views/profilemeasurements.html',
         controller: 'ProfileMeasurementsCtrl'
       })
@@ -56,6 +57,21 @@ angular
         controller: 'MeasurementEditCtrl'
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/profileMeasurements'
       });
   });
+    /*
+    .run(function($rootScope , $location){
+        $rootScope.$on( "$routeChangeStart", function(event, next, current) {
+          if ( $rootScope.loggedUser == null ) {
+            // no logged user, we should be going to #login
+            if ( next.templateUrl == "login.html") {
+            // already going to #login, no redirect needed
+            } else {
+                // not going to #login, we should redirect now
+                $location.path("/login");
+            }
+            }         
+        });
+
+    }); */

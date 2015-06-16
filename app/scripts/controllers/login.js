@@ -8,10 +8,12 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('LoginCtrl', function ($scope,$window,$cookies) {
+  .controller('LoginCtrl', function ($scope,$window,$cookies,Profile) {
       $scope.profile_id='1';
       $scope.login=function(){
-          $cookies.put('profile_id',$scope.profile_id);
-          $window.location='/#/myProfileInformation'
+          Profile.get({id:$scope.profile_id},function(){
+            $cookies.put('profile_id',$scope.profile_id);
+            $window.location='/#/myProfileInformation'
+          });
       };
   });

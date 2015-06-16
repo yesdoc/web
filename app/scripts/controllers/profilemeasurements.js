@@ -8,9 +8,12 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('ProfileMeasurementsCtrl', function ($scope, ProfileMeasurements,$routeParams) {
-        //Profile.get({id: $routeParams.id}); 
-        var data = ProfileMeasurements.get({id:"1"},function(){
-            $scope.measurements=data.resource;
-        });   
+  .controller('ProfileMeasurementsCtrl', function ($scope,$location,$cookies, ProfileMeasurements) {
+        if(!$cookies.get('profile_id')){
+            $location.path('/login');
+        }else{
+            var data = ProfileMeasurements.get({id: $cookies.get('profile_id')},function(){
+                $scope.measurements=data.resource;
+            });   
+        }
 });

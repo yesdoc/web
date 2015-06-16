@@ -8,8 +8,11 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('MeasurementNewCtrl', function ($scope,Measurement,  MeasurementUnit,
-              MeasurementType, MeasurementSource, $routeParams, $filter){
+  .controller('MeasurementNewCtrl', function ($scope, $cookies, Measurement,  MeasurementUnit,
+              MeasurementType,$location , MeasurementSource, $routeParams, $filter){
+      if(!$cookies.get('profile_id')){
+            $location.path('/login');
+      }
       var unit=MeasurementUnit.query(function(){
           $scope.unit=unit.resource;      
       });                                                                       
@@ -20,11 +23,11 @@ angular.module('saludWebApp')
           $scope.source=source.resource;                           
       });
       $scope.measurement=new Measurement();
-      $scope.measurement.profile_id='1';
+      $scope.measurement.profile_id=$cookies.get('profile_id');
       $scope.measurement.datetime=$filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
       $scope.addMeasurement=function(){
           $scope.measurement.$save(function(){
-              alert("Saved");
+              $location.path('/profileMeasurements');
           });
       };
   });

@@ -22,6 +22,20 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
+        <nav class="navbar navbar-default" role="navigation" bs-navbar>
+            <div class="navbar-header">
+                <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
+            </div>
+            <ul class="nav navbar-nav">
+                <li data-match-route="/$"><a href="#/">Home</a></li>
+                <li data-match-route="/profileMeasurements"><a href="#/profileMeasurements">Medidas</a></li>
+                <li data-match-route="/myProfileInformation"><a href="#/myProfileInformation">Perfíl</a></li>
+                <li data-match-route="/about"><a href="#/about">About</a></li>
+                <li data-match-route="/logoff"><a href="#/logoff">Logoff</a></li>
+            </ul>
+        </nav>
+
+        <!--
       <div class="navbar navbar-default" role="navigation">
         <div class="container">
           <div class="navbar-header">
@@ -38,14 +52,18 @@
           <div class="collapse navbar-collapse" id="js-navbar-collapse" ng-controller="NavCtrl">
 
             <ul class="nav navbar-nav">
-              <li  ng-class="{active:isActive('/')}"><a   href="#/">Home</a></li>
+              <li ng-class="{active:isActive('/')}"><a   href="#/">Home</a></li>
               <li ng-class="{active:isActive('/about')}"><a ng-href="#/about">About</a></li>
-              <li ng-class="{active:isActive('/measurements/1')}"><a ng-href="#/measurements/1">Medidas</a></li>
+              <li ng-class="{active:isActive('/profileMeasurements')}"><a ng-href="#/profileMeasurements">Medidas</a></li>
+              <li ng-class="{active:isActive('/myProfileInformation')}"><a ng-href="#/myProfileInformation">Perfíl</a></li>
+              <li ng-class="{active:isActive('/logoff')}"><a ng-href="#/logoff">Logoff</a></li>
+              <li ng-class="{active:isActive('/login')}"><a ng-href="#/login">Login</a></li>
             </ul>
             </ul>
           </div>
         </div>
-      </div>
+    </div>
+    --!>
     </div>
 
     <div class="container">
@@ -81,6 +99,8 @@
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
+    <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -104,6 +124,7 @@
         <script src="scripts/services/resources/measurementtype.js"></script>
         <script src="scripts/services/resource/measurement.js"></script>
         <script src="scripts/services/resources/measurement.js"></script>
+        <script src="scripts/controllers/logoff.js"></script>
         <!-- endbuild -->
 </body>
 </html>

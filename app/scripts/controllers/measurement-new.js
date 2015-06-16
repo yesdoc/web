@@ -24,8 +24,9 @@ angular.module('saludWebApp')
       });
       $scope.measurement=new Measurement();
       $scope.measurement.profile_id=$cookies.get('profile_id');
-      $scope.measurement.datetime=$filter('date')(new Date(), 'yyyy-MM-dd HH:mm:ss');
+      $scope.measurement.datetime=new Date();
       $scope.addMeasurement=function(){
+          alert($scope.measurement.datetime);
           $scope.measurement.$save(function(){
               $location.path('/profileMeasurements');
           });

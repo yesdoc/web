@@ -10,7 +10,7 @@
     </div>
     <div class="row " ng-repeat="measurement in measurements">
         <div class="col-md-3">{{measurement.measurement_type.name}}:  {{measurement.value}} {{measurement.measurement_unit.symbol}}</div>
-        <div class="col-md-3">{{measurement.datetime}}</div>
+        <div class="col-md-3">{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</div>
         <div class="col-md-3">{{measurement.measurement_source.name}}</div>
         <div class="col-md-1">
             <a type="button" class="btn pull-right btn-xs" ng-href="#/measurements/{{measurement.id}}/edit">

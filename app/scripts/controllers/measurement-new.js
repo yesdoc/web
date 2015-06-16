@@ -26,7 +26,6 @@ angular.module('saludWebApp')
       $scope.measurement.profile_id=$cookies.get('profile_id');
       $scope.measurement.datetime=new Date();
       $scope.addMeasurement=function(){
-          alert($scope.measurement.datetime);
           $scope.measurement.$save(function(){
               $location.path('/profileMeasurements');
           });

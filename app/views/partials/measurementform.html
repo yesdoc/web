@@ -34,7 +34,7 @@
 <div class="form-group" >
     <label for="date" class="col-sm-2 control-label">Fecha:</label>
     <div class="col-sm-10">
-      <input size="10" class="form-control" ng-model="measurement.datetime" data-autoclose="1" placeholder="Date" bs-datepicker data-date-format="yyyy-MM-dd" type="text">
+      <input size="10" class="form-control" ng-model="measurement.datetime" data-autoclose="1" data-timezone='UTC' placeholder="Date" bs-datepicker data-date-format="yyyy-MM-dd" type="text">
       <input size="4" class="form-control" ng-model="measurement.datetime" data-time-format="HH:mm:ss" data-autoclose="1" placeholder="Time" bs-timepicker type="text">
     </div>
 </div>

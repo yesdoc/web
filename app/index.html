@@ -23,21 +23,23 @@
     <!-- Add your site or application content here -->
     <div class="header">
         <nav class="navbar navbar-default" role="navigation" bs-navbar>
-            <div class="navbar-header">
-                <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
+            <div class="container">
+                <div class="navbar-header">
+                   <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li data-match-route="/$"><a href="#/">Home</a></li>
+                    <li data-match-route="/profileMeasurements"><a href="#/profileMeasurements">Medidas</a></li>
+                    <li data-match-route="/myProfileInformation"><a href="#/myProfileInformation">Perfíl</a></li>
+                    <li data-match-route="/about"><a href="#/about">About</a></li>
+                    <li data-match-route="/logoff"><a href="#/logoff">Logoff</a></li>
+                </ul>
             </div>
-            <ul class="nav navbar-nav">
-                <li data-match-route="/$"><a href="#/">Home</a></li>
-                <li data-match-route="/profileMeasurements"><a href="#/profileMeasurements">Medidas</a></li>
-                <li data-match-route="/myProfileInformation"><a href="#/myProfileInformation">Perfíl</a></li>
-                <li data-match-route="/about"><a href="#/about">About</a></li>
-                <li data-match-route="/logoff"><a href="#/logoff">Logoff</a></li>
-            </ul>
         </nav>
     </div>
 
     <div class="container">
-    <div ng-view=""></div>
+        <div ng-view=""></div>
     </div>
 
     <div class="footer">

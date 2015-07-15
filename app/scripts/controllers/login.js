@@ -9,7 +9,6 @@
  */
 angular.module('saludWebApp')
   .controller('LoginCtrl', function ($scope,$window,$cookies,Profile) {
-      $scope.profile_id='1';
       $scope.login=function(){
           Profile.get({id:$scope.profile_id},function(){
             $cookies.put('profile_id',$scope.profile_id);

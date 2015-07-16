@@ -1,16 +1,21 @@
-<div class="form-group form-group-sm">
-  <label for="type" class="col-sm-2 control-label">Tipo:</label>
+<div class="form-group form-group-sm" 
+    ng-class="{'has-error':measurementForm.type.$invalid && !measurementForm.type.$pristine}">
+   <label for="type" class="col-sm-2 control-label">Tipo:</label>
     <div class="col-sm-10">
-        <select id="type" class="form-control" 
+        <select name="type"  id="type" class="form-control" 
             ng-options="t.id as t.name for t in type" 
-            ng-model="measurement.measurement_type_id">
+            ng-model="measurement.measurement_type_id" required>
         </select>
     </div>
 </div>
-<div class="form-group" >
+<div class="form-group"
+    ng-class="{'has-error':measurementForm.value.$invalid && !measurementForm.value.$pristine}" >
     <label for="value" class="col-sm-2 control-label">Valor:</label>
     <div class="col-sm-10">
-        <input type="text" class="form-control" id="value" ng-model="measurement.value" placeholder="Resultado de medición"/>
+        <input name="value" type="text" class="form-control" id="value" ng-model="measurement.value"
+        placeholder="Resultado de medición" required/>
+        <p ng-show="measurementForm.value.$invalid && !measurementForm.value.$pristine" class="help-block">
+        You name is required.</p>
     </div>
 </div>
 <div class="form-group form-group-sm">

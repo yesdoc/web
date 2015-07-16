@@ -13,6 +13,10 @@ angular.module('saludWebApp')
       if(!$cookies.get('profile_id')){
             $location.path('/login');
       }
+      $scope.measurement=new Measurement();
+      $scope.measurement.measurement_type_id=1;
+      $scope.measurement.measurement_unit_id=1;
+      $scope.measurement.measurement_source_id=1;
       var unit=MeasurementUnit.query(function(){
           $scope.unit=unit.resource;      
       });                                                                       
@@ -22,7 +26,6 @@ angular.module('saludWebApp')
       var source=MeasurementSource.query(function(){                            
           $scope.source=source.resource;                           
       });
-      $scope.measurement=new Measurement();
       $scope.measurement.profile_id=$cookies.get('profile_id');
       $scope.measurement.datetime=new Date();
       $scope.addMeasurement=function(){

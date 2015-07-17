@@ -1,23 +1,35 @@
-<div class="form-group">
-  <label for="first_name" class="col-sm-2 control-label">Nombre:</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="profile.first_name" class="form-control" id="first_name" placeholder="¿Cual es su nombre?"/>
-  </div>
+<div class="form-group" ng-class="{'has-error':profileForm.first_name.$invalid &&
+    !profileForm.first_name.$pristine}">
+    <label for="first_name" class="col-sm-2 control-label">Nombre:</label>
+    <div class="col-sm-10">
+        <input name="first_name" type="text" ng-model="profile.first_name" class="form-control" 
+            id="first_name" placeholder="¿Cual es su nombre?" required/>
+            <p ng-show="profileForm.first_name.$invalid && profileForm.first_name.$touched"
+            class="help-block">Debe ingresar su nombre</p>
+    </div>
 </div>
-<div class="form-group">
-  <label for="last_name" class="col-sm-2 control-label">Apellido:</label>
-  <div class="col-sm-10">
-    <input type="text" ng-model="profile.last_name" class="form-control" id="last_name" placeholder="¿Cual es su apellido?"/>
-  </div>
+<div class="form-group"ng-class="{'has-error':profileForm.last_name.$invalid &&
+    !profileForm.last_name.$pristine}">
+    <label for="last_name" class="col-sm-2 control-label">Apellido:</label>
+    <div class="col-sm-10">
+        <input name="last_name" type="text" ng-model="profile.last_name" class="form-control"
+        id="last_name" placeholder="¿Cual es su apellido?" required/>
+            <p ng-show="profileForm.last_name.$invalid && profileForm.last_name.$touched"
+            class="help-block">Debe ingresar su apellido</p>
+        </div>
 </div>
-<div class="form-group">
-  <label for="birthday" class="col-sm-2 control-label">Fecha de nacimiento:</label>
-  <div class="col-sm-10">
-    <input size="10" class="form-control" ng-model="profile.birthday" data-autoclose="1" data-timezone='UTC' placeholder="¿Cuándo nació?" bs-datepicker data-date-format="yyyy-MM-dd" type="text">
-  </div>
+<div class="form-group"ng-class="{'has-error':profileForm.birthday.$invalid && 
+    !profileForm.birthday.$pristine}">
+    <label for="birthday" class="col-sm-2 control-label">Fecha de nacimiento:</label>
+    <div class="col-sm-10">
+        <input name="birthday" size="10" class="form-control" ng-model="profile.birthday" data-autoclose="1"
+        data-timezone='UTC' placeholder="¿Cuándo nació?" bs-datepicker data-date-format="yyyy-MM-dd" type="text"required>
+        <p ng-show="profileForm.birthday.$invalid && profileForm.birthday.$touched"
+        class="help-block">Debe ingresar su fecha de nacimiento</p>
+    </div>
 </div>
 <div class="form-group form-group-sm">
-  <label for="gender" class="col-sm-2 control-label">Género</label>
+    <label for="gender" class="col-sm-2 control-label">Género</label>
     <div class="col-sm-10">
         <select id="gender" class="form-control" 
             ng-options="r.id as r.name for r in genders" 
@@ -27,8 +39,8 @@
 </div>
 
 <div class="form-group">
-  <div class="col-sm-offset-2 col-sm-10">
-    <input type="submit" class="btn btn-success" value="Save"/>
-    <a class="btn btn-default" href="javascript:history.go(-1)">Cancelar</a>
-  </div>
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-success" value="Save"ng-disabled="profileForm.$invalid"/>
+        <a class="btn btn-default" href="javascript:history.go(-1)">Cancelar</a>
+    </div>
 </div>

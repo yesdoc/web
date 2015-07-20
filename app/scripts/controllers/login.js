@@ -15,9 +15,9 @@ angular.module('saludWebApp')
                 $window.location='/#/myProfileInformation'
             },function(response) {
                 if(response.status === 404) {
-                    $scope.message='Lo sentimos, el usuario '+$scope.profile_id+' no es válido';
+                    $scope.message='Lo sentimos, el usuario '+$scope.profile_id+' no es válido.';
                 }else{
-                    $scope.message='Lo sentimos, existe un problema con la conexión al servidor';
+                    $scope.message='Lo sentimos, existe un problema con la conexión al servidor.';
                 }
             });
       };

@@ -17,33 +17,38 @@
   </head>
   <body ng-app="saludWebApp">
     <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser.
+    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
     <!-- Add your site or application content here -->
     <div class="header">
         <nav class="navbar navbar-default" role="navigation" bs-navbar>
-            <div class="container">
+            <div class="container-fluid">
                 <div class="navbar-header">
                    <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
                 </div>
                 <ul class="nav navbar-nav">
-                    <li data-match-route="/$"><a href="#/">Home</a></li>
-                    <li data-match-route="/profileMeasurements"><a href="#/profileMeasurements">Medidas</a></li>
-                    <li data-match-route="/myProfileInformation"><a href="#/myProfileInformation">Perfíl</a></li>
+                    <li data-match-route="/home"><a href="#/home">Home</a></li>
+                    <li data-match-route="/profileMeasurements"><a 
+                        href="#/profileMeasurements">Medidas</a></li>
+                    <li data-match-route="/myProfileInformation"><a 
+                        href="#/myProfileInformation">Perfíl</a></li>
                     <li data-match-route="/about"><a href="#/about">About</a></li>
                     <li data-match-route="/logoff"><a href="#/logoff">Logoff</a></li>
                 </ul>
             </div>
         </nav>
     </div>
-
+    
+    <!--En esta sección se cargarán el contenido determinado por el panel de
+    navegación -->
     <div class="container">
         <div ng-view=""></div>
     </div>
 
     <div class="footer">
-      <div class="container">
+      <div class="container-fluid">
         <p><span class="glyphicon glyphicon-heart"></span> <img src="images/yesDoc2.png"></p>
       </div>
     </div>

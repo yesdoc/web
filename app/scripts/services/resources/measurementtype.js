@@ -10,9 +10,9 @@
 angular.module('saludWebApp')
   .factory('MeasurementType', function ($resource) {
     // Public API here
-    return $resource('https://yesdoc-api.herokuapp.com/measurement_types', 
+    return $resource('https://yesdoc-api.herokuapp.com/measurement_types/:id', 
         { id: '@_id' },                                                         
-        {query:{method:'GET',isArray:false},
-            update: {method: 'PUT' }}
+        {query:{method:'GET',isArray:false}},
+        {update: {method: 'PUT' }}
         );  
   });

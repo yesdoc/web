@@ -11,8 +11,7 @@ angular.module('saludWebApp')
   .factory('Profile', function ($resource) {
     return $resource('https://yesdoc-api.herokuapp.com/profiles/:id',
         { id: '@_id' },
-        { update: { 
-            method: 'PUT' }
-        }   
+        { query: {method: 'GET', isArray: false }},
+        { update: { method: 'PUT' }}
     );  
   });

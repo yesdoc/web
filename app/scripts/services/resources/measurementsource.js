@@ -11,7 +11,7 @@ angular.module('saludWebApp')
   .factory('MeasurementSource', function ($resource) {
     return $resource('https://yesdoc-api.herokuapp.com/measurement_sources/:id',        
         { id: '@_id' },                                                        
-        {query:{method:'GET',isArray:false},
-            update:{method: 'PUT' }}
+        { query:{method:'GET',isArray:false}},
+        { update:{method: 'PUT' }}
         );  
   });

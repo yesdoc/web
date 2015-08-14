@@ -9,9 +9,9 @@
  */
 angular.module('saludWebApp')
   .factory('MeasurementUnit', function ($resource) {
-  return $resource('https://yesdoc-api.herokuapp.com/measurement_units',       
+  return $resource('https://yesdoc-api.herokuapp.com/measurement_units/:id',       
         { id: '@_id' },                                                        
-        {query:{method:'GET',isArray:false},
-            update: {method: 'PUT'}}
+        { query:{method:'GET',isArray:false}},
+        { update: {method: 'PUT'}}
         );  
   });

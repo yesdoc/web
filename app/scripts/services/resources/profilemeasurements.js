@@ -11,7 +11,6 @@
    .factory('ProfileMeasurements',function($resource) {
      return $resource('https://yesdoc-api.herokuapp.com/profiles/:id/measurements/latest',
         { id: '@_id' },
-        {query:{method:'GET',isArray:false},
-        }); 
+        {query:{method:'GET',isArray:false}}); 
    });
 

@@ -98,7 +98,7 @@ body {
 
 .bs-callout {
     padding: 20px;
-    margin: 2% 5%;
+    margin: 2% 15%;
     border: 1px solid #D6D6D6;/*#eeee*/
     border-left-width: 5px;
     border-radius: 3px;
@@ -155,16 +155,18 @@ body {
     color: #5bc0de;
 }
 /*Botonera interna de navegación */
-/* FIXME CORREGIR NOMBRES*/
 .edition-nav {
     min-height: 250px;    
 	box-shadow: 1px 0 rgba(0,0,0,0.1);
-    font-size: 1.3em;
 }
 .edition-nav ul li a{
     color:#707098;
+    font-size: 1.3em;
+    text-decoration:none;
 }
+
 .edition-nav ul li a:hover{
     color:#3C763D;/*#3C763D - #4EAA4B*/
     text-decoration:none;
+    font-size: 1.3em;
 }

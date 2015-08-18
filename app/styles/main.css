@@ -157,7 +157,7 @@ body {
 /*Botonera interna de navegación */
 .edition-nav {
     min-height: 250px;    
-	box-shadow: 1px 0 rgba(0,0,0,0.1);
+    box-shadow: 1px 0 rgba(0,0,0,0.1);
 }
 .edition-nav ul li a{
     color:#707098;

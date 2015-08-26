@@ -11,7 +11,7 @@ angular.module('saludWebApp')
   .factory('Measurement', function (global, $resource) {
 
     // URL of specific API resource
-    var url=global.api_url()+'/measurements/:id';
+    var url=global.getApiUrl()+'/measurements/:id';
 
     return $resource( url,
           { id: '@_id' },                                                         

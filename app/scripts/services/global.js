@@ -16,7 +16,7 @@ angular.module('saludWebApp')
 
     // Public methods
     return {
-      api_url: function () {
+      getApiUrl: function () {
         return _api_url;
       }
     };

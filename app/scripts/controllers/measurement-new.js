@@ -14,9 +14,6 @@ angular.module('saludWebApp')
             $location.path('/login');
       }
       $scope.measurement=new Measurement();
-      $scope.measurement.measurement_type_id=1;
-      $scope.measurement.measurement_unit_id=1;
-      $scope.measurement.measurement_source_id=1;
       var unit=MeasurementUnit.query(function(){
           $scope.unit=unit.resource;      
       });                                                                       

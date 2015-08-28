@@ -1,11 +1,13 @@
 <div class="form-group form-group-sm" 
-    ng-class="{'has-error':measurementForm.type.$invalid && !measurementForm.type.$pristine}">
+    ng-class="{'has-error':measurementForm.type.$invalid && measurementForm.type.$touched}">
    <label for="type" class="col-sm-2 control-label">Tipo:</label>
     <div class="col-sm-10">
         <select name="type"  id="type" class="form-control" 
             ng-options="t.id as t.name for t in type" 
             ng-model="measurement.measurement_type_id" required>
         </select>
+            <p ng-show="measurementForm.type.$invalid && measurementForm.type.$touched" class="help-block">
+            Seleccione un tipo de medición.</p> 
     </div>
 </div>
 <div class="form-group"
@@ -13,27 +15,33 @@
     <label for="value" class="col-sm-2 control-label">Valor:</label>
     <div class="col-sm-10">
         <input name="value" type="text" class="form-control" id="value" ng-model="measurement.value"
-        placeholder="Resultado de medición" required/>
+        placeholder="Resultado de medición" required>
         <p ng-show="measurementForm.value.$invalid && measurementForm.value.$touched" class="help-block">
         Debe ingresar un valor de medición.</p>
     </div>
 </div>
-<div class="form-group form-group-sm">
+<div class="form-group form-group-sm"
+    ng-class="{'has-error':measurementForm.unit.$invalid && measurementForm.unit.$touched}">
     <label for="unit" class="col-sm-2 control-label">Unidad:</label>
     <div class="col-sm-10">
-        <select id="unit" class="form-control" 
+        <select name="unit" id="unit" class="form-control" 
             ng-options="u.id as u.name for u in unit" 
-            ng-model="measurement.measurement_unit_id">
+            ng-model="measurement.measurement_unit_id" required>
         </select>
+            <p ng-show="measurementForm.unit.$invalid && measurementForm.unit.$touched" class="help-block">
+            Seleccione una unidad de medición.</p> 
     </div>
 </div>
-<div class="form-group form-group-sm">
+<div class="form-group form-group-sm"
+    ng-class="{'has-error':measurementForm.source.$invalid && measurementForm.source.$touched}">
     <label for="source" class="col-sm-2 control-label">Fuente:</label>
     <div class="col-sm-10">
-        <select id="source" class="form-control" 
+        <select name="source" id="source" class="form-control" 
             ng-options="s.id as s.name for s in source" 
-            ng-model="measurement.measurement_source_id">
+            ng-model="measurement.measurement_source_id" required>
         </select>
+            <p ng-show="measurementForm.source.$invalid && measurementForm.source.$touched" class="help-block">
+            Seleccione una fuente de medición.</p> 
     </div>
 </div>
 <div class="form-group"

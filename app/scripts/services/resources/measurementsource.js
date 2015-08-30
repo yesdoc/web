@@ -8,8 +8,12 @@
  * Factory in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('MeasurementSource', function ($resource) {
-    return $resource('https://yesdoc-api.herokuapp.com/measurement_sources/:id',        
+  .factory('MeasurementSource', function (global ,$resource) {
+
+    // URL of specific API resource
+    var url=global.getApiUrl()+'/measurement_sources/:id';
+
+    return $resource( url,        
         { id: '@_id' },                                                        
         { query:{method:'GET',isArray:false}},
         { update:{method: 'PUT' }}

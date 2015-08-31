@@ -24,6 +24,10 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
+      .when('/home', {
+        templateUrl: 'views/main.html',
+        controller: 'MainCtrl'
+      })
       .when('/logoff', {
         templateUrl: 'views/logoff.html',
         controller: 'LogoffCtrl'

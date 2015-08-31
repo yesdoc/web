@@ -7,6 +7,7 @@
 
 body {
   padding: 0;
+  background-color: #F8F8F8;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -29,7 +30,19 @@ body {
   line-height: 40px;
   padding-bottom: 19px;
 }
-
+/*Definición de los colores del nav*/
+/*Definición del tamaño de la letra del nav*/
+.nav-header{
+  background-image: url(/images/head.png);
+  font-size:1.2em;
+}
+/*Redefinición de los colores de los botones del nav*/
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+    color: #3C763D;
+    background-color: #EEEEEE;
+}
 /* Custom page footer */
 .footer {
   padding-top: 19px;
@@ -85,8 +98,8 @@ body {
 
 .bs-callout {
     padding: 20px;
-    margin: 20px 0;
-    border: 1px solid #eee;
+    margin: 2% 15%;
+    border: 1px solid #D6D6D6;/*#eeee*/
     border-left-width: 5px;
     border-radius: 3px;
 }
@@ -140,4 +153,20 @@ body {
 }
 .bs-callout-info h4 {
     color: #5bc0de;
+}
+/*Botonera interna de navegación */
+.edition-nav {
+    min-height: 250px;    
+    box-shadow: 1px 0 rgba(0,0,0,0.1);
+}
+.edition-nav ul li a{
+    color:#707098;
+    font-size: 1.3em;
+    text-decoration:none;
+}
+
+.edition-nav ul li a:hover{
+    color:#3C763D;/*#3C763D - #4EAA4B*/
+    text-decoration:none;
+    font-size: 1.3em;
 }

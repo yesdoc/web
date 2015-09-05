@@ -158,14 +158,15 @@ body {
 .edition-nav {
     min-height: 250px;    
     box-shadow: 1px 0 rgba(0,0,0,0.1);
+    
 }
-.edition-nav ul li a{
+.edition-nav a{
     color:#707098;
     font-size: 1.3em;
     text-decoration:none;
 }
 
-.edition-nav ul li a:hover{
+.edition-nav a:hover{
     color:#3C763D;/*#3C763D - #4EAA4B*/
     text-decoration:none;
     font-size: 1.3em;

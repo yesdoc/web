@@ -14,7 +14,7 @@ angular.module('saludWebApp')
 
     return $resource( url,       
         { id_type: '@_id_type' },                                                        
-        { query:{method:'GET',isArray:false}},
-        { update: {method: 'PUT'}}
-        );  
+        { query:{method:'GET',isArray:false},
+          update: {method: 'PUT'}
+        });  
 });

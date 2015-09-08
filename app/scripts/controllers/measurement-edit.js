@@ -16,11 +16,6 @@ angular.module('saludWebApp')
             $location.path('/login');
         }
 
-        //Consulta y asignación de unidad de medición.
-        var unit = MeasurementUnit.query(function(){
-            $scope.unit = unit.resource;
-        });
-
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(function(){
             $scope.type = type.resource;
@@ -48,6 +43,7 @@ angular.module('saludWebApp')
                 $location.path('/measurements/'+m.resource.id);
             });
         };
+
         //Carga el select de la unidad de medición a partir del tipo de medición seleccionado.
         $scope.getUnit = function() {
             var unit = MeasurementTypeUnit.get( {"id_type" : $scope.measurement.measurement_type_id}, function(){

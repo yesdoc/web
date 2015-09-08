@@ -6,7 +6,7 @@
                Nueva Medición
            </a>
         </div>
-    <h4>Mediciones</h4> 
+        <h4>Mediciones</h4> 
     </div>
     <div class="row " ng-repeat="measurement in measurements">
         <div class="col-md-3">{{measurement.measurement_type.name}}:  {{measurement.value}} {{measurement.measurement_unit.symbol}}</div>
@@ -24,9 +24,10 @@
         </div>
     </div>
 </div>
+
 <div class="bs-callout bs-callout-success" aria-label="Left Align">
     <h4>Evolución de tu Peso</h4> 
-        <div class="graph">
-            <div hgraph ></div>
-        </div>
+    <div class="graph">
+        <div vgraph id='v'></div>
+    </div>
 </div>

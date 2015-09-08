@@ -49,7 +49,7 @@ angular.module('saludWebApp')
                   color = d3.scale.category20(),
                   xScale = d3.scale.linear()
                     .domain([0, d3.max(data, function(d) {
-                      return d.score;
+                      return d.value;
                     })])
                     .range([0, width]);
 
@@ -69,13 +69,14 @@ angular.module('saludWebApp')
                     return i * (barHeight + barPadding);
                   })
                   .attr('fill', function(d) {
-                    return color(d.score);
+                    return color(d.value);
                   })
                   .transition()
                     .duration(1000)
                     .attr('width', function(d) {
-                      return xScale(d.score);
+                      return xScale(d.value);
                     });
+
               svg.selectAll('text')
                 .data(data)
                 .enter()
@@ -86,7 +87,7 @@ angular.module('saludWebApp')
                   })
                   .attr('x', 15)
                   .text(function(d) {
-                    return d.name + ": " + d.score;
+                    return d.date + ": " + d.value;
                   });
             }, 200);
           };

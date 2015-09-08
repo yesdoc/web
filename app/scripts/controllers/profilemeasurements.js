@@ -33,14 +33,14 @@ angular.module('saludWebApp')
                         //cada barra horizontal tiene un peso que se guarda en
                         //la clave "score" y un nombre que se guarda en la
                         //clave "name".Ej {name:'peso',score'56'}
-                        graph[graph.length]={name:dr[i].measurement_type.name,score:dr[i].value}
+                        graph[graph.length]={date:dr[i].datetime,value:dr[i].value}
                     }
                 }
             });
             return graph;
         }
-
         $scope.data=getPeso();
+        //$scope.data=[{date:'a',value:.01492},{date:'b',value:.08167}]//getPeso();
     }
 
 });

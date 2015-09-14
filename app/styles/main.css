@@ -173,27 +173,37 @@ body {
 }
 
 
-.bar {
-    fill: steelblue;
+.axis text {
+  font: 10px sans-serif;
 }
 
-.bar:hover {
-    fill: brown;
+.axis path, .axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
 }
 
-.axis {
-    font: 10px sans-serif;
+.graph {
+  fill: none;
+  stroke: rgba(14, 65, 16, 0.74);
 }
 
-.axis path,
-.axis line {
-    fill: none;
-    stroke: #000;
-    shape-rendering: crispEdges;
+.dot {
+  fill: #186B19;
+  opacity: 0.6;
+  cursor: pointer;
 }
 
-.x.axis path {
-    display: none;
+.tip {
+  display: none;
+  color: rgb(77, 77, 77);
+  border-radius: 4px;
+  position: absolute;
+  font: 12px sans-serif;
+  padding: 3px;
+  line-height: 20px;
+  text-align: center;
+  background: rgba(255, 252, 0, 0.51);
 }
 
 

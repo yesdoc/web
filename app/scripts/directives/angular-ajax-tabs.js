@@ -52,7 +52,10 @@ angular.module('saludWebApp')
         require: "^tabs",
         restrict: "E",
         transclude: true,
-        scope: { tabTitle: "@" },
+        scope: { 
+            tabTitle: "@",
+            tabIcon:"@"
+        },
         // Función link que gestiona todos los cambios de la vista  
         link: function(scope, element, attrs, tabsCtrl) {
         

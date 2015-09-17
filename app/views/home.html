@@ -1,7 +1,11 @@
 <div class="row bs-callout bs-callout-success"> 
     <tabs>
-        <pane ng-repeat="pane in panes | filter:{includedInTabView:true}" tab-title="{{pane.name}}" controller="{{pane.controller}}"
-        template="{{pane.partial}}">
+        <pane
+            ng-repeat="pane in panes | filter:{includedInTabView:true}" 
+            tab-title="{{pane.name}}"
+            tab-icon="{{pane.icon}}"
+            controller="{{pane.controller}}"
+            template="{{pane.partial}}">
         </pane>
     </tabs>
 </div>

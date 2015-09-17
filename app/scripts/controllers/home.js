@@ -19,6 +19,7 @@ angular.module('saludWebApp')
         //Definición de los elementos a mostrar en la botonera
         $scope.panes = [{
             "name": "Peso", 
+            "icon": "glyphicon glyphicon-scale",
             "path":"weight",
             "partial":"views/weight.html",
             "controller":"WeightCtrl",
@@ -26,6 +27,7 @@ angular.module('saludWebApp')
 
         }, {
             "name": "Altura",
+            "icon": "glyphicon glyphicon-resize-vertical",
             "path":"height",
             "partial":"views/height.html",
             "controller":"HeightCtrl",
@@ -33,6 +35,7 @@ angular.module('saludWebApp')
 
         },{
             "name": "Colesterol en Sangre",
+            "icon": "glyphicon glyphicon-tint",
             "path":"bloodcholesterol",
             "partial":"views/bloodcholesterol.html",
             "controller":"BloodcholesterolCtrl",

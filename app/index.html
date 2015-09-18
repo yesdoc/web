@@ -22,12 +22,21 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
-    <div class="header">
-        <nav class="navbar navbar-default" role="navigation" bs-navbar>
-            <div class="container-fluid nav-header">
-                <div class="navbar-header">
-                   <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
-                </div>
+    <nav class="navbar navbar-default" role="navigation" bs-navbar>
+    <div class="container-fluid nav-header">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
+            </div><!-- /.navbar-header -->
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li data-match-route="/home"><a href="#/home">Home</a></li>
                     <li data-match-route="/profileMeasurements"><a 
@@ -37,9 +46,10 @@
                     <li data-match-route="/about"><a href="#/about">About</a></li>
                     <li data-match-route="/logoff"><a href="#/logoff">Logoff</a></li>
                 </ul>
-            </div>
-        </nav>
-    </div>
+            </div><!-- /.navbar-collapse -->
+
+    </div><!-- /.container-fluid -->
+    </nav>
     
     <!--En esta sección se cargará el contenido determinado por el panel de
     navegación -->

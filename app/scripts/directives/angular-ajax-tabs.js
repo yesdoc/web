@@ -39,7 +39,7 @@ angular.module('saludWebApp')
                 panes.push(pane);
             };
         },
-        templateUrl:'scripts/directives/directives-views/template-tabs.html',
+        templateUrl:'views/directives/template-tabs.html',
         replace: true
     };
 }])

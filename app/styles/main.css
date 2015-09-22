@@ -173,37 +173,3 @@ body {
 }
 
 
-.axis text {
-  font: 10px sans-serif;
-}
-
-.axis path, .axis line {
-  fill: none;
-  stroke: #ddd;
-  shape-rendering: crispEdges;
-}
-
-.graph {
-  fill: none;
-  stroke: rgba(14, 65, 16, 0.74);
-}
-
-.dot {
-  fill: #186B19;
-  opacity: 0.6;
-  cursor: pointer;
-}
-
-.tip {
-  display: none;
-  color: rgb(77, 77, 77);
-  border-radius: 4px;
-  position: absolute;
-  font: 12px sans-serif;
-  padding: 3px;
-  line-height: 20px;
-  text-align: center;
-  background: rgba(255, 252, 0, 0.51);
-}
-
-

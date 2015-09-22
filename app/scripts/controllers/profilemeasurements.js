@@ -38,7 +38,7 @@ angular.module('saludWebApp')
                 }
             });
             return [{
-                "key" : "Cantidad" ,
+                "key" : "Peso (kg)" ,
                 "bar": true,
                 "values" : graph }];
           }

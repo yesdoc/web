@@ -48,6 +48,7 @@ angular.module('saludWebApp')
           $.each(mts,function (i,mt){
             if (mt.name == "Peso"){
               peso_id = mt.id;
+              return;
             }
           });
 

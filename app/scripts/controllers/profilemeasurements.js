@@ -46,7 +46,7 @@ angular.module('saludWebApp')
           var peso_id;
 
           $.each(mts,function (i,mt){
-            if (mt.name == "Peso"){
+            if (mt.name.toLowerCase() == "peso"){
               peso_id = mt.id;
               return;
             }

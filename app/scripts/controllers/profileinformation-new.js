@@ -12,29 +12,28 @@ angular.module('saludWebApp')
               Users,Gender,$routeParams,$window) {
 
         // Crea el perfil y el usuario que se utilizará en la vista para persistir los
-        // atributos a partir del ng-model
+        // atributos a partir de ng-model.
         $scope.profile = new Profile();
         $scope.user = new Users();
-        $scope.profile.gender_id = 1;
-
+        
+        // Traigo de la API los tipos de generos existente.
         var genders_data = Gender.query(function(){
             $scope.genders = genders_data.resource;
         });
     
         $scope.addProfile = function(){
-            $scope.profile.$save(function(profile_data){
-        
-                // Luego de guardar el perfil, debo traer su id
-                alert(profile_data.resource.id);
-                $scope.user.profile_id = profile_data.resource.id;
-                $scope.user.username = 'cincuentaynueve';
 
+            // Guardo el perfil y solicito el id para guardarlo en el usuario.
+            $scope.profile.$save(function(profile_data){
+                $scope.user.profile_id = profile_data.resource.id;
+                
+                // Guardo el usaurio
                 $scope.user.$save(function(){
                     alert("Saved");
                     $window.location = '/#/myProfileInformation'
                 });
-
-            });
-        };
+            }); // /.$scope.profile.$save
+        
+        };// /.$scope.addProfile
 
   });

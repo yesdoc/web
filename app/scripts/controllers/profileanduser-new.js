@@ -2,13 +2,13 @@
 
 /**
   @ngdoc function
- * @name saludWebApp.controller:ProfileinformationNewCtrl
+ * @name saludWebApp.controller:ProfileAndUserNewCtrl
  * @description
- * # ProfileinformationNewCtrl
+ * # ProfileAndUserNewCtrl
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('ProfileInformationNewCtrl', function ($scope,Profile,
+  .controller('ProfileAndUserNewCtrl', function ($scope,Profile,
               Users,Gender,$routeParams,$window) {
 
         // Crea el perfil y el usuario que se utilizará en la vista para persistir los
@@ -16,14 +16,14 @@ angular.module('saludWebApp')
         $scope.profile = new Profile();
         $scope.user = new Users();
         
-        // Traigo de la API los tipos de generos existente.
+        // Traigo de la API los tipos de géneros existente.
         var genders_data = Gender.query(function(){
             $scope.genders = genders_data.resource;
         });
     
         $scope.addProfile = function(){
 
-            // Guardo el perfil y solicito el id para guardarlo en el usuario.
+            // Guardo el perfil y solicitó el id para guardarlo en el usuario.
             $scope.profile.$save(function(profile_data){
                 $scope.user.profile_id = profile_data.resource.id;
                 

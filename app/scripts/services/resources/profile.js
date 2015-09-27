@@ -10,8 +10,8 @@
 angular.module('saludWebApp')
   .factory('Profile', function (global, $resource) {
 
-    // URL of specific API resource
-    var url = global.getApiUrl() + '/my/profile';
+    // URL of specific API resource FIXME no es measurements es profile!
+    var url = global.getApiUrl() + '/my/measurements';
 
     return $resource( 
         url,{ 

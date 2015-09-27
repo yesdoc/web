@@ -14,6 +14,7 @@ angular.module('saludWebApp')
             $scope,
             $cookies, 
             Measurement, 
+            MyMeasurement, 
             MeasurementUnit,
             MeasurementType,
             $location, 
@@ -36,30 +37,42 @@ angular.module('saludWebApp')
                     $scope.source = source.resource;
                     });
 
-                //Creación de la variable measurement que será consumida por la vista.
-                var m = Measurement.get( {id : $routeParams.id}, function(){
-                    var measurement = m.resource;
-                    measurement.measurement_type_id = measurement.measurement_type.id;
-                    measurement.measurement_unit_id = measurement.measurement_unit.id;
-                    measurement.measurement_source_id = measurement.measurement_source.id;
-                    measurement.profile_id = $cookies.get('profile_id');
-                    $scope.measurement = measurement;
-                    $scope.getUnit();
-                    });
 
-                //Función que permite guardar los datos y si todo es correcto redirecciona al perfil de mediciones 
+                //Creación de measurement con todos sus atributosque luego será consumida por la vista.
+                var m = Measurement.get( 
+                        {id : $routeParams.id}, // id  de la medición
+                        function(){
+                            var measurement = m.resource;
+                            measurement.measurement_type_id = measurement.measurement_type.id;
+                            measurement.measurement_unit_id = measurement.measurement_unit.id;
+                            measurement.measurement_source_id = measurement.measurement_source.id;
+                            measurement.profile_id = measurement.profile.id;
+                            $scope.measurement = measurement;
+                            $scope.getUnit();
+                            }
+                        );
+
+
+                //Función que permite guardar los datos de las mediciones,
+                // y si todo es correcto redirecciona al perfil de mediciones.
                 $scope.updateMeasurement = function(){
-                    Measurement.update( {"id" : m.resource.id}, $scope.measurement, function(){
-                        $location.path('/measurements/'+m.resource.id);
-                        });
-                    };
+                    Measurement.update( 
+                            {"id" : m.resource.id}, // id de la medición
+                            $scope.measurement,
+                            function(){
+                                $location.path('/measurements');
+                                });
+                        }; // /.scope.updateMeasurement()
+
 
                 //Carga el select de la unidad de medición a partir del tipo de medición seleccionado.
                 $scope.getUnit = function() {
-                    var unit = MeasurementTypeUnit.get( {"id_type" : $scope.measurement.measurement_type_id}, function(){
-                        $scope.unit = unit.resource;      
-                        }); 
-                    };
+                    var unit = MeasurementTypeUnit.get(
+                            {"id_type" : $scope.measurement.measurement_type_id},
+                            function(){
+                                $scope.unit = unit.resource;      
+                                }); 
+                    }; // /.getUnit()
 
-            }
-        );
+                }
+            );

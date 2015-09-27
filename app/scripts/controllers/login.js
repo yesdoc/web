@@ -14,8 +14,8 @@ angular.module('saludWebApp')
             $scope,
             $window,
             $cookies,
-            Profile, 
             $http, 
+            Profile, 
             Authentication, 
             global){
 
@@ -37,6 +37,7 @@ angular.module('saludWebApp')
                     $window.location='/#/myProfileMeasurements'
                 },
                 function(response) {
+                    alert(response.status);
                     if(response.status === 401) {
                         $scope.message='Usuario o contraseña invalida';
                     }

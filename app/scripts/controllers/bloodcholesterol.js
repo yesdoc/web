@@ -8,11 +8,19 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller("BloodcholesterolCtrl", function ($scope,$cookies,$location, $rootScope) {
-    if(!$cookies.get('profile_id')){                                        
-      $location.path('/login');                                           
-     }else{                                                                  
-      var profile_id=$cookies.get('profile_id');                         
-     }
-  }); 
+  .controller(
+      "BloodcholesterolCtrl",
+      function (
+          $scope,
+	  $cookies,
+	  $location,
+	  $rootScope) {
+
+	  if(!$cookies.get('Token')){                                        
+              $location.path('/login');                                           
+              }else{                                                                  
+                  var profile_id=$cookies.get('profile_id');                         
+                  }
+              }
+          ); 
   

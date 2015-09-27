@@ -9,16 +9,23 @@
  */
 
 angular.module('saludWebApp')
-   .controller('UserCtrl', function($scope,$cookies,
-               Profile,Users,$location) {       
+.controller(
+        'UserCtrl', 
+        function(
+            $scope,
+            $cookies,
+            Profile,
+            Users,
+            $location) {       
 
-        if(!$cookies.get('profile_id')){
-            $location.path('/login');
-        }else{
-            var profile_id = $cookies.get('profile_id');
-            var user_data = Users.get({id:profile_id},function(){
-                var user = user_data.resource;
-                $scope.user = user;
-            });
-        }
-});
+                if(!$cookies.get('Token')){
+                    $location.path('/login');
+                    }else{
+                        var profile_id = $cookies.get('profile_id');
+                        var user_data = Users.get({id:profile_id},function(){
+                            var user = user_data.resource;
+                            $scope.user = user;
+                        });
+                    }
+                }
+            );

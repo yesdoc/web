@@ -9,6 +9,6 @@
  */
 angular.module('saludWebApp')
   .controller('LogoffCtrl', function ($scope,$cookies,$window) {
-      $cookies.remove('profile_id');
+      $cookies.remove('Token');
       $window.location=('/#/login');
   });

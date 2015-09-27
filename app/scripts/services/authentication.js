@@ -12,9 +12,9 @@ angular.module('saludWebApp')
           function ($http, $cookies, $rootScope, global) {
     
 
-    // Codifico en base 64 el header que le paso al recurso del token.
+    // Codifico en base 64 el usuario y la contraseña que le paso, como header, al recurso del token.
     var Base64 = {
-
+ 
             keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
             encode: function (input) {
@@ -55,53 +55,29 @@ angular.module('saludWebApp')
     
 
     // Solicita al recurso de la API el token correspondiente al usuario y
-    // contraseña ingresado.
+    // contraseña ingresado y luego lo almaceno en las cookies.
     function getToken(user, pass){
             
-        alert('service: '+ user);
         var authdata = Base64.encode(user + ':' + pass);
 
-        $rootScope.globals = {
-            currentUser:{
-                username: user,
-                password: pass
-            }
-        };
-
-
-
-
-                        
         // Envia en el header el usuario y la contraseña
-        // ¿Uso el mismo para pasar el token y solicitar los datos de un
-        // perfil???
+        // FIXME ¿Uso el mismo para pasar el token y solicitar los datos de un
+        // perfil o de una medición???
         $http.defaults.headers.common['Authorization'] = ' Basic ' + authdata;
-
         
         // Traigo del recurso el token
-        $http.get(global.getApiUrl() + '/token', { username: user, password: pass })
-            .success(function (response) {
-                alert('robin');
-                callback(response);
-            });
+        $http.get(global.getApiUrl() + '/token');
 
-
-        // Guardo en las cookies el user y el pass o el token?????
-        $cookies.put('globals',$rootScope.globals);
-        alert('lalala'+$rootScope.globals.currentUser.username);
-
+        // Guardo en las cookies el token
+        $cookies.put('Token',authdata);
 
         } // /.getToken 
     
     
-    // Función que solicita y almacena el token.
+    // Función pública que solicita y almacena el token.
     return {
-        authentication: function(user, pass) {
-
+        login: function(user, pass) {
             getToken(user, pass);
-            var token = 'hola';
-            return token;
-
             } // /.authentication()
         } // /.return
 

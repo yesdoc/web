@@ -20,28 +20,26 @@ angular.module('saludWebApp')
           };
 
           scope.$watch( function() {
-            scope.render(scope.data);
+              scope.render(scope.data);
           });
-          // hasta acá
 
           // Dibuja la gráfica
           scope.render = function(data) {
+            
             nv.addGraph(function() {
               var chart = nv.models.lineWithFocusChart()
-              .height(500)
+              .height(ele[0].offsetHeight)//Obtenemosla altura de la div contenedora
               .interactive(true);
 
-              chart.xAxis
-                .tickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))})
-              chart.x2Axis
-                .tickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))})
+
+              chart.xTickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))})
 
               chart.yAxis
                 .tickFormat(d3.format(',.2f'));
 
-              chart.y2Axis
+              /*chart.y2Axis
                 .tickFormat(d3.format(',.2f'));
-
+              */
               d3.select('#chart svg')
                 .datum(data)
                 .transition().duration(500)

@@ -25,21 +25,32 @@ angular.module('saludWebApp')
 
           // Dibuja la gráfica
           scope.render = function(data) {
-            
+
             nv.addGraph(function() {
               var chart = nv.models.lineWithFocusChart()
-              .height(ele[0].offsetHeight)//Obtenemosla altura de la div contenedora
-              .interactive(true);
+                .height(ele[0].offsetHeight)//Obtenemosla altura de la div contenedora
+                .interactive(true)
+                .showVoronoi(true)
+                .clipRadius(function (d) {
+                  return 20;
+                  })
 
+              //chart.padData(true);
+              chart.xTickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))});
 
-              chart.xTickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))})
+              chart.xAxis
+                .showMaxMin(false);    
+
+              chart.x2Axis
+                .showMaxMin(false);    
 
               chart.yAxis
-                .tickFormat(d3.format(',.2f'));
+                .tickFormat(d3.format(',.2f'))
 
-              /*chart.y2Axis
-                .tickFormat(d3.format(',.2f'));
-              */
+              chart.y2Axis
+                .showMaxMin(false);    
+                //.tickFormat(d3.format(',.2f'));
+
               d3.select('#chart svg')
                 .datum(data)
                 .transition().duration(500)

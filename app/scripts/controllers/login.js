@@ -30,14 +30,12 @@ angular.module('saludWebApp')
                 $scope.password
                 );
 
-            // Solicita la información del perfil FIXME (los datos no son
-            // correctos porque por el momento no existe el recurso necesario.)
+            // Solicita la información del perfil 
             Profile.get(
                 function(){
-                    $window.location='/#/myProfileMeasurements'
+                    $window.location='/#/myProfileInformation'
                 },
                 function(response) {
-                    alert(response.status);
                     if(response.status === 401) {
                         $scope.message='Usuario o contraseña invalida';
                     }

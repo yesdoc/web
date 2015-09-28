@@ -14,69 +14,79 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'route-segment',
+    'view-segment',
     'ngSanitize',
     'ngTouch',
     'mgcrea.ngStrap',
     'nvd3ChartDirectives'
   ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/home', {
-        templateUrl: 'views/home.html',
-        controller: 'HomeCtrl'
-      })
-      .when('/logoff', {
-        templateUrl: 'views/logoff.html',
-        controller: 'LogoffCtrl'
-      })
-      .when('/profileInformation/new', {
-        templateUrl: 'views/profileinformation-new.html',
-        controller: 'ProfileInformationNewCtrl'
-      })
-      .when('/myProfileInformation', {
-        templateUrl: 'views/profileinformation.html',
-        controller: 'ProfileInformationCtrl'
-      })
-      .when('/myProfileInformation/edit', {
-        templateUrl: 'views/profileinformation-edit.html',
-        controller: 'ProfileInformationEditCtrl'
-      })
-      .when('/login', {
+  
+  .config(function ($routeSegmentProvider , $routeProvider) {
+    $routeSegmentProvider.
+      when('/about', 'about').
+      when('/home','home').
+      when('/home/height','home.height').
+      when('/home/weight','home.weight').
+      when('/logoff', 'logoff').
+      when('/profileInformation/new','profileInformation/new').
+      when('/myProfileInformation','myProfileInformation').
+      when('/myProfileInformation/edit','myProfileInformation/edit').
+      when('/login','login').
+      when('/measurements/new','measurements-new' ).
+      when('/profileMeasurements','profileMeasurements').
+      when('/measurements/:id/edit','measurements-edit').
+      segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
-      })
-      .when('/measurements/new', {
+      }).
+      segment('about',{
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl'
+      }).
+      segment('home',{
+        templateUrl: 'views/home.html',
+        controller: 'HomeCtrl'
+      }).
+      within().
+        segment('weight',{
+          default: true,
+          templateUrl:'views/weight.html',
+          controller:'WeightCtrl'
+        }).
+        segment('height',{
+          templateUrl:'views/height.html',
+          controller:'HeightCtrl'
+        }).
+        up().
+      segment('logoff',{
+        templateUrl: 'views/logoff.html',
+        controller: 'LogoffCtrl'
+      }).
+      segment('profileInformation/new',{
+          templateUrl: 'views/profileinformation-new.html',
+          controller: 'ProfileInformationNewCtrl'
+      }).
+      segment('myProfileInformation',{
+        templateUrl: 'views/profileinformation.html',
+        controller: 'ProfileInformationCtrl'
+      }).
+      segment('myProfileInformation/edit',{
+        templateUrl: 'views/profileinformation-edit.html',
+        controller: 'ProfileInformationEditCtrl'
+      }).
+      segment('measurements-new',{
         templateUrl: 'views/measurement-new.html',
         controller: 'MeasurementNewCtrl'
-      })
-      .when('/profileMeasurements', {
+      }).
+      segment('profileMeasurements',{
         templateUrl: 'views/profilemeasurements.html',
         controller: 'ProfileMeasurementsCtrl'
-      })
-      .when('/measurements/:id/edit', {
+      }).
+      segment('measurements-edit',{
         templateUrl: 'views/measurement-edit.html',
         controller: 'MeasurementEditCtrl'
-      })
-      .otherwise({
-        redirectTo: '/profileMeasurements'
       });
-  });
-    /*
-    .run(function($rootScope , $location){
-        $rootScope.$on( "$routeChangeStart", function(event, next, current) {
-          if ( $rootScope.loggedUser == null ) {
-            // no logged user, we should be going to #login
-            if ( next.templateUrl == "login.html") {
-            // already going to #login, no redirect needed
-            } else {
-                // not going to #login, we should redirect now
-                $location.path("/login");
-            }
-            }         
-        });
 
-    }); */
+     $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
+});

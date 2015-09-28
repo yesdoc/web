@@ -55,7 +55,8 @@
     <!--En esta sección se cargará el contenido determinado por el panel de
     navegación -->
     <div >
-        <div ng-view=""></div>
+      <div id="contents" app-view-segment="0"></div>
+      <!-- <div ng-view=""></div> -->
     </div>
 
     <div class="footer">
@@ -92,6 +93,7 @@
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script>
     <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+    <script src="bower_components/angular-route-segment/build/angular-route-segment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

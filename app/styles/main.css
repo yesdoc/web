@@ -155,6 +155,13 @@ body {
     color: #5bc0de;
 }
 /*Botonera interna de navegación */
+
+
+.home-container{
+  display:inline-block;
+  width:80%;
+}
+
 .edition-nav {
     min-height: 250px;    
     box-shadow: 1px 0 rgba(0,0,0,0.1);
@@ -172,4 +179,8 @@ body {
     font-size: 1.3em;
 }
 
+/* FIXME PLS! I NEED SUPORT SMARTPHONES! */
+#chart{
+  height:500px;
+}
 

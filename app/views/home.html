@@ -1,11 +1,13 @@
-<div class="row bs-callout bs-callout-success"> 
-    <tabs>
-        <pane
-            ng-repeat="pane in panes | filter:{includedInTabView:true}" 
-            tab-title="{{pane.name}}"
-            tab-icon="{{pane.icon}}"
-            controller="{{pane.controller}}"
-            template="{{pane.partial}}">
-        </pane>
-    </tabs>
-</div>
+<h4>Section 1</h4>
+<div>
+    <div class="col-md-2  edition-nav">
+        <ul class="nav nav-stacked">
+          <li>
+          <a href="#{{ 'home.weight' | routeSegmentUrl }}"><span class="glyphicon glyphicon-scale"> Peso</span></a>
+
+          <a href="#{{ 'home.height' | routeSegmentUrl }}"><span class="glyphicon glyphicon-resize-vertical"> Altura</span></a>
+            </li>
+        </ul>
+    </div>
+
+<div app-view-segment="1" class='home-container'></div>

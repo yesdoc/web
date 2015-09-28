@@ -17,13 +17,9 @@ angular.module('saludWebApp')
         ProfileMeasurements,
         $rootScope) {
 
-    if(!$cookies.get('profile_id')){                                        
-
-      $location.path('/login');                                           
-
-     }else{                                                                  
-
-      var profile_id=$cookies.get('profile_id');                         
+        if(!$cookies.get('Token')){                                        
+            $location.path('/login');                                           
+        }else{                                                            
 
         // ###################### Gráficas ####################################
         

@@ -15,7 +15,7 @@ angular.module('saludWebApp')
         $location,
         $rootScope) {
 
-        if(!$cookies.get('Token')){                                        
+        if(!$cookies.get('Token')){ 
             $location.path('/login');                                           
             }else{                                                              
 

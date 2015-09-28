@@ -32,8 +32,8 @@ angular.module('saludWebApp')
                 .interactive(true)
                 .showVoronoi(true)
                 .clipRadius(function (d) {
-                  return 20;
-                  })
+                  return 20; //Voronoi circle radio
+                  });
 
               //chart.padData(true);
               chart.xTickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))});
@@ -45,7 +45,7 @@ angular.module('saludWebApp')
                 .showMaxMin(false);    
 
               chart.yAxis
-                .tickFormat(d3.format(',.2f'))
+                .tickFormat(d3.format(',.2f'));
 
               chart.y2Axis
                 .showMaxMin(false);    

@@ -29,11 +29,7 @@ angular.module('saludWebApp')
             nv.addGraph(function() {
               var chart = nv.models.lineWithFocusChart()
                 .height(ele[0].offsetHeight)//Obtenemosla altura de la div contenedora
-                .interactive(true)
-                .showVoronoi(true)
-                .clipRadius(function (d) {
-                  return 20; //Voronoi circle radio
-                  });
+                .interactive(true);
 
               //chart.padData(true);
               chart.xTickFormat(function(d) {return d3.time.format('%d-%m')(new Date(d))});

@@ -36,6 +36,7 @@ module.exports = function(config) {
       'bower_components/d3/d3.js',
       'bower_components/nvd3/build/nv.d3.js',
       'bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js',
+      'bower_components/angular-route-segment/build/angular-route-segment.js',
       'bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

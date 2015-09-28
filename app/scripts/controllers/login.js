@@ -15,7 +15,7 @@ angular.module('saludWebApp')
             $window,
             $cookies,
             $http, 
-            Profile, 
+            MyProfile, 
             Authentication, 
             global){
 
@@ -31,7 +31,7 @@ angular.module('saludWebApp')
                 );
 
             // Solicita la información del perfil 
-            Profile.get(
+            MyProfile.get(
                 function(){
                     $window.location='/#/myProfileInformation'
                 },
@@ -42,7 +42,7 @@ angular.module('saludWebApp')
                     else{
                         $scope.message='Lo sentimos, existe un problema con la conexión al servidor.';
                     }
-                }); // /.Profile.get
+                }); // /.MyProfile.get
 
 
             }; // /.login()

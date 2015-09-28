@@ -17,13 +17,13 @@ angular.module('saludWebApp')
         function(
             $scope,
             $cookies,
-            Profile,
+            MyProfile,
             $location) {       
 
                 if(!$cookies.get('Token')){
                     $location.path('/login');
                     }else{
-                        var dataProfile = Profile.get(
+                        var dataProfile = MyProfile.get(
                             function(){
                                 var profile=dataProfile.resource;
                                 profile.gender=profile.gender.name;

@@ -36,11 +36,11 @@ angular.module('saludWebApp')
 
           mts = mts.resource;
 
-          var peso_id;
+          var altura_id;
 
           $.each(mts,function (i,mt){
             if (mt.name.toLowerCase() == "altura"){
-              peso_id = mt.id;
+              altura_id = mt.id;
               return;
             }
           });
@@ -49,7 +49,7 @@ angular.module('saludWebApp')
           var parseDate = d3.time.format.iso.parse;
         
           var d = ProfileMeasurements.get(
-              {id: $cookies.get('profile_id'),type: peso_id},
+              {id: $cookies.get('profile_id'),type: altura_id},
               function(){
 
             // Lista de valores de la gráfica

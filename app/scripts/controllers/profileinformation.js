@@ -12,16 +12,23 @@
 
 
 angular.module('saludWebApp')
-   .controller('ProfileInformationCtrl', function($scope,$cookies,Profile,$location) {       
-        if(!$cookies.get('profile_id')){
-            $location.path('/login');
-        }else{
-            var profile_id=$cookies.get('profile_id');
-            var data = Profile.get({id: profile_id},function(){
-                var profile=data.resource;
-                profile.gender=profile.gender.name;
-                $scope.profile=profile;
-            }); 
-        }
+.controller(
+        'ProfileInformationCtrl',
+        function(
+            $scope,
+            $cookies,
+            MyProfile,
+            $location) {       
 
-});
+                if(!$cookies.get('Token')){
+                    $location.path('/login');
+                    }else{
+                        var dataProfile = MyProfile.get(
+                            function(){
+                                var profile=dataProfile.resource;
+                                profile.gender=profile.gender.name;
+                                $scope.profile=profile;
+                            }); 
+                        }
+                    }
+                );

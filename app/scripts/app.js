@@ -64,8 +64,8 @@ angular
         controller: 'LogoffCtrl'
       }).
       segment('profileInformation/new',{
-          templateUrl: 'views/profileinformation-new.html',
-          controller: 'ProfileInformationNewCtrl'
+        templateUrl: 'views/profileanduser-new.html',
+        controller: 'ProfileAndUserNewCtrl'
       }).
       segment('myProfileInformation',{
         templateUrl: 'views/profileinformation.html',

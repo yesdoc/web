@@ -2,28 +2,26 @@
 
 /**
  * @ngdoc service
- * @name saludWebApp.profile
+ * @name saludWebApp.login
  * @description
- * # profile
+ * # login
  * Service in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('Profile', function (global, $resource) {
+  .factory('Login', function (global, $resource) {
 
     // URL of specific API resource
-    var url = global.getApiUrl() + '/profiles/:id';
+    var url = global.getApiUrl() + '/token';
 
     return $resource( 
-        url,{ 
+        url,
+        { 
             id: '@_id'
-            },{
-            update: {
-                method: 'PUT' 
-                },
+        }, 
+        {
             query: {
                 method: 'GET',
                 isArray: false
-                }
             }
-        );  
-    });
+        });  
+  });

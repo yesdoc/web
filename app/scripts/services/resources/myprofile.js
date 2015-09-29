@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc service
- * @name saludWebApp.profile
+ * @name saludWebApp.myprofile
  * @description
- * # profile
+ * # myprofile
  * Service in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('Profile', function (global, $resource) {
+  .factory('MyProfile', function (global, $resource) {
 
     // URL of specific API resource
-    var url = global.getApiUrl() + '/profiles/:id';
+    var url = global.getApiUrl() + '/my/profile';
 
     return $resource( 
         url,{ 

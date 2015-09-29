@@ -18,17 +18,15 @@ angular.module('saludWebApp')
         ProfileMeasurements,
         ProfileMeasurementsLatest) {
 
-    if(!$cookies.get('profile_id')){
+    if(!$cookies.get('Token')){
         $location.path('/login');
     }else{
 
         // Se traen y muestran las ultimas mediciones de un perfil
         var data = ProfileMeasurementsLatest.get(
-            {id: $cookies.get('profile_id')},
             function(){
-          $scope.measurements=data.resource;
-        });   
-
-    }
+              $scope.measurements=data.resource;
+              });   
+        }
 
 });

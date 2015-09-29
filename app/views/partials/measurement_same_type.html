@@ -14,7 +14,7 @@
         </thead>
         <tbody>
             <tr ng-repeat="measurement in measurements">
-                <th scope="row"> {{$index}} </th>
+                <th scope="row"> {{$index + 1}} </th>
                 <td>{{measurement.value}} {{measurement.measurement_unit.symbol}}</td>
                 <td>{{measurement.measurement_source.name}}</td>
                 <td>{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</td>

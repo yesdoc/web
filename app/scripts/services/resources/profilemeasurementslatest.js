@@ -14,6 +14,6 @@ angular.module('saludWebApp')
     var url=global.getApiUrl()+'/my/measurements/latest';
 
      return $resource( url,
-        { id: '@_id' },
+        {},
         {query:{method:'GET',isArray:false}}); 
    });

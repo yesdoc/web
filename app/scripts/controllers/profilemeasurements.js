@@ -24,11 +24,9 @@ angular.module('saludWebApp')
 
         // Se traen y muestran las ultimas mediciones de un perfil
         var data = ProfileMeasurementsLatest.get(
-            {},
             function(){
-          $scope.measurements=data.resource;
-        });   
-
-    }
+              $scope.measurements=data.resource;
+              });   
+        }
 
 });

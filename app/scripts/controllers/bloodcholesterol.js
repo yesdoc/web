@@ -9,18 +9,16 @@
  */
 angular.module('saludWebApp')
   .controller(
-      "BloodcholesterolCtrl",
-      function (
-          $scope,
-	  $cookies,
-	  $location,
-	  $rootScope) {
+    "BloodcholesterolCtrl",
+    function (
+        $scope,
+        $cookies,
+        $location,
+        $rootScope) {
 
-	  if(!$cookies.get('Token')){                                        
-              $location.path('/login');                                           
-              }else{                                                                  
-                  var profile_id=$cookies.get('profile_id');                         
-                  }
-              }
-          ); 
+        if(!$cookies.get('Token')){                                        
+            $location.path('/login');                                           
+            }
+        }
+    );
   

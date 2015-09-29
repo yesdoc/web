@@ -19,9 +19,6 @@ angular.module('saludWebApp')
             id: '@_id'
         }, 
         {
-            update: {
-                method: 'PUT' 
-            },
             query: {
                 method: 'GET',
                 isArray: false

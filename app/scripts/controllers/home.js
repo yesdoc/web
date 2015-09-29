@@ -17,8 +17,6 @@ angular.module('saludWebApp')
 
         if(!$cookies.get('Token')){ 
             $location.path('/login');                                           
-            }else{                                                              
-
-                }
+            }
         }
     );

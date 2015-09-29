@@ -19,8 +19,9 @@ angular.module('saludWebApp')
         $rootScope) {
 
         if(!$cookies.get('Token')){                                        
-            $location.path('/login');                                           
-        }else{                                                              
+          $location.path('/login');                                           
+          }
+
 
         // ###################### Gráficas ####################################
         
@@ -49,18 +50,18 @@ angular.module('saludWebApp')
               {id: $cookies.get('profile_id'),type: peso_id},
               function(){
 
-            // Lista de valores de la gráfica
-            var vList=[];
+                  // Lista de valores de la gráfica
+                  var vList=[];
 
-            $.each(d.resource,function(i,m){
+                  $.each(d.resource,function(i,m){
 
-              var fecha = +parseDate(m.datetime)
-              var valor = m.value
+                      var fecha = +parseDate(m.datetime)
+                      var valor = m.value
 
-              // Se agrega el par { x:fecha, y:valor }
-              vList.push({ x : fecha, y : valor})
+                      // Se agrega el par { x:fecha, y:valor }
+                      vList.push({ x : fecha, y : valor})
 
-            });
+                  });
 
 
             $scope.data = [{
@@ -71,6 +72,5 @@ angular.module('saludWebApp')
           
         });
 
-     }
   }); 
   

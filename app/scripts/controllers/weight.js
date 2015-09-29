@@ -46,6 +46,7 @@ angular.module('saludWebApp')
                         var parseDate = d3.time.format.iso.parse;
 
                         var d = ProfileMeasurements.get(
+                            {type: peso_id},
                             function(){
 
                                 // Lista de valores de la gráfica

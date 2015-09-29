@@ -154,6 +154,48 @@ body {
 .bs-callout-info h4 {
     color: #5bc0de;
 }
+/* Angular strap */
+.datepicker.dropdown-menu {
+  width: 250px;
+  height: 250px;
+}
+.datepicker.dropdown-menu button {
+  outline: none;
+  border: 0px;
+}
+.datepicker.dropdown-menu tbody {
+  height: 180px;
+}
+.datepicker.dropdown-menu tbody button {
+  padding: 6px;
+}
+.datepicker.dropdown-menu.datepicker-mode-1 tbody button,
+.datepicker.dropdown-menu.datepicker-mode-2 tbody button {
+  height: 65px;
+}
+.timepicker.dropdown-menu {
+  padding: 0 4px;
+}
+.timepicker.dropdown-menu button {
+  outline: none;
+  border: 0px;
+}
+.timepicker.dropdown-menu tbody button {
+  padding: 6px;
+}
+
+
+.timepicker.dropdown-menu {
+  padding: 0 4px;
+  button {
+    outline: none;
+    border: 0px;
+  }
+  tbody button {
+    padding: 6px;
+  }
+}
+
 /*Botonera interna de navegación */
 
 
@@ -177,6 +219,11 @@ body {
     color:#3C763D;/*#3C763D - #4EAA4B*/
     text-decoration:none;
     font-size: 1.3em;
+}
+
+.table-mediciones{
+  height:200px;
+  overflow: auto;
 }
 
 /* FIXME PLS! I NEED SUPORT SMARTPHONES! */

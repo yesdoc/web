@@ -1,0 +1,77 @@
+
+<div class="form-group"
+    ng-class="{'has-error':measurementForm.date.$invalid && !measurementForm.date.$pristine}" >
+    <label for="date" class="col-sm-2 control-label">Fecha:</label>
+    <div class="col-sm-10">
+      <div class="form-group row">
+        <div class="col-md-6">
+          <input name="date" size="10" class="form-control" ng-model="measurement.datetime" data-autoclose="1" 
+          data-timezone='UTC' placeholder="Fecha" bs-datepicker data-date-format="yyyy-MM-dd" type="text" required>
+        </div>
+        <div class="col-md-4">
+          <input name="time" size="4" class="form-control" ng-model="measurement.datetime" data-time-format="HH:mm:ss"
+          data-autoclose="1" placeholder="Hora" bs-timepicker type="text">
+        </div>
+      </div>
+        <p ng-show="measurementForm.date.$invalid && measurementForm.date.$touched" class="help-block">
+        Debe ingresar fecha y hora de medición. </p>
+    </div>
+</div>
+
+<div class="form-group"
+    ng-class="{'has-error':measurementForm.value.$invalid && !measurementForm.value.$pristine}" >
+    <label for="value" class="col-sm-2 control-label">Descripción:</label>
+    <div class="col-sm-10">
+        <input name="value" type="text" class="form-control" id="value" ng-model="measurement.value"
+        placeholder="Descripción" required>
+        <p ng-show="measurementForm.value.$invalid && measurementForm.value.$touched" class="help-block">
+        Debe ingresar una descripción.</p>
+    </div>
+</div>
+
+<div class="form-group">
+  <label class="col-sm-2 control-label">Mediciones:</label>
+  <div class="col-sm-10">
+    <!-- You can use a custom html template with the `data-template` attr -->
+    <button type="button" class="btn btn-primary" data-ng-click="showModal()" data-animation="am-fade-and-slide-top">
+      <span class='glyphicon glyphicon-plus'></span>
+    </button>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class='table-mediciones'>
+      <div class="table-responsive">
+        <table class='table table-hover'>
+          <!--
+            <thead>
+            <tr>
+            <th>Index</th>
+            </tr>
+            </thead>
+          -->
+          <tbody>
+            <tr ng-repeat="m in mediciones" class='row'>
+              <th scope="row">{{m.numero}}</th>
+              <td>{{m.tipo.nombre}}</td>
+              <td>{{m.valor}}</td>
+              <td>{{m.unidad.nombre}}</td>
+              <td style='width:206px'>
+                <button type="button" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>
+                <button type="button" class="btn btn-warning"><span class='glyphicon glyphicon-pencil'></span></button>
+                <button type="button" class="btn btn-danger"><span class='glyphicon glyphicon-trash'></span></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-success" value="Save" ng-disabled="measurementForm.$invalid">
+    </div>
+</div>

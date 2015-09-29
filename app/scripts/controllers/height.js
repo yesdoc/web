@@ -58,14 +58,13 @@ angular.module('saludWebApp')
 
                                         // Se agrega el par { x:fecha, y:valor }
                                         vList.push({ x : fecha, y : valor})
-
-                                    });
+                                        });
 
                                     $scope.data = [{
                                         "key" : "Altura (m)" ,
                                         "bar": true,
                                         "values" : vList
-                                    }];
+                                        }];
                                    
 
                                     // Creación del scope de mediciones que será

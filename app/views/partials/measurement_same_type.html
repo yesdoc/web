@@ -1,0 +1,25 @@
+<!-- Gráfica de mediciones de un mismo tipo -->
+<div linegraph id='chart'>
+  <svg></svg>
+</div>
+
+<!-- Tabla de mediciones de un mismo tipo -->
+<div class="row bs-callout bs-callout-primary"> 
+
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>#</th> <th>Valor</th><th>Fuente</th><th>Fecha</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="measurement in measurements">
+                <th scope="row"> {{$index + 1}} </th>
+                <td>{{measurement.value}} {{measurement.measurement_unit.symbol}}</td>
+                <td>{{measurement.measurement_source.name}}</td>
+                <td>{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

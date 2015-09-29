@@ -36,6 +36,7 @@ angular
       when('/measurements/new','measurements-new' ).
       when('/profileMeasurements','profileMeasurements').
       when('/measurements/:id/edit','measurements-edit').
+
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -48,17 +49,17 @@ angular
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       }).
-      within().
-        segment('weight',{
-          default: true,
-          templateUrl:'views/weight.html',
-          controller:'WeightCtrl'
-        }).
-        segment('height',{
-          templateUrl:'views/height.html',
-          controller:'HeightCtrl'
-        }).
-        up().
+        within().
+            segment('weight',{
+            default: true,
+            templateUrl:'views/weight.html',
+            controller:'WeightCtrl'
+            }).
+            segment('height',{
+            templateUrl:'views/height.html',
+            controller:'HeightCtrl'
+            }).
+            up().
       segment('logoff',{
         templateUrl: 'views/logoff.html',
         controller: 'LogoffCtrl'

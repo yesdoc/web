@@ -14,7 +14,7 @@
     var url=global.getApiUrl()+'/my/measurements';
 
      return $resource( url,
-        { id: '@_id' },
+        { },
         {query:{method:'GET',isArray:false}}); 
    });
 

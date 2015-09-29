@@ -22,13 +22,13 @@ angular.module('saludWebApp')
 
                 if(!$cookies.get('Token')){
                     $location.path('/login');
-                    }else{
-                        var dataProfile = MyProfile.get(
-                            function(){
-                                var profile=dataProfile.resource;
-                                profile.gender=profile.gender.name;
-                                $scope.profile=profile;
-                            }); 
-                        }
                     }
-                );
+                var dataProfile = MyProfile.get(
+                    function(){
+                        var profile=dataProfile.resource;
+                        profile.gender=profile.gender.name;
+                        $scope.profile=profile;
+                        }
+                    ); 
+                }
+        );

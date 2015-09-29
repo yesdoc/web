@@ -1,21 +1,2 @@
 <h1>Peso</h1>
-<div linegraph id='chart'>
-  <svg></svg>
-</div>
-
-<!-- Tabla medciones de un mismo tipo -->
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>Valor</th><th>Fuente</th><th>Fecha</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="measurement in measurements">
-                    <td>{{measurement.value}} {{measurement.measurement_unit.symbol}}</td>
-                    <td>{{measurement.measurement_source.name}}</td>
-                    <td>{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
-                </tr>
-            </tbody>
-        </table>
-
+<div ng-include="'views/partials/measurement_same_type.html'"></div>

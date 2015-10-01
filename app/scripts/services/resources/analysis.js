@@ -2,16 +2,16 @@
 
 /**
  * @ngdoc service
- * @name saludWebApp.epicrisis
+ * @name saludWebApp.profile
  * @description
- * # epicrisis
+ * # profile
  * Service in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('Epicrisis', function (global, $resource) {
+  .factory('Analysis', function (global, $resource) {
 
     // URL of specific API resource
-    var url=global.getApiUrl()+'/epicrisis/:id';
+    var url=global.getApiUrl()+'/analysis/:id';
 
     return $resource( url,
         { id: '@_id' },

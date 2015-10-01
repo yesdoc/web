@@ -18,6 +18,7 @@ angular
     'view-segment',
     'ngSanitize',
     'ngTouch',
+    'ngDroplet',
     'mgcrea.ngStrap',
     'nvd3ChartDirectives'
   ])

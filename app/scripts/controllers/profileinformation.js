@@ -8,9 +8,6 @@
  * Controller of the saludWebApp
  */
 
-// Route: /profileInformation/:id
-
-
 angular.module('saludWebApp')
 .controller(
     'ProfileInformationCtrl',
@@ -20,13 +17,13 @@ angular.module('saludWebApp')
       MyProfile,
       Auth,
       $location) {       
-      Auth.isLogged();
-      var dataProfile = MyProfile.get(
-          function(){
-            var profile=dataProfile.resource;
-            profile.gender=profile.gender.name;
-            $scope.profile=profile;
-          }
-          ); 
-    }
-    );
+
+        Auth.isLogged();
+
+        var dataProfile = MyProfile.get(function(){
+          var profile=dataProfile.resource;
+          profile.gender=profile.gender.name;
+          $scope.profile=profile;
+          }); 
+
+    });

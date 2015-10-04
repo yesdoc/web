@@ -8,15 +8,14 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('HomeCtrl',
-     function (
-        $scope,
-        $cookies,
-        $location,
-        $rootScope) {
+.controller('HomeCtrl',
+    function (
+      $scope,
+      $cookies,
+      Auth,
+      $location,
+      $rootScope) {
 
-        if(!$cookies.get('Token')){ 
-            $location.path('/login');                                           
-            }
-        }
-    );
+        Auth.isLogged();
+
+    });

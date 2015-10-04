@@ -228,7 +228,7 @@ angular.module('saludWebApp')
             m.analysis_id = analysis_id;
             m.$save(function(){
               console.log('bien!');
-              $location.path('/myProfileInformation');
+              $location.path('/#/myProfileInformation');
               });
             });  
           });

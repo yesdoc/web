@@ -36,7 +36,7 @@ angular
       when('/measurements/new','measurements-new' ).
       when('/profileMeasurements','profileMeasurements').
       when('/measurements/:id/edit','measurements-edit').
-      when('/epicrisis/new','epicrisis-new').
+      when('/analysis/new','analysis-new').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -92,9 +92,9 @@ angular
         templateUrl: 'views/measurement-edit.html',
         controller: 'MeasurementEditCtrl'
       }).
-      segment('epicrisis-new',{
-        templateUrl: 'views/epicrisis-new.html',
-        controller: 'EpicrisisNewCtrl'
+      segment('analysis-new',{
+        templateUrl: 'views/analysis-new.html',
+        controller: 'AnalysisNewCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});

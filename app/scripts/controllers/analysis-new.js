@@ -8,7 +8,7 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('EpicrisisNewCtrl', function (
+  .controller('AnalysisNewCtrl', function (
         $scope,
         $modal, 
         $cookies, 
@@ -69,7 +69,7 @@ angular.module('saludWebApp')
 
     var modalam = $modal({ 
       scope: $scope,
-      templateUrl: "views/partials/epicrisis-addMeasurement.html", 
+      templateUrl: "views/partials/analysis-addMeasurement.html", 
       contentTemplate: false, 
       html: true, 
       show: false });
@@ -81,7 +81,7 @@ angular.module('saludWebApp')
 
     var modalaa = $modal({ 
       scope: $scope,
-      templateUrl: "views/partials/epicrisis-addAttachment.html", 
+      templateUrl: "views/partials/analysis-addAttachment.html", 
       contentTemplate: false, 
       html: true, 
       show: false });
@@ -219,14 +219,16 @@ angular.module('saludWebApp')
         $scope.analysis.$save(function(result){
           var analysis_id = result.resource.id;
           $.each($scope.mediciones,function(i,m){
-            console.log(m);
+            /*
             delete m.tipo;
             delete m.unidad;
             delete m.source;
+            */
             m.profile_id = pid.resource.id;
             m.analysis_id = analysis_id;
             m.$save(function(){
               console.log('bien!');
+              $location.path('/myProfileInformation');
               });
             });  
           });

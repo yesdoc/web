@@ -69,7 +69,10 @@ angular.module('saludWebApp')
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
                 var authdata = data.resource.token;
-                setCookie(authdata);
+                // Arma la autenticación mediante token como "<token>:<vacío>",
+                // y la codifica en Base64. Por lo tanto, el formato es similar
+                // a la autenticación mediante usuario y contraseña.
+                setCookie(Base64.encode(authdata + ':'));
           });
 
         // Guardo en las cookies el token

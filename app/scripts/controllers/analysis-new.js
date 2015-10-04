@@ -9,21 +9,20 @@
  */
 angular.module('saludWebApp')
   .controller('AnalysisNewCtrl', function (
-        $scope,
-        $modal, 
-        $cookies, 
-        Auth,
-        Measurement,  
-        MeasurementUnit,
-        MeasurementType,
-        MeasurementTypeUnit, 
-        MyProfile,
-        $sce,
-        $location , 
-        MeasurementSource, 
-        AnalysisFile,
-        Analysis,
-        $filter){
+      $scope,
+      $modal, 
+      $sce,
+      $location , 
+      Auth,
+      Measurement,  
+      MeasurementUnit,
+      MeasurementType,
+      MeasurementTypeUnit, 
+      MeasurementSource, 
+      MyProfile,
+      AnalysisFile,
+      Analysis,
+      $filter){
 
     Auth.isLogged();
 
@@ -106,18 +105,49 @@ angular.module('saludWebApp')
       $scope.aFile.datetime = $scope.analysis.datetime;
 
 
+      function hasExtension(fileName, exts) {
+          return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+      }
+
       $scope.addAdjunto = function(){
 
-       var e = { 
-         nombre: $scope.aFile.name,
-         fecha : $scope.aFile.datetime,
-         archivo_tipo: $scope.aFile.real_name, //FIXME, recuperar el tipo de archivo
-         archivo: $scope.aFile.file
-         }
+        var fname = $scope.aFile.real_name;
+        var type = 'file-o';
 
-       $scope.adjuntos.push(e);
+        if(hasExtension(fname,['png','bmp','jpg','jpeg','gif'])){
+          type='file-image-o';
+        }
 
-       $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó un archivo adjunto.</div>");
+        if(hasExtension(fname,['doc','docx','odt','txt'])){
+          type='file-text-o';
+        }
+
+        if(hasExtension(fname,['avi','mp4','mpeg'])){
+          type='file-video-o';
+        }
+
+        if(hasExtension(fname,['mp3','ogg'])){
+          type='file-text-o';
+        }
+
+        if(hasExtension(fname,['pdf'])){
+          type='file-pdf-o';
+        }
+
+        if(hasExtension(fname,['rar','zip','gz'])){
+          type='file-archive-o';
+        }
+
+        var e = { 
+          nombre: $scope.aFile.name,
+          fecha : $scope.aFile.datetime,
+          archivo_tipo: type, //FIXME, recuperar el tipo de archivo
+          archivo: $scope.aFile.file
+          }
+
+        $scope.adjuntos.push(e);
+
+        $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó un archivo adjunto.</div>");
       }
 
       /*
@@ -218,7 +248,7 @@ angular.module('saludWebApp')
 
         $scope.analysis.$save(function(result){
           var analysis_id = result.resource.id;
-          $.each($scope.mediciones,function(i,m){
+          $.each( $scope.mediciones , function( i , m ){
             /*
             delete m.tipo;
             delete m.unidad;
@@ -231,6 +261,11 @@ angular.module('saludWebApp')
               $location.path('/#/myProfileInformation');
               });
             });  
+
+          $.each($scope.adjuntos , function( i , a ){
+
+          });
+
           });
 
         });

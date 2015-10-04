@@ -54,7 +54,7 @@
           <tbody>
             <tr ng-repeat="a in adjuntos track by $index" class='row'>
               <th scope="row">{{($index+1)}}</th>
-              <td><i class='fa fa-file-image-o'></i></td>
+              <td><i class='fa fa-{{a.archivo_tipo}}'></i></td>
               <td>{{a.nombre}}</td>
               <td style='width:206px'>
                 <button type="button" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>

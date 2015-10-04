@@ -12,17 +12,20 @@ angular.module('saludWebApp')
         $scope,
         $modal, 
         $cookies, 
+        Auth,
         Measurement,  
         MeasurementUnit,
         MeasurementType,
         MeasurementTypeUnit, 
+        MyProfile,
         $sce,
         $location , 
         MeasurementSource, 
         AnalysisFile,
         Analysis,
-        $routeParams, 
         $filter){
+
+    Auth.isLogged();
 
     $scope.mediciones = [];
 
@@ -59,9 +62,9 @@ angular.module('saludWebApp')
      *    Example:
     */ 
 
-    $scope.epicrisis = new Analysis();
+    $scope.analysis = new Analysis();
 
-    $scope.epicrisis.datetime = new Date();
+    $scope.analysis.datetime = new Date();
 
 
     var modalam = $modal({ 
@@ -100,7 +103,7 @@ angular.module('saludWebApp')
       $scope.msg= '';
 
       $scope.aFile=a;
-      $scope.aFile.datetime = $scope.epicrisis.datetime;
+      $scope.aFile.datetime = $scope.analysis.datetime;
 
 
       $scope.addAdjunto = function(){
@@ -158,7 +161,7 @@ angular.module('saludWebApp')
 
       $scope.measurement.profile_id = $cookies.get('profile_id');
       
-      $scope.measurement.datetime = $scope.epicrisis.datetime;
+      $scope.measurement.datetime = $scope.analysis.datetime;
 
       //Consulta y asignación de tipo de medición.
       var type = MeasurementType.query(function(){
@@ -191,12 +194,15 @@ angular.module('saludWebApp')
 
               unit_name = unit_name.resource.symbol;
 
-              var e = { 
-                tipo : {id : type_id , nombre : type_name},
-                valor: $scope.measurement.value,
-                unidad: {id : unit_id , nombre : unit_name},
-                source: {id: source_id ,nombre: 'Manual'}
-                }
+              var e = new Measurement();
+                e.tipo = {id : type_id , nombre : type_name};
+                e.unidad= {id : unit_id , nombre : unit_name};
+                e.source= {id: source_id ,nombre: 'Manual'};
+                e.value= $scope.measurement.value;
+                e.measurement_source_id = source_id;
+                e.measurement_type_id = type_id;
+                e.measurement_unit_id = unit_id;
+                e.datetime = $scope.measurement.datetime;
 
               $scope.mediciones.push(e);
               $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
@@ -204,4 +210,28 @@ angular.module('saludWebApp')
           });
         }
     }
+
+    $scope.addAnalysis = function(){
+
+    var pid = MyProfile.get(function(response){
+        $scope.analysis.profile_id = pid.resource.id;
+
+        $scope.analysis.$save(function(result){
+          var analysis_id = result.resource.id;
+          $.each($scope.mediciones,function(i,m){
+            console.log(m);
+            delete m.tipo;
+            delete m.unidad;
+            delete m.source;
+            m.profile_id = pid.resource.id;
+            m.analysis_id = analysis_id;
+            m.$save(function(){
+              console.log('bien!');
+              });
+            });  
+          });
+
+        });
+
+      }
   });

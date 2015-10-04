@@ -63,9 +63,11 @@ angular.module('saludWebApp')
         // Envia en el header el usuario y la contraseña
         // FIXME ¿Uso el mismo para pasar el token y solicitar los datos de un
         // perfil o de una medición???
-        setCookie(authdata); 
-        // Traigo del recurso el token
+        if (!$cookies.get('Token')) {
+            setCookie(authdata);
+        }
 
+        // Traigo del recurso el token
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
                 var authdata = data.resource.token;
@@ -88,20 +90,9 @@ angular.module('saludWebApp')
 
     function isLogged(){
         var token = $cookies.get('Token');
-        $http.defaults.headers.common['Authorization'] = token;
-        if(token){
-          $http.get(global.getApiUrl() + '/token')
-            .success(function(data, status, headers, config) {
-                var authdata = data.resource.token;
-                setCookie(authdata);
-                return true;
-                })
-            .error(function(data, status, headers, config) {
-                $location.path('/login');
-                });
-          }else {
+        if (!token) {
             $location.path('/login');
-          }
+        }
       }
     
     

@@ -14,9 +14,8 @@ angular.module('saludWebApp')
             $scope,
             $window,
             $cookies,
-            $http, 
             MyProfile, 
-            Authentication, 
+            Auth, 
             global){
 
         // Función que es llamada desde la vista
@@ -25,7 +24,7 @@ angular.module('saludWebApp')
             // Se utiliza el método login() del servicio Authorization que 
             //  genera el Token a partir del usuario y la contraseña y luego 
             //  lo almacena en la cookie.
-            Authentication.login(
+            Auth.login(
                 $scope.username,
                 $scope.password
                 );

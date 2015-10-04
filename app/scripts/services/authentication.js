@@ -8,8 +8,8 @@
  * Factory in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('Authentication', ['$http', '$cookies', '$rootScope', 'global',
-          function ($http, $cookies, $rootScope, global) {
+  .factory('Auth', ['$http', '$cookies', '$rootScope', 'global', '$location',
+          function ($http, $cookies, $rootScope, global, $location) {
     
 
     // Codifico en base 64 el usuario y la contraseña que le paso, como header, al recurso del token.
@@ -63,22 +63,48 @@ angular.module('saludWebApp')
         // Envia en el header el usuario y la contraseña
         // FIXME ¿Uso el mismo para pasar el token y solicitar los datos de un
         // perfil o de una medición???
-        $http.defaults.headers.common['Authorization'] = ' Basic ' + authdata;
-        
+        if (!$cookies.get('Token')) {
+            setCookie(authdata);
+        }
+
         // Traigo del recurso el token
-        $http.get(global.getApiUrl() + '/token');
+        $http.get(global.getApiUrl() + '/token')
+          .success(function(data, status, headers, config) {
+                var authdata = data.resource.token;
+                // Arma la autenticación mediante token como "<token>:<vacío>",
+                // y la codifica en Base64. Por lo tanto, el formato es similar
+                // a la autenticación mediante usuario y contraseña.
+                setCookie(Base64.encode(authdata + ':'));
+          });
 
         // Guardo en las cookies el token
-        $cookies.put('Token',authdata);
 
         } // /.getToken 
+
+    function setCookie(authdata){
+        var token = ' Basic ' + authdata;
+        $cookies.put('Token',token);
+        $http.defaults.headers.common['Authorization'] = token;
+        return token;
+    }
+
+    function isLogged(){
+        var token = $cookies.get('Token');
+        $http.defaults.headers.common['Authorization'] = token;
+        if (!token) {
+            $location.path('/login');
+        }
+      }
     
     
     // Función pública que solicita y almacena el token.
     return {
-        login: function(user, pass) {
-            getToken(user, pass);
-            } // /.authentication()
+        login: function(user,pass){
+          getToken(user, pass);
+          }, // /.authentication()
+        isLogged: function(){
+          isLogged();
+          }
         } // /.return
 
 

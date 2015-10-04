@@ -90,6 +90,7 @@ angular.module('saludWebApp')
 
     function isLogged(){
         var token = $cookies.get('Token');
+        $http.defaults.headers.common['Authorization'] = token;
         if (!token) {
             $location.path('/login');
         }

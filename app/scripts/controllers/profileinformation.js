@@ -18,11 +18,9 @@ angular.module('saludWebApp')
             $scope,
             $cookies,
             MyProfile,
+            Auth,
             $location) {       
-
-                if(!$cookies.get('Token')){
-                    $location.path('/login');
-                    }
+                Auth.isLogged();
                 var dataProfile = MyProfile.get(
                     function(){
                         var profile=dataProfile.resource;

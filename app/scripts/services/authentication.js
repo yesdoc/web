@@ -12,11 +12,16 @@ angular.module('saludWebApp')
           function ($http, $cookies, $rootScope, global, $location) {
     
 
-    // Codifico en base 64 el usuario y la contraseña que le paso, como header, al recurso del token.
+    /*
+     * Recurso encargado de generar la codificación en Base 64.
+     */
     var Base64 = {
  
             keyStr: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=',
 
+            /*
+             * Funcion para codificar un String en base 64.
+             */
             encode: function (input) {
                 var output = "";
                 var chr1, chr2, chr3 = "";
@@ -54,33 +59,35 @@ angular.module('saludWebApp')
             }; // /.Base64
     
 
-    // Solicita al recurso de la API el token correspondiente al usuario y
-    // contraseña ingresado y luego lo almaceno en las cookies.
+    /*
+     * Solicita a la API el token correspondiente a user:pass, se lo almacena
+     * en las cookies y se agrega el campo 'authorization' al resto de las
+     * peticiones a la API. 
+     */
     function getToken(user, pass){
             
+        // Codificamos en base 64 el 'user':'pass'
         var authdata = Base64.encode(user + ':' + pass);
 
-        // Envia en el header el usuario y la contraseña
-        // FIXME ¿Uso el mismo para pasar el token y solicitar los datos de un
-        // perfil o de una medición???
+        // Lo guardamos en las cookies
         if (!$cookies.get('Token')) {
             setCookie(authdata);
         }
 
-        // Traigo del recurso el token
+        // Traemos el token de la API, lo codificamos en base 64, y pisamos el token anterior de las cookies
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
-                var authdata = data.resource.token;
-                // Arma la autenticación mediante token como "<token>:<vacío>",
-                // y la codifica en Base64. Por lo tanto, el formato es similar
-                // a la autenticación mediante usuario y contraseña.
-                setCookie(Base64.encode(authdata + ':'));
+              var authdata = data.resource.token;
+              setCookie(Base64.encode(authdata + ':'));
           });
-
-        // Guardo en las cookies el token
 
         } // /.getToken 
 
+
+    /* 
+     * Prepara authdata para usarlo como token y lo guarda en las cookies,
+     * además se agrega a todas las peticiones a la API 'Authorization:<token>'
+     */
     function setCookie(authdata){
         var token = ' Basic ' + authdata;
         $cookies.put('Token',token);
@@ -88,6 +95,11 @@ angular.module('saludWebApp')
         return token;
     }
 
+
+    /*
+     * Valida si las cookies estan seteadas y agrega a todas las peticiones a
+     * la API 'Authorization:<token>' 
+     */
     function isLogged(){
         var token = $cookies.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
@@ -97,7 +109,9 @@ angular.module('saludWebApp')
       }
     
     
-    // Función pública que solicita y almacena el token.
+    /*
+     *  Funciones públicas. 
+     */
     return {
         login: function(user,pass){
           getToken(user, pass);

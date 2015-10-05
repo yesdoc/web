@@ -11,9 +11,10 @@ angular.module('saludWebApp')
 .controller('MeasurementNewCtrl', 
     function (
       $scope,
-      $cookies,
       Auth,
-      Measurement,
+      MyProfile,
+      MyMeasurement,
+      MyAnalyses,
       MeasurementUnit,
       MeasurementType,
       MeasurementTypeUnit,
@@ -22,15 +23,10 @@ angular.module('saludWebApp')
       $routeParams, 
       $filter){
 
+        // Validamos si el usuario está Logueado
         Auth.isLogged();
 
-        $scope.measurement = new Measurement();
-
-        // FIXME Necesito recuperar de alguna manera el profile_id, porque
-        // ya que el recurso de las mediciones me pide que se lo envie.
-        $scope.measurement.profile_id = $cookies.get('profile_id');
-        
-        $scope.measurement.datetime = new Date();
+        /**************** Datos a mostrar en el formulario ***************/
 
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(
@@ -53,12 +49,27 @@ angular.module('saludWebApp')
                   });                                                                       
             };
     
+        /**************** Objeto Measurement ***************/
+
+        $scope.measurement = new MyMeasurement();
+
+        $scope.measurement.datetime = new Date();
+
         //Función que permite guardar los datos y si todo es correcto redirecciona al perfil de mediciones 
         $scope.addMeasurement = function(){
-            $scope.measurement.$save(
-                function(){
-                    $location.path('/profileMeasurements');
-                });
+            MyProfile.get(function(resource){
+                var pid = resource.resource.id;
+                var analysis = new MyAnalyses();
+                analysis.datetime = new Date();
+                analysis.description = '' ;
+                analysis.$save(function (result){
+                    $scope.measurement.analysis_id = result.resource.id;
+                    $scope.measurement.profile_id = pid;
+                    $scope.measurement.$save(function(){
+                        $location.path('/profileMeasurements');
+                        });
+                    });
+                }); 
             }; 
         }
     );

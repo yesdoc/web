@@ -17,7 +17,7 @@ angular.module('saludWebApp')
         console.log(files[0].name);
         console.log(files[0].size);
 
-        $scope.aFile.name = files[0].name
+        $scope.aFile.description = files[0].name
         $scope.aFile.real_name = files[0].name
 
         exp.assign($scope, this.files);

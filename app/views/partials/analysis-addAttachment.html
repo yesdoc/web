@@ -11,7 +11,7 @@
         <form name="attachmentForm" class="form-horizontal" role="form" ng-submit="addAdjunto()">
 
             <div class="form-group">
-              <input type="file" files-model="aFile.file" required >
+              <input type="file" enctype='multipart/form-data' files-model="aFile.image_file" required >
             </div>
 
             <br />
@@ -37,10 +37,10 @@
           
             <div class="form-group"
                 ng-class="{'has-error':attachmentForm.name.$invalid && !attachmentForm.name.$pristine}" >
-                <label for="name" class="col-sm-2 control-label">Nombre:</label>
+                <label for="name" class="col-sm-2 control-label">Descripción:</label>
                 <div class="col-sm-10">
-                    <input name="name" type="text" class="form-control" id="name" ng-model="aFile.name"
-                    placeholder="Nombre" required>
+                    <input name="name" type="text" class="form-control" id="name" ng-model="aFile.description"
+                    placeholder="Una descripción" required>
                     <p ng-show="attachmentForm.name.$invalid && attachmentForm.name.$touched" class="help-block">
                     Debe ingresar una descripción.</p>
                 </div>

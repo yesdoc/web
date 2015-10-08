@@ -26,46 +26,13 @@ angular.module('saludWebApp')
 
     Auth.isLogged();
 
-    $scope.mediciones = [];
-
-    /* Estructura de un elemento de mediciones:
-     *  var e = { 
-     *    tipo:{id:'',nombre:''},
-     *    valor:'',
-     *    fecha:'',
-     *    unidad:{id:'',nombre:''},
-     *    source:{id:'',nombre:''}
-     *    }
-     *
-     *    Example:
-     
-       var e = { 
-         tipo:{id:'1',nombre:'Peso'},
-         valor:'55',
-         fecha: '2014/10/12 12:45:21'
-         unidad:{id:'1',nombre:'Kg'},
-         source:{id:'1',nombre:'Manual'}
-         }
-       $scope.mediciones.push(e);
-
-    */
-    $scope.adjuntos = [];
-
-    /* Estructura de un elemento de adjuntos:
-     *  var e = { 
-     *    nombre: '',
-     *    fecha :'',
-     *    archivo:{tipo:'',nombre:''},
-     *    }
-     *
-     *    Example:
-    */ 
 
     $scope.analysis = new Analysis();
 
     $scope.analysis.datetime = new Date();
 
 
+    /****** Modal Analysis Measurement ******/
     var modalam = $modal({ 
       scope: $scope,
       templateUrl: "views/partials/analysis-addMeasurement.html", 
@@ -78,6 +45,8 @@ angular.module('saludWebApp')
           create_measurement(new Measurement());
     };
 
+
+    /****** Modal Analysis Attachment *********/
     var modalaa = $modal({ 
       scope: $scope,
       templateUrl: "views/partials/analysis-addAttachment.html", 
@@ -97,79 +66,81 @@ angular.module('saludWebApp')
         $scope.adjuntos.splice($index, 1);
       }
 
+    /* Lista de elementos adjuntos a persistir. */
+    $scope.adjuntos = [];
+
+    /* Estructura de un elemento de adjuntos:
+     *  var e = { 
+     *    nombre: '',
+     *    fecha :'',
+     *    archivo:{tipo:'',nombre:''},
+     *    }
+     *
+    */ 
+
+    /***** Crea el archivo de análisis ******/
     function create_analysisFile(a){
 
-      $scope.msg= '';
+      $scope.msg = '';
 
-      $scope.aFile=a;
+      $scope.aFile = a;
       $scope.aFile.datetime = $scope.analysis.datetime;
 
-
-      function hasExtension(fileName, exts) {
+      /* Verifica si <fileName> tiene alguna de las extensiones, que se
+       * encuentran en la lista <exts> pasada por argumento.  */
+      function hasExtension( fileName, exts) {
           return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
       }
 
+      /* Agrega un archivo adjunto a la lista de adjuntos. */
       $scope.addAdjunto = function(){
+        $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong></div>");
 
         var fname = $scope.aFile.real_name;
         var type = 'file-o';
 
+        /* Es imagen? */
         if(hasExtension(fname,['png','bmp','jpg','jpeg','gif'])){
           type='file-image-o';
         }
 
+        /* Es documento? */
         if(hasExtension(fname,['doc','docx','odt','txt'])){
           type='file-text-o';
         }
 
+        /* Es video? */
         if(hasExtension(fname,['avi','mp4','mpeg'])){
           type='file-video-o';
         }
 
+        /* Es sonido? */
         if(hasExtension(fname,['mp3','ogg'])){
           type='file-text-o';
         }
 
+        /* Es pdf? */
         if(hasExtension(fname,['pdf'])){
           type='file-pdf-o';
         }
 
+        /* Es archivo comprimido? */
         if(hasExtension(fname,['rar','zip','gz'])){
           type='file-archive-o';
         }
 
         var e = { 
-          nombre: $scope.aFile.name,
+          nombre : $scope.aFile.description,
           fecha : $scope.aFile.datetime,
-          archivo_tipo: type, //FIXME, recuperar el tipo de archivo
-          archivo: $scope.aFile.file
+          archivo_tipo : type,
+          archivo : $scope.aFile.file
           }
 
         $scope.adjuntos.push(e);
 
-        $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó un archivo adjunto.</div>");
+        modalaa.$promise.then(modalaa.hide());
       }
 
-      /*
-       * PERSISTIR cada analysisFile
-      $scope.submit = function() {
-        AnalysisFile.save($scope.aFile, function(result) {
-          if (result.status != 'OK')
-            throw result.status;
-        });
-      }
-      */
-
-      /*
-      $scope.submit = function() {
-        Image.save($scope.newImage, function(result) {
-          if (result.status != 'OK')
-            throw result.status;
-
-          $scope.images.push(result.data);
-        });
-      }
-      */
 
     }
     
@@ -183,14 +154,27 @@ angular.module('saludWebApp')
         $scope.mediciones.splice($index, 1);
     };
 
+    /* Verifica si <fileName> tiene alguna de las extensiones, que se
+     * encuentran en la lista <exts> pasada por argumento.  */
+    $scope.mediciones = [];
+
+    /* Estructura de un elemento de mediciones:
+     *  var e = { 
+     *    tipo:{id:'',nombre:''},
+     *    value:'',
+     *    fecha:'',
+     *    unidad:{id:'',nombre:''},
+     *    source:{id:'',nombre:''}
+     *    }
+     *
+    */
+
     function create_measurement(m){
 
       $scope.msg= '';
 
       $scope.measurement = m;
 
-      $scope.measurement.profile_id = $cookies.get('profile_id');
-      
       $scope.measurement.datetime = $scope.analysis.datetime;
 
       //Consulta y asignación de tipo de medición.
@@ -213,6 +197,7 @@ angular.module('saludWebApp')
       
       //Función que permite guardar los datos y si todo es correcto muestra mensaje de "bien hecho" 
       $scope.addMeasurement = function(){
+          $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong>.</div>");
           var type_id = $scope.measurement.measurement_type_id,
             unit_id = $scope.measurement.measurement_unit_id,
             source_id = $scope.measurement.measurement_source_id;
@@ -225,14 +210,14 @@ angular.module('saludWebApp')
               unit_name = unit_name.resource.symbol;
 
               var e = new Measurement();
-                e.tipo = {id : type_id , nombre : type_name};
-                e.unidad= {id : unit_id , nombre : unit_name};
-                e.source= {id: source_id ,nombre: 'Manual'};
-                e.value= $scope.measurement.value;
-                e.measurement_source_id = source_id;
-                e.measurement_type_id = type_id;
-                e.measurement_unit_id = unit_id;
-                e.datetime = $scope.measurement.datetime;
+              e.tipo = {id : type_id , nombre : type_name};
+              e.unidad= {id : unit_id , nombre : unit_name};
+              e.source= {id: source_id ,nombre: 'Manual'};
+              e.value= $scope.measurement.value;
+              e.measurement_source_id = source_id;
+              e.measurement_type_id = type_id;
+              e.measurement_unit_id = unit_id;
+              e.datetime = $scope.measurement.datetime;
 
               $scope.mediciones.push(e);
               $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
@@ -241,34 +226,71 @@ angular.module('saludWebApp')
         }
     }
 
+    var modalSpinner = $modal({ 
+      scope: $scope,
+      template: "", 
+      contentTemplate: false, 
+      html: true, 
+      show: false });
+
+    var showModalSpinner = function () {
+          modalaa.$promise.then(modalSpinner.show);
+          }
+
     $scope.addAnalysis = function(){
+        var pid = MyProfile.get(function(response){
+            $scope.analysis.profile_id = pid.resource.id;
 
-    var pid = MyProfile.get(function(response){
-        $scope.analysis.profile_id = pid.resource.id;
+            $scope.analysis.$save(function(result){
+                var analysis_id = result.resource.id;
+                $.each( $scope.mediciones , function( i , m ){
+                    /*
+                    delete m.tipo;
+                    delete m.unidad;
+                    delete m.source;
+                    */
+                    m.profile_id = pid.resource.id;
+                    m.analysis_id = analysis_id;
+                    m.$save(function(){
+                      console.log('bien!');
+                      });
+                    });  
 
-        $scope.analysis.$save(function(result){
-          var analysis_id = result.resource.id;
-          $.each( $scope.mediciones , function( i , m ){
-            /*
-            delete m.tipo;
-            delete m.unidad;
-            delete m.source;
-            */
-            m.profile_id = pid.resource.id;
-            m.analysis_id = analysis_id;
-            m.$save(function(){
-              console.log('bien!');
-              $location.path('/#/myProfileInformation');
+              $.each($scope.adjuntos , function( i , a ){
+                $scope.aFile.analysis_id = analysis_id;
+                AnalysisFile.save($scope.aFile, function(result) {
+                  if (result.status != 'OK')
+                    throw result.status;
+                    console.log('sé persistió el archivo');
+                  });
+
+                });
+
+                $location.path('/#/myProfileInformation');
+
               });
-            });  
 
-          $.each($scope.adjuntos , function( i , a ){
-
-          });
-
-          });
-
-        });
+            });
 
       }
   });
+      /*
+       * PERSISTIR cada analysisFile
+      $scope.submit = function() {
+        AnalysisFile.save($scope.aFile, function(result) {
+          if (result.status != 'OK')
+            throw result.status;
+        });
+      }
+      */
+
+      /*
+      $scope.submit = function() {
+        Image.save($scope.newImage, function(result) {
+          if (result.status != 'OK')
+            throw result.status;
+
+          $scope.images.push(result.data);
+        });
+      }
+      */

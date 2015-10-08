@@ -70,9 +70,7 @@ angular.module('saludWebApp')
         var authdata = Base64.encode(user + ':' + pass);
 
         // Lo guardamos en las cookies
-        if (!$cookies.get('Token')) {
-            setCookie(authdata);
-        }
+        setCookie(authdata);
 
         // Traemos el token de la API, lo codificamos en base 64, y pisamos el token anterior de las cookies
         $http.get(global.getApiUrl() + '/token')

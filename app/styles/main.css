@@ -35,6 +35,7 @@ body {
 .nav-header{
   background-image: url(/images/head.png);
   font-size:1.2em;
+  z-index: 999;
 }
 /*Redefinición de los colores de los botones del nav*/
 .navbar-default .navbar-nav > .active > a,

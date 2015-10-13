@@ -5,18 +5,16 @@ Web app for YesDoc
 Build & development
 -------------------
 
-###Instalamos NodeJS
+###Instalar NodeJS
 
     curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
     sudo apt-get install --yes nodejs
 
-###Instalamos las dependencias
+###Instalar las dependencias
 
-    # Instalamos el administrador de paquetes
+    # Instalar el administrador de paquetes
     sudo apt-get install npm
     sudo npm install -g npm
-    # Dependiendo de la version de NodeJS puedes necesitar
-    sudo ln -s /usr/bin/nodejs /usr/bin/node
 
     # Dependencias de NodeJS
     cd web/
@@ -27,10 +25,7 @@ Build & development
     cd web/
     bower install
 
-###Iniciamos el servidor
-
-    # Para preparación
-    grunt
+###Iniciar el servidor
 
     # Para iniciar el servidor
     grunt serve

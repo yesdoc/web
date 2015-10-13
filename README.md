@@ -33,4 +33,4 @@ Build & development
 
 ## Testing
 
-Running `grunt test` will run the unit tests with karma.
+Ejecutando `grunt test` se correrán los test de unidad con Karma.

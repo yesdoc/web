@@ -1,11 +1,34 @@
-# salud-web
+salud-web
+===========
+Web app for YesDoc
 
-This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
-version 0.11.1.
+Build & development
+-------------
 
-## Build & development
+Instalamos NodeJS
+-------------
+    curl --silent --location https://deb.nodesource.com/setup_0.12 | sudo bash -
+    sudo apt-get install --yes nodejs
 
-Run `grunt` for building and `grunt serve` for preview.
+Instalamos las dependencias
+------------------------------------
+    #Dependencias de NodeJS
+    sudo apt-get install npm
+    sudo npm install -g npm
+    #Dependiendo de la version de NodeJS puedes necesitar
+    sudo ln -s /usr/bin/nodejs /usr/bin/node
+    sudo npm install -g yo bower grunt-cli
+
+    #Dependencias de YesDoc
+    cd web/
+    bower install
+
+    # Para preparación
+    grunt
+
+    # Para iniciar el servidor
+    grunt serve
+
 
 ## Testing
 

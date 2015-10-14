@@ -280,24 +280,17 @@ angular.module('saludWebApp')
             $scope.analysis.$save(function(result){
                 var analysis_id = result.resource.id;
                 $.each( $scope.mediciones , function( i , m ){
-                    /*
-                    delete m.tipo;
-                    delete m.unidad;
-                    delete m.source;
-                    */
                     m.profile_id = pid.resource.id;
                     m.analysis_id = analysis_id;
                     m.$save(function(){
-                      console.log('bien!');
+                      console.log('Se guardó la medición:' + m);
                       });
                     });  
 
               $.each($scope.adjuntos , function( i , a ){
                 a.analysis_id = analysis_id;
                 AnalysisFile.save(a, function(result) {
-                  if (result.status != 'OK')
-                    throw result.status;
-                    console.log('sé persistió el archivo');
+                    console.log('sé guardó el archivo' + a.real_name);
                   });
 
                 });

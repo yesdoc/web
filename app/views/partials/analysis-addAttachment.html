@@ -11,10 +11,12 @@
         <form name="attachmentForm" class="form-horizontal" role="form" ng-submit="submitAdjunto()">
 
             <div class="form-group">
-              <input type="file"  files-model="aFile.image_file" {{aFile.required}} >
+                <div class="col-sm-10">
+                  <input id='file' type="file"  files-model="aFile.image_file" {{aFile.required}} >
+                </div>
             </div>
-            <div class="thumbnail">
-              <img ng-src="{{aFile.imageSrc}}" /><br/>
+            <div class="thumbnail"  onclick="$('#file').click();" >
+              <img ng-src="{{(aFile.imageSrc || 'images/yesDoc2.png')}}" />
             </div>
             <br />
 

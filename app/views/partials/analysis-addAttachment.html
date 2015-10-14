@@ -8,12 +8,14 @@
       </div>
       <div class='well' style='margin-bottom: 0px;'>
         <div ng-bind-html="msg"></div>
-        <form name="attachmentForm" class="form-horizontal" role="form" ng-submit="addAdjunto()">
+        <form name="attachmentForm" class="form-horizontal" role="form" ng-submit="submitAdjunto()">
 
             <div class="form-group">
-              <input type="file" enctype='multipart/form-data' files-model="aFile.image_file" required >
+              <input type="file"  files-model="aFile.image_file" {{aFile.required}} >
             </div>
-
+            <div class="thumbnail">
+              <img ng-src="{{aFile.imageSrc}}" /><br/>
+            </div>
             <br />
 
             <div class="form-group"

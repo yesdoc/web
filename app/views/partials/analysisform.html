@@ -54,11 +54,11 @@
           <tbody>
             <tr ng-repeat="a in adjuntos track by $index" class='row'>
               <th scope="row">{{($index+1)}}</th>
-              <td><i class='fa fa-{{a.archivo_tipo}}'></i></td>
-              <td>{{a.nombre}}</td>
+              <td><i class='fa fa-{{a.file_type}}'></i></td>
+              <td>{{a.description}}</td>
               <td style='width:206px'>
-                <button type="button" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>
-                <button type="button" class="btn btn-warning"><span class='glyphicon glyphicon-pencil'></span></button>
+                <button type="button" ng-click="showImagen($index,m)" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>
+                <button type="button" ng-click="editAdjunto($index,m)" class="btn btn-warning"><span class='glyphicon glyphicon-pencil'></span></button>
                 <button type="button" ng-click="deleteAdjunto($index, m)" class="btn btn-danger"><span class='glyphicon glyphicon-trash'></span></button>
               </td>
             </tr>
@@ -99,9 +99,9 @@
               <td>{{m.value}}</td>
               <td>{{m.unidad.nombre}}</td>
               <td style='width:206px'>
-                <button type="button" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>
-                <button type="button" class="btn btn-warning"><span class='glyphicon glyphicon-pencil'></span></button>
-                <button type="button" ng-click="deleteMedicion($index, m)" class="btn btn-danger"><span class='glyphicon glyphicon-trash'></span></button>
+                <button type="button" ng-click="showMedicion($index, m )" class="btn btn-primary"><span class='glyphicon glyphicon-eye-open'></span></button>
+                <button type="button" ng-click="editMedicion($index , m )" class="btn btn-warning"><span class='glyphicon glyphicon-pencil'></span></button>
+                <button type="button" ng-click="deleteMedicion($index ,  m )" class="btn btn-danger"><span class='glyphicon glyphicon-trash'></span></button>
               </td>
             </tr>
           </tbody>

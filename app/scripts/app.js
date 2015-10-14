@@ -98,4 +98,9 @@ angular
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
+})
+.config(function($modalProvider) {
+  angular.extend($modalProvider.defaults, {
+    html: true
+  });
 });

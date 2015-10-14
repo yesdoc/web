@@ -21,7 +21,10 @@ angular.module('saludWebApp')
         $scope.aFile.real_name = files[0].name
 
         exp.assign($scope, this.files);
+
         $scope.$apply();
+
+        $scope.getFile();
       });
     }
   };

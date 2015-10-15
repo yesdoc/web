@@ -24,7 +24,8 @@ angular.module('saludWebApp')
       AnalysisFile,
       Analysis,
       $filter){
-
+    
+    //Se valida si el usuario está logueado
     Auth.isLogged();
 
 
@@ -32,52 +33,41 @@ angular.module('saludWebApp')
 
     $scope.analysis.datetime = new Date();
 
+    /********************* Attachment ********************************/
 
-    /****** Modal Analysis Measurement ******/
-    var modalam = $modal({ 
-      scope: $scope,
-      templateUrl: "views/partials/analysis-addMeasurement.html", 
-      contentTemplate: false, 
-      html: true, 
-      show: false });
-
-    $scope.showModalam = function () {
-          modalam.$promise.then(modalam.show);
-          create_measurement(new Measurement());
-    };
-
-
-    /****** Modal Analysis Attachment *********/
-    var modalaa = $modal({ 
+    /* Analysis File Modal */
+    var aFileModal = $modal({ 
       scope: $scope,
       templateUrl: "views/partials/analysis-addAttachment.html", 
       contentTemplate: false, 
       html: true, 
       show: false });
-
-    $scope.showModalaa = function () {
-          modalaa.$promise.then(modalaa.show);
+    
+    /* Show Analysis File Modal */
+    $scope.showAFileModal = function () {
+          aFileModal.$promise.then(aFileModal.show);
+          // It creates a new AnalysisFile object
           var af = new AnalysisFile();
           af.required = 'required';
           create_analysisFile(af);
     };
 
-
-    
-    /********************* Attachment ********************************/
+    /* Delete Analysis File object */
     $scope.deleteAdjunto = function($index,a){
         $scope.adjuntos.splice($index, 1);
       }
 
+    /* Edit Analysis File object */
     $scope.editAdjunto = function($index,a){
-          modalaa.$promise.then(modalaa.show);
+          aFileModal.$promise.then(aFileModal.show);
           var af = $scope.adjuntos[$index];
           af.required = '';
           create_analysisFile($scope.adjuntos[$index],function(){
-            modalaa.$promise.then(modalaa.hide());
+            aFileModal.$promise.then(aFileModal.hide());
             });
       }
 
+    /* Show Analysis File Image on a new Modal */
     $scope.showImagen = function($index,a){
       $scope.aFile = $scope.adjuntos[$index];
       var modalImage = $modal({ 
@@ -88,14 +78,15 @@ angular.module('saludWebApp')
       modalImage.$promise.then(modalImage.show);
     }
     
-
+    /* Set selected image(file input on views/partials/analysis-addAttachment) source on $scope.aFile.imageSrc. */
     $scope.getFile = function(){
       fileReader.readAsDataUrl($scope.aFile.image_file, $scope)
         .then(function(result) {
           $scope.aFile.imageSrc = result;
         });
       }
-    /* Lista de elementos adjuntos a persistir. */
+
+    /* Attachments elements list to persist. */
     $scope.adjuntos = [];
 
     /* Estructura de un elemento de adjuntos:
@@ -106,21 +97,22 @@ angular.module('saludWebApp')
      *    image_file: blob,
      *    }
      *
-    */ 
+     */ 
 
-    /***** Crea el archivo de análisis ******/
+    
+
+    /* Guarda los datos cargados en la vista en el elemento de analysis <`a`> 
+     * (pasado por parametro)
+     * 
+     * <onSubmit> es la función que se va a ejecutar cuando se submite el modal
+     * de analysisFile, en caso de que no se defina, se agrega el objeto a en
+     * `adjuntos` */
     function create_analysisFile(a, onSubmit){
 
       $scope.msg = '';
 
       $scope.aFile = a;
       $scope.aFile.datetime = ($scope.aFile.datetime || $scope.analysis.datetime);
-
-      /* Verifica si <fileName> tiene alguna de las extensiones, que se
-       * encuentran en la lista <exts> pasada por argumento.  */
-      function hasExtension( fileName, exts) {
-          return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
-      }
 
       /* Agrega un archivo adjunto a la lista de adjuntos. */
       var addAdjunto = function(){
@@ -159,35 +151,60 @@ angular.module('saludWebApp')
           type='file-archive-o';
         }
 
+        /* Se setea el icono correspondiente en el objeto Analysis File */
         a.file_type = type;
 
         $scope.adjuntos.push(a);
-
-        modalaa.$promise.then(modalaa.hide());
+        
+        /* Hide Analysis File Modal */
+        aFileModal.$promise.then(aFileModal.hide());
       }
 
       $scope.submitAdjunto = onSubmit || addAdjunto;
 
 
     }
+
+    /* Verifica si <fileName> tiene alguna de las extensiones, que se
+     * encuentran en la lista <exts> pasada por argumento.  */
+    function hasExtension( fileName, exts) {
+        return (new RegExp('(' + exts.join('|').replace(/\./g, '\\.') + ')$')).test(fileName);
+        }
+
     
 
 
 
     /********************* Measurement ********************************/
 
-    // Numero de medicion cargado en el formulario de mediciones
+    /* Modal Analysis Measurement */
+    var aMeasurementModal = $modal({ 
+      scope: $scope,
+      templateUrl: "views/partials/analysis-addMeasurement.html", 
+      contentTemplate: false, 
+      html: true, 
+      show: false });
+
+    /* Show Analysis Measurement Modal */
+    $scope.showAMeasurementModal = function () {
+        aMeasurementModal.$promise.then(aMeasurementModal.show);
+        create_measurement(new Measurement());
+        };
+
+    /* Delete Analyisis Measurement Modal */
     $scope.deleteMedicion = function ($index, m) {
         $scope.mediciones.splice($index, 1);
-    };
+        };
 
+    /* Edit Analyisis Measurement Modal */
     $scope.editMedicion = function($index,a){
-        modalam.$promise.then(modalam.show);
+        aMeasurementModal.$promise.then(aMeasurementModal.show);
         create_measurement($scope.mediciones[$index],function(){
-          modalam.$promise.then(modalam.hide());
+          aMeasurementModal.$promise.then(aMeasurementModal.hide());
           });
       }
 
+    /* Measurements elements list to persist. */
     $scope.mediciones = [];
 
     /* Estructura de un elemento de mediciones:
@@ -199,8 +216,16 @@ angular.module('saludWebApp')
      *    source:{id:'',nombre:''}
      *    }
      *
-    */
+     */
 
+
+
+    /* Guarda los datos cargados en la vista en el elemento medicion <`m`> 
+     * (pasado por parametro)
+     * 
+     * <onSubmit> es la función que se va a ejecutar cuando se submitee el modal
+     * de analysisMeasurement, en caso de que no se defina, se agrega el objeto a en
+     * `adjuntos` */
     function create_measurement(m , onSubmit){
 
       $scope.msg= '';
@@ -227,7 +252,7 @@ angular.module('saludWebApp')
           });                                                                       
         };
       
-      //Función que permite guardar los datos y si todo es correcto muestra mensaje de "bien hecho" 
+      //Función que guarda los datos y si todo es correcto muestra mensaje de "bien hecho" 
       var addMeasurement = function(){
           $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong>.</div>");
           var type_id = $scope.measurement.measurement_type_id,
@@ -262,17 +287,10 @@ angular.module('saludWebApp')
 
     }
 
-    var modalSpinner = $modal({ 
-      scope: $scope,
-      template: "CARGANDOOOOOOOOO", 
-      contentTemplate: false, 
-      html: true, 
-      show: false });
 
-    var showModalSpinner = function () {
-          modalSpinner.$promise.then(modalSpinner.show);
-          }
-
+    /* Se traen los datos de la vista necesarios para crear un analysis y se
+     * persiste en conjunto con los analysisFile de la lista `adjuntos` y los
+     * analysisMeasurements de la lista `mediciones`*/
     $scope.addAnalysis = function(){
         var pid = MyProfile.get(function(response){
             $scope.analysis.profile_id = pid.resource.id;

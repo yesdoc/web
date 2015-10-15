@@ -1,12 +1,20 @@
 <div>
-    <div class="col-md-2  edition-nav">
-        <ul class="nav nav-stacked">
-          <li>
-          <a href="#{{ 'home.weight' | routeSegmentUrl }}"><span class="glyphicon glyphicon-scale"> Peso</span></a>
+<div class="col-md-2  edition-nav">
+  <ul class="nav nav-stacked">
+    <li>
+      <a href="#{{ 'home.analyses' | routeSegmentUrl }}">
+        <span><i class="fa fa-file-text-o"></i>&nbsp; Análisis</span>
+      </a>
 
-          <a href="#{{ 'home.height' | routeSegmentUrl }}"><span class="glyphicon glyphicon-resize-vertical"> Altura</span></a>
-            </li>
-        </ul>
-    </div>
+      <a href="#{{ 'home.weight' | routeSegmentUrl }}">
+        <span><span class="glyphicon glyphicon-scale"></span>&nbsp; Peso</span>
+      </a>
+
+      <a href="#{{ 'home.height' | routeSegmentUrl }}">
+        <span><span class="glyphicon glyphicon-resize-vertical"></span>&nbsp; Altura</span>
+      </a>
+    </li>
+  </ul>
+</div>
 
 <div app-view-segment="1" class='home-container'></div>

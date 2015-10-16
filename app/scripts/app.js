@@ -38,6 +38,7 @@ angular
       when('/measurements/:id/edit','measurements-edit').
       when('/analysis/new','analysis-new').
       when('/home/analyses','home.analyses').
+      when('/home/analyses/:id','home.analyses-show').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -63,6 +64,10 @@ angular
             segment('analyses',{
             templateUrl: 'views/analyses.html',
             controller: 'AnalysesCtrl'
+            }).
+            segment('analyses-show',{
+            templateUrl: 'views/analyses-show.html',
+            controller: 'AnalysesShowCtrl'
             }).
             up().
       segment('logoff',{

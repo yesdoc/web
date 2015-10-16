@@ -10,20 +10,23 @@
 angular.module('saludWebApp')
   .controller('AnalysesCtrl', function (
       $scope,
-      $modal, 
-      $sce,
       $location , 
       Auth,
-      Measurement,  
-      MeasurementUnit,
-      MeasurementType,
-      MeasurementTypeUnit, 
-      MeasurementSource, 
-      MyProfile,
+      MyAnalyses,
       AnalysisFile,
-      Analysis,
       $filter){
 
     Auth.isLogged();
+
+    var r = MyAnalyses.query(function(){
+
+      $scope.analyses = r.resource;
+
+      $.each($scope.analyses,function(i,a){
+        a.date = new Date(a.datetime)
+        a.date = a.date.getDate()+'-'+a.date.getMonth()+'-'+a.date.getFullYear();
+        });
+
+      });
 
   });

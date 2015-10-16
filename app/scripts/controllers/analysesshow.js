@@ -15,16 +15,29 @@ angular.module('saludWebApp')
         $routeParams,
         AnalysisFile,
         Analysis,
+        $modal,
         fileReader) {
+
+    /* Show Analysis File Image on a new Modal */
+    $scope.showImage = function($index,a){
+      var af = $scope.afs[$index];
+      var modalImage = $modal({ 
+        title: af.description,
+        content: '<div class="thumbnail"> <img src="' + af.imageSrc + '" /> </div>', 
+        show: false});
+    
+      modalImage.$promise.then(modalImage.show);
+    }
 
     var g_a = Analysis.get({id : $routeParams.id},function(){
       $scope.a = g_a.resource;
       $scope.a.datetime = new Date($scope.a.datetime);
 
-      $scope.mySlides = [];
+      $scope.afs = []; //analysis files list
       var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
         $.each(q_af.resource,function(i,af){
-              $scope.mySlides.push(global.getApiUrl()+'/analysis_files/'+af.id+'/download');
+              af.imageSrc = (global.getApiUrl()+'/analysis_files/'+af.id+'/download');
+              $scope.afs.push(af);
           });
         });
       

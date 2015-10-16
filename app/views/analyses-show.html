@@ -4,7 +4,7 @@
 
       <flex-slider 
         class="carousel" 
-        slide="s in mySlides" 
+        slide="s in afs track by $index" 
         animation="slide" 
         control-nav='true'
         slideshow-speed= '4000'
@@ -15,7 +15,7 @@
         item-margin="5">
         <li>
           <a href='' ng-click='showImage($index)'>
-            <div style=" width:210px;height:100px;background : url({{s}}) no-repeat 50% 50%;background-size: 100% auto;">
+            <div style=" width:210px;height:100px;background : url({{s.imageSrc}}) no-repeat 50% 50%;background-size: 100% auto;">
             </div>
           </a>
         </li>

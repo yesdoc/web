@@ -18,6 +18,7 @@ angular
     'view-segment',
     'ngSanitize',
     'ngTouch',
+    'angular-flexslider',
     'mgcrea.ngStrap',
     'nvd3ChartDirectives'
   ])

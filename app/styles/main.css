@@ -309,3 +309,14 @@ margin:4px;
   bottom: 0; 
   right: 0;
 }
+
+
+.flexslider-container {
+  width: 90%;
+  margin: 10px auto;
+}
+
+
+.flex-direction-nav a {
+  height:50px !important;
+}

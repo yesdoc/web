@@ -1,6 +1,51 @@
 <div class="panel panel-default" style='margin:20px'>
-  <div class="panel-heading"><h3 style='width:100%'>{{a.description}} | <small class='text-right'>{{a.date}}</small></h3></div>
+  <div class="panel-heading"><h3 style='width:100%'>{{a.description}} | <small class='text-right'>{{a.datetime | date:'dd/M/yyyy'}}</small></h3></div>
     <div class="panel-body">
+
+      <flex-slider 
+        class="carousel" 
+        slide="s in mySlides" 
+        animation="slide" 
+        control-nav='true'
+        slideshow-speed= '4000'
+        animation-speed= "500"
+        animation-loop="true" 
+        pause-on-hover="false" 
+        item-width="210" 
+        item-margin="5">
+        <li>
+          <a href='' ng-click='showImage($index)'>
+            <div style=" width:210px;height:100px;background : url({{s}}) no-repeat 50% 50%;background-size: 100% auto;">
+            </div>
+          </a>
+        </li>
+      </flex-slider>
+
+      <table class="table">
+        <caption>{{a.datetime | date:"fullDate"}}</caption>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Tipo</th>
+            <th>Valor</th>
+            <th>Unidad</th>
+            <th>Fuente</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat='m in measurements'>
+            <th scope="row">{{($index+1)}}</th>
+            <td>{{m.measurement_type.name}}</td>
+            <td>{{m.value}}{{m.measurement_unit.symbol}}</td>
+            <td>{{m.measurement_unit.name}}</td>
+            <td>{{m.measurement_source.name}}</td>
+            <td>{{m.datetime | date:'dd/M/yyyy HH:mm'}}</td>
+          </tr>
+        </tbody>
+      </table>
+
+
 
     </div>
   </div>

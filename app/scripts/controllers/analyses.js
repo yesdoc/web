@@ -13,18 +13,32 @@ angular.module('saludWebApp')
       $location , 
       Auth,
       MyAnalyses,
+      Analysis,
       AnalysisFile,
+      global,
       $filter){
 
     Auth.isLogged();
 
-    var r = MyAnalyses.query(function(){
+    var q_a = MyAnalyses.query(function(){
 
-      $scope.analyses = r.resource;
+      $scope.analyses = q_a.resource;
 
       $.each($scope.analyses,function(i,a){
-        a.date = new Date(a.datetime)
-        a.date = a.date.getDate()+'-'+a.date.getMonth()+'-'+a.date.getFullYear();
+
+        var q_af = Analysis.get({id:a.id,element:'files'},function(){
+          $.each(q_af.resource,function(i,af){
+                a.af_id = af.id 
+            });
+          if ( a.af_id ){
+            a.imageSrc = (global.getApiUrl()+'/analysis_files/'+a.af_id+'/download');
+          }else{
+            a.imageSrc = 'images/escul.jpeg';
+          }
+          });
+
+        a.datetime = new Date(a.datetime)
+
         });
 
       });

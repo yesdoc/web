@@ -11,7 +11,7 @@
       <div class="col-sm-6 col-md-3" ng-repeat="a in analyses">
         <a class='analysis' ng-href='#/home/analyses/{{a.id}}'>
         <div class="thumbnail">
-          <div class='box' style="background:url(images/escul.jpeg) no-repeat 50% 0%;opacity:1">
+          <div class='box' style="background:url({{(a.imageSrc)}}) no-repeat 50% 0%;background-size: auto 100%;opacity:1">
             <div class="overlay"></div>
           </div>
           <div class="caption caption-blue">
@@ -19,7 +19,7 @@
             <h3 class='text-center'>
               <span >{{a.description}}</span>
             </h3>
-            <p class='text-right caption-date' >{{a.date}}</p>
+            <p class='text-right caption-date' >{{a.datetime | date:'dd-M-yyyy'}}</p>
           </div>
         </div>
         </a>

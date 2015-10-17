@@ -320,3 +320,14 @@ margin:4px;
 .flex-direction-nav a {
   height:50px !important;
 }
+
+.slides {
+  width: 100%!important;
+  text-align: center;
+}
+
+.slides li {
+  display: inline-block!important; 
+  *display: inline!important; 
+  float: none!important;
+}

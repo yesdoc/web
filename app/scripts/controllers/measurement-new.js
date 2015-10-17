@@ -9,59 +9,67 @@
  */
 angular.module('saludWebApp')
 .controller('MeasurementNewCtrl', 
-        function (
-            $scope,
-            $cookies,
-            Measurement,
-            MeasurementUnit,
-            MeasurementType,
-            MeasurementTypeUnit,
-            $location,
-            MeasurementSource, 
-            $routeParams, 
-            $filter){
-  
+    function (
+      $scope,
+      Auth,
+      MyProfile,
+      MyMeasurement,
+      MyAnalyses,
+      MeasurementUnit,
+      MeasurementType,
+      MeasurementTypeUnit,
+      $location,
+      MeasurementSource, 
+      $routeParams, 
+      $filter){
 
-            if(!$cookies.get('Token')){
-                $location.path('/login');
-                }
-        
-            $scope.measurement = new Measurement();
+        // Validamos si el usuario está Logueado
+        Auth.isLogged();
 
-            // FIXME Necesito recuperar de alguna manera el profile_id, porque
-            // ya que el recurso de las mediciones me pide que se lo envie.
-            $scope.measurement.profile_id = $cookies.get('profile_id');
-            
-            $scope.measurement.datetime = new Date();
+        /**************** Datos a mostrar en el formulario ***************/
 
-            //Consulta y asignación de tipo de medición.
-            var type = MeasurementType.query(
-                    function(){
-                        $scope.type = type.resource;
-                    });                                                                       
+        //Consulta y asignación de tipo de medición.
+        var type = MeasurementType.query(
+            function(){
+                $scope.type = type.resource;
+            });                                                                       
 
-            //Consulta y asignación de fuente de medición.
-            var source = MeasurementSource.query(
-                    function(){                            
-                       $scope.source = source.resource;                           
-                    });
+        //Consulta y asignación de fuente de medición.
+        var source = MeasurementSource.query(
+            function(){                            
+                $scope.source = source.resource;                           
+            });
 
-            //Carga el select de la unidad de medicion a partir del tipo de medición seleccionado.
-            $scope.getUnit = function(){
-                var unit = MeasurementTypeUnit.get( 
-                        {"id_type" : $scope.measurement.measurement_type_id},
-                        function(){
-                            $scope.unit = unit.resource;      
-                        });                                                                       
-                    };
-        
-            //Función que permite guardar los datos y si todo es correcto redirecciona al perfil de mediciones 
-            $scope.addMeasurement = function(){
-                $scope.measurement.$save(
-                        function(){
-                            $location.path('/profileMeasurements');
+        //Carga el select de la unidad de medicion a partir del tipo de medición seleccionado.
+        $scope.getUnit = function(){
+            var unit = MeasurementTypeUnit.get( 
+                  {"id_type" : $scope.measurement.measurement_type_id},
+                  function(){
+                      $scope.unit = unit.resource;      
+                  });                                                                       
+            };
+    
+        /**************** Objeto Measurement ***************/
+
+        $scope.measurement = new MyMeasurement();
+
+        $scope.measurement.datetime = new Date();
+
+        //Función que permite guardar los datos y si todo es correcto redirecciona al perfil de mediciones 
+        $scope.addMeasurement = function(){
+            MyProfile.get(function(resource){
+                var pid = resource.resource.id;
+                var analysis = new MyAnalyses();
+                analysis.datetime = new Date();
+                analysis.description = '' ;
+                analysis.$save(function (result){
+                    $scope.measurement.analysis_id = result.resource.id;
+                    $scope.measurement.profile_id = pid;
+                    $scope.measurement.$save(function(){
+                        $location.path('/profileMeasurements');
                         });
-                    }; 
-
-            }
-        );
+                    });
+                }); 
+            }; 
+        }
+    );

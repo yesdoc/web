@@ -9,72 +9,70 @@
  */
 angular.module('saludWebApp')
 .controller("HeightCtrl", 
-        function (
-            $scope,
-            $cookies,
-            $location, 
-            MeasurementType,
-            ProfileMeasurements,
-            $rootScope) {
+    function (
+      $scope,
+      $cookies,
+      Auth,
+      $location, 
+      MeasurementType,
+      ProfileMeasurements,
+      $rootScope) {
 
-                if(!$cookies.get('Token')){                                        
-                    $location.path('/login');                                           
-                }
+        Auth.isLogged();
 
-                    // ###################### Gráficas ####################################
+        // ###################### Gráficas ####################################
 
 
-                    // variable que contiene los datos a mostrar por la grafica
-                    $scope.data=[]
+        // variable que contiene los datos a mostrar por la grafica
+        $scope.data=[]
 
-                    // mts : MeasurmentTypes
-                    var mts = MeasurementType.query( function(){
+        // mts : MeasurmentTypes
+        var mts = MeasurementType.query( function(){
 
-                            mts = mts.resource;
+          mts = mts.resource;
 
-                            var altura_id;
+          var altura_id;
 
-                            $.each(mts,function (i,mt){
-                                if (mt.name.toLowerCase() == "altura"){
-                                    altura_id = mt.id;
-                                    return;
-                                    }
-                                });
+          $.each(mts,function (i,mt){
+            if (mt.name.toLowerCase() == "altura"){
+              altura_id = mt.id;
+              return;
+              }
+            });
 
-                            // función auxiliar para convertir de string a date
-                            var parseDate = d3.time.format.iso.parse;
+          // función auxiliar para convertir de string a date
+          var parseDate = d3.time.format.iso.parse;
 
-                            var d = ProfileMeasurements.get(
-                                {type: altura_id},
-                                function(){
+          var d = ProfileMeasurements.get(
+            {type: altura_id},
+            function(){
 
-                                    // Lista de valores de la gráfica
-                                    var vList=[];
+              // Lista de valores de la gráfica
+              var vList=[];
 
-                                    $.each(d.resource,function(i,m){
+              $.each(d.resource,function(i,m){
 
-                                        var fecha = +parseDate(m.datetime)
-                                        var valor = m.value
+                var fecha = +parseDate(m.datetime)
+                  var valor = m.value
 
-                                        // Se agrega el par { x:fecha, y:valor }
-                                        vList.push({ x : fecha, y : valor})
-                                        });
+                  // Se agrega el par { x:fecha, y:valor }
+                  vList.push({ x : fecha, y : valor})
+              });
 
-                                    $scope.data = [{
-                                        "key" : "Altura (m)" ,
-                                        "bar": true,
-                                        "values" : vList
-                                        }];
-                                   
+              $scope.data = [{
+                "key" : "Altura (m)" ,
+                "bar": true,
+                "values" : vList
+              }];
 
-                                    // Creación del scope de mediciones que será
-                                    // consumido en la vista por la tabla de
-                                    // mediciones de un mis tipo.
-                                    var measurements = d.resource;
-                                    $scope.measurements=measurements;
-                                
-                                    }
-                                );
-                        });
-                });
+              // Creación del scope de mediciones que será
+              // consumido en la vista por la tabla de
+              // mediciones de un mis tipo.
+              var measurements = d.resource;
+              $scope.measurements=measurements;
+
+              }
+            );
+          });
+    });
 

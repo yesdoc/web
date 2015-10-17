@@ -1,11 +1,15 @@
-<div class="bs-callout bs-callout-success" aria-label="Left Align">
-    <div class="row">
-        <div class="pull-right">
-           <a class="btn btn-default btn-sm" ng-href="#/measurements/new">
+        <div class="btn-group" >
+           <a class="btn btn-default btn-sm" style='margin-left:10px' ng-href="#/measurements/new">
               <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
                Nueva Medición
            </a>
+           <a class="btn btn-default btn-sm" style='margin-left:10px' ng-href="#/analysis/new">
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+               Nuevo Análisis
+           </a>
         </div>
+<div class="bs-callout bs-callout-success" aria-label="Left Align">
+    <div class="row">
         <h4>Mediciones</h4> 
     </div>
     <div class="row " ng-repeat="measurement in measurements">

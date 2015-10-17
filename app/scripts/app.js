@@ -36,7 +36,7 @@ angular
       when('/measurements/new','measurements-new' ).
       when('/profileMeasurements','profileMeasurements').
       when('/measurements/:id/edit','measurements-edit').
-
+      when('/analysis/new','analysis-new').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -76,6 +76,10 @@ angular
         templateUrl: 'views/profileinformation-edit.html',
         controller: 'ProfileInformationEditCtrl'
       }).
+      segment('login',{
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+      }).
       segment('measurements-new',{
         templateUrl: 'views/measurement-new.html',
         controller: 'MeasurementNewCtrl'
@@ -87,7 +91,16 @@ angular
       segment('measurements-edit',{
         templateUrl: 'views/measurement-edit.html',
         controller: 'MeasurementEditCtrl'
+      }).
+      segment('analysis-new',{
+        templateUrl: 'views/analysis-new.html',
+        controller: 'AnalysisNewCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
+})
+.config(function($modalProvider) {
+  angular.extend($modalProvider.defaults, {
+    html: true
+  });
 });

@@ -10,10 +10,12 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/font-awesome-4.4.0/css/font-awesome.css">
     <!-- endbuild -->
   </head>
   <body ng-app="saludWebApp">
@@ -101,8 +103,6 @@
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profileinformation.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/controllers/profileinformation-edit.js"></script>
         <script src="scripts/controllers/profileanduser-new.js"></script>
         <script src="scripts/controllers/login.js"></script>
@@ -129,11 +129,16 @@
         <script src="scripts/services/resources/myprofile.js"></script>
         <script src="scripts/services/resources/profilemeasurements.js"></script>
         <script src="scripts/services/resources/login.js"></script>
+        <script src="scripts/services/resources/analysis.js"></script>
+        <script src="scripts/services/resources/myanalysis.js"></script>
+        <script src="scripts/services/resources/analysisfile.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/authentication.js"></script>
-        <script src="scripts/directives/angular-ajax-tabs.js"></script>
         <script src="scripts/directives/linegraph.js"></script>
+        <script src="scripts/controllers/analysis-new.js"></script>
+        <script src="scripts/directives/filesmodel.js"></script>
+        <script src="scripts/services/upload.js"></script>
         <!-- endbuild -->
 </body>
 </html>

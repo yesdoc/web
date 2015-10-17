@@ -9,23 +9,21 @@
  */
 angular.module('saludWebApp')
   .controller(
-      'ProfileMeasurementsCtrl',
-      function (
-        $scope,
-        $location,
-        $cookies,
-        MeasurementType,
-        ProfileMeasurements,
-        ProfileMeasurementsLatest) {
+    'ProfileMeasurementsCtrl',
+    function (
+      $scope,
+      $location,
+      $cookies,
+      Auth,
+      MeasurementType,
+      ProfileMeasurements,
+      ProfileMeasurementsLatest) {
 
-    if(!$cookies.get('Token')){
-        $location.path('/login');
-    }
+        Auth.isLogged();
 
-    // Se traen y muestran las ultimas mediciones de un perfil
-    var data = ProfileMeasurementsLatest.get(
-        function(){
-            $scope.measurements=data.resource;
-            });   
+        // Se traen y muestran las ultimas mediciones de un perfil
+        var data = ProfileMeasurementsLatest.get(function(){
+          $scope.measurements=data.resource;
+        });   
 
-});
+    });

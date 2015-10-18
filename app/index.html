@@ -1,6 +1,6 @@
 <!doctype html>
 <html class="no-js">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>YesDoc</title>
     <meta name="description" content="">
@@ -25,8 +25,9 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link href="styles/light-bootstrap-dashboard.css" rel="stylesheet"/>
  
-  </head>
-  <body ng-app="saludWebApp">
+</head>
+<body ng-app="saludWebApp">
+      
     <!--[if lt IE 7]>
     <p class="Firefox">You are using an <strong>outdated</strong> browser.
     Please <a href="https://www.mozilla.org/">upgrade your browser</a> to improve your experience.</p>
@@ -39,27 +40,26 @@
             <div class="logo">Usuario: </div>
             <ul class="nav">
                 <li data-match-route="/myProfileInformation">
-                    <a href="#/myProfileInformation" >
-                        <span><p><i class="fa fa-user"></i>
+                <a href="#/myProfileInformation" >
+                    <span><p><i class="fa fa-user"></i>
                         Perfíl</p></span>
-                    </a></li>           
+                </a></li>           
                 <li  data-match-route="/home">
-                    <a href="#/home">
-                        <span><p><i class="fa fa-pie-chart"></i>
-		         Histórico</p></span>
-                    </a></li>
+                <a href="#/home">
+                    <span><p><i class="fa fa-pie-chart"></i>
+                        Histórico</p></span>
+                </a></li>
                 <li data-match-route="/profileMeasurements">
-                    <a href="#/profileMeasurements">
-                        <span><p><i class="glyphicon glyphicon-list-alt"></i>Resumen</p></span>
-                    </a></li>
+                <a href="#/profileMeasurements">
+                    <span><p><i class="glyphicon glyphicon-list-alt"></i>Resumen</p></span>
+                </a></li>
             </ul> 
-
         </div> <!-- class= "sidebar-wrapper"-->
     </div><!-- class="sidebar" -->
 
     <!-- Navbar horizontal-->
     <div class="main-panel">
-    <nav class="navbar navbar-default navbar-fixed"> 
+        <nav class="navbar navbar-default navbar-fixed"> 
         <div class="container-fluid" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle " data-toggle="collapse"
@@ -70,88 +70,79 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-brand" href="#"><img
-                   src="images/yesDoc2.png"></div>
+                    src="images/yesDoc2.png"></div>
             </div><!-- /.navbar-header -->
 
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
-              <a
-                  class='navbar-button' href=''
-                  data-animation="am-flip-x"
-                  bs-dropdown="dropdown"
-                  placement='bottom-right'
-                  aria-haspopup="true"
-                  aria-expanded="false">
-                Mi cuenta
-              </a>
+                <a
+                    class='navbar-button' href=''
+                    data-animation="am-flip-x"
+                    bs-dropdown="dropdown"
+                    placement='bottom-right'
+                    aria-haspopup="true"
+                    aria-expanded="false">
+                    Mi cuenta
+                </a>
                 <ul class="nav navbar-nav navbar-left">
-                    <li data-match-route="/home"><a href="#/home">Histórico</a></li>
-                    <li data-match-route="/profileMeasurements"><a
-                        href="#/profileMeasurements">Resumen</a></li>
-                    <li data-match-route="/myProfileInformation"><a
-                        href="#/myProfileInformation">Perfíl</a></li>
-                    <!-- <li data-match-route="/about"><a href="#/about">Nosotros</a></li> -->
+                    <li>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="fa fa-envelope"></i>
+                        <b class="caret"></b>
+                        <span class="notification">2</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="#">Mensaje 1</a></li>
+                        <li><a href="#">Mensaje 2</a></li>
+                        <li><a href="#">Another notification</a></li>
+                    </ul>
+                </a>
+                </li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-globe"></i>
+                    <b class="caret"></b>
+                    <span class="notification">5</span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Notificación 1</a></li>
+                    <li><a href="#">Notificación 2</a></li>
+                    <li><a href="#">Notificación 3</a></li>
+                    <li><a href="#">Notificación 4</a></li>
+                    <li><a href="#">Another notification</a></li>
                 </ul>
-                    <ul class="nav navbar-nav navbar-left">
-                        <li>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-				<i class="fa fa-envelope"></i>
-                                <b class="caret"></b>
-                                <span class="notification">2</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Mensaje 1</a></li>
-                                <li><a href="#">Mensaje 2</a></li>
-                                <li><a href="#">Another notification</a></li>
-                            </ul>
-                            </a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-globe"></i>
-                                <b class="caret"></b>
-                                <span class="notification">5</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Notificación 1</a></li>
-                                <li><a href="#">Notificación 2</a></li>
-                                <li><a href="#">Notificación 3</a></li>
-                                <li><a href="#">Notificación 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-		    <ul class="nav navbar-nav navbar-right">
-                        <li data-match-route="/logoff">
-                            <a href="#/logoff" ><i class="fa fa-sign-out"></i>Salir</a></li>
-                    </ul>
-            </div><!-- /.navbar-collapse -->
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li data-match-route="/logoff">
+                <a href="#/logoff" ><i class="fa fa-sign-out"></i>Salir</a></li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
     </nav>
 
-
-        <!--En esta sección se cargará el contenido determinado por el panel de
-        navegación -->
+    <!--En esta sección se cargará el contenido determinado por el panel de
+    navegación -->
     <div class="content">
         <div class="container-fluid">
-              <div id="contents" app-view-segment="0"></div>
-          <!-- <div ng-view=""></div> -->
+            <div id="contents" app-view-segment="0"></div>
+            <!-- <div ng-view=""></div> -->
         </div>
     </div>
 
 
 
     <footer class="footer">
-        <div class="container-fluid">
-            <nav class="pull-left">
-<span class="glyphicon glyphicon-heart"> <img src="images/yesDoc2.png"></img></span>
-</nav>
-          
-      </div>
-  </footer>
+    <div class="container-fluid">
+        <nav class="pull-left">
+        <span class="glyphicon glyphicon-heart"> <img src="images/yesDoc2.png"></img></span>
+        </nav>
+    </div>
+    </footer>
 
 </div> <!-- class="main panel" -->
 </div> <!--class="wraper-->
+</body>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -242,5 +233,4 @@
         <script src="scripts/services/upload.js"></script>
         <script src="scripts/controllers/analysesshow.js"></script>
         <!-- endbuild -->
-</body>
 </html>

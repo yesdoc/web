@@ -20,63 +20,47 @@
     <!-- Animation library for notifications   -->
     <link href="styles/animate.min.css" rel="stylesheet"/>
 
+
+    <!--NUEVA PÁGINA -->
     <!--  Light Bootstrap Table core CSS    -->
     <link href="styles/light-bootstrap-dashboard.css" rel="stylesheet"/>
-
-
-    <!--  CSS for Demo Purpose, don't include it in your
-    project     -->
-    <link href="styles/demo.css" rel="stylesheet" />
-    <!-- endbuild -->
-
+ 
   </head>
   <body ng-app="saludWebApp">
     <!--[if lt IE 7]>
-    <p class="browsehappy">You are using an <strong>outdated</strong> browser.
-    Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <p class="Firefox">You are using an <strong>outdated</strong> browser.
+    Please <a href="https://www.mozilla.org/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 <div class="wrapper">
     <!-- Add your site or application content here -->
+    <!-- Navbar vertical-->
     <div class="sidebar" data-color="green" data-image="images/pc3.png">    
-        <!--   
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" 
-        Tip 2: you can also add an image using data-image tag
-        -->
         <div class="sidebar-wrapper">
-            <div class="logo">lalala</div>
+            <div class="logo">Usuario: </div>
             <ul class="nav">
-                <!--   angular strap        -->
-                <li  data-match-route="/home" bs-collapse>
-                    <a href="#/home"  bs-collapse-toggle><span> Histórico
-                        <i class="fa fa-caret-down"></i></span>
-                    </a>    
-                    <div class="panel-collapse  " bs-collapse-target> 
-                        <div bs-collapse> 
-                            <ul class="nav nav-list">
-                                <li><a>Análisis</a></li>
-                                <li><a>Altura</a></li>              
-                                <li><a>Peso</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </li>
                 <li data-match-route="/myProfileInformation">
-                    <a href="#/myProfileInformation" >Perfíl</a></li>
+                    <a href="#/myProfileInformation" >
+                        <span><p><i class="fa fa-user"></i>
+                        Perfíl</p></span>
+                    </a></li>           
+                <li  data-match-route="/home">
+                    <a href="#/home">
+                        <span><p><i class="fa fa-pie-chart"></i>
+		         Histórico</p></span>
+                    </a></li>
                 <li data-match-route="/profileMeasurements">
-                    <a href="#/profileMeasurements">Resumen</a></li>
-                <li data-match-route="/logoff">
-                    <a href="#/logoff" >Salir</a></li>
+                    <a href="#/profileMeasurements">
+                        <span><p><i class="glyphicon glyphicon-list-alt"></i>Resumen</p></span>
+                    </a></li>
             </ul> 
 
         </div> <!-- class= "sidebar-wrapper"-->
     </div><!-- class="sidebar" -->
 
-
-
-
+    <!-- Navbar horizontal-->
     <div class="main-panel">
-    <nav class="navbar navbar-default navbar-fixed"> <!--  role="navigation" bs-navbar-->
-        <div class="container-fluid" ><!-- nav-header" bs-affix-->
+    <nav class="navbar navbar-default navbar-fixed"> 
+        <div class="container-fluid" >
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle " data-toggle="collapse"
                     data-target="#navigation-example-2">
@@ -85,9 +69,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Título lalala</a> 
-               <!--  <div class="navbar-brand" href="#"><img
-                   src="images/yesDoc2.png"></div> -->
+                <div class="navbar-brand" href="#"><img
+                   src="images/yesDoc2.png"></div>
             </div><!-- /.navbar-header -->
 
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
@@ -110,53 +93,46 @@
                 </ul>
                     <ul class="nav navbar-nav navbar-left">
                         <li>
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-dashboard"></i>
-                        </a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+				<i class="fa fa-envelope"></i>
+                                <b class="caret"></b>
+                                <span class="notification">2</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Mensaje 1</a></li>
+                                <li><a href="#">Mensaje 2</a></li>
+                                <li><a href="#">Another notification</a></li>
+                            </ul>
+                            </a>
                         </li>
                         <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <i class="fa fa-globe"></i>
-                            <b class="caret"></b>
-                            <span class="notification">5</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Notification 1</a></li>
-                            <li><a href="#">Notification 2</a></li>
-                            <li><a href="#">Notification 3</a></li>
-                            <li><a href="#">Notification 4</a></li>
-                            <li><a href="#">Another notification</a></li>
-                        </ul>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-globe"></i>
+                                <b class="caret"></b>
+                                <span class="notification">5</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Notificación 1</a></li>
+                                <li><a href="#">Notificación 2</a></li>
+                                <li><a href="#">Notificación 3</a></li>
+                                <li><a href="#">Notificación 4</a></li>
+                                <li><a href="#">Another notification</a></li>
+                            </ul>
                         </li>
-                        <li>
-                        <a href="">
-                            <i class="fa fa-search"></i>
-                        </a>
-                        </li> 
                     </ul>
-
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>
-                        <a href="#">
-                            Log out
-                        </a>
-                        </li> 
-                    </ul>                
-
+		    <ul class="nav navbar-nav navbar-right">
+                        <li data-match-route="/logoff">
+                            <a href="#/logoff" ><i class="fa fa-sign-out"></i>Salir</a></li>
+                    </ul>
             </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
     </nav>
 
 
-
-
-
-
-
-    <div class="content">
         <!--En esta sección se cargará el contenido determinado por el panel de
         navegación -->
+    <div class="content">
         <div class="container-fluid">
               <div id="contents" app-view-segment="0"></div>
           <!-- <div ng-view=""></div> -->
@@ -165,11 +141,14 @@
 
 
 
-    <div class="footer">
-      <div class="container-fluid">
-        <p><span class="glyphicon glyphicon-heart"></span> <img src="images/yesDoc2.png"></p>
+    <footer class="footer">
+        <div class="container-fluid">
+            <nav class="pull-left">
+<span class="glyphicon glyphicon-heart"> <img src="images/yesDoc2.png"></img></span>
+</nav>
+          
       </div>
-  </div>
+  </footer>
 
 </div> <!-- class="main panel" -->
 </div> <!--class="wraper-->
@@ -208,6 +187,10 @@
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
+	<script src="assets/js/light-bootstrap-dashboard.js"></script>
+    <!--   Core JS Files   -->
+    <script src="assets/js/jquery-1.10.2.js" type="text/javascript"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profileinformation.js"></script>

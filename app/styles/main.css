@@ -44,6 +44,19 @@ body {
     color: #3C763D;
     background-color: #EEEEEE;
 }
+.navbar-button{
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  float: right;
+  line-height: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  color: #777; 
+}
+.navbar-button a:hover{
+  color: #333; 
+}
 /* Custom page footer */
 .footer {
   padding-top: 19px;

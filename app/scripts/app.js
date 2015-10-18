@@ -23,7 +23,7 @@ angular
     'nvd3ChartDirectives'
   ])
   
-  .config(function ($routeSegmentProvider , $routeProvider) {
+  .config(function ($routeSegmentProvider , $routeProvider,$locationProvider) {
     $routeSegmentProvider.
       when('/about', 'about').
       when('/home','home').
@@ -40,6 +40,8 @@ angular
       when('/analysis/new','analysis-new').
       when('/home/analyses','home.analyses').
       when('/home/analyses/:id','home.analyses-show').
+      when('/dropbox-auth-start','dropbox-st').
+      when('/dropbox-auth-finish','dropbox-fn').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -106,12 +108,23 @@ angular
       segment('analysis-new',{
         templateUrl: 'views/analysis-new.html',
         controller: 'AnalysisNewCtrl'
+      }).
+      segment('dropbox-st',{
+        templateUrl: 'views/dropbox-auth-start.html',
+        controller: 'DropboxAuthStartCtrl'
+      }).
+      segment('dropbox-fn',{
+        templateUrl: 'views/dropbox-auth-finish.html',
+        controller: 'DropboxAuthFinishCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
 })
-.config(function($modalProvider) {
-  angular.extend($modalProvider.defaults, {
-    html: true
-  });
+  .config(function($modalProvider,$dropdownProvider) {
+    angular.extend($modalProvider.defaults, {
+      html: true
+    });
+    angular.extend($dropdownProvider.defaults, {
+      html: true
+    });
 });

@@ -37,7 +37,7 @@
     <![endif]-->
 <div class="wrapper">
     <!-- Add your site or application content here -->
-    <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">    
+    <div class="sidebar" data-color="green" data-image="images/pc3.png">    
 
         <!--   
 
@@ -57,10 +57,9 @@
 
                 <!--   angular strap        -->
                 <li  data-match-route="/home" bs-collapse>
-                <a href="lala"  bs-collapse-toggle> Histórico
-                    <i class="fa fa-caret-down"></i>
-                </a>    
-
+                    <a href="#/home"  bs-collapse-toggle> Histórico
+                        <i class="fa fa-caret-down"></i>
+                    </a>    
                 <div class="panel-collapse  " bs-collapse-target> 
                     <div bs-collapse> 
                         <ul class="nav nav-list">
@@ -74,8 +73,8 @@
 
                 <li data-match-route="/myProfileInformation">
                     <a href="#/myProfileInformation" >Perfíl</a></li>
-                <li data-match-route="/about">
-                    <a href="#/about" >Resumen</a></li>
+                <li data-match-route="/profileMeasurements">
+                    <a href="#/profileMeasurements">Resumen</a></li>
                 <li data-match-route="/logoff">
                     <a href="#/logoff" >Salir</a></li>
 
@@ -88,12 +87,12 @@
 
 
     <div class="main-panel">
-        <nav class="navbar navbar-default"> <!--  role="navigation" bs-navbar-->
+        <nav class="navbar navbar-default navbar-fixed"> <!--  role="navigation" bs-navbar-->
     <div class="container-fluid" ><!-- nav-header" bs-affix-->
 
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <button type="button" class="navbar-toggle " data-toggle="collapse"
+                    data-target="#navigation-example-2">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -147,6 +146,15 @@
                         </a>
                         </li> 
                     </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                        <a href="#">
+                            Log out
+                        </a>
+                        </li> 
+                    </ul>                
+
             </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
@@ -161,7 +169,7 @@
     <div class="content">
     <!--En esta sección se cargará el contenido determinado por el panel de
     navegación -->
-    <div >
+    <div class="container-fluid">
       <div id="contents" app-view-segment="0"></div>
       <!-- <div ng-view=""></div> -->
     </div>

@@ -35,9 +35,9 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser.
     Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
+<div class="wrapper">
     <!-- Add your site or application content here -->
-    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">    
+    <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">    
 
         <!--   
 
@@ -55,76 +55,41 @@
 
             <ul class="nav">
 
+                <!--   angular strap        -->
+                <li  data-match-route="/home" bs-collapse>
+                <a href="lala"  bs-collapse-toggle> Histórico
+                    <i class="fa fa-caret-down"></i>
+                </a>    
 
-
-
-                <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another action</a></li>
-                    <li><a href="#">Something else here</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">Separated link</a></li>
-                    <li role="separator" class="divider"></li>
-                    <li><a href="#">One more separated link</a></li>
-                </ul>
+                <div class="panel-collapse  " bs-collapse-target> 
+                    <div bs-collapse> 
+                        <ul class="nav nav-list">
+                            <li><a>Análisis</a></li>
+                            <li><a>Altura</a></li>              
+                            <li><a>Peso</a></li>
+                        </ul>
+                    </div>
+                </div>
                 </li>
 
+                <li data-match-route="/myProfileInformation">
+                    <a href="#/myProfileInformation" >Perfíl</a></li>
+                <li data-match-route="/about">
+                    <a href="#/about" >Resumen</a></li>
+                <li data-match-route="/logoff">
+                    <a href="#/logoff" >Salir</a></li>
 
-
-                <li class="active">
-                <a href="dashboard.html">
-                    <i class="pe-7s-graph"></i> 
-                    <p>Dashboard</p>
-                </a>            
-                </li>
-                <li>
-                <a href="user.html">
-                    <i class="pe-7s-user"></i> 
-                    <p>User Profile</p>
-                </a>
-                </li> 
-                <li>
-                <a href="table.html">
-                    <i class="pe-7s-note2"></i> 
-                    <p>Table List</p>
-                </a>        
-                </li>
-                <li>
-                <a href="typography.html">
-                    <i class="pe-7s-news-paper"></i> 
-                    <p>Typography</p>
-                </a>        
-                </li>
-                <li>
-                <a href="icons.html">
-                    <i class="pe-7s-science"></i> 
-                    <p>Icons</p>
-                </a>        
-                </li>
-                <li>
-                <a href="maps.html">
-                    <i class="pe-7s-map-marker"></i> 
-                    <p>Maps</p>
-                </a>        
-                </li>
-                <li>
-                <a href="notifications.html">
-                    <i class="pe-7s-bell"></i> 
-                    <p>Notifications</p>
-                </a>        
-                </li>
             </ul> 
-        </div>
-    </div>
+
+        </div> <!-- class= "sidebar-wrapper"-->
+    </div><!-- class="sidebar" -->
 
 
 
 
     <div class="main-panel">
-    <nav class="navbar navbar-default" role="navigation" bs-navbar>
-    <div class="container-fluid nav-header" bs-affix>
+        <nav class="navbar navbar-default"> <!--  role="navigation" bs-navbar-->
+    <div class="container-fluid" ><!-- nav-header" bs-affix-->
 
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -134,10 +99,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <a class="navbar-brand" href="#">Título lalala</a> 
                 <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
             </div><!-- /.navbar-header -->
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller='NavCtrl'>
+            <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
               <a
                   class='navbar-button' href=''
                   data-animation="am-flip-x"
@@ -147,7 +113,7 @@
                   aria-expanded="false">
                 Mi cuenta
               </a>
-              <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav navbar-left">
                     <li data-match-route="/home"><a href="#/home">Histórico</a></li>
                     <li data-match-route="/profileMeasurements"><a
                         href="#/profileMeasurements">Resumen</a></li>
@@ -186,7 +152,8 @@
     </div><!-- /.container-fluid -->
     </nav>
 
-    </div>
+
+
 
 
 
@@ -206,8 +173,10 @@
       <div class="container-fluid">
         <p><span class="glyphicon glyphicon-heart"></span> <img src="images/yesDoc2.png"></p>
       </div>
-    </div>
+  </div>
 
+</div> <!-- class="main panel" -->
+</div> <!--class="wraper-->
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>

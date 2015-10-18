@@ -17,7 +17,18 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/font-awesome-4.4.0/css/font-awesome.min.css">
+    <!-- Animation library for notifications   -->
+    <link href="styles/animate.min.css" rel="stylesheet"/>
+
+    <!--  Light Bootstrap Table core CSS    -->
+    <link href="styles/light-bootstrap-dashboard.css" rel="stylesheet"/>
+
+
+    <!--  CSS for Demo Purpose, don't include it in your
+    project     -->
+    <link href="styles/demo.css" rel="stylesheet" />
     <!-- endbuild -->
+
   </head>
   <body ng-app="saludWebApp">
     <!--[if lt IE 7]>
@@ -26,6 +37,92 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div class="sidebar" data-color="purple" data-image="assets/img/sidebar-5.jpg">    
+
+        <!--   
+
+        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" 
+        Tip 2: you can also add an image using data-image tag
+
+        -->
+
+        <div class="sidebar-wrapper">
+            <div class="logo">
+                <a href="http://www.creative-tim.com" class="simple-text">
+                    Creative Tim
+                </a>
+            </div>
+
+            <ul class="nav">
+
+
+
+
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">Separated link</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="#">One more separated link</a></li>
+                </ul>
+                </li>
+
+
+
+                <li class="active">
+                <a href="dashboard.html">
+                    <i class="pe-7s-graph"></i> 
+                    <p>Dashboard</p>
+                </a>            
+                </li>
+                <li>
+                <a href="user.html">
+                    <i class="pe-7s-user"></i> 
+                    <p>User Profile</p>
+                </a>
+                </li> 
+                <li>
+                <a href="table.html">
+                    <i class="pe-7s-note2"></i> 
+                    <p>Table List</p>
+                </a>        
+                </li>
+                <li>
+                <a href="typography.html">
+                    <i class="pe-7s-news-paper"></i> 
+                    <p>Typography</p>
+                </a>        
+                </li>
+                <li>
+                <a href="icons.html">
+                    <i class="pe-7s-science"></i> 
+                    <p>Icons</p>
+                </a>        
+                </li>
+                <li>
+                <a href="maps.html">
+                    <i class="pe-7s-map-marker"></i> 
+                    <p>Maps</p>
+                </a>        
+                </li>
+                <li>
+                <a href="notifications.html">
+                    <i class="pe-7s-bell"></i> 
+                    <p>Notifications</p>
+                </a>        
+                </li>
+            </ul> 
+        </div>
+    </div>
+
+
+
+
+    <div class="main-panel">
     <nav class="navbar navbar-default" role="navigation" bs-navbar>
     <div class="container-fluid nav-header" bs-affix>
 
@@ -58,20 +155,52 @@
                         href="#/myProfileInformation">Perfíl</a></li>
                     <!-- <li data-match-route="/about"><a href="#/about">Nosotros</a></li> -->
                 </ul>
-                <button type="button" class="btn btn-default" ng-model="selectedIcons" data-html="1" data-multiple="1" data-animation="am-flip-x" bs-options="icon.value as icon.label for icon in icons" bs-select>
-                      Action <span class="caret"></span>
-                  </button>
+                    <ul class="nav navbar-nav navbar-left">
+                        <li>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-dashboard"></i>
+                        </a>
+                        </li>
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-globe"></i>
+                            <b class="caret"></b>
+                            <span class="notification">5</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Notification 1</a></li>
+                            <li><a href="#">Notification 2</a></li>
+                            <li><a href="#">Notification 3</a></li>
+                            <li><a href="#">Notification 4</a></li>
+                            <li><a href="#">Another notification</a></li>
+                        </ul>
+                        </li>
+                        <li>
+                        <a href="">
+                            <i class="fa fa-search"></i>
+                        </a>
+                        </li> 
+                    </ul>
             </div><!-- /.navbar-collapse -->
 
     </div><!-- /.container-fluid -->
     </nav>
 
+    </div>
+
+
+
+
+    <div class="content">
     <!--En esta sección se cargará el contenido determinado por el panel de
     navegación -->
     <div >
       <div id="contents" app-view-segment="0"></div>
       <!-- <div ng-view=""></div> -->
     </div>
+    </div>
+
+
 
     <div class="footer">
       <div class="container-fluid">

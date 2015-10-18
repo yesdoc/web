@@ -8,7 +8,7 @@
  * Factory in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('MyMeasurement', function (global, $resource) {
+  .factory('MyMeasurements', function (global, $resource) {
 
     // URL of specific API resource
     var url=global.getApiUrl()+'/my/measurements';

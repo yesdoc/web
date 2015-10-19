@@ -18,7 +18,7 @@ angular.module('saludWebApp')
           "href": "/#/myProfileInformation"
         },
         {
-          "text": "<i class=\"fa fa-dropbox\"></i>&nbsp;Conectar con Dropbox",
+          "text": "<i class=\"fa fa-hdd-o\"></i>&nbsp;Configurar almacenamiento",
           "href": "/#/dropbox-auth-start",
         },
         {

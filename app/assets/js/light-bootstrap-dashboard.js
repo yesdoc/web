@@ -17,8 +17,8 @@ $(document).ready(function(){
         lbd.initRightMenu();   
     }
      
-    //  Activate the tooltips   
-    $('[rel="tooltip"]').tooltip();
+    //  Activate the tooltips FIXME: da error
+    //$('[rel="tooltip"]').tooltip();
 
     //      Activate the switches with icons 
     if($('.switch').length != 0){

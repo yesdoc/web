@@ -12,7 +12,8 @@ angular.module('saludWebApp')
 
     Auth.isLogged();
     var credential = new StorageCredentials;
-    credential.token = $location.hash().split('=')[1];
+    credential.token = $location.hash().split('&')[0];
+    credential.token = credential.token.split('=')[1];
     credential.storage_location_id='1';//dropbox
 
     var g_u = User.get({},function(){
@@ -20,9 +21,9 @@ angular.module('saludWebApp')
       credential.owner_id = g_u.id;
       if (credential.token){
         var p_sc = credential.$save(function(){
-          $scope.type='alert-success';
+          $scope.type='alert-success ';
           $scope.icon='fa-check';
-          $scope.msg='Felicitaciones !! su cuenta de dropbox está sincronizada';
+          $scope.msg='Su cuenta de dropbox está ahora sincronizada';
         }); 
       }else{
         $scope.type='alert-warning';

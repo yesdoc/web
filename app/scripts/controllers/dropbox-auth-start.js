@@ -24,7 +24,7 @@ angular.module('saludWebApp')
             $scope.isDisabled['dropbox'] = 'disabled'
             break;
           case 'drive':
-            $scope.msg['dropbox']='Google Drive ya está conectado';
+            $scope.msg['drive']='Google Drive ya está conectado';
             break;
           default:
             break;

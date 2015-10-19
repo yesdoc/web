@@ -15,13 +15,13 @@ angular.module('saludWebApp')
       Auth,
       $window,
       Profile,
-      Users,
+      User,
       Gender){
 
           // Crea el perfil y el usuario que se utilizará en la vista para persistir los
           // atributos a partir de ng-model.
           $scope.profile = new Profile();
-          $scope.user = new Users();
+          $scope.user = new User();
 
           // Traigo de la API los tipos de géneros existente.
           var genders_data = Gender.query(

@@ -18,6 +18,8 @@ angular.module('saludWebApp')
       Auth, 
       global){
 
+      Auth.isLogged();
+
       // Función que es llamada desde la vista
       $scope.login=function(){
           

@@ -101,11 +101,17 @@ angular.module('saludWebApp')
     function isLogged(){
         var token = $cookies.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
-        if (!token) {
-            $location.path('/login');
-        }
+
+        $http.get(global.getApiUrl() + '/token')
+          .success(function(data, status, headers, config) {
+            $rootScope.$emit('isLoggedEvent', [true]);
+          }).error(function(data, status, headers, config) {
+            if (status=='401'){
+              $rootScope.$emit('isLoggedEvent', [false]);
+              $location.path('/login');
+            }
+          });
       }
-    
     
     /*
      *  Funciones públicas. 

@@ -40,15 +40,23 @@
                 <div class="navbar-brand" href="#"><img src="images/yesDoc2.png"></div>
             </div><!-- /.navbar-header -->
 
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller='NavCtrl'>
+              <a 
+                  class='navbar-button' href='' 
+                  data-animation="am-flip-x" 
+                  bs-dropdown="dropdown" 
+                  placement='bottom-right'
+                  aria-haspopup="true" 
+                  aria-expanded="false">
+                Mi cuenta
+              </a>
+              <ul class="nav navbar-nav">
                     <li data-match-route="/home"><a href="#/home">Histórico</a></li>
                     <li data-match-route="/profileMeasurements"><a 
                         href="#/profileMeasurements">Resumen</a></li>
                     <li data-match-route="/myProfileInformation"><a 
                         href="#/myProfileInformation">Perfíl</a></li>
                     <!-- <li data-match-route="/about"><a href="#/about">Nosotros</a></li> -->
-                    <li data-match-route="/logoff"><a href="#/logoff">Desconectarme</a></li>
                 </ul>
             </div><!-- /.navbar-collapse -->
 
@@ -118,6 +126,9 @@
         <script src="scripts/controllers/bloodcholesterol.js"></script>
         <script src="scripts/controllers/height.js"></script>
         <script src="scripts/controllers/weight.js"></script>
+        <script src="scripts/controllers/dropbox-auth-finish.js"></script>
+        <script src="scripts/controllers/dropbox-auth-start.js"></script>
+        <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/resources/measurementunit.js"></script>
         <script src="scripts/services/resources/measurementsource.js"></script>
@@ -135,6 +146,9 @@
         <script src="scripts/services/resources/analysis.js"></script>
         <script src="scripts/services/resources/myanalyses.js"></script>
         <script src="scripts/services/resources/analysisfile.js"></script>
+        <script src="scripts/services/resources/storagecredentials.js"></script>
+        <script src="scripts/services/resources/mystoragecredentials.js"></script>
+        <script src="scripts/services/resources/storagelocations.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/authentication.js"></script>

@@ -1,0 +1,12 @@
+<div class=jumbotron>
+  <div class="container">
+    <h1>La información es tuya!</h1>
+    <p>Guardala en tu gestor de archivos preferido</p>
+    <a class='btn btn-primary {{isDisabled("dropbox")}}'
+      href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
+      <i class="fa fa-dropbox"></i>
+      {{locations.dropbox.msg}}</a>
+    <a class='btn btn-warning {{isDisabled("drive")}}'><img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
+      {{locations.drive.msg}}</a>
+  </div>
+</div>

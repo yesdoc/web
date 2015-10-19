@@ -8,7 +8,7 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('DropboxAuthFinishCtrl', function ($scope,Auth,$location,StorageCredentials,StorageLocations,User) {
+  .controller('DropboxAuthFinishCtrl', function ($scope,Auth,$location,StorageCredentials,StorageLocations,MyUser) {
 
     Auth.isLogged();
     var credential = new StorageCredentials;
@@ -22,13 +22,13 @@ angular.module('saludWebApp')
 
           if (st.name.toLowerCase()=='dropbox'){
             credential.storage_location_id=st.id;
-            var g_u = User.get({},function(){
+            var g_u = MyUser.get({},function(){
               g_u = g_u.resource;
               credential.owner_id = g_u.id;
               if (credential.token){
                 var p_sc = credential.$save(function(){
                   onSuccess();
-                  }); 
+                  });
                 }
               else{
                 onFail();

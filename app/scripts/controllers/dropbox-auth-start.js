@@ -13,6 +13,7 @@ angular.module('saludWebApp')
     Auth.isLogged();
 
     $scope.msg={'dropbox':'Conectar con mi Dropbox','drive':'Conectar con mi Google Drive'}
+    $scope.isDisabled={'dropbox':'','drive':'disabled'}
     MyStorageCredentials.query(function(response){
       var credentials = response.resource;
       $.each(credentials,function(i,c){
@@ -20,6 +21,7 @@ angular.module('saludWebApp')
         switch(c.storage_location.name.toLowerCase()){
           case 'dropbox':
             $scope.msg['dropbox']='Dropbox ya está conectado';
+            $scope.isDisabled['dropbox'] = 'disabled'
             break;
           case 'drive':
             $scope.msg['dropbox']='Google Drive ya está conectado';

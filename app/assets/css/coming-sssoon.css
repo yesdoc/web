@@ -384,6 +384,16 @@ h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small {
     padding-top: 15px;
     background-color: rgba(0,0,0,.0);
 }
+.navbar-semil-transparent{
+    padding-top: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFFDFD;
+}
+.navbar-semil-transparent .alert{
+    padding-top: 15px;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFFDFD;
+}
 .navbar-transparent .navbar-brand, [class*="navbar-ct"] .navbar-brand{
     color: #FFFFFF;
     opacity: 0.95;

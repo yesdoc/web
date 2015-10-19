@@ -76,7 +76,8 @@
         <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
 
         <div class="content">
-                   
+            <div class="panel panel-default navbar-semil-transparent" data-color="green">                 
+            <div class="panel-body"> 
             <form name = "validateUser" class = "form-horizontal" role = "form" ng-submit = "login()" novalidate >
             <div class = "form-group" ng-class = "{'has-error' : validateUser.username.$invalid
                 && !validateUser.username.$pristine}" >
@@ -85,7 +86,7 @@
                     <input  name = "username" type = "text" ng-model = "username" class = "form-control"
                     id = "id" placeholder = "" required >
                     <p ng-show = "validateUser.username.$invalid && validateUser.username.$touched"
-                    class = "help-block"> Debe ingresar un usuario. </p>
+                    class = "help-block navbar-semil-transparent" > Debe ingresar un usuario. </p>
                 </div> <!-- /.col-sm-10 -->
             </div> <!-- form-group -->
 
@@ -110,8 +111,8 @@
             </div> <!-- form-group -->
 
         </form>
-
-
+    </div><!-- class="panel-body"-->
+    </div><!--class="panel panel-default"-->
     </div><!--class="content" -->
 </div><!--class="container" -->
 

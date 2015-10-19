@@ -45,7 +45,7 @@ angular.module('saludWebApp')
     var onSuccess = function(){
       $scope.type='alert-success ';
       $scope.icon='fa-check';
-      $scope.msg='Su cuenta de dropbox está ahora sincronizada';
+      $scope.msg='Su cuenta de Dropbox está ahora sincronizada';
       }
 
     var onFail = function(){

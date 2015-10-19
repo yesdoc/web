@@ -48,7 +48,7 @@ angular.module('saludWebApp')
           aFileModal.$promise.then(aFileModal.show);
           // It creates a new AnalysisFile object
           var af = new AnalysisFile();
-          af.required = 'required';
+          af.required = true;
           create_analysisFile(af);
     };
 
@@ -61,7 +61,7 @@ angular.module('saludWebApp')
     $scope.editAdjunto = function($index,a){
           aFileModal.$promise.then(aFileModal.show);
           var af = $scope.adjuntos[$index];
-          af.required = '';
+          af.required = false;
           create_analysisFile($scope.adjuntos[$index],function(){
             aFileModal.$promise.then(aFileModal.hide());
             });

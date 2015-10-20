@@ -15,10 +15,18 @@ angular.module('saludWebApp')
       MyAnalyses,
       Analysis,
       AnalysisFile,
+      fileReader,
       global,
+      User,
+      $http,
       $filter){
 
-    Auth.isLogged();
+    var token = Auth.isLogged();
+    token = token.split(' ')[2];
+
+    User.get({},function(response){
+
+    var user = response.resource;
 
     var q_a = MyAnalyses.query(function(){
 
@@ -28,13 +36,18 @@ angular.module('saludWebApp')
 
         var q_af = Analysis.get({id:a.id,element:'files'},function(){
           $.each(q_af.resource,function(i,af){
-                a.af_id = af.id
+            a.af_id = af.id 
             });
           if ( a.af_id ){
-            a.imageSrc = (global.getApiUrl()+'/analysis_files/'+a.af_id+'/download');
-          }else{
-            a.imageSrc = '/images/escul.jpeg';
-          }
+            a.imageSrc = (
+                global.getApiUrl(user.username+':'+token+'@')+
+                '/analysis_files/'+
+                a.af_id+
+                '/thumbnail');
+            }
+          else{
+            a.imageSrc = 'images/escul.jpeg';
+            }
           });
 
         a.datetime = new Date(a.datetime)
@@ -42,5 +55,5 @@ angular.module('saludWebApp')
         });
 
       });
-
+    });
   });

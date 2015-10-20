@@ -345,3 +345,12 @@ margin:4px;
   *display: inline!important; 
   float: none!important;
 }
+/*LOGO*/
+.imglogo{
+  width:50%;
+}
+
+.imglogo img{
+  width:65%;
+}
+

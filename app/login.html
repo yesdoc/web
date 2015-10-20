@@ -25,99 +25,96 @@
 <body ng-app="saludWebApp">
 
 
-<nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">  
-  <div >
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-    </div>
+    <nav class="navbar navbar-transparent navbar-fixed-top" role="navigation">  
+    <div>
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <div class="navbar-brand imglogo " href="#">
+                <img src="images/logo.png"></div>
+            </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-            <li>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
                 <a href="#"> 
                     <i class="fa fa-facebook-square"></i>
                     Share
                 </a>
-            </li>
-             <li>
+                </li>
+                <li>
                 <a href="#"> 
                     <i class="fa fa-twitter"></i>
                     Tweet
                 </a>
-            </li>
-             <li>
+                </li>
+                <li>
                 <a href="#"> 
                     <i class="fa fa-envelope-o"></i>
                     Email
                 </a>
-            </li>
-       </ul>
-      
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container -->
-</nav>
+                </li>
+            </ul>
 
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container -->
+    </nav>
 
+    <div class="main" style="background-image: url('images/pc1.jpg')">
+        <div class="cover black" data-color="black"></div>
+        <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
+        <div class="container" ng-controller="LoginCtrl" >
+            <h1 class="logo">Iniciar Sesión </h1>
+            <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
 
+            <div class="content">
+                <div class="panel panel-default navbar-semil-transparent" data-color="green">                 
+                    <div class="panel-body"> 
+                        <form name = "validateUser" class = "form-horizontal" role = "form" ng-submit = "login()" novalidate >
+                            <div class = "form-group" ng-class = "{'has-error' : validateUser.username.$invalid
+                                && !validateUser.username.$pristine}" >
+                                <label for = "username" class = "col-sm-2 control-label"> Nombre de usuario: </label>
+                                <div class = "col-sm-10" required >
+                                    <input  name = "username" type = "text" ng-model = "username" class = "form-control"
+                                    id = "id" placeholder = "" required >
+                                    <p ng-show = "validateUser.username.$invalid && validateUser.username.$touched"
+                                    class = "help-block navbar-semil-transparent" > Debe ingresar un usuario. </p>
+                                </div> <!-- /.col-sm-10 -->
+                            </div> <!-- form-group -->
 
+                            <div class = "form-group" ng-class = "{ 'has-error' : validateUser.password.$invalid
+                                && !validateUser.password.$pristine }" >
+                                <label for = "password" class = "col-sm-2 control-label"> Password: </label>
+                                <div class = "col-sm-10"required >
+                                    <input  name = "password" type = "password" ng-model = "password" class = "form-control"
+                                    id = "id" placeholder = "" required >
+                                    <p ng-show = "validateUser.password.$invalid && validateUser.password.$touched"
+                                    class = "help-block"> Debe ingresar un identificador. </p>
+                                    <p class = "text-danger">{{message}}</p>
+                                </div> <!-- col-sm-10 -->
+                            </div> <!-- form-group -->
 
-<div class="main" style="background-image: url('images/pc1.jpg')">
-    <div class="cover black" data-color="black"></div>
-    <!--   You can change the black color for the filter with those colors: blue, green, red, orange       -->
-    <div class="container" ng-controller="LoginCtrl" >
-        <h1 class="logo">Iniciar Sesión </h1>
-        <!--  H1 can have 2 designs: "logo" and "logo cursive"           -->
+                            <div class = "form-group">
+                                <div class = "col-sm-offset-2 col-sm-10">
+                                    <input type = "submit" class = "btn btn-success" value = "Ingresar"
+                                    ng-disabled = "validateUser.$invalid" >
+                                    <a class = "btn btn-primary" ng-href = "nuevo_perfil.html"> Nuevo Perfíl </a>
+                                </div> <!-- col-sm-offset-2 -->
+                            </div> <!-- form-group -->
 
-        <div class="content">
-            <div class="panel panel-default navbar-semil-transparent" data-color="green">                 
-            <div class="panel-body"> 
-            <form name = "validateUser" class = "form-horizontal" role = "form" ng-submit = "login()" novalidate >
-            <div class = "form-group" ng-class = "{'has-error' : validateUser.username.$invalid
-                && !validateUser.username.$pristine}" >
-                <label for = "username" class = "col-sm-2 control-label"> Nombre de usuario: </label>
-                <div class = "col-sm-10" required >
-                    <input  name = "username" type = "text" ng-model = "username" class = "form-control"
-                    id = "id" placeholder = "" required >
-                    <p ng-show = "validateUser.username.$invalid && validateUser.username.$touched"
-                    class = "help-block navbar-semil-transparent" > Debe ingresar un usuario. </p>
-                </div> <!-- /.col-sm-10 -->
-            </div> <!-- form-group -->
+                        </form>
+                    </div><!-- class="panel-body"-->
+                </div><!--class="panel panel-default"-->
+            </div><!--class="content" -->
+        </div><!--class="container" -->
 
-            <div class = "form-group" ng-class = "{ 'has-error' : validateUser.password.$invalid
-                && !validateUser.password.$pristine }" >
-                <label for = "password" class = "col-sm-2 control-label"> Password: </label>
-                <div class = "col-sm-10"required >
-                    <input  name = "password" type = "password" ng-model = "password" class = "form-control"
-                    id = "id" placeholder = "" required >
-                    <p ng-show = "validateUser.password.$invalid && validateUser.password.$touched"
-                    class = "help-block"> Debe ingresar un identificador. </p>
-                    <p class = "text-danger">{{message}}</p>
-                </div> <!-- col-sm-10 -->
-            </div> <!-- form-group -->
-
-            <div class = "form-group">
-                <div class = "col-sm-offset-2 col-sm-10">
-                    <input type = "submit" class = "btn btn-success" value = "Ingresar"
-                    ng-disabled = "validateUser.$invalid" >
-                    <a class = "btn btn-primary" ng-href = "nuevo_perfil.html"> Nuevo Perfíl </a>
-                </div> <!-- col-sm-offset-2 -->
-            </div> <!-- form-group -->
-
-        </form>
-    </div><!-- class="panel-body"-->
-    </div><!--class="panel panel-default"-->
-    </div><!--class="content" -->
-</div><!--class="container" -->
-
- </div><!--class="main" -->
-
+    </div><!--class="main" -->
 
 </body>
 

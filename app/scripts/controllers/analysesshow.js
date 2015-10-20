@@ -26,7 +26,7 @@ angular.module('saludWebApp')
     Auth.isLogged();
 
     function getPermissionTypes(){
-      $scope.permissions = [];
+      $scope.permissions_type = [];
       $scope.perm.analysis_id = $routeParams.id
       PermissionTypes.query(function(response){
         var perms = response.resource;
@@ -38,15 +38,20 @@ angular.module('saludWebApp')
           if(p.can_view_measurements || p.can_view_analysis_files){
             label="<i class=\"fa fa-eye\"></i> "+label;
             }
-          $scope.permissions.push({'value':p.id,'label':label})
+          $scope.permissions_type.push({'value':p.id,'label':label})
           $scope.perm.permission_type_id = undefined; 
           })
       });
     }
 
     $scope.addConfig = function(){
-      $scope.perm.user_id = $scope.perm.user.id;
+      $.each($scope.users,function(i,u){
+        if (u.username.toLowerCase() == $scope.perm.user.toLowerCase()){
+          $scope.perm.user_id = u.id;
+          }
+        })
       AnalysisPermissions.save({analysis_id:$scope.perm.analysis_id},$scope.perm,function(){
+        $scope.perm=undefined;
       });
     }
 
@@ -58,6 +63,8 @@ angular.module('saludWebApp')
           contentTemplate: false, 
           html: true, 
           show: false });
+        //$scope.permissions=
+
         $scope.perm=new AnalysisPermissions();
         $scope.perm.user=''; 
         User.query(function(response){

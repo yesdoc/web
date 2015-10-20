@@ -12,12 +12,14 @@ angular.module('saludWebApp')
     // Service logic
 
     // URL of yesdoc API
-    var _api_url='https://yesdoc-api.herokuapp.com';
-
+    var api_url='yesdoc-api.herokuapp.com';
+    function _api_url(auth=''){
+      return 'https://'+auth+api_url;
+    }
     // Public methods
     return {
-      getApiUrl: function () {
-        return _api_url;
+      getApiUrl: function (auth='') {
+        return _api_url(auth);
       }
     };
   });

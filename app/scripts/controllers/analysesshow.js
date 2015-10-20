@@ -64,7 +64,9 @@ angular.module('saludWebApp')
           html: true, 
           show: false });
         //$scope.permissions=
-
+        AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
+          $scope.permissions = response.resource;
+        });
         $scope.perm=new AnalysisPermissions();
         $scope.perm.user=''; 
         User.query(function(response){

@@ -28,6 +28,25 @@
                 </div>
               </div>
         </form>
+        <table class="table">
+          <caption>Optional table caption.</caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Usuario</th>
+              <th>Nombre y Apellido</th>
+              <th>Tipo de permiso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='p in permissions'>
+              <th scope="row">{{$index}}</th>
+              <td>{{p.user.username}}</td>
+              <td>{{p.user.profile.first_name}} {{p.profile.last_name}}</td>
+              <td>{{p.measurement_type.name}}</td>
+            </tr>
+          </tbody>
+        </table>
 
       </div>
     </div>

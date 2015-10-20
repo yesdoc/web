@@ -1,0 +1,54 @@
+
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title"> Configuración de Permisos </h4>
+      </div>
+      <div class='well' style='margin-bottom: 0px;'>
+
+        <form name="configForm" class="form-horizontal" role="form" ng-submit="addConfig()">
+              <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class='fa fa-unlock-alt'></i></span>
+                <input type="text" class="form-control"  ng-model='perm.user' bs-typeahead bs-options="user.username for user in users" placeholder="Juan Perez" required>
+                <div class="input-group-btn">
+                  <button type="button" class="btn btn-default" placeholder='Seleccione permisos' ng-model="perm.permission_type_id" data-html="1" bs-options="perm.value as perm.label for perm in permissions_type" bs-select>
+                    <span class="caret"></span>
+                  </button>
+                </div><!-- /btn-group -->
+              </div><!-- /input-group -->
+              </div><!-- /input-group -->
+
+              <div class="form-group">
+                <div class="col-sm-10">
+                  <input type="submit" class="btn btn-success" value="Save" ng-disabled="measurementForm.$invalid">
+                </div>
+              </div>
+        </form>
+        <table class="table">
+          <caption>Permisos asignados:</caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Usuario</th>
+              <th>Nombre y Apellido</th>
+              <th>Tipo de permiso</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='p in permissions'>
+              <th scope="row">{{($index+1)}}</th>
+              <td>{{p.user.username}}</td>
+              <td>{{p.user.profile.first_name}} {{p.profile.last_name}}</td>
+              <td>{{p.permission_type.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

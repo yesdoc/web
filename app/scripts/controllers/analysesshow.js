@@ -52,6 +52,12 @@ angular.module('saludWebApp')
         })
       AnalysisPermissions.save({analysis_id:$scope.perm.analysis_id},$scope.perm,function(){
         $scope.perm=undefined;
+        AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
+          $scope.permissions = response.resource;
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
+        });
       });
     }
 
@@ -63,7 +69,6 @@ angular.module('saludWebApp')
           contentTemplate: false, 
           html: true, 
           show: false });
-        //$scope.permissions=
         AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
           $scope.permissions = response.resource;
         });

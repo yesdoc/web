@@ -99,7 +99,7 @@ angular.module('saludWebApp')
      * Valida si las cookies estan seteadas y agrega a todas las peticiones a
      * la API 'Authorization:<token>' 
      */
-    function isLogged(){
+    function isLogged(redirect){
         var token = $cookies.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
         $http.get(global.getApiUrl() + '/token')
@@ -108,7 +108,7 @@ angular.module('saludWebApp')
           }).error(function(data, status, headers, config) {
             if (status=='401'){
               $rootScope.$emit('isLoggedEvent', [false]);
-              $location.path('/login');
+              if (redirect) $location.path('/login');
             }
           });
       }
@@ -130,8 +130,11 @@ angular.module('saludWebApp')
         getAuth: function(callback){
           getAuth(callback);
           }, 
+        isLoggedNR: function(user,pass){//is logged not redirection
+          isLogged(false);
+          }, // /.authentication()
         isLogged: function(){
-          return isLogged();
+          isLogged(true);
           }
         } // /.return
 

@@ -8,7 +8,7 @@
  * Factory in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('Auth', ['$http', '$cookies', '$rootScope', 'global', '$location',
+  .factory('Auth',
           function ($http, $cookies, $rootScope, global, $location) {
     
 
@@ -55,7 +55,8 @@ angular.module('saludWebApp')
     
                 return output;
 
-                } // /.encode
+                }, // /.encode
+
             }; // /.Base64
     
 
@@ -101,7 +102,6 @@ angular.module('saludWebApp')
     function isLogged(){
         var token = $cookies.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
-
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
             $rootScope.$emit('isLoggedEvent', [true]);
@@ -112,6 +112,13 @@ angular.module('saludWebApp')
             }
           });
       }
+
+    function getAuth(callback){
+        $http.get(global.getApiUrl() + '/token')
+          .success(function(data, status, headers, config) {
+            callback(data.resource.token);
+          });
+    }
     
     /*
      *  Funciones públicas. 
@@ -120,10 +127,13 @@ angular.module('saludWebApp')
         login: function(user,pass){
           getToken(user, pass);
           }, // /.authentication()
+        getAuth: function(callback){
+          getAuth(callback);
+          }, 
         isLogged: function(){
-          isLogged();
+          return isLogged();
           }
         } // /.return
 
 
-    }]);
+    });

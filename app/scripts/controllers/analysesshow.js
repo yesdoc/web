@@ -16,7 +16,11 @@ angular.module('saludWebApp')
         AnalysisFile,
         Analysis,
         $modal,
+        MyUser,
+        Auth,
         fileReader) {
+
+    Auth.isLogged();
 
     /* Show Analysis File Image on a new Modal */
     $scope.showImage = function($index,a){
@@ -28,21 +32,25 @@ angular.module('saludWebApp')
     
       modalImage.$promise.then(modalImage.show);
     }
+    
+    Auth.getAuth(function(token){
+      var g_a = Analysis.get({id : $routeParams.id},function(){
+        $scope.a = g_a.resource;
+        $scope.a.datetime = new Date($scope.a.datetime);
 
-    var g_a = Analysis.get({id : $routeParams.id},function(){
-      $scope.a = g_a.resource;
-      $scope.a.datetime = new Date($scope.a.datetime);
-
-      $scope.afs = []; //analysis files list
-      var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
-        $.each(q_af.resource,function(i,af){
-              af.imageSrc = (global.getApiUrl()+'/analysis_files/'+af.id+'/download');
-              $scope.afs.push(af);
+        $scope.afs = []; //analysis files list
+        var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
+          $.each(q_af.resource,function(i,af){
+                af.imageSrc = (
+                    global.getApiUrlAuth(token+':@')+
+                    '/analysis_files/'+
+                    af.id+
+                    '/thumbnail');
+                $scope.afs.push(af);
+            });
           });
         });
-      
       });
-
       $scope.measurements = [];
       var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
         g_am = g_am.resource;

@@ -13,7 +13,7 @@ angular.module('saludWebApp')
       $scope,
       Auth,
       MyProfile,
-      MyMeasurement,
+      MyMeasurements,
       MyAnalyses,
       MeasurementUnit,
       MeasurementType,
@@ -51,7 +51,7 @@ angular.module('saludWebApp')
     
         /**************** Objeto Measurement ***************/
 
-        $scope.measurement = new MyMeasurement();
+        $scope.measurement = new MyMeasurements();
 
         $scope.measurement.datetime = new Date();
 
@@ -59,15 +59,9 @@ angular.module('saludWebApp')
         $scope.addMeasurement = function(){
             MyProfile.get(function(resource){
                 var pid = resource.resource.id;
-                var analysis = new MyAnalyses();
-                analysis.datetime = new Date();
-                analysis.description = '' ;
-                analysis.$save(function (result){
-                    $scope.measurement.analysis_id = result.resource.id;
-                    $scope.measurement.profile_id = pid;
-                    $scope.measurement.$save(function(){
-                        $location.path('/profileMeasurements');
-                        });
+                $scope.measurement.profile_id = pid;
+                $scope.measurement.$save(function(){
+                    $location.path('/profileMeasurements');
                     });
                 }); 
             }; 

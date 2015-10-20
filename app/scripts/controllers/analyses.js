@@ -10,7 +10,7 @@
 angular.module('saludWebApp')
   .controller('AnalysesCtrl', function (
       $scope,
-      $location , 
+      $location ,
       Auth,
       MyAnalyses,
       Analysis,
@@ -28,12 +28,12 @@ angular.module('saludWebApp')
 
         var q_af = Analysis.get({id:a.id,element:'files'},function(){
           $.each(q_af.resource,function(i,af){
-                a.af_id = af.id 
+                a.af_id = af.id
             });
           if ( a.af_id ){
             a.imageSrc = (global.getApiUrl()+'/analysis_files/'+a.af_id+'/download');
           }else{
-            a.imageSrc = 'images/escul.jpeg';
+            a.imageSrc = '/images/escul.jpeg';
           }
           });
 

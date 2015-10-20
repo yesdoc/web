@@ -10,19 +10,19 @@
 
 angular.module('saludWebApp')
 .controller(
-    'UserCtrl', 
+    'UserCtrl',
     function(
       $scope,
       $cookies,
       Auth,
       Profile,
-      Users,
-      $location) {       
+      User,
+      $location) {
 
         Auth.isLogged();
 
         var profile_id = $cookies.get('profile_id');
-        var user_data = Users.get({id:profile_id},function(){
+        var user_data = User.get({id:profile_id},function(){
             var user = user_data.resource;
             $scope.user = user;
         });

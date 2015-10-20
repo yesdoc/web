@@ -16,11 +16,11 @@ angular.module('saludWebApp')
       Auth,
       $cookies,
       MyProfile,
-      User,
+      MyUser,
       Gender) {
 
       Auth.isLogged();
-      User.get({},function(response){
+      MyUser.get({},function(response){
         var user = response.resource;
         $scope.user = user;
 
@@ -38,7 +38,7 @@ angular.module('saludWebApp')
       $scope.updateProfile = function(){
         MyProfile.update($scope.profile,function(response,status){
             $scope.user.profile_id = response.resource.id;
-            User.update($scope.user,function(response,status){
+            MyUser.update($scope.user,function(response,status){
                 $location.path('/myProfileInformation');
               });
           });

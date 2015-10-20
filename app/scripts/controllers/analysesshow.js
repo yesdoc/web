@@ -98,7 +98,6 @@ angular.module('saludWebApp')
       var g_a = Analysis.get({id : $routeParams.id},function(){
         $scope.a = g_a.resource;
         $scope.a.datetime = new Date($scope.a.datetime);
-        }
 
         $scope.afs = []; //analysis files list
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){

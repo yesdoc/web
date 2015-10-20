@@ -16,12 +16,11 @@ angular.module('saludWebApp')
         AnalysisFile,
         Analysis,
         $modal,
-        User,
+        MyUser,
         Auth,
         fileReader) {
 
-    var token = Auth.isLogged();
-    token = token.split(' ')[2];
+    Auth.isLogged();
 
     /* Show Analysis File Image on a new Modal */
     $scope.showImage = function($index,a){
@@ -34,8 +33,7 @@ angular.module('saludWebApp')
       modalImage.$promise.then(modalImage.show);
     }
     
-    User.get({},function(response){
-      var user = response.resource;
+    Auth.getAuth(function(token){
       var g_a = Analysis.get({id : $routeParams.id},function(){
         $scope.a = g_a.resource;
         $scope.a.datetime = new Date($scope.a.datetime);
@@ -44,7 +42,7 @@ angular.module('saludWebApp')
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
           $.each(q_af.resource,function(i,af){
                 af.imageSrc = (
-                    global.getApiUrl(user.username+':'+token+'@')+
+                    global.getApiUrlAuth(token+':@')+
                     '/analysis_files/'+
                     af.id+
                     '/thumbnail');

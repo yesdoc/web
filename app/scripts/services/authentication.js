@@ -55,7 +55,8 @@ angular.module('saludWebApp')
     
                 return output;
 
-                } // /.encode
+                }, // /.encode
+
             }; // /.Base64
     
 
@@ -104,15 +105,20 @@ angular.module('saludWebApp')
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
             $rootScope.$emit('isLoggedEvent', [true]);
-            return token;
           }).error(function(data, status, headers, config) {
             if (status=='401'){
               $rootScope.$emit('isLoggedEvent', [false]);
               $location.path('/login');
             }
           });
-            return token;
       }
+
+    function getAuth(callback){
+        $http.get(global.getApiUrl() + '/token')
+          .success(function(data, status, headers, config) {
+            callback(data.resource.token);
+          });
+    }
     
     /*
      *  Funciones públicas. 
@@ -121,6 +127,9 @@ angular.module('saludWebApp')
         login: function(user,pass){
           getToken(user, pass);
           }, // /.authentication()
+        getAuth: function(callback){
+          getAuth(callback);
+          }, 
         isLogged: function(){
           return isLogged();
           }

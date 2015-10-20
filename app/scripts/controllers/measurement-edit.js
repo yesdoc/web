@@ -15,7 +15,6 @@ angular.module('saludWebApp')
       $cookies, 
       Auth,
       Measurement, 
-      MyMeasurement, 
       MeasurementUnit,
       MeasurementType,
       $location, 

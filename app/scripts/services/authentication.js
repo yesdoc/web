@@ -108,8 +108,8 @@ angular.module('saludWebApp')
           }).error(function(data, status, headers, config) {
             if (status=='401'){
               $rootScope.$emit('isLoggedEvent', [false]);
-              if (redirect)$window.location="login.html";
-              // $location.path('/login');
+              if (redirect) $location.path('/login');
+             // $window.location="login.html";
             }
           });
       }

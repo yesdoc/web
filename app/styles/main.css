@@ -346,11 +346,13 @@ margin:4px;
   float: none!important;
 }
 /*LOGO*/
-.imglogo{
-  width:70%;
+.logo{
+  height: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 0px 15px;
 }
 
 .imglogo img{
-  width:100%;
+  width:40%;
 }
 

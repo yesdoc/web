@@ -353,6 +353,9 @@ margin:4px;
 }
 
 .imglogo img{
-  width:40%;
+  width: 50%;
+  display: block;
+  margin: 0px auto;
+  padding-top: 15px;
 }
 

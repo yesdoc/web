@@ -38,7 +38,7 @@ angular.module('saludWebApp')
                       // Guardo el usuario
                       $scope.user.$save(function(){
                           alert("Saved");
-                          $window.location = 'login.html';
+                          $window.location = '#/login';
                           });
                       }); // /.$scope.profile.$save
 

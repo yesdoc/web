@@ -10,7 +10,6 @@
 angular.module('saludWebApp')
   .factory('Auth',
           function ($http, $cookies, $rootScope, global, $location, $window) {
-    
 
     /*
      * Recurso encargado de generar la codificación en Base 64.
@@ -95,21 +94,34 @@ angular.module('saludWebApp')
         }
 
 
+    var defaultRedirectURL='/login';
     /*
      * Valida si las cookies estan seteadas y agrega a todas las peticiones a
      * la API 'Authorization:<token>' 
      */
-    function isLogged(redirect){
+    function isLogged( onSuccessCallback, redirectURL){
         var token = $cookies.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
+
         $http.get(global.getApiUrl() + '/token')
           .success(function(data, status, headers, config) {
-            $rootScope.$emit('isLoggedEvent', [true]);
+            if (status=='200'){
+              $rootScope.$emit('isLoggedEvent', [true]);
+              onSuccessCallback();
+            }
+
           }).error(function(data, status, headers, config) {
             if (status=='401'){
               $rootScope.$emit('isLoggedEvent', [false]);
-              if (redirect) $location.path('/login');
-             // $window.location="login.html";
+              // Si no se desea redireccionar
+              if (redirectURL === false) return;
+              // Si se desea redireccionar
+              if (redirectURL){
+                $location.path(redirectURL);
+              //Si no está definido
+              }else{
+                $location.path(defaultRedirectURL);
+              }
             }
           });
       }
@@ -134,12 +146,20 @@ angular.module('saludWebApp')
           getAuth(callback);
           }, 
 
-        isLoggedNR: function(user,pass){//is logged not redirection
-          isLogged(false);
-          }, // /.authentication()
-
+        // admite 2 parametros:
         isLogged: function(){
-          isLogged(true);
+
+          // isLogged(onSuccessCallback)
+          if (arguments.length == 1) 
+            isLogged(arguments[0]);
+
+          // isLogged(redirectURL,onSuccessCallback)
+          if (arguments.length > 1){ 
+            isLogged(arguments[1], arguments[0]);
+          }else{ 
+          // isLogged(onSuccessCallback)
+            isLogged(function(){});
+            }
           }
 
         } // /.return

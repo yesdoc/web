@@ -23,7 +23,7 @@ angular.module('saludWebApp')
         Auth,
         fileReader) {
 
-    Auth.isLogged();
+    Auth.isLogged(function(){
 
     function getPermissionTypes(){
       $scope.permissions_type = [];
@@ -121,5 +121,6 @@ angular.module('saludWebApp')
           });
         });
 
-
+    });
+  
   });

@@ -10,7 +10,7 @@
 angular.module('saludWebApp')
   .controller('DropboxAuthStartCtrl', function ($scope,Auth,MyStorageCredentials) {
 
-    Auth.isLogged();
+    Auth.isLogged(function(){
 
     $scope.locations = {
       'dropbox':{'msg':'Conectar con mi Dropbox', 'isConnected':false},
@@ -42,4 +42,5 @@ angular.module('saludWebApp')
         }
       }
 
+    });
   });

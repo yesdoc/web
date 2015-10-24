@@ -19,11 +19,12 @@ angular.module('saludWebApp')
       ProfileMeasurements,
       ProfileMeasurementsLatest) {
 
-        Auth.isLogged();
+        Auth.isLogged(function(){
 
-        // Se traen y muestran las ultimas mediciones de un perfil
-        var data = ProfileMeasurementsLatest.get(function(){
-          $scope.measurements=data.resource;
-        });   
+          // Se traen y muestran las ultimas mediciones de un perfil
+          var data = ProfileMeasurementsLatest.get(function(){
+            $scope.measurements=data.resource;
+          });   
 
+        });
     });

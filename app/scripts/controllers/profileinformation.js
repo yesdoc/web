@@ -18,12 +18,14 @@ angular.module('saludWebApp')
       Auth,
       $location) {       
 
-        Auth.isLogged();
+        Auth.isLogged(function(){
 
         var dataProfile = MyProfile.get(function(){
           var profile=dataProfile.resource;
           profile.gender=profile.gender.name;
           $scope.profile=profile;
           }); 
+        
 
+      });
     });

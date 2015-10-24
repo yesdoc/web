@@ -19,7 +19,8 @@ angular.module('saludWebApp')
       MyUser,
       Gender) {
 
-      Auth.isLogged();
+      Auth.isLogged(function(){
+
       MyUser.get({},function(response){
         var user = response.resource;
         $scope.user = user;
@@ -43,5 +44,5 @@ angular.module('saludWebApp')
               });
           });
         }; // /.$scope.updateProfile()
-    }
-);
+    });
+  });

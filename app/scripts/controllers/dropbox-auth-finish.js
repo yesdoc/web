@@ -10,7 +10,7 @@
 angular.module('saludWebApp')
   .controller('DropboxAuthFinishCtrl', function ($scope,Auth,$location,StorageCredentials,StorageLocations,MyUser) {
 
-    Auth.isLogged();
+    Auth.isLogged(function(){
     var credential = new StorageCredentials;
     credential.token = $location.hash().split('&')[0];
     credential.token = credential.token.split('=')[1];
@@ -54,7 +54,8 @@ angular.module('saludWebApp')
       $scope.msg='Lo sentimos, ocurrió un problema.';
       }
 
-   });
+    });
+  });
 
 
 

@@ -21,35 +21,37 @@ angular.module('saludWebApp')
       $http,
       $filter){
 
-    Auth.isLogged();
-    Auth.getAuth(function(token){
+    Auth.isLogged(function(){
 
-      var q_a = MyAnalyses.query(function(){
+      Auth.getAuth(function(token){
 
-        $scope.analyses = q_a.resource;
+        var q_a = MyAnalyses.query(function(){
 
-        $.each($scope.analyses,function(i,a){
+          $scope.analyses = q_a.resource;
 
-          var q_af = Analysis.get({id:a.id,element:'files'},function(){
-            $.each(q_af.resource,function(i,af){
-              a.af_id = af.id 
+          $.each($scope.analyses,function(i,a){
+
+            var q_af = Analysis.get({id:a.id,element:'files'},function(){
+              $.each(q_af.resource,function(i,af){
+                a.af_id = af.id 
+              });
+              if ( a.af_id ){
+                a.imageSrc = (
+                    global.getApiUrlAuth(token+':@')+
+                    '/analysis_files/'+
+                    a.af_id+
+                    '/thumbnail');
+              }
+              else{
+                a.imageSrc = 'images/escul.jpeg';
+              }
             });
-            if ( a.af_id ){
-              a.imageSrc = (
-                  global.getApiUrlAuth(token+':@')+
-                  '/analysis_files/'+
-                  a.af_id+
-                  '/thumbnail');
-            }
-            else{
-              a.imageSrc = 'images/escul.jpeg';
-            }
+
+            a.datetime = new Date(a.datetime)
+
           });
 
-          a.datetime = new Date(a.datetime)
-
         });
-
       });
     });
   });

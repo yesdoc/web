@@ -15,10 +15,15 @@ angular.module('saludWebApp')
       $window,
       $cookies,
       MyProfile, 
-      Auth, 
+      Auth,
+      $location, 
       global){
-
-    // Auth.isLogged();
+      
+      // No redirecciona en caso de que no este logueado(evita un ciclo infinito),
+      // y redirecciona en caso de que el usuario SI este logueado
+      Auth.isLogged(false, function(){
+        $location.path('/profileMeasurements');
+      });
 
       // Función que es llamada desde la vista
       $scope.login=function(){

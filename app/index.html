@@ -71,46 +71,51 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+                <div class="navbar-brand hidden-lg" href="#">
+                    <img src="images/yesDoc2.png"></img>
             </div><!-- /.navbar-header -->
 
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
-                <ul class="nav navbar-nav navbar-left">
+                <ul class="nav navbar-nav navbar-left" ng-show="is_logged">
                     <li>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
                             <b class="caret"></b>
-                            <span class="notification">2</span>
+                            <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Mensaje 1</a></li>
-                            <li><a href="#">Mensaje 2</a></li>
-                            <li><a href="#">Another notification</a></li>
+                          <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
+                    <li ng-show="is_logged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
                             <b class="caret"></b>
-                            <span class="notification">5</span>
+                            <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="#">Notificación 1</a></li>
-                            <li><a href="#">Notificación 2</a></li>
-                            <li><a href="#">Notificación 3</a></li>
-                            <li><a href="#">Notificación 4</a></li>
-                            <li><a href="#">Another notification</a></li>
+                          <li ng-repeat="n in notifications"><a href="#">Notificación {{$index+1}}</a></li>
                         </ul>
                     </li>
                 </ul>
-                        <a
-                            class='navbar-button' href=''
-                            data-animation="am-flip-x"
-                            bs-dropdown="dropdown"
-                            placement='bottom-right'
-                            aria-haspopup="true"
-                            aria-expanded="false">
+                <ul class="nav navbar-nav navbar-right" >
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-globe"></i>
                             Mi cuenta
+                            <b class="caret"></b>
                         </a>
+                        <ul ng-if='is_logged' class="dropdown-menu">
+                          <li><a href="#/myProfileInformation"><i class='fa fa-user'></i> Información Personal</a></li>
+                          <li><a href="#/dropbox-auth-start"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
+                          <li role="separator" class="divider"></li>
+                          <li><a href="#/logoff"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
+                        </ul>
+                        <ul ng-if='!is_logged' class="dropdown-menu">
+                          <li><a href="#/login"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
+                        </ul>
+                    </li>
+                </ul>
         </div><!-- /.navbar-collapse -->
 
         </div><!-- /.container-fluid -->

@@ -9,7 +9,7 @@
  */
 angular.module('saludWebApp')
   .factory('Auth',
-          function ($http, $cookies, $rootScope, global, $location) {
+          function ($http, $cookies, $rootScope, global, $location, $window) {
     
 
     /*
@@ -92,7 +92,7 @@ angular.module('saludWebApp')
         $cookies.put('Token',token);
         $http.defaults.headers.common['Authorization'] = token;
         return token;
-    }
+        }
 
 
     /*
@@ -109,6 +109,7 @@ angular.module('saludWebApp')
             if (status=='401'){
               $rootScope.$emit('isLoggedEvent', [false]);
               if (redirect) $location.path('/login');
+             // $window.location="login.html";
             }
           });
       }
@@ -118,24 +119,29 @@ angular.module('saludWebApp')
           .success(function(data, status, headers, config) {
             callback(data.resource.token);
           });
-    }
+        }
     
     /*
      *  Funciones públicas. 
      */
     return {
+
         login: function(user,pass){
           getToken(user, pass);
           }, // /.authentication()
+
         getAuth: function(callback){
           getAuth(callback);
           }, 
+
         isLoggedNR: function(user,pass){//is logged not redirection
           isLogged(false);
           }, // /.authentication()
+
         isLogged: function(){
           isLogged(true);
           }
+
         } // /.return
 
 

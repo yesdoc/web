@@ -30,7 +30,6 @@ angular.module('saludWebApp')
                 $scope.genders = genders_data.resource;
             });
 
-
           $scope.addProfile = function(){
               // Guardo el perfil y solicitó el id para guardarlo en el usuario.
               $scope.profile.$save(
@@ -39,7 +38,7 @@ angular.module('saludWebApp')
                       // Guardo el usuario
                       $scope.user.$save(function(){
                           alert("Saved");
-                          $window.location = '/#/login'
+                          $window.location = '#/login';
                           });
                       }); // /.$scope.profile.$save
 

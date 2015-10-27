@@ -42,17 +42,17 @@
             </div>
             <ul class="nav" ng-show="is_logged">
                 <li data-match-route="/analyses">
-                <a href="#/analyses" >
+                <a href="#/analyses" ng-show='is_logged'>
                     <span><p><i class="fa fa-folder-open-o"></i>
                         Análisis</p></span>
                 </a></li>           
                 <li  data-match-route="/home">
-                <a href="#/home">
+                <a href="#/home" ng-show='is_logged'>
                     <span><p><i class="fa fa-pie-chart"></i>
                         Histórico</p></span>
                 </a></li>
                 <li data-match-route="/profileMeasurements">
-                <a href="#/profileMeasurements">
+                <a href="#/profileMeasurements" ng-show='is_logged'>
                     <span><p><i class="glyphicon glyphicon-list-alt"></i>Resumen</p></span>
                 </a></li>
             </ul> 
@@ -77,7 +77,7 @@
 
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged">
-                    <li>
+                    <li ng-show='is_logged'>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
                             <b class="caret"></b>

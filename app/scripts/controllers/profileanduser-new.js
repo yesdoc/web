@@ -17,7 +17,10 @@ angular.module('saludWebApp')
       Profile,
       User,
       Gender){
-          Auth.isLoggedNR();
+          // No redireccionar en caso de que el user no este logueado
+          Auth.isLogged(false,function(){
+            $location.path('/profileMeasurements');
+          });
 
           // Crea el perfil y el usuario que se utilizará en la vista para persistir los
           // atributos a partir de ng-model.

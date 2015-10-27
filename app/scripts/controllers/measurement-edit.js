@@ -22,7 +22,7 @@ angular.module('saludWebApp')
       MeasurementSource, 
       $routeParams) {
 
-        Auth.isLogged();
+        Auth.isLogged(function(){
 
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(function(){
@@ -71,5 +71,5 @@ angular.module('saludWebApp')
                         }); 
             }; // /.getUnit()
 
-        }
-    );
+        });
+  });

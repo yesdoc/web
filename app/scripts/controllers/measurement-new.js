@@ -24,7 +24,7 @@ angular.module('saludWebApp')
       $filter){
 
         // Validamos si el usuario está Logueado
-        Auth.isLogged();
+        Auth.isLogged(function(){
 
         /**************** Datos a mostrar en el formulario ***************/
 
@@ -65,5 +65,5 @@ angular.module('saludWebApp')
                     });
                 }); 
             }; 
-        }
-    );
+        });
+    });

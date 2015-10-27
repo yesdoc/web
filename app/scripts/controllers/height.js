@@ -18,14 +18,14 @@ angular.module('saludWebApp')
       ProfileMeasurements,
       $rootScope) {
 
-        Auth.isLogged();
 
         // ###################### Gráficas ####################################
 
 
         // variable que contiene los datos a mostrar por la grafica
-        $scope.data=[]
+        $scope.data=[];
 
+        Auth.isLogged(function(){
         // mts : MeasurmentTypes
         var mts = MeasurementType.query( function(){
 
@@ -74,5 +74,6 @@ angular.module('saludWebApp')
               }
             );
           });
+      });
     });
 

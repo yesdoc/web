@@ -19,12 +19,12 @@ angular.module('saludWebApp')
       User,
       $location) {
 
-        Auth.isLogged();
+        Auth.isLogged(function(){
 
         var profile_id = $cookies.get('profile_id');
         var user_data = User.get({id:profile_id},function(){
             var user = user_data.resource;
             $scope.user = user;
         });
-    }
-);
+    });
+  });

@@ -17,6 +17,7 @@ angular.module('saludWebApp')
         PermissionTypes,
         User,
         AnalysisPermissions,
+        AnalysisComments,
         Analysis,
         $modal,
         MyUser,
@@ -112,6 +113,7 @@ angular.module('saludWebApp')
           });
         });
       });
+
       $scope.measurements = [];
       var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
         g_am = g_am.resource;
@@ -120,6 +122,25 @@ angular.module('saludWebApp')
           $scope.measurements.push(am);
           });
         });
+
+      $scope.comments = [];
+      var updateComments = function(){
+        var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){
+          $scope.comments = g_com.resource;
+          });
+      }
+      updateComments();
+
+
+      $scope.addComment = function(){
+        AnalysisComments.save({analysis_id: $routeParams.id}, $scope.c, function(){
+          updateComments();
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
+          $scope.c={};
+          });
+      };
 
     });
   

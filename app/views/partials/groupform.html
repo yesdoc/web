@@ -1,0 +1,54 @@
+
+<div class="form-group"
+    ng-class="{'has-error':groupForm.name.$invalid && !groupForm.name.$pristine}" >
+    <label for="name" class="col-sm-2 control-label">Nombre:</label>
+    <div class="col-sm-10">
+        <input name="name" type="text" class="form-control" id="name" ng-model="group.name"
+        placeholder="Un nombre" required>
+        <p ng-show="groupForm.name.$invalid && groupForm.name.$touched" class="help-block">
+        Debe ingresar un nombre.</p>
+    </div>
+</div>
+
+<div class="form-group"
+    ng-class="{'has-error':groupForm.description.$invalid && !groupForm.description.$pristine}" >
+    <label for="description" class="col-sm-2 control-label"> Description: </label>
+    <div class="col-sm-10">
+        <input name="description" type="text" class="form-control" id="description" ng-model="group.description"
+        placeholder="Una descripción">
+        <p ng-show="groupForm.description.$invalid && groupForm.description.$touched" class="help-block">
+        Debe ingresar una descripción.</p>
+    </div>
+</div>
+
+<div class="form-group form-group-sm" 
+    ng-class="{'has-error':groupForm.membership_type.$invalid && groupForm.membership_type.$touched}">
+    <label for="membership_type" class="col-sm-2 control-label"> Tipo de membresía: </label>
+    <div class="col-sm-10">
+        <select name="membership_type"  id="membership_type" class="form-control" 
+            ng-options="t.id as t.name for t in membership_types" 
+            ng-model="group.group_membership_type_id  " ng-change="getUnit()" required >
+        </select>
+        <p ng-show="groupForm.membership_type.$invalid && groupForm.membership_type.$touched" class="help-block">
+        Seleccione un tipo de membresía.</p> 
+    </div>
+</div>
+
+<div class="form-group form-group-sm" 
+    ng-class="{'has-error':groupForm.permission_type.$invalid && groupForm.permission_type.$touched}">
+    <label for="permission_type" class="col-sm-2 control-label"> Permisos propios: </label>
+    <div class="col-sm-10">
+        <select name="permission_type"  id="permission_type" class="form-control" 
+            ng-options="t.id as t.name for t in permission_types" 
+            ng-model="group.permission_type_id" ng-change="getUnit()" required >
+        </select>
+        <p ng-show="groupForm.permission_type.$invalid && groupForm.permission_type.$touched" class="help-block">
+        Seleccione un permiso.</p> 
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <input type="submit" class="btn btn-success" value="Save" ng-disabled="groupForm.$invalid">
+    </div>
+</div>

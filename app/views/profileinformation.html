@@ -1,26 +1,100 @@
-<div class="bs-callout bs-callout-success" aria-label="Left Align">
-    <div class="pull-right">
-        <a class="btn btn-default btn-sm" ng-href="#/myProfileInformation/edit">
+<div class='col-md-6'>
+  <div class="card">
+    <div class="header" style='padding-top:10px;padding-bottom:10px;margin-bottom:15px;' >
+      <h4 class='title'>
+        <span class='fa fa-user'></span>
+        &nbsp; Información Personal
+        <div class="pull-right">
+          <a class="btn btn-default btn-sm" ng-href="#/myProfileInformation/edit">
             <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-            Editar Perfíl
-        </a>
+            Editar
+          </a>
+        </div>
+      </h4> 
     </div>
-   <h4>Información Personal</h4> 
-    <div class="row ">
+    <div class="content" style='padding-top:0px;'>
+      <div class="row ">
         <div class="col-md-2">Nombre:</div>
         <div class="col-md-4">{{profile.first_name}}</div>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row">
         <div class="col-md-2">Apellido:</div>
         <div class="col-md-4">{{profile.last_name}}</div>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row">
         <div class="col-md-2">Nacimiento:</div>
         <div class="col-md-4">{{profile.birthday}}</div>
-    </div>
-    <div class="row">
+      </div>
+      <div class="row">
         <div class="col-md-2">Género:</div>
         <div class="col-md-4">{{profile.gender}}</div>
+      </div>
     </div>
+  </div>
 </div>
 
+<div class='col-md-6'>
+  <div class="card">
+    <div class="header" style='padding-top:10px;padding-bottom:10px;margin-bottom:15px;' >
+      <h4 class='title'>
+        <span class='fa fa-group'></span>
+        &nbsp; Grupos
+        <div class="pull-right">
+          <a class="btn btn-default btn-sm" ng-click="showAddGroup()">
+            <span class="fa fa-plus-circle fa-lg" aria-hidden="true"></span>
+            Nuevo
+          </a>
+        </div>
+      </h4>
+    </div>
+    <div class="content" style='padding-top:0px;'>
+      <div ng-show='groups.length==0'><h4 class='text-center'><a ng-click='showAddGroup()' href=''>Crea tu primer Grupo</a><h4> </div>   
+      <div class='panel panel-default' style='padding: 10px 10px 10px 10px;' ng-repeat='g in groups'>
+
+        <a href='' data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+          {{g.name}}
+        </a>
+
+        <div class="collapse" id="collapse{{$index}}">
+              <!-- Table -->
+              <table class='table'>
+              <thead>
+                <tr>
+                  <th>Nombre y Apellido</th>
+                  <th>Rol</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Mark</td>
+                  <td>@mdo</td>
+                </tr>
+                <tr>
+                  <td>Larry</td>
+                  <td>@twitter</td>
+                </tr>
+              </tbody>
+              </table>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+<!--
+<div class='col-md-6'>
+  <div class="card">
+    <div class="header" style='padding-top:10px;padding-bottom:10px;margin-bottom:15px;' >
+      <h4 class='title'>
+
+      </h4>
+
+    </div>
+    <div class="content" style='padding-top:0px;'>
+
+    </div>
+  </div>
+</div>
+-->

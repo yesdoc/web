@@ -50,8 +50,8 @@ angular
       when('/profileMeasurements','profileMeasurements').
       when('/measurements/:id/edit','measurements-edit').
       when('/analysis/new','analysis-new').
-      when('/home/analyses','home.analyses').
-      when('/home/analyses/:id','home.analyses-show').
+      when('/analyses','analyses').
+      when('/analyses/:id','analyses-show').
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
       segment('login',{
@@ -76,15 +76,15 @@ angular
             templateUrl:'views/height.html',
             controller:'HeightCtrl'
             }).
-            segment('analyses',{
-            templateUrl: 'views/analyses.html',
-            controller: 'AnalysesCtrl'
-            }).
-            segment('analyses-show',{
-            templateUrl: 'views/analyses-show.html',
-            controller: 'AnalysesShowCtrl'
-            }).
             up().
+      segment('analyses',{
+        templateUrl: 'views/analyses.html',
+        controller: 'AnalysesCtrl'
+      }).
+      segment('analyses-show',{
+        templateUrl: 'views/analyses-show.html',
+        controller: 'AnalysesShowCtrl'
+      }).
       segment('logoff',{
         templateUrl: 'views/logoff.html',
         controller: 'LogoffCtrl'

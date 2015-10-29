@@ -124,9 +124,24 @@ angular.module('saludWebApp')
         });
 
       $scope.comments = [];
+
+      
       var updateComments = function(){
         var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){
+
           $scope.comments = g_com.resource;
+
+          $scope.commentsLength = function(){
+            switch($scope.comments.length){
+              case 0:
+                return ('Sin comentarios');
+              case 1:
+                return ('1 comentario');
+              default:
+                return ($scope.comments.length + ' comentarios');
+            }
+          };
+
           });
       }
       updateComments();

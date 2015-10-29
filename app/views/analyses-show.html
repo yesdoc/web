@@ -1,6 +1,6 @@
 <div class="panel panel-default" style='margin:20px'>
   <div class="panel-heading">
-    <h3 style='width:100%'>{{a.description}} | <small class='text-right'>{{a.datetime | date:'dd/M/yyyy'}}</small>
+    <h3 style='width:100%'>{{a.description}}  <small class='text-right'>{{a.datetime | date:'dd/M/yyyy'}}</small>
       <a href='' ng-click='showConfig()' class='btn btn-default' style='float:right;'> <i class="glyphicon glyphicon-lock" style='marging-right:10px;'></i></a>
     </h3>
   </div>
@@ -48,7 +48,43 @@
           </tr>
         </tbody>
       </table>
+      <div class="panel panel-default">
+        <div class="panel-heading"><strong>{{commentsLength()}}</strong></div>
 
+
+        <div class="panel-body">
+
+
+
+
+          <div class="media" ng-repeat='c in comments'>
+            <div class="media-left">
+              <a href="#">
+                <img class="media-object" src="images/yesDoc2.png" alt="..." style='width:64px;height:auto'>
+              </a>
+            </div>
+            <div class="media-body">
+              <h5 style='margin-top:0px;margin-bottom:0px;'><a href=''>{{c.profile.first_name}} {{c.profile.last_name}}</a>  <small>· {{c.datetime | date:"medium"}}</small></h5>
+              <p>{{c.comment}}</p>
+            </div>
+          </div>
+
+          <form name="commentForm" class="form-horizontal" role="form" ng-submit="addComment()">
+            <div class="panel panel-default" style='margin-top:10px;'>
+              <div class="panel-body">
+                <textarea id='comment' ng-model='c.comment' class="form-control" style="padding:0px !important;border: none" rows="3" id="comment" placeholder="Realiza un comentario."></textarea>
+              </div>
+              <div class="panel-footer">
+                <div style='text-align: right;'>
+                  <button class="btn btn-primary" style=''>Enviar</button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+
+        </div>
+      </div>
 
 
     </div>

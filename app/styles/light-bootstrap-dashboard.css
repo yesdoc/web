@@ -1870,10 +1870,14 @@ body > .navbar-collapse[data-color="purple"]:after {
   filter: alpha(opacity=100);
 }
 .card .content {
-  padding: 15px 15px 10px 15px;
+  padding: 5px 15px 15px 15px;
 }
+
 .card .header {
-  padding: 15px 15px 0;
+  padding: 10px 15px 15px 15px;
+
+  margin-bottom: 15px;
+
 }
 .card .category,
 .card label {

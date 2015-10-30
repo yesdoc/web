@@ -1,7 +1,7 @@
 
 <div class='col-md-9'>
   <div class="card">
-    <div class="header" style='padding-top:10px;padding-bottom:10px;margin-bottom:15px;' >
+    <div class='header' >
       <h4 class='title'>
         <span class="fa fa-stethoscope fa-lg" aria-hidden="true"></span>
         &nbsp; Mediciones
@@ -17,7 +17,7 @@
         </div>
       </h4> 
     </div>
-    <div class="content" style='padding-top:0px;'>
+    <div class="content">
       <div class="row " ng-repeat="measurement in measurements">
         <div class="col-md-4">{{measurement.measurement_type.name}}:  {{measurement.value}} {{measurement.measurement_unit.symbol}}</div>
         <div class="col-md-3">{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</div>
@@ -33,6 +33,7 @@
           </a>
         </div>
       </div>
+
     </div>
   </div>
 </div>

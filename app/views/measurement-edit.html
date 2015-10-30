@@ -1,6 +1,18 @@
-<div class="container">
-    <form name="measurementForm" class="form-horizontal" role="form" ng-submit="updateMeasurement()">
-        <div ng-include="'views/partials/measurementform.html'"></div>
-    </form>
-</div>
 
+<div class='col-md-8'>
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-stethoscope fa-lg" aria-hidden="true"></span>
+        &nbsp; Editar Medición
+      </h4> 
+    </div>
+    <div class="content">
+
+      <form name="measurementForm" class="form-horizontal" role="form" ng-submit="updateMeasurement()">
+          <div ng-include="'views/partials/measurementform.html'"></div>
+      </form>
+
+    </div>
+  </div>
+</div>

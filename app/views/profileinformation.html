@@ -53,6 +53,7 @@
 
         <a href='' data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseExample">
           {{g.name}}
+          <span class='fa fa-plus-square-o'></span>
         </a>
 
         <div class="collapse" id="collapse{{$index}}">
@@ -65,13 +66,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>Mark</td>
-                  <td>@mdo</td>
-                </tr>
-                <tr>
-                  <td>Larry</td>
-                  <td>@twitter</td>
+                <tr ng-repeat='m in g.members'>
+                  <td>{{m.profile.first_name}} {{m.profile.last_name}}</td>
+                  <td>{{m.group_membership_type.name}} <i class='fa fa-key'></i></td>
                 </tr>
               </tbody>
               </table>
@@ -83,18 +80,3 @@
     </div>
   </div>
 </div>
-<!--
-<div class='col-md-6'>
-  <div class="card">
-    <div class="header" style='padding-top:10px;padding-bottom:10px;margin-bottom:15px;' >
-      <h4 class='title'>
-
-      </h4>
-
-    </div>
-    <div class="content" style='padding-top:0px;'>
-
-    </div>
-  </div>
-</div>
--->

@@ -145,11 +145,15 @@ angular
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
 })
-  .config(function($modalProvider,$dropdownProvider) {
+  .config(function($modalProvider,$dropdownProvider, $asideProvider) {
     angular.extend($modalProvider.defaults, {
       html: true
     });
     angular.extend($dropdownProvider.defaults, {
       html: true
     });
+    angular.extend($asideProvider.defaults, {
+      container: 'body',
+      html: true
+      });
 });

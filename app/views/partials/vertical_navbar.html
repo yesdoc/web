@@ -1,0 +1,20 @@
+<div class="imglogo logo" >
+    <img src="images/logoSticker.png"></img>
+</div>
+<ul class="nav" ng-show="is_logged">
+    <li data-match-route="/analyses">
+    <a href="#/analyses" ng-show='is_logged'>
+        <span><p><i class="fa fa-folder-open-o"></i>
+            Análisis</p></span>
+    </a></li>           
+    <li  data-match-route="/home">
+    <a href="#/home" ng-show='is_logged'>
+        <span><p><i class="fa fa-bar-chart"></i>
+            Histórico</p></span>
+    </a></li>
+    <li data-match-route="/profileMeasurements">
+    <a href="#/profileMeasurements" ng-show='is_logged'>
+        <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
+    </a></li>
+</ul> 
+

@@ -35,9 +35,10 @@
     <![endif]-->
 <div class="wrapper">
     <!-- Add your site or application content here -->
-    <!-- Navbar vertical
+    <!-- Navbar vertical-->
     <div class="sidebar" data-color="green" data-image="images/pc3.png" ng-controller='NavCtrl'>    
         <div class="sidebar-wrapper" ng-cloak>
+           
             <div class="imglogo logo" >
                     <img src="images/logoSticker.png"></img>
             </div>
@@ -60,29 +61,33 @@
                 <a href="#/compartidos/0" ng-show='is_logged'>
                     <span><p><i class="fa fa-share-alt"></i>Compartidos</p></span>
                 </a></li>
-            </ul> 
-        </div> 
-    </div> class="sidebar" -->
-            <div content-template="views/partials/vertical_navbar2.html" 
-                bs-aside="aside" data-content="dfsgsd "data-container="body"
-                ng-controller='NavCtrl'> <!-- data-container="body"-->
-            Custom aside
-            </div>
+            </ul>
+
+        </div> <!--sedebar-wrapper -->
+       <div class="sidebar-background" style="background-image: url(images/pc3.png) "></div>
+    </div> <!-- class="sidebar" -->
+ 
     <!-- Navbar horizontal-->
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed"> 
         <div class="container-fluid" >
-            <div class="navbar-header" style='width:100%;'>
-                <button type="button" class="navbar-toggle " data-toggle="collapse"
-                    data-target="#navigation-example-2">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+    
+            <div class="navbar-header"  style='width:100%;'>
+                <div content-template="views/partials/vertical_navbar2.html" bs-aside="aside"  
+                    data-container="body" ng-controller="NavCtrl"> 
+                    <button type="button" class="navbar-toggle " data-toggle="collapse"
+                        data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
                 <div class="navbar-brand hidden-lg" href="#">
                     <img src="images/yesDoc2.png"></img>
-            </div><!-- /.navbar-header -->
+                </div>
+           </div><!-- /.navbar-header -->
+
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
                   <!--

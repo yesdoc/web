@@ -50,7 +50,7 @@ angular.module('saludWebApp')
         if (u.username.toLowerCase() == $scope.perm.user.toLowerCase()){
           $scope.perm.user_id = u.id;
           }
-        })
+        });
       AnalysisPermissions.save({analysis_id:$scope.perm.analysis_id},$scope.perm,function(){
         $scope.perm=undefined;
         AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){

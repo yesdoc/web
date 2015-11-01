@@ -48,13 +48,13 @@
       </h4>
     </div>
     <div class="content" style='padding-top:0px;'>
-      <div ng-show='groups.length==0'><h4 class='text-center'><a ng-click='showAddGroup()' href=''>Crea tu primer Grupo</a><h4> </div>   
+      <div ng-show='sin_grupos'><h4 class='text-center'><a ng-click='showAddGroup()' href=''>Crea tu primer Grupo</a><h4> </div>   
       <div class='panel panel-default' style='padding: 10px 10px 10px 10px;' ng-repeat='g in groups'>
 
         <a href='' data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseExample">
-          {{g.name}}
+          {{g.name}}{{g.id}}
         </a>
-        <a href='' ng-click='addMember($index)'><span class='fa fa-plus-square-o'></span></a>
+        <a href='' ng-click='showAddMember($index)'><span class='fa fa-plus-square-o'></span></a>
 
         <div class="collapse" id="collapse{{$index}}">
               <!-- Table -->

@@ -15,6 +15,7 @@ angular.module('saludWebApp')
       $scope,
       $cookies,
       $modal, 
+      User,
       MyProfile,
       PermissionTypes,
       GroupMembershipTypes,
@@ -35,14 +36,23 @@ angular.module('saludWebApp')
           }); 
 
         $scope.groups = [];
-        MyGroups.get(function(response){
-          $scope.groups = response.resource;
-          $.each($scope.groups,function(i,g){
-            GroupsMembers.get({group_id:g.id},function(response){
-              g.members = response.resource;
+        $scope.sin_grupos=false;
+
+        function getGroupsAndMembers(){
+          MyGroups.get(function(response){
+            $scope.groups = response.resource;
+            if ($scope.groups.length == 0){
+              $scope.sin_grupos = true;
+              }
+
+            $.each($scope.groups,function(i,g){
+              GroupsMembers.get({group_id:g.id},function(response){
+                g.members = response.resource;
+                });
               });
             });
-          });
+        };
+        getGroupsAndMembers();
 
 
 
@@ -69,6 +79,7 @@ angular.module('saludWebApp')
           Groups.save($scope.group ,function(response,status){
               if (status=='200'){
                 log('Se creó el grupo');
+                addGroupModal.$promise.then(addGroupModal.hide());
                 }
             });
           }//end submitGroup
@@ -77,21 +88,55 @@ angular.module('saludWebApp')
 
         var addMemberModal = $modal({ 
           scope: $scope,
-          templateUrl: "views/addGroup.html", 
+          templateUrl: "views/partials/memberform.html", 
           contentTemplate: false, 
           html: true, 
           show: false });
       
 
-        $scope.addMember = function($index){
-          var g = $scope.groups[$index];
-          addMemberModal.$promise.then(addMemberModal.show);
+        $scope.showAddMember = function($index){
+          $scope.member = {};
+          $scope.member.group = $scope.groups[$index];
+
+          User.query(function(response){
+            $scope.users = response.resource;
+
+            GroupMembershipTypes.query(function(response){
+              $scope.membership_types = response.resource;
+
+              PermissionTypes.query(function(response){
+                $scope.permission_types = response.resource;
+
+                });
+              });
+            });
+
+            addMemberModal.$promise.then(addMemberModal.show);
           }
 
-        
+        $scope.addMember = function (){
+          $.each($scope.users,function(i,u){
+            if (u.username.toLowerCase() == $scope.member.user.toLowerCase()){
+              $scope.member.user_id = u.id;
+              return true;//break;
+              }
+            });
 
+          $scope.member.is_admin = false;
 
-        
+          GroupsMembers.save(
+              {group_id: $scope.member.group.id}, 
+              $scope.member,
+              function(response){
+
+            addMemberModal.$promise.then(addMemberModal.hide());
+            getGroupsAndMembers();
+
+            if(!$scope.$$phase) {
+              $scope.apply();
+              }
+            });
+        };
 
       });
     });

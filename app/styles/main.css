@@ -378,14 +378,13 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   top: 0;
   bottom: 0;
   z-index: 1049;
-  overflow: auto;
   min-width: 320px;
   width: 250px;
   display: block;
-  color: #fff;
   font-weight: 200;
   background-size: cover;
   background-position: center center;
+  background: transparent url("images/pc3.png") repeat scroll 0% 0%;
 }
 .aside.right {
   right: 0;
@@ -397,16 +396,15 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   min-height: 16.42857143px;
   padding: 6px 15px;
   background: green;
-  color: white;
+  background: transparent url("images/pc3.png") repeat scroll 0% 0%;
 }
 .aside [data-image]:after, .aside.has-image:after,
 body > .navbar-collapse[data-image]:after,
 body > .navbar-collapse.has-image:after {
   opacity: .77;
 }
-.aside[data-color="green"]:after,
-body > .navbar-collapse[data-color="green"]:after {
-  background: #87CB16;
+.aside{
+  background: #6DC030;
   background: -moz-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87CB16), color-stop(100%, #6dc030));
   background: -webkit-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
@@ -414,6 +412,16 @@ body > .navbar-collapse[data-color="green"]:after {
   background: -ms-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
   background: linear-gradient(to bottom, #6DC030 0%, #5CB85C 100%);
   background-size: 150% 150%;
+  background:  url("images/pc3.png") repeat scroll 0% 0%;
 }
-
->>>>>>> modificación de los css para que las botoneras derecha tome la imagen de fondo sin usar el archivo .js que provee la plantilla
+/* cabecera de la botonera*/
+.aside .aside-dialog .aside-body {
+  position: relative;
+  padding: 0;
+}
+.aside .aside-dialog .aside-header {
+  padding: 15px;
+  border-bottom: 1px solid #e5e5e5;
+  min-height: 16.42857143px;
+  padding: 0px 15px;
+}

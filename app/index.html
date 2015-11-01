@@ -74,7 +74,6 @@
                 <div class="navbar-brand hidden-lg" href="#">
                     <img src="images/yesDoc2.png"></img>
             </div><!-- /.navbar-header -->
-
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
                     <li ng-show='is_logged'>
@@ -94,7 +93,7 @@
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li ng-repeat="n in notifications"><a href="#">Notificación {{$index+1}}</a></li>
+                          <li ng-repeat="n in notifications"><a href="" ng-click='redirect(n)'>{{n.title}}</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -229,6 +228,7 @@
         <script src="scripts/services/resources/groupmembershiptypes.js"></script>
         <script src="scripts/services/resources/groupsmembers.js"></script>
         <script src="scripts/services/resources/groupmemberships.js"></script>
+        <script src="scripts/services/resources/notifications.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/authentication.js"></script>

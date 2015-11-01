@@ -8,11 +8,13 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-.controller('NavCtrl', function ($scope,Auth,$rootScope) {
+.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , $location) {
+
 
   // Evento informante del estado de logueo del usuario. 
   // (ver archivo services/authorization.js)
   $rootScope.$on('isLoggedEvent', function(event, args) {
+    
     // El usuario está logueado
     if (args[0]){
 
@@ -20,12 +22,9 @@ angular.module('saludWebApp')
 
       $scope.msgs = ["Bienvenido a YesDoc..."]
 
-      $scope.notifications = [
-        {
-          "text": "Iniciar Sesión",
-          "href": "/#/login"
-        }
-      ];
+      Notifications.query({quantity:10},function(response){
+        $scope.notifications = response.resource;
+        });
 
 
 
@@ -47,5 +46,15 @@ angular.module('saludWebApp')
     }
 
   });
+
+  $scope.redirect = function(notification){
+    switch(notification.detail_object_type){
+      case 'analysis':
+        $location.path('/analyses/'+notification.detail_object_id);
+        break;
+      default:
+        break;
+    }
+  }
 
 });

@@ -20,7 +20,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css" />
     <!-- Animation library for notifications   -->
-    <link rel="stylesheet" href="styles/animate.min.css" />
+    <link rel="stylesheet" href="styles/animate.css" />
     <!--  Light Bootstrap Table core CSS    -->
     <link rel="stylesheet" href="styles/light-bootstrap-dashboard.css" />
     <!-- endbuild -->
@@ -48,12 +48,12 @@
                 </a></li>           
                 <li  data-match-route="/home">
                 <a href="#/home" ng-show='is_logged'>
-                    <span><p><i class="fa fa-pie-chart"></i>
+                    <span><p><i class="fa fa-bar-chart"></i>
                         Histórico</p></span>
                 </a></li>
                 <li data-match-route="/profileMeasurements">
                 <a href="#/profileMeasurements" ng-show='is_logged'>
-                    <span><p><i class="glyphicon glyphicon-list-alt"></i>Resumen</p></span>
+                    <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
                 </a></li>
             </ul> 
         </div> <!-- class= "sidebar-wrapper"-->
@@ -182,8 +182,6 @@
         <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
         <script src="assets/js/light-bootstrap-dashboard.js"></script>
         <!--   Core JS Files   -->
-        <script src="assets/js/jquery-1.10.2.js"></script>
-
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/profileinformation.js"></script>

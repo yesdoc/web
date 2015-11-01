@@ -16,6 +16,8 @@ angular.module('saludWebApp')
       $location,
       $rootScope) {
 
-        Auth.isLogged();
+        Auth.isLogged(function(){
+
+        });
 
     });

@@ -1,16 +1,42 @@
-<div>
-<div class="col-md-2  edition-nav">
-  <ul class="nav nav-stacked">
-    <li>
-      <a href="#{{ 'home.weight' | routeSegmentUrl }}">
-        <span><span class="glyphicon glyphicon-scale"></span>&nbsp; Peso</span>
-      </a>
+<div class='col-md-12'>
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-area-chart fa-lg" aria-hidden="true"></span>
+        &nbsp; Gráficas
 
-      <a href="#{{ 'home.height' | routeSegmentUrl }}">
-        <span><span class="glyphicon glyphicon-resize-vertical"></span>&nbsp; Altura</span>
-      </a>
-    </li>
-  </ul>
-</div>
+        <div class="pull-right">
 
-<div app-view-segment="1" class='home-container'></div>
+            <div class="btn-group" >
+              <ul class="nav navbar-nav" >
+                <li class="dropdown">
+                  <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <b class="caret"></b>
+                    <span>Peso</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a href="#/home/weight"><i class='glyphicon glyphicon-scale'></i>&nbsp; Peso</a></li>
+                    <li><a href="#/home/height"><i class='glyphicon glyphicon-resize-vertical'></i>&nbsp; Altura</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+
+      </h4> 
+    </div>
+    <div class="content">
+      <div app-view-segment="1" ></div>
+    </div>
+  </div>
+
+    <script >
+            $(function(){
+
+              $(".dropdown-menu").on('click', 'li a', function(){
+                $(".btn:first-child > span").text($(this).text());
+              });
+
+            });
+    </script>

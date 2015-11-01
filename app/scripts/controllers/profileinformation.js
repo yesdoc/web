@@ -19,6 +19,7 @@ angular.module('saludWebApp')
       MyProfile,
       PermissionTypes,
       GroupMembershipTypes,
+      GroupMembers,
       MyGroups,
       Groups,
       GroupsMembers,
@@ -43,7 +44,10 @@ angular.module('saludWebApp')
             $scope.groups = response.resource;
             if ($scope.groups.length == 0){
               $scope.sin_grupos = true;
+              }else{
+                $scope.sin_grupos=false;
               }
+
 
             $.each($scope.groups,function(i,g){
               GroupsMembers.get({group_id:g.id},function(response){
@@ -77,9 +81,11 @@ angular.module('saludWebApp')
         
         $scope.submitGroup = function(){
           Groups.save($scope.group ,function(response,status){
-              if (status=='200'){
-                log('Se creó el grupo');
-                addGroupModal.$promise.then(addGroupModal.hide());
+              addGroupModal.$promise.then(addGroupModal.hide);
+              getGroupsAndMembers();
+
+              if(!$scope.$$phase) {
+                $scope.apply();
                 }
             });
           }//end submitGroup
@@ -137,6 +143,47 @@ angular.module('saludWebApp')
               }
             });
         };
+
+        $scope.deleteGroup = function($index){
+          $scope.confirm = {};
+          $scope.confirm.class = 'danger';
+          $scope.confirm.message = 'Esta seguro que desea eliminar el grupo <b>'+ $scope.groups[$index].name + '</b> ?';
+
+          $scope.confirm.confirm = function(){
+            Groups.remove({id: $scope.groups[$index].id},function(response){
+              getGroupsAndMembers();
+
+              if(!$scope.$$phase) {
+                $scope.apply();
+                }
+
+              confirmDeleteModal.$promise.then(confirmDeleteModal.hide);
+
+              });
+            }
+
+          var confirmDeleteModal = $modal({ 
+            scope: $scope,
+            templateUrl: "views/partials/confirm.html", 
+            contentTemplate: false, 
+            html: true, 
+            show: false });
+
+          confirmDeleteModal.$promise.then(confirmDeleteModal.show);
+      
+        }
+
+
+        $scope.deleteMember = function(member){
+          GroupMembers.remove({id : member.id},function(){
+              getGroupsAndMembers();
+
+              if(!$scope.$$phase) {
+                $scope.apply();
+                }
+
+          });
+        }
 
       });
     });

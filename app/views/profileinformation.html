@@ -6,7 +6,7 @@
         &nbsp; Información Personal
         <div class="pull-right">
           <a class="btn btn-default btn-sm" ng-href="#/myProfileInformation/edit">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <span class="fa fa-edit" aria-hidden="true"></span>
             Editar
           </a>
         </div>
@@ -51,10 +51,17 @@
       <div ng-show='sin_grupos'><h4 class='text-center'><a ng-click='showAddGroup()' href=''>Crea tu primer Grupo</a><h4> </div>   
       <div class='panel panel-default' style='padding: 10px 10px 10px 10px;' ng-repeat='g in groups'>
 
-        <a href='' data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseExample">
-          {{g.name}}{{g.id}}
+        <a href='' style='color:black;' title='Mostrar miembros' data-toggle="collapse" data-target="#collapse{{$index}}" aria-expanded="false" aria-controls="collapseExample">
+          <span class="fa fa-caret-square-o-down"></span>
+          {{g.name}}
         </a>
-        <a href='' ng-click='showAddMember($index)'><span class='fa fa-plus-square-o'></span></a>
+
+        <div class='pull-right' > 
+        <a class='btn btn-sm btn-primary' title='Agregar Miembro' style='padding:3px;margin-top:-5px;' href='' ng-click='showAddMember($index)'><span class='fa fa-user-plus'></span></a>
+        <!-- <a class='btn btn-sm btn-warning' title='Editar Grupo'
+          style='padding:3px;margin-top:-5px;' href='' ng-click='showEditGroup($index)'><span class='fa fa-edit'></span></a> -->
+        <a class='btn btn-sm btn-danger' title='Eliminar Grupo' style='padding:3px;margin-top:-5px;' href='' ng-click='deleteGroup($index)'><span class='fa fa-trash'></span></a>
+        </div>
 
         <div class="collapse" id="collapse{{$index}}">
               <!-- Table -->
@@ -67,8 +74,11 @@
               </thead>
               <tbody>
                 <tr ng-repeat='m in g.members'>
-                  <td>{{m.profile.first_name}} {{m.profile.last_name}}</td>
-                  <td>{{m.group_membership_type.name}} <i class='fa fa-key'></i></td>
+                  <td><i ng-show='m.is_admin' title='Es administrador' class='fa fa-key'></i> {{m.profile.first_name}} {{m.profile.last_name}}</td>
+                  <td>{{m.group_membership_type.name}} </td>
+                  <td>
+                    <a class='text-danger' title='Expulsar miembro' style='padding:3px;margin-top:-5px;' href='' ng-click='deleteMember(m)'><span class='fa fa-remove'></span></a>
+                  </td>
                 </tr>
               </tbody>
               </table>

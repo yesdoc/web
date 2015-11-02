@@ -14,6 +14,7 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'angularMoment',
     'route-segment',
     'view-segment',
     'ngSanitize',
@@ -21,7 +22,9 @@ angular
     'angular-flexslider',
     'mgcrea.ngStrap',
     'nvd3ChartDirectives'
-  ])
+  ]).run(function(amMoment) {
+        amMoment.changeLocale('es');
+  })
   
   /* FIXME redireccion \login
   .run(['$http', '$cookies', '$rootScope', 'global', '$location', '$window',
@@ -54,6 +57,7 @@ angular
       when('/analyses/:id','analyses-show').
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
+      when('/notifications','notifications').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -128,6 +132,10 @@ angular
       segment('dropbox-fn',{
         templateUrl: 'views/dropbox-auth-finish.html',
         controller: 'DropboxAuthFinishCtrl'
+      }).
+      segment('notifications',{
+        templateUrl: 'views/notifications.html',
+        controller: 'NotificationsCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});

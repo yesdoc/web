@@ -29,8 +29,9 @@ angular.module('saludWebApp')
 
           $scope.analyses = q_a.resource;
 
-          $.each($scope.analyses,function(i,a){
 
+          $.each($scope.analyses,function(i,a){
+            a.datetime = a.datetime+'Z'; 
             var q_af = Analysis.get({id:a.id,element:'files'},function(){
               $.each(q_af.resource,function(i,af){
                 a.af_id = af.id 

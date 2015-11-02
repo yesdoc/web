@@ -74,7 +74,6 @@
                 <div class="navbar-brand hidden-lg" href="#">
                     <img src="images/yesDoc2.png"></img>
             </div><!-- /.navbar-header -->
-
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
                     <li ng-show='is_logged'>
@@ -93,16 +92,32 @@
                             <b class="caret"></b>
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
-                        <ul class="dropdown-menu">
-                          <li ng-repeat="n in notifications"><a href="#">Notificación {{$index+1}}</a></li>
+                        <ul class="dropdown-menu" style='width:30vw;'>
+                        <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
+                          <li ng-repeat="n in notifications">
+                            <div class="media">
+                              <a href="" ng-click='redirect(n)' title='{{n.description}}'>
+                                <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                  <div class="media-heading">
+                                    <p>{{n.title}}</p>
+                                  </div>
+                                    <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                </div>
+                              </a>
+                            </div>
+                          </li>
+                          <li role="separator" class="divider" style='margin:3px;'></li>
+                          <li class='text-center'>
+                            <a ng-href='#/notifications'> Mostrar notificaciones antiguas</a>
+                          </li>
                         </ul>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" >
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>
                             <i class="fa fa-user"></i>
-                            Mi cuenta
+                            {{(user_name || "Mi cuenta")}}
                             <b class="caret"></b>
                         </a>
                         <ul ng-if='is_logged' class="dropdown-menu">
@@ -175,6 +190,10 @@
     <script src="bower_components/angular-route-segment/build/angular-route-segment.js"></script>
     <script src="bower_components/flexslider/jquery.flexslider.js"></script>
     <script src="bower_components/angular-flexslider/angular-flexslider.js"></script>
+    <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/moment/locale/es.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -200,6 +219,7 @@
         <script src="scripts/controllers/dropbox-auth-finish.js"></script>
         <script src="scripts/controllers/dropbox-auth-start.js"></script>
         <script src="scripts/controllers/nav.js"></script>
+        <script src="scripts/controllers/notifications.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/resources/measurementunit.js"></script>
         <script src="scripts/services/resources/measurementsource.js"></script>
@@ -229,6 +249,7 @@
         <script src="scripts/services/resources/groupmembershiptypes.js"></script>
         <script src="scripts/services/resources/groupsmembers.js"></script>
         <script src="scripts/services/resources/groupmemberships.js"></script>
+        <script src="scripts/services/resources/notifications.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/authentication.js"></script>

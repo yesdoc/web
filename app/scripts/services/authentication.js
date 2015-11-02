@@ -9,7 +9,7 @@
  */
 angular.module('saludWebApp')
   .factory('Auth',
-          function ($http, $cookies, $rootScope, global, $location, $window) {
+          function ($http, $cookies, $rootScope, global, $location, $window, MyProfile) {
 
     /*
      * Recurso encargado de generar la codificación en Base 64.
@@ -77,6 +77,11 @@ angular.module('saludWebApp')
           .success(function(data, status, headers, config) {
               var authdata = data.resource.token;
               setCookie(Base64.encode(authdata + ':'));
+              MyProfile.get({},function(response){
+                $rootScope.first_name = response.resource.first_name;
+                $rootScope.last_name = response.resource.last_name;
+              });
+
           });
 
         } // /.getToken 

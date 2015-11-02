@@ -96,11 +96,12 @@
                         <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
                           <li ng-repeat="n in notifications">
                             <div class="media">
-                              <a href="" ng-click='redirect(n)'>
+                              <a href="" ng-click='redirect(n)' title='{{n.description}}'>
                                 <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
                                   <div class="media-heading">
-                                    <p>{{n.description}}</p>
+                                    <p>{{n.title}}</p>
                                   </div>
+                                    <small class='pull-left'><span style='color:#777'>{{n.name}}</span></small>
                                     <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
                                 </div>
                               </a>

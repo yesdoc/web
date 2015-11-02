@@ -11,16 +11,16 @@
 
         <form name="configForm" class="form-horizontal" role="form" ng-submit="addConfig()">
               <div class="form-group">
-              <div class="input-group">
-                <span class="input-group-addon" id="basic-addon1"><i class='fa fa-unlock-alt'></i></span>
-                <input type="text" class="form-control"  ng-model='perm.user' bs-typeahead bs-options="user.username for user in users" placeholder="Juan Perez" required>
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-default" placeholder='Seleccione permisos' ng-model="perm.permission_type_id" data-html="1" bs-options="perm.value as perm.label for perm in permissions_type" bs-select>
-                    <span class="caret"></span>
-                  </button>
-                </div><!-- /btn-group -->
-              </div><!-- /input-group -->
-              </div><!-- /input-group -->
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><i class='fa fa-unlock-alt'></i></span>
+                  <input type="text" class="form-control"  ng-model='perm.user' bs-typeahead bs-options="user.username for user in users" placeholder="Juan Perez" required>
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default" placeholder='Seleccione permisos' ng-model="perm.permission_type_id" data-html="1" bs-options="perm.value as perm.label for perm in permissions_type" bs-select>
+                      <span class="caret"></span>
+                    </button>
+                  </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+              </div><!-- /form-group -->
 
               <div class="form-group">
                 <div class="col-sm-10">

@@ -1,0 +1,19 @@
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title"> Grupo </h4>
+      </div>
+      <div class='well' style='margin-bottom: 0px;'>
+        <div ng-bind-html="msg"></div>
+
+        <form name="groupForm" class="form-horizontal" role="form" ng-submit="submitGroup()">
+            <div ng-include="'views/partials/groupform.html'"></div>
+        </form>
+
+    <div>
+    </div>
+  </div>
+</div>

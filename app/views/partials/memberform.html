@@ -1,0 +1,58 @@
+
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title"> Nuevo miembro: </h4>
+      </div>
+      <div class='well' style='margin-bottom: 0px;'>
+
+        <form name="configForm" class="form-horizontal" role="form" ng-submit="addMember()">
+
+            <div class="form-group">
+              <div class="input-group">
+                <span class="input-group-addon" id="basic-addon1"><i class='fa fa-male'></i></span>
+                <input type="text" class="form-control"  ng-model='member.user' bs-typeahead bs-options="u.username for u in users" placeholder="Juan Perez" required>
+              </div><!-- /input-group -->
+            </div><!-- /form-group -->
+
+            <div class="form-group form-group-sm" 
+                ng-class="{'has-error':memberForm.membership_type.$invalid && memberForm.membership_type.$touched}">
+                <label for="membership_type" class="col-sm-2 control-label"> Tipo de membresía: </label>
+                <div class="col-sm-10">
+                    <select name="membership_type"  id="membership_type" class="form-control" 
+                        ng-options="t.id as t.name for t in membership_types" 
+                        ng-model="member.group_membership_type_id" required >
+                    </select>
+                    <p ng-show="memberForm.membership_type.$invalid && memberForm.membership_type.$touched" class="help-block">
+                    Seleccione un tipo de membresía.</p> 
+                </div>
+            </div>
+
+            <div class="form-group form-group-sm" 
+                ng-class="{'has-error':memberForm.permission_type.$invalid && memberForm.permission_type.$touched}">
+                <label for="permission_type" class="col-sm-2 control-label"> Permisos: </label>
+                <div class="col-sm-10">
+                    <select name="permission_type"  id="permission_type" class="form-control" 
+                        ng-options="t.id as t.name for t in permission_types" 
+                        ng-model="member.permission_type_id" required >
+                    </select>
+                    <p ng-show="memberForm.permission_type.$invalid && memberForm.permission_type.$touched" class="help-block">
+                    Seleccione un permiso.</p> 
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <input type="submit" class="btn btn-success" value="Save" ng-disabled="memberForm.$invalid">
+                </div>
+            </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div>
+</div>

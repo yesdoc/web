@@ -92,18 +92,23 @@
                             <b class="caret"></b>
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" style='width:30vw;'>
+                        <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
                           <li ng-repeat="n in notifications">
                             <div class="media">
                               <a href="" ng-click='redirect(n)'>
                                 <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
                                   <div class="media-heading">
-                                    <p>{{n.title}}</p>
+                                    <p>{{n.description}}</p>
                                   </div>
                                     <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
                                 </div>
                               </a>
                             </div>
+                          </li>
+                          <li role="separator" class="divider" style='margin:3px;'></li>
+                          <li class='text-center'>
+                            <a href=''> Mostrar notificaciones antiguas</a>
                           </li>
                         </ul>
                     </li>

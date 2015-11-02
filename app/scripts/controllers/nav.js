@@ -23,7 +23,7 @@ angular.module('saludWebApp')
 
       $scope.msgs = ["Bienvenido a YesDoc..."]
 
-      Notifications.query({quantity:10},function(response){
+      Notifications.query({quantity:10,unread:true},function(response){
         $scope.notifications = response.resource;
         });
 
@@ -49,6 +49,9 @@ angular.module('saludWebApp')
   });
 
   $scope.redirect = function(notification){
+
+    Notifications.update({id:notification.id},function(){});
+
     switch(notification.detail_object_type){
       case 'analysis':
         $location.path('/analyses/'+notification.detail_object_id);

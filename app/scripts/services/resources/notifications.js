@@ -16,6 +16,6 @@ angular.module('saludWebApp')
     return $resource( url,
         { id: '@_id' },
         { query: {method: 'GET', isArray: false },
-          update: { method: 'PUT' }
+          update: {url: global.getApiUrl()+'/notifications/:id',params:{id: '@id'}, method: 'PUT' }
         });  
   });

@@ -64,7 +64,7 @@
               </a>
             </div>
             <div class="media-body">
-              <h5 style='margin-top:0px;margin-bottom:0px;'><a href=''>{{c.profile.first_name}} {{c.profile.last_name}}</a>  <small>· {{c.datetime | date:"medium"}}</small></h5>
+              <h5 style='margin-top:0px;margin-bottom:0px;'><a href=''>{{c.profile.first_name}} {{c.profile.last_name}}</a>  <small am-time-ago='c.datetime'></small></h5>
               <p>{{c.comment}}</p>
             </div>
           </div>

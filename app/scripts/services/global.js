@@ -8,21 +8,36 @@
  * Factory in the saludWebApp.
  */
 angular.module('saludWebApp')
-  .factory('global', function () {
+  .factory('global', function ($location) {
     // Service logic
 
     // URL of yesdoc API
-    var api_url='yesdoc-api.herokuapp.com';
-    function _api_url(auth){
-      return 'https://'+auth+api_url;
+    var apiUrl='yesdoc-api.herokuapp.com';
+    function getApiUrl(auth){
+      return 'https://'+auth+apiUrl;
     }
+    
+    function redirect(notification){
+
+      switch(notification.detail_object_type){
+        case 'analysis':
+          $location.path('/analyses/'+notification.detail_object_id);
+          break;
+        default:
+          break;
+      }
+    }
+
     // Public methods
     return {
       getApiUrl: function () {
-        return _api_url('');
+        return getApiUrl('');
       },
       getApiUrlAuth: function(auth){
-        return _api_url(auth);
+        return getApiUrl(auth);
+      },
+      notificationRedirect: function(notification){
+        return redirect(notification);
       }
     };
   });

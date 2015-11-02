@@ -98,7 +98,7 @@ angular.module('saludWebApp')
     Auth.getAuth(function(token){
       var g_a = Analysis.get({id : $routeParams.id},function(){
         $scope.a = g_a.resource;
-        $scope.a.datetime = new Date($scope.a.datetime);
+        $scope.a.datetime = new Date($scope.a.datetime+'Z');
 
         $scope.afs = []; //analysis files list
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
@@ -129,7 +129,12 @@ angular.module('saludWebApp')
       var updateComments = function(){
         var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){
 
+
           $scope.comments = g_com.resource;
+
+          $.each($scope.comments, function(i , c){
+            c.datetime = (new Date(c.datetime+'Z'));
+            });
 
           $scope.commentsLength = function(){
             switch($scope.comments.length){

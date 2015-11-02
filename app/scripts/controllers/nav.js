@@ -8,7 +8,7 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , $location) {
+.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global) {
 
 
   // Evento informante del estado de logueo del usuario. 
@@ -25,6 +25,9 @@ angular.module('saludWebApp')
 
       Notifications.query({quantity:10,unread:true},function(response){
         $scope.notifications = response.resource;
+        $.each($scope.notifications,function(i,n){
+          n.created_datetime = (new Date(n.created_datetime+'Z'));
+          });
         });
 
 
@@ -48,17 +51,12 @@ angular.module('saludWebApp')
 
   });
 
-  $scope.redirect = function(notification){
+  $scope.redirect = function(n){
 
-    Notifications.update({id:notification.id},function(){});
+    Notifications.update({id:n.id},function(){});
+    
+    global.notificationRedirect(n);
 
-    switch(notification.detail_object_type){
-      case 'analysis':
-        $location.path('/analyses/'+notification.detail_object_id);
-        break;
-      default:
-        break;
-    }
   }
 
 });

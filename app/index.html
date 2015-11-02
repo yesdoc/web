@@ -36,7 +36,7 @@
 <div class="wrapper">
     <!-- Add your site or application content here -->
     <!-- Navbar vertical-->
-    <div class="sidebar green" data-color="green" data-image="images/pc3.png" ng-controller='NavCtrl'>    
+    <div class="sidebar" data-color="green" data-image="images/pc3.png" ng-controller='NavCtrl'>    
         <div class="sidebar-wrapper" ng-cloak>
            
             <div class="imglogo logo" >
@@ -64,7 +64,7 @@
             </ul>
 
         </div> <!--sedebar-wrapper -->
-       <div class="sidebar-background" style="background-image: url(images/pc3.png) "></div>
+       <div class="sidebar-background"></div>
     </div> <!-- class="sidebar" -->
  
     <!-- Navbar horizontal-->
@@ -73,7 +73,7 @@
         <div class="container-fluid" >
     
             <div class="navbar-header" data-color="green" style='width:100%;'>
-                <div content-template="views/partials/vertical_navbar2.html" bs-aside="aside"  
+            <div template-url="views/partials/vertical_navbar2.html" bs-aside="aside"  
                     data-container="body" ng-controller="NavCtrl"> 
                     <button type="button" class="navbar-toggle " data-toggle="collapse"
                         data-target="#navigation-example-2">
@@ -90,7 +90,6 @@
 
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
-                  <!--
                     <li ng-show='is_logged'>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
@@ -101,31 +100,14 @@
                           <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
                         </ul>
                     </li>
-                  -->
                     <li ng-show="is_logged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
                             <b class="caret"></b>
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
-                        <ul class="dropdown-menu" style='width:30vw;'>
-                        <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
-                          <li ng-repeat="n in notifications">
-                            <div class="media">
-                              <a href="" ng-click='redirect(n)' title='{{n.description}}'>
-                                <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                  <div class="media-heading">
-                                    <p>{{n.title}}</p>
-                                  </div>
-                                    <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
-                                </div>
-                              </a>
-                            </div>
-                          </li>
-                          <li role="separator" class="divider" style='margin:3px;'></li>
-                          <li class='text-center'>
-                            <a ng-href='#/notifications'> Mostrar notificaciones antiguas</a>
-                          </li>
+                        <ul class="dropdown-menu">
+                          <li ng-repeat="n in notifications"><a href="#" ng-click="$hide()">Notificación {{$index+1}}</a></li>
                         </ul>
                     </li>
                 </ul>

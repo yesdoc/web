@@ -1,33 +1,91 @@
-<div class="aside" tabindex="-1" role="dialog"  data-color="green" data-image="images/pc3.png" >
+<div class="aside" tabindex="-1" role="dialog" >
     <div class="aside-dialog">
         <div class="aside-content">
-            
+        
             <div class="aside-header" >
-                <button type="button" class="close" ng-click="$hide()">&times;</button>
+                <a class="close" ng-click="$hide()">&times;</a>
                 <div class="imglogo logo" >
                     <img src="images/logoSticker.png"></img>
                 </div>
             </div>
-            
-            <div class="aside-body" >i lalala
+
+            <div class="aside-body"  >
+
+                <div class='aside-nav' style='opacity:1;'>
+                <!-- Botoneras -->
                 <ul class="nav">
                     <li data-match-route="/analyses">
-                    <a href="#/analyses" ng-click="$hide()" >
-                        <span><p><i class="fa fa-folder-open-o"></i>
-                            Análisis</p></span>
-                    </a></li>           
+                        <a href="#/analyses" ng-click="$hide()" >
+                            <span><p><i class="fa fa-folder-open-o"></i>
+                                Análisis</p></span>
+                        </a></li>           
                     <li  data-match-route="/home">
-                    <a href="#/home" ng-show='is_logged'ng-click="$hide()" >
-                        <span><p><i class="fa fa-bar-chart"></i>
-                            Histórico</p></span>
-                    </a></li>
+                        <a href="#/home" ng-show='is_logged' ng-click="$hide()" >
+                            <span><p><i class="fa fa-bar-chart"></i>
+                                Histórico</p></span>
+                        </a></li>
                     <li data-match-route="/profileMeasurements">
-                    <a href="#/profileMeasurements" ng-show='is_logged'ng-click="$hide()" >
-                        <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
-                    </a></li>
+                        <a href="#/profileMeasurements" ng-show='is_logged' ng-click="$hide()" >
+                            <span><p><i class="fa fa-file-text-o"></i>
+                                Resumen</p></span>
+                        </a></li>
                 </ul> 
+
+                <!--Notificaciones -->
+                <ul ng-show="is_logged" ng-cloak>
+
+                    <li class="nav" ng-show='is_logged'>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span><p><i class="fa fa-envelope"></i>
+                                <b class="caret"></b>
+                                <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
+                            </span></p> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="m in msgs"><a href="#" ng-click="$hide()">{{m}}</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav" ng-show="is_logged" class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span><p><i class="fa fa-globe"></i>
+                                <b class="caret"></b>
+                                <span ng-ishow="notifications.length>0" class="notification">{{notifications.length}}</span>
+                            <span><p> 
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li ng-repeat="n in notifications"><a href="#" ng-click="$hide()">Notificación {{$index+1}}</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+
+                <!-- Mi cuenta -->
+                <ul class="nav" >
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span><p> <i class="fa fa-user"></i>
+                            Mi cuenta
+                            <b class="caret"></b>
+                            </p><span>
+                        </a>
+                        <ul ng-if='is_logged' class="dropdown-menu">
+                            <li><a href="#/myProfileInformation" ng-click="$hide()"><i class='fa fa-user'></i> Información Personal</a></li>
+                            <li><a href="#/dropbox-auth-start" ng-click="$hide()"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#/logoff" ng-click="$hide()"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
+                        </ul>
+                        <ul ng-if='!is_logged' class="dropdown-menu">
+                            <li><a href="#/login" ng-click="$hide()"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div><!-- ./class="aside-nav"-->
             </div><!-- ./class="aside-body"-->
 
+
         </div><!--./class="aside-content" -->
+        <div class='aside-transparent' ></div>
     </div> <!--./class="aside-dialog" -->
 </div> <!-- ./class="aside" -->

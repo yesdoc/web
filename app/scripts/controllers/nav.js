@@ -8,16 +8,25 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global) {
+.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global, MyProfile) {
 
 
   // Evento informante del estado de logueo del usuario. 
   // (ver archivo services/authorization.js)
   $rootScope.$on('isLoggedEvent', function(event, args) {
-    $scope.d = new Date();
     
     // El usuario está logueado
     if (args[0]){
+
+      if (!$rootScope.first_name || $rootScope == undefined){
+          MyProfile.get({},function(response){
+            $rootScope.first_name = response.resource.first_name;
+            $rootScope.last_name = response.resource.last_name;
+            $scope.user_name=$rootScope.first_name + ' ' + $rootScope.last_name;
+          });
+      }else{
+            $scope.user_name=$rootScope.first_name + ' ' + $rootScope.last_name;
+      }
 
       $scope.is_logged = true;
 
@@ -41,6 +50,8 @@ angular.module('saludWebApp')
       $scope.msgs = []
 
       $scope.notifications = []
+
+      $scope.user_name = null;
 
     }
 

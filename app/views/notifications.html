@@ -1,0 +1,26 @@
+
+<div class='col-md-8'>
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-globe fa-lg" aria-hidden="true"></span>
+        &nbsp; Notificaciones
+      </h4> 
+    </div>
+    <div class="content">
+
+
+      <div class="media" ng-repeat="n in notifications">
+        <a href="" ng-click='redirect(n)'>
+          <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+            <div class="media-heading">
+              <p>{{n.description}}</p>
+            </div>
+            <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</div>

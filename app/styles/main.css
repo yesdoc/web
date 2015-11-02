@@ -430,4 +430,10 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   background: linear-gradient(to bottom, #6DC030 0%, #5CB85C 100%);
   opacity: .77;
 }
+/* Accordion*/
+.panel-body ul{
+    list-style:none;
+}
+
+
 

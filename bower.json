@@ -37,6 +37,16 @@
       "main": [
         "css/font-awesome.css"
       ]
+    },
+    "angular-i18n": {
+      "main": [
+        "angular-locale_es-ar.js"
+      ]
+    },
+    "angular-moment": {
+      "main": [
+        "../moment/locale/es.js","angular-moment.js"
+      ]
     }
   }
 }

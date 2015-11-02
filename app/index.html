@@ -93,7 +93,18 @@
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
                         <ul class="dropdown-menu">
-                          <li ng-repeat="n in notifications"><a href="" ng-click='redirect(n)'>{{n.title}}</a></li>
+                          <li ng-repeat="n in notifications">
+                            <div class="media">
+                              <a href="" ng-click='redirect(n)'>
+                                <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                  <div class="media-heading">
+                                    <p>{{n.title}}</p>
+                                  </div>
+                                    <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                </div>
+                              </a>
+                            </div>
+                          </li>
                         </ul>
                     </li>
                 </ul>
@@ -174,6 +185,9 @@
     <script src="bower_components/angular-route-segment/build/angular-route-segment.js"></script>
     <script src="bower_components/flexslider/jquery.flexslider.js"></script>
     <script src="bower_components/angular-flexslider/angular-flexslider.js"></script>
+    <script src="bower_components/moment/moment.js"></script>
+    <script src="bower_components/angular-moment/angular-moment.js"></script>
+    <script src="bower_components/moment/locale/es.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

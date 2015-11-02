@@ -14,6 +14,7 @@ angular.module('saludWebApp')
   // Evento informante del estado de logueo del usuario. 
   // (ver archivo services/authorization.js)
   $rootScope.$on('isLoggedEvent', function(event, args) {
+    $scope.d = new Date();
     
     // El usuario está logueado
     if (args[0]){

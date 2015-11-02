@@ -14,6 +14,7 @@ angular
     'ngCookies',
     'ngResource',
     'ngRoute',
+    'angularMoment',
     'route-segment',
     'view-segment',
     'ngSanitize',
@@ -21,7 +22,9 @@ angular
     'angular-flexslider',
     'mgcrea.ngStrap',
     'nvd3ChartDirectives'
-  ])
+  ]).run(function(amMoment) {
+        amMoment.changeLocale('es');
+  })
   
   /* FIXME redireccion \login
   .run(['$http', '$cookies', '$rootScope', 'global', '$location', '$window',

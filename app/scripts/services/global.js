@@ -23,6 +23,9 @@ angular.module('saludWebApp')
         case 'analysis':
           $location.path('/analyses/'+notification.detail_object_id);
           break;
+        case 'group':
+          $location.path('/myProfileInformation');
+          break;
         default:
           break;
       }

@@ -21,6 +21,7 @@ angular.module('saludWebApp')
       GroupMembershipTypes,
       GroupMembers,
       MyGroups,
+      MyGroupMemberships,
       Groups,
       GroupsMembers,
       Auth,
@@ -50,6 +51,11 @@ angular.module('saludWebApp')
 
 
             $.each($scope.groups,function(i,g){
+
+              MyGroupMemberships.get({group:g.id},function(response){
+                g.is_admin = response.resource[0].is_admin
+                });
+
               GroupsMembers.get({group_id:g.id},function(response){
                 g.members = response.resource;
                 });
@@ -67,7 +73,7 @@ angular.module('saludWebApp')
           html: true, 
           show: false });
       
-        /* Show Analysis File Modal */
+        /* Show add group Modal */
         $scope.showAddGroup = function () {
           GroupMembershipTypes.query(function(response){
             $scope.membership_types = response.resource;
@@ -181,8 +187,18 @@ angular.module('saludWebApp')
               if(!$scope.$$phase) {
                 $scope.apply();
                 }
+              });
+          }
 
-          });
+        $scope.canExpulse = function(group,member){
+          if (group.is_admin){
+            return true;
+          }
+          if(member.profile.id == $scope.profile.id){
+            return true;
+            }else{
+            return false;
+            }
         }
 
       });

@@ -56,7 +56,7 @@
           {{g.name}}
         </a>
 
-        <div class='pull-right' > 
+        <div class='pull-right' ng-show='g.is_admin'> 
         <a class='btn btn-sm btn-primary' title='Agregar Miembro' style='padding:3px;margin-top:-5px;' href='' ng-click='showAddMember($index)'><span class='fa fa-user-plus'></span></a>
         <!-- <a class='btn btn-sm btn-warning' title='Editar Grupo'
           style='padding:3px;margin-top:-5px;' href='' ng-click='showEditGroup($index)'><span class='fa fa-edit'></span></a> -->
@@ -77,7 +77,7 @@
                   <td><i ng-show='m.is_admin' title='Es administrador' class='fa fa-key'></i> {{m.profile.first_name}} {{m.profile.last_name}}</td>
                   <td>{{m.group_membership_type.name}} </td>
                   <td>
-                    <a class='text-danger' title='Expulsar miembro' style='padding:3px;margin-top:-5px;' href='' ng-click='deleteMember(m)'><span class='fa fa-remove'></span></a>
+                    <a ng-show='canExpulse(g,m)' class='text-danger' title='Expulsar miembro' style='padding:3px;margin-top:-5px;' href='' ng-click='deleteMember(m)'><span class='fa fa-remove'></span></a>
                   </td>
                 </tr>
               </tbody>

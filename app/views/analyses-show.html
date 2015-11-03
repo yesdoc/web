@@ -29,31 +29,60 @@
       </flex-slider>
 
       <div class="panel panel-default">
-          <div class="panel-body">
-      <table class="table">
-        <caption>Mediciones</caption>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Tipo</th>
-            <th>Valor</th>
-            <th>Unidad</th>
-            <th>Fuente</th>
-            <th>Fecha</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr ng-repeat='m in measurements'>
-            <th scope="row">{{($index+1)}}</th>
-            <td>{{m.measurement_type.name}}</td>
-            <td>{{m.value}}{{m.measurement_unit.symbol}}</td>
-            <td>{{m.measurement_unit.name}}</td>
-            <td>{{m.measurement_source.name}}</td>
-            <td>{{m.datetime | date:'dd/M/yyyy HH:mm'}}</td>
-          </tr>
-        </tbody>
-      </table>
+        <div class="panel-body">
+          <table class="table">
+            <caption>Archivos</caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th></th>
+                <th>Descripción</th>
+                <th>Encriptado</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='af in aFiles'>
+                <th scope="row">{{($index+1)}}</th>
+                <td><i class='fa fa-file-image-o fa-lg'></i></td>
+                <td>{{af.description}}</td>
+                <td>
+                  <i ng-show='af.is_encrypted' title='Archivo encriptado' style='margin-left:10px;' class='fa fa-check-square-o fa-lg'></i>
+                  <i ng-show='!af.is_encrypted' title='Archivo NO encriptado' style='margin-left:10px;' class='fa fa-square-o fa-lg'></i>
+                </td>
+                <td><a href={{af.urlDownload}}>Descargar</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
+
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <table class="table">
+            <caption>Mediciones</caption>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo</th>
+                <th>Valor</th>
+                <th>Unidad</th>
+                <th>Fuente</th>
+                <th>Fecha</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat='m in measurements'>
+                <th scope="row">{{($index+1)}}</th>
+                <td>{{m.measurement_type.name}}</td>
+                <td>{{m.value}}{{m.measurement_unit.symbol}}</td>
+                <td>{{m.measurement_unit.name}}</td>
+                <td>{{m.measurement_source.name}}</td>
+                <td>{{m.datetime | date:'dd/M/yyyy HH:mm'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
 

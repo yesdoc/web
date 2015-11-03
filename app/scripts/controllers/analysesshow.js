@@ -102,8 +102,12 @@ angular.module('saludWebApp')
 
         $scope.afs = []; //analysis files list
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
-          $.each(q_af.resource,function(i,af){
+          $scope.aFiles = q_af.resource;
+          $.each($scope.aFiles,function(i,af){
                 af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
+
+                af.downloadUrl = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
+
                 $scope.afs.push(af);
             });
           });

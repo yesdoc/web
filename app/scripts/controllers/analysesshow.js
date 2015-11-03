@@ -63,9 +63,9 @@ angular.module('saludWebApp')
       });
     }
 
-    $scope.removePerms = function(usuario_perms){
+    $scope.removePerms = function(usuario_perms,$index){
       Permissions.remove({id:usuario_perms.id},function(){
-        alert('removido');
+          $scope.permissions.splice($index, 1);
           if(!$scope.$$phase) {
             $scope.apply();
             }

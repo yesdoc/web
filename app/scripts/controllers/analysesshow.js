@@ -89,7 +89,7 @@ angular.module('saludWebApp')
       var af = $scope.afs[$index];
       var modalImage = $modal({ 
         title: af.description,
-        content: '<div class="thumbnail"> <img src="' + af.imageSrc + '" /> </div>', 
+        content: '<div class="thumbnail"><a href="'+ af.urlDownload +'"> <img src="' + af.imageSrc + '" /></a> </div>', 
         show: false});
     
       modalImage.$promise.then(modalImage.show);
@@ -102,8 +102,12 @@ angular.module('saludWebApp')
 
         $scope.afs = []; //analysis files list
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
-          $.each(q_af.resource,function(i,af){
+          $scope.aFiles = q_af.resource;
+          $.each($scope.aFiles,function(i,af){
                 af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
+
+                af.urlDownload = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token+'&download=true');
+
                 $scope.afs.push(af);
             });
           });

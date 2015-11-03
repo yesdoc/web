@@ -1,0 +1,46 @@
+<!--
+<div class="container">
+</div>
+-->
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
+        &nbsp; Mis Análisis Compartidos
+        <div class="pull-right">
+
+            <div class="btn-group" >
+            <a class="btn btn-default btn-sm" style='margin-left:10px' ng-href="#/analysis/new">
+              <span class="fa fa-plus-circle fa-lg" aria-hidden="true"></span>
+              Nuevo
+            </a>
+            </div>
+
+        </div>
+      </h4> 
+    </div>
+  <div class="content">
+
+    <div class="row">
+
+      <div class="col-sm-6 col-md-3" ng-repeat="a in analyses">
+        <a class='analysis' ng-href='#/analyses/{{a.id}}'>
+        <div class="thumbnail">
+          <div class='box' style="background:url({{(a.imageSrc)}}) no-repeat 50% 0%;background-size: auto 100%;opacity:1">
+            <div class="overlay"></div>
+          </div>
+          <div class="caption caption-blue">
+
+            <h3 class='text-center'>
+              <span >{{a.description}}</span>
+            </h3>
+            <p class='text-right caption-date' >{{a.datetime | date:'dd-M-yyyy'}}</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

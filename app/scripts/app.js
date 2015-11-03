@@ -58,6 +58,7 @@ angular
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
       when('/notifications','notifications').
+      when('/compartidos','compartidos').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -136,6 +137,10 @@ angular
       segment('notifications',{
         templateUrl: 'views/notifications.html',
         controller: 'NotificationsCtrl'
+      }).
+      segment('compartidos',{
+        templateUrl: 'views/compartidos.html',
+        controller: 'CompartidosCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});

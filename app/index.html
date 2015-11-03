@@ -55,6 +55,10 @@
                 <a href="#/profileMeasurements" ng-show='is_logged'>
                     <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
                 </a></li>
+                <li data-match-route="/compartidos">
+                <a href="#/compartidos" ng-show='is_logged'>
+                    <span><p><i class="fa fa-share"></i>Compartidos</p></span>
+                </a></li>
             </ul> 
         </div> <!-- class= "sidebar-wrapper"-->
     </div><!-- class="sidebar" -->
@@ -220,7 +224,10 @@
         <script src="scripts/controllers/dropbox-auth-start.js"></script>
         <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/controllers/notifications.js"></script>
-        <script src="scripts/services/global.js"></script>
+        <script src="scripts/controllers/analysis-new.js"></script>
+        <script src="scripts/controllers/analyses.js"></script>
+        <script src="scripts/controllers/analysesshow.js"></script>
+        <script src="scripts/controllers/compartidos.js"></script>
         <script src="scripts/services/resources/measurementunit.js"></script>
         <script src="scripts/services/resources/measurementsource.js"></script>
         <script src="scripts/services/resources/measurementtype.js"></script>
@@ -250,15 +257,13 @@
         <script src="scripts/services/resources/groupsmembers.js"></script>
         <script src="scripts/services/resources/groupmemberships.js"></script>
         <script src="scripts/services/resources/notifications.js"></script>
+        <script src="scripts/services/global.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/authentication.js"></script>
         <script src="scripts/directives/linegraph.js"></script>
-        <script src="scripts/controllers/analysis-new.js"></script>
-        <script src="scripts/controllers/analyses.js"></script>
         <script src="scripts/directives/filesmodel.js"></script>
         <script src="scripts/services/upload.js"></script>
-        <script src="scripts/controllers/analysesshow.js"></script>
         <!-- endbuild -->
 
 </body>

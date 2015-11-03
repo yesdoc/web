@@ -42,17 +42,17 @@
             </div>
             <ul class="nav" ng-show="is_logged">
                 <li ng-class="{active: ('analyses' | routeSegmentStartsWith)}"data-match-route="/analyses">
-                <a href="#/analyses" ng-show='is_logged'>
+                <a href="#/analyses" ng-show='(is_logged && !is_health_professional)'>
                     <span><p><i class="fa fa-folder-open-o"></i>
                         Análisis</p></span>
                 </a></li>           
                 <li  ng-class="{active:('home' | routeSegmentStartsWith) }"data-match-route="/home">
-                <a href="#/home" ng-show='is_logged'>
+                <a href="#/home" ng-show='(is_logged && !is_health_professional)'>
                     <span><p><i class="fa fa-bar-chart"></i>
                         Histórico</p></span>
                 </a></li>
                 <li ng-class="{active:('profileMeasurements' | routeSegmentStartsWith)}" data-match-route="/profileMeasurements">
-                <a href="#/profileMeasurements" ng-show='is_logged'>
+                <a href="#/profileMeasurements" ng-show='(is_logged && !is_health_professional)'>
                     <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
                 </a></li>
                 <li data-match-route="/compartidos">
@@ -80,6 +80,7 @@
             </div><!-- /.navbar-header -->
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
+                  <!--
                     <li ng-show='is_logged'>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
@@ -90,6 +91,7 @@
                           <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
                         </ul>
                     </li>
+                  -->
                     <li ng-show="is_logged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
@@ -126,7 +128,9 @@
                         </a>
                         <ul ng-if='is_logged' class="dropdown-menu">
                           <li><a href="#/myProfileInformation"><i class='fa fa-user'></i> Información Personal</a></li>
-                          <li><a href="#/dropbox-auth-start"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
+                          <li ng-show='(is_logged && !is_health_professional)' >
+                            <a href="#/dropbox-auth-start"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a>
+                          </li>
                           <li role="separator" class="divider"></li>
                           <li><a href="#/logoff"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
                         </ul>

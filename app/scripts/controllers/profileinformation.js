@@ -196,9 +196,8 @@ angular.module('saludWebApp')
           }
           if(member.profile.id == $scope.profile.id){
             return true;
-            }else{
-            return false;
             }
+          return false;
         }
 
       });

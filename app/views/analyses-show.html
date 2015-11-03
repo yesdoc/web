@@ -50,7 +50,11 @@
                   <i ng-show='af.is_encrypted' title='Archivo encriptado' style='margin-left:10px;' class='fa fa-check-square-o fa-lg'></i>
                   <i ng-show='!af.is_encrypted' title='Archivo NO encriptado' style='margin-left:10px;' class='fa fa-square-o fa-lg'></i>
                 </td>
-                <td><a href={{af.urlDownload}}>Descargar</a></td>
+                <td>
+                  <a target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
+                    Descargar
+                  </a>
+                </td>
               </tr>
             </tbody>
           </table>

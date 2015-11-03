@@ -78,7 +78,13 @@
         class = "help-block"> Debe ingresar una contraseña. </p>
     </div>
 </div>
+
+<div class="form-group">
+  <label for="is_health_professional" class="" style='margin-right:10px;'>¿Desea ser usuario médico?:</label>
+  <input name="is_health_professional" type="checkbox" class="" id="is_health_professional" ng-model="profile.is_health_professional">
+</div>
     
+
 <div class = "form-group">
     <div class = "col-sm-offset-2 col-sm-10">
         <input type = "submit" class = "btn btn-success" value = "Save" ng-disabled = "profileForm.$invalid"/>

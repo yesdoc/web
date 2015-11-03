@@ -1,0 +1,60 @@
+<!--
+<div class="container">
+</div>
+-->
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
+        &nbsp; Mis Análisis Compartidos
+        <div class="pull-right" style='margin-right: 5%;'>
+
+            <div class="btn-group" >
+              <ul class="nav navbar-nav" >
+                <li class="dropdown">
+                  <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <b class="caret"></b>
+                    <span>Usuario</span>
+                  </button>
+                  <ul class="dropdown-menu" style='cursor:pointer'>
+                    <li ng-repeat='p in profiles'>
+                      <a ng-click='load(p.id)'>{{p.first_name}} {{p.last_name}}</a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+
+        </div>
+      </h4> 
+    </div>
+  <div class="content">
+
+    <div ng-show='analyses==0' class='panel panel-default'>
+      <h2 class='text-center' style='color:#47D1FF'>Por favor, seleccione un usuario</h2>
+    </div>
+
+    <div class="row">
+
+
+      <div class="col-sm-6 col-md-3" ng-repeat="a in analyses">
+        <a class='analysis' ng-href='#/analyses/{{a.id}}'>
+        <div class="thumbnail">
+          <div class='box' style="background:url({{(a.imageSrc)}}) no-repeat 50% 0%;background-size: auto 100%;opacity:1">
+            <div class="overlay"></div>
+          </div>
+          <div class="caption caption-blue">
+
+            <h3 class='text-center'>
+              <span >{{a.description}}</span>
+            </h3>
+            <p class='text-right caption-date' >{{a.datetime | date:'dd-M-yyyy'}}</p>
+          </div>
+        </div>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+</div>

@@ -22,10 +22,13 @@ angular.module('saludWebApp')
           MyProfile.get({},function(response){
             $rootScope.first_name = response.resource.first_name;
             $rootScope.last_name = response.resource.last_name;
+            $rootScope.is_health_professional = response.resource.is_health_professional;
             $scope.user_name=$rootScope.first_name + ' ' + $rootScope.last_name;
+            $scope.is_health_professional = $rootScope.is_health_professional;
           });
       }else{
             $scope.user_name=$rootScope.first_name + ' ' + $rootScope.last_name;
+            $scope.is_health_professional = $rootScope.is_health_professional;
       }
 
       $scope.is_logged = true;

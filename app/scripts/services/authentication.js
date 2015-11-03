@@ -80,6 +80,8 @@ angular.module('saludWebApp')
               MyProfile.get({},function(response){
                 $rootScope.first_name = response.resource.first_name;
                 $rootScope.last_name = response.resource.last_name;
+                $rootScope.is_health_professional = response.resource.is_health_professional;
+                
               });
 
           });

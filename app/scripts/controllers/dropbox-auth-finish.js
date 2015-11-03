@@ -43,7 +43,7 @@ angular.module('saludWebApp')
       });
 
     var onSuccess = function(){
-      $scope.type='alert-success ';
+      $scope.type='alert-info ';
       $scope.icon='fa-check';
       $scope.msg='Su cuenta de Dropbox está ahora sincronizada';
       }

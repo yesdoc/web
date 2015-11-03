@@ -335,16 +335,12 @@ margin:4px;
   height:50px !important;
 }
 
-.slides {
-  width: 100%!important;
-  text-align: center;
-}
-
 .slides li {
   display: inline-block!important; 
   *display: inline!important; 
   float: none!important;
 }
+
 /*LOGO*/
 .logo{
   height: 60px;

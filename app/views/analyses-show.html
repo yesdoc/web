@@ -1,32 +1,37 @@
-<div class="panel panel-default" style='margin:20px'>
-  <div class="panel-heading">
-    <h3 style='width:100%'>{{a.description}}  <small class='text-right'>{{a.datetime | date:'dd/M/yyyy'}}</small>
+  <div class="card">
+    <div class='header' >
+      <h4 class='title'>
+        <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
+        &nbsp; {{a.description}}  <small class='text-right'>{{a.datetime | date:'fullDate'}}</small>
+        <div class="pull-right">
       <a href='' ng-click='showConfig()' class='btn btn-default' style='float:right;'> <i class="glyphicon glyphicon-lock" style='marging-right:10px;'></i></a>
-    </h3>
-  </div>
-    <div class="panel-body">
+        </div>
+      </h4> 
+    </div>
+    <div class="content" style='padding-top:0px;'>
 
       <flex-slider 
-        class="carousel" 
-        slide="s in afs track by $index" 
+        slider_id='carousel'
+        flex-slide="s in afs track by $index" 
         animation="slide" 
-        control-nav='true'
+        control-nav='false'
         slideshow-speed= '4000'
-        animation-speed= "500"
         animation-loop="true" 
-        pause-on-hover="false" 
+        pause-on-hover="true" 
         item-width="210" 
         item-margin="5">
         <li>
           <a href='' ng-click='showImage($index)'>
-            <div style=" width:210px;height:100px;background : url({{s.imageSrc}}) no-repeat 50% 50%;background-size: 100% auto;">
+            <div style=" width:210px;height:150px;background : url({{s.imageSrc}}) no-repeat 50% 10%;background-size: 100% auto;">
             </div>
           </a>
         </li>
       </flex-slider>
 
+      <div class="panel panel-default">
+          <div class="panel-body">
       <table class="table">
-        <caption>{{a.datetime | date:"fullDate"}}</caption>
+        <caption>Mediciones</caption>
         <thead>
           <tr>
             <th>#</th>
@@ -48,14 +53,14 @@
           </tr>
         </tbody>
       </table>
-      <div class="panel panel-default">
+      </div>
+      </div>
+
+
+      <div class="panel panel-default" style='margin-top:30px;'>
         <div class="panel-heading"><strong>{{commentsLength()}}</strong></div>
 
-
         <div class="panel-body">
-
-
-
 
           <div class="media" ng-repeat='c in comments'>
             <div class="media-left">

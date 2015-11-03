@@ -36,7 +36,6 @@ angular.module('saludWebApp')
         $scope.notifications = response.resource;
         $.each($scope.notifications,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));
-          n.name = n.description.split(' ha')[0];//Debe implementarse en el backend flojos!
           });
         });
 

@@ -103,11 +103,7 @@ angular.module('saludWebApp')
         $scope.afs = []; //analysis files list
         var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
           $.each(q_af.resource,function(i,af){
-                af.imageSrc = (
-                    global.getApiUrlAuth(token+':@')+
-                    '/analysis_files/'+
-                    af.id+
-                    '/thumbnail');
+                af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
                 $scope.afs.push(af);
             });
           });

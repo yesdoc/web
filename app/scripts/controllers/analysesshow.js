@@ -15,6 +15,7 @@ angular.module('saludWebApp')
         $routeParams,
         AnalysisFile,
         PermissionTypes,
+        Permissions,
         User,
         AnalysisPermissions,
         AnalysisComments,
@@ -59,6 +60,15 @@ angular.module('saludWebApp')
             $scope.apply();
             }
         });
+      });
+    }
+
+    $scope.removePerms = function(usuario_perms){
+      Permissions.remove({id:usuario_perms.id},function(){
+        alert('removido');
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
       });
     }
 

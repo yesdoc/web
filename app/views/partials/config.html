@@ -44,6 +44,11 @@
               <td>{{p.user.username}}</td>
               <td>{{p.user.profile.first_name}} {{p.profile.last_name}}</td>
               <td>{{p.permission_type.name}}</td>
+              <td>
+                <a class='text-danger' title='Quitar Permisos' style='padding:3px;margin-top:-5px;' href='' ng-click='removePerms(p)'>
+                  <span class='fa fa-remove'></span>
+                </a>
+              </td>
             </tr>
           </tbody>
         </table>

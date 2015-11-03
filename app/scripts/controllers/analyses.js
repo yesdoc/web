@@ -37,11 +37,7 @@ angular.module('saludWebApp')
                 a.af_id = af.id 
               });
               if ( a.af_id ){
-                a.imageSrc = (
-                    global.getApiUrlAuth(token+':@')+
-                    '/analysis_files/'+
-                    a.af_id+
-                    '/thumbnail');
+                a.imageSrc = ( global.getApiUrl() + '/analysis_files/' + a.af_id + '/thumbnail_by_query?token='+token);
               }
               else{
                 a.imageSrc = 'images/escul.jpeg';

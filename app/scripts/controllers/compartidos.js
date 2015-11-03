@@ -11,8 +11,10 @@ angular.module('saludWebApp')
   .controller('CompartidosCtrl', function (
       $scope,
       $location ,
+      $routeParams,
       Auth,
-      MyAnalyses,
+      MySharedAnalyses,
+      MySharedProfiles,
       Analysis,
       AnalysisFile,
       fileReader,
@@ -25,9 +27,19 @@ angular.module('saludWebApp')
 
       Auth.getAuth(function(token){
 
-        var q_a = MyAnalyses.query(function(){
+        $scope.analyses = [];
 
-          $scope.analyses = q_a.resource;
+        MySharedProfiles.query(function(response){
+          $scope.profiles = response.resource;
+          });
+
+        $scope.load = function(profile_id){
+
+        var profile_id = profile_id;
+
+        MySharedAnalyses.get({profile : profile_id},function(response){
+
+          $scope.analyses = response.resource;
 
 
           $.each($scope.analyses,function(i,a){
@@ -48,7 +60,15 @@ angular.module('saludWebApp')
 
           });
 
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
+
         });
+
+        }
+
+
       });
     });
   });

@@ -33,50 +33,6 @@
 
                 <ul class="nav" id="accordion" role="tablist" aria-multiselectable="true">
  
-                    <!--Mensajes y Notificaciones -->
-
-                    <li role="tab" id="headingTwo" ng-show="is_logged">
-                       <a role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#messages"
-                            aria-controls="messages">
-                            <span><p><i class="fa fa-envelope"></i>
-                                <span ng-show="msgs.length>0" class="notification">
-                                    {{msgs.length}}</span>
-                                <b class="caret"></b>
-                            </p></span> 
-                        </a>
-                        <div id="messages" class="panel-collapse collapse "
-                            role="tabpanel" aria-labelledby="headingTwo">
-                            <div class="panel-body">
-                                <ul>
-                                    <li ng-repeat="m in msgs"><a href="#"
-                                        ng-click="$hide()">{{m}}</a></li>
-                                </ul>
-
-                            </div><!-- panel-body-->
-                        </div> <!-- panel-collapse-->
-                    </li>
-                    <li role="tab" id="headingThree" ng-show="is_logged">
-                       <a role="button" data-toggle="collapse"
-                           data-parent="#accordion" href="#notif"
-                            aria-controls="messages">
-                            <span><p><i class="fa fa-globe"></i>
-                                <span ng-show="msgs.length>0" class="notification">
-                                    {{msgs.length}}</span>
-                                <b class="caret"></b>
-                            </p></span> 
-                        </a>
-                        <div id="notif" class="panel-collapse collapse "
-                            role="tabpanel" aria-labelledby="headingThree">
-                            <div class="panel-body">
-                                <ul>
-                                    <li ng-repeat="n in notifications"><a href="#"
-                                        ng-click="$hide()">Notificación {{$index+1}}</a></li>
-                                </ul>
-
-                            </div><!-- panel-body-->
-                        </div> <!-- panel-collapse-->
-                    </li>
                     <!-- Mi cuenta -->
                     <li role="tab" id="headingOne">
                         <a role="button" data-toggle="collapse"

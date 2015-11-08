@@ -10,62 +10,40 @@
             </div>
 
             <div class="aside-body"  >
-
                 <div class='aside-nav' style='opacity:1;'>
-                <!-- Botoneras -->
-                <ul class="nav">
-                    <li data-match-route="/analyses" class="active">
-                        <a href="#/analyses" ng-click="$hide()" >
-                            <span><p><i class="fa fa-folder-open-o"></i>
-                                Análisis</p></span>
-                        </a></li>           
-                    <li  data-match-route="/home">
-                        <a href="#/home" ng-show='is_logged' ng-click="$hide()" >
-                            <span><p><i class="fa fa-bar-chart"></i>
-                                Histórico</p></span>
-                        </a></li>
-                    <li data-match-route="/profileMeasurements">
-                        <a href="#/profileMeasurements" ng-show='is_logged' ng-click="$hide()" >
-                            <span><p><i class="fa fa-file-text-o"></i>
-                                Resumen</p></span>
-                        </a></li>
-                </ul> 
+                    
+                    <!-- Botoneras -->
+                    <ng-include src="'views/partials/navbar_options.html'"></ng-include>
 
-                <ul class="nav" id="accordion" role="tablist" aria-multiselectable="true">
- 
-                    <!-- Mi cuenta -->
-                    <li role="tab" id="headingOne">
-                        <a role="button" data-toggle="collapse"
-                            data-parent="#accordion" href="#collapseOne"
-                            aria-controls="collapseOne">
-                            <span><p> <i class="fa fa-user"></i>
-                                Mi cuenta
-                                <b class="caret"></b>
-                            </p><span>
-                        </a>
-                        <div id="collapseOne" class="panel-collapse collapse "
-                            role="tabpanel" aria-labelledby="headingOne">
-                            <div class="panel-body">
+                    <ul class="nav" id="accordion" role="tablist" aria-multiselectable="true">
+                        <!-- Mi cuenta -->
+                        <li role="tab" id="headingOne">
+                            <a role="button" data-toggle="collapse"
+                                data-parent="#accordion" href="#collapseOne"
+                                aria-controls="collapseOne">
+                                <span><p> <i class="fa fa-user"></i>
+                                    Mi cuenta
+                                    <b class="caret"></b>
+                                </p><span>
+                            </a>
+                            <div id="collapseOne" class="panel-collapse collapse "
+                                role="tabpanel" aria-labelledby="headingOne">
+                                <div class="panel-body">
 
-                                <ul ng-if='is_logged' >
-                                    <li><a href="#/myProfileInformation" ng-click="$hide()"><i class='fa fa-user'></i> Información Personal</a></li>
-                                    <li><a href="#/dropbox-auth-start" ng-click="$hide()"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#/logoff" ng-click="$hide()"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
-                                </ul>
-                                <ul ng-if='!is_logged' >
-                                    <li><a href="#/login" ng-click="$hide()"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
-                                </ul>
+                                    <ul ng-if='is_logged' >
+                                        <li><a href="#/myProfileInformation" ng-click="$hide()"><i class='fa fa-user'></i> Información Personal</a></li>
+                                        <li><a href="#/dropbox-auth-start" ng-click="$hide()"><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#/logoff" ng-click="$hide()"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
+                                    </ul>
+                                    <ul ng-if='!is_logged' >
+                                        <li><a href="#/login" ng-click="$hide()"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
+                                    </ul>
 
-                            </div><!-- panel-body-->
-                        </div> <!-- panel-collapse-->
-                    </li>
-
-
-
-               </ul>
-
-
+                                </div><!-- panel-body-->
+                            </div> <!-- panel-collapse-->
+                        </li>
+                    </ul>
 
             </div><!-- ./class="aside-nav"-->
             </div><!-- ./class="aside-body"-->

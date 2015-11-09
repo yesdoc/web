@@ -28,6 +28,7 @@ angular.module('saludWebApp')
 
         /**************** Datos a mostrar en el formulario ***************/
 
+
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(
             function(){
@@ -52,6 +53,8 @@ angular.module('saludWebApp')
         /**************** Objeto Measurement ***************/
 
         $scope.measurement = new MyMeasurements();
+
+        $scope.measurement.value = 0; 
 
         $scope.measurement.datetime = new Date();
 

@@ -52,7 +52,8 @@ angular.module('saludWebApp')
 
     $scope.addConfig = function(){
       $.each($scope.users,function(i,u){
-        if (u.username.toLowerCase() == $scope.perm.user.toLowerCase()){
+        
+        if (String(u.username).toLowerCase() == String($scope.perm.user).toLowerCase()){
           $scope.perm.user_id = u.id;
           }
         });

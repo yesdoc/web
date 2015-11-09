@@ -37,7 +37,7 @@
     <label for = "birthday" class = "col-sm-2 control-label"> Fecha de nacimiento: </label>
     <div class = "col-sm-10">
         <input autocomplete="off" name = "birthday" size = "10" class = "form-control" ng-model = "profile.birthday" data-autoclose = "1"
-        data-timezone = 'UTC' placeholder = "¿Cuándo nació?" bs-datepicker data-date-format = "yyyy-MM-dd" type = "text"required>
+        data-timezone = 'UTC' placeholder = "¿Cuándo nació?" bs-datepicker data-date-format = "dd-MM-yyyy" type = "text"required>
         <p autocomplete="off" ng-show = "profileForm.birthday.$invalid && profileForm.birthday.$touched"
         class = "help-block"> Debe ingresar su fecha de nacimiento. </p>
     </div>
@@ -73,7 +73,7 @@
     <label for = "password" class = "col-sm-2 control-label"> Contraseña: </label>
     <div class = "col-sm-10">
          <input name = "password" size = "10" class = "form-control" ng-model = "user.password" data-autoclose = "1"
-        data-timezone = 'UTC' placeholder = "contraseña" type = "password"required/>
+        placeholder = "contraseña" type = "password" required/>
         <p ng-show = "profileForm.password.$invalid && profileForm.password.$touched"
         class = "help-block"> Debe ingresar una contraseña. </p>
     </div>

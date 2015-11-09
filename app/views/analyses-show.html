@@ -4,7 +4,9 @@
         <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
         &nbsp; {{a.description}}  <small class='text-right'>{{a.datetime | date:'fullDate'}}</small>
         <div class="pull-right">
-      <a href='' ng-click='showConfig()' class='btn btn-default' style='float:right;'> <i class="glyphicon glyphicon-lock" style='marging-right:10px;'></i></a>
+          <a href='' ng-click='showConfig()' class='btn btn-default' style='float:right;'>
+            <i class="fa fa-share-alt fa-lg"></i>
+          </a>
         </div>
       </h4> 
     </div>
@@ -47,8 +49,14 @@
                 <td><i class='fa fa-file-image-o fa-lg'></i></td>
                 <td>{{af.description}}</td>
                 <td>
-                  <i ng-show='af.is_encrypted' title='Archivo encriptado' style='margin-left:10px;' class='fa fa-check-square-o fa-lg'></i>
-                  <i ng-show='!af.is_encrypted' title='Archivo NO encriptado' style='margin-left:10px;' class='fa fa-square-o fa-lg'></i>
+                  <h5 style='margin:0px;' >
+                  <span ng-show='af.is_encrypted' title='Archivo encriptado' class="label label-success" style='padding-top:0.6em;padding-bottom:0.6em;'>
+                    <i class='fa fa-lock fa-lg'></i>
+                  </span>
+                  <span ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="label label-warning" style='padding-top:0.6em;padding-bottom:0.6em;'>
+                    <i class='fa fa-unlock fa-lg'></i>
+                  </span>
+                  </h5>
                 </td>
                 <td>
                   <a target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>

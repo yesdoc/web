@@ -13,7 +13,7 @@
         <a href="#/profileMeasurements" ng-show='(is_logged && !is_health_professional)' ng-click="$hide()">
             <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
         </a></li>
-    <li data-match-route="/compartidos">
+    <li  ng-class="{active:('compartidos' | routeSegmentStartsWith)}" data-match-route="/compartidos">
         <a href="#/compartidos/0" ng-show='is_logged' ng-click="$hide()">
             <span><p><i class="fa fa-share"></i>Compartidos</p></span>
         </a></li>

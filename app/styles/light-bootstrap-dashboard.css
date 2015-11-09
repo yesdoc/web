@@ -294,6 +294,15 @@ input:focus {
   opacity: 1;
   background: rgba(255, 255, 255, 0.23);
 }
+.aside-nav .nav li:hover > a {
+  background: rgba(255, 255, 255, 0.13);
+  opacity: 1;
+}
+.aside-nav .nav li.active > a {
+  color: #FFFFFF;
+  opacity: 1;
+  background: rgba(255, 255, 255, 0.23);
+}
 .sidebar .nav p {
   margin: 0;
   line-height: 39px;

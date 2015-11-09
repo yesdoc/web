@@ -160,42 +160,44 @@ angular
   }).factory('myHttpInterceptor', function($q) {
     var rtime;
     var timeout = false;
-    var delta = 500;
-    var show = true;
+    var delta = 1000;
+    var request_finish = true;
 
-    function loadSpinner(showIt){
+    function loadSpinner(){
+      //rtime: last request time
       rtime = new Date();
-      if (timeout === false) {
-        $('.spinner').show();
-        timeout = true;
-        setTimeout(spinnerEnd, delta);
-      }
+      $('.spinner').show();
+      setTimeout(spinnerEnd, delta);
+      request_finish = false;
     }
 
     function spinnerEnd() {
       if (new Date() - rtime < delta) {
         setTimeout(spinnerEnd, delta);
       } else {
-        $('.spinner').hide();
-        timeout = false;
+        if(request_finish){
+          $('.spinner').hide();
+        }else{
+          setTimeout(spinnerEnd, delta);
+        }
       }               
     }
 
   return {
     'request': function(config) {
-      loadSpinner(true);
+      loadSpinner();
       return config;
     },
     'requestError': function(rejection) {
-      loadSpinner(true);
+      loadSpinner();
       return $q.reject(rejection);
     },
     'response': function(response) {
-      loadSpinner(false);
+      request_finish = true;
       return response;
     },
     'responseError': function(rejection) {
-      loadSpinner(false);
+      request_finish = true;
       return $q.reject(rejection);
     }
   };

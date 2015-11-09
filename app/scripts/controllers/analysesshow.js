@@ -27,9 +27,13 @@ angular.module('saludWebApp')
 
     Auth.isLogged(function(){
 
+    var analysis_id = $routeParams.id;
+
     function getPermissionTypes(){
+
       $scope.permissions_type = [];
-      $scope.perm.analysis_id = $routeParams.id
+      $scope.perm.analysis_id = analysis_id;
+
       PermissionTypes.query(function(response){
         var perms = response.resource;
         $.each(perms,function(i,p){
@@ -54,6 +58,7 @@ angular.module('saludWebApp')
         });
       AnalysisPermissions.save({analysis_id:$scope.perm.analysis_id},$scope.perm,function(){
         $scope.perm={};
+        $scope.perm.analysis_id = analysis_id;
         AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
           $scope.permissions = response.resource;
           if(!$scope.$$phase) {

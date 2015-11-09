@@ -405,12 +405,19 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   padding: 0;
   z-index:1;
 }
-.aside .aside-dialog .aside-body .nav a, p{
+.aside .aside-dialog .aside-body .nav a{
   color: #FFFFFF;
   font-size:16px;
   text-transform: uppercase;
   font-weight: 600 !important;
 }
+.aside .aside-dialog .aside-body .nav  p{
+  color: #FFFFFF;
+  font-size:16px;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+
 .aside .aside-dialog .aside-body .nav i{
     margin-right: 15px;
     line-height: 30px;

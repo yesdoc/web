@@ -58,6 +58,7 @@ angular
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
       when('/notifications','notifications').
+      when('/collapseOne','collapseOne').
       when('/compartidos/:id','compartidos').
       segment('login',{
         templateUrl: 'views/login.html',

@@ -53,7 +53,7 @@ angular.module('saludWebApp')
           }
         });
       AnalysisPermissions.save({analysis_id:$scope.perm.analysis_id},$scope.perm,function(){
-        $scope.perm=undefined;
+        $scope.perm={};
         AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
           $scope.permissions = response.resource;
           if(!$scope.$$phase) {
@@ -83,7 +83,7 @@ angular.module('saludWebApp')
         AnalysisPermissions.get({analysis_id : $routeParams.id},function(response){
           $scope.permissions = response.resource;
         });
-        $scope.perm=new AnalysisPermissions();
+        $scope.perm = new AnalysisPermissions();
         $scope.perm.user=''; 
         User.query(function(response){
           $scope.users = response.resource;

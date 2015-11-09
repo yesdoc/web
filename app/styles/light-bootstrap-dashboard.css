@@ -3362,6 +3362,10 @@ body > .navbar-collapse[data-color="green"]:after {
   .hidden-lg{
     display:none !important;
   }
+
+ .aside-backdrop.am-fade{
+    display:none !important;
+ }
 }
 @media (max-width: 991px) {
   .table-responsive {

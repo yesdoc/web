@@ -211,7 +211,7 @@ body {
   }
 }
 
-/*Botonera interna de navegación */
+/*Botonera de selección de gráfica*/
 
 
 .home-container{
@@ -356,7 +356,6 @@ margin:4px;
 }
 
 
-
 /* when hiding the picture */
 .ng-hide-add         { animation:0.5s lightSpeedOut ease; }
 
@@ -365,3 +364,81 @@ margin:4px;
 
 /*Its the glory!!! fix dropdown typehead error on modal*/
 input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }
+
+/* Vertical Navbar */
+.sidebar .sidebar-background{
+  background-image: url("/images/pc3.png");
+}
+/* Vertical Navbar for mobile*/
+/*
+ * Aside element
+ */
+.aside {
+  position: fixed;
+  display:block;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  background-size: cover;
+  background-position: center center;
+  background-image: url("/images/pc3.png");
+}
+/*Permite que la transparencia no afecte a las letras y al logo*/
+.aside, .aside-dialog, .aside-content, .aside-transparente{
+  height:100%;
+  position:absolute;
+}
+.aside .right {
+  right: 0;
+  left: auto;
+}
+/* cabecera de la botonera*/
+.aside .aside-dialog .aside-header {
+  padding: 0px 15px;
+  position: relative;
+  background: none;
+  z-index:1;
+}
+/* cuerpo de la botonera*/
+.aside .aside-dialog .aside-body {
+  position: relative;
+  padding: 0;
+  z-index:1;
+}
+.aside .aside-dialog .aside-body .nav a{
+  color: #FFFFFF;
+  font-size:16px;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+.aside .aside-dialog .aside-body .nav  p{
+  color: #FFFFFF;
+  font-size:16px;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+}
+
+.aside .aside-dialog .aside-body .nav i{
+    margin-right: 15px;
+    line-height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 28px;
+}
+ .aside-transparent{
+  width: 250px;
+  height:100%;
+  background: #6DC030;
+  background: -moz-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87CB16), color-stop(100%, #6dc030));
+  background: -webkit-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
+  background: -o-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
+  background: -ms-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
+  background: linear-gradient(to bottom, #6DC030 0%, #5CB85C 100%);
+  opacity: .77;
+}
+/* Accordion*/
+.panel-body ul{
+    list-style:none;
+}
+

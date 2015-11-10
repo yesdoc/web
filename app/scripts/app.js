@@ -58,6 +58,7 @@ angular
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
       when('/notifications','notifications').
+      when('/collapseOne','collapseOne').
       when('/compartidos/:id','compartidos').
       segment('login',{
         templateUrl: 'views/login.html',
@@ -145,11 +146,15 @@ angular
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
 })
-  .config(function($modalProvider,$dropdownProvider) {
+  .config(function($modalProvider,$dropdownProvider, $asideProvider) {
     angular.extend($modalProvider.defaults, {
       html: true
     });
     angular.extend($dropdownProvider.defaults, {
       html: true
     });
+    angular.extend($asideProvider.defaults, {
+      container: 'body',
+      html: true
+      });
 });

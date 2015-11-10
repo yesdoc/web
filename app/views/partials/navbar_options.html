@@ -1,0 +1,21 @@
+<ul class="nav" ng-show="is_logged">
+    <li ng-class="{active: ('analyses' | routeSegmentStartsWith)}"data-match-route="/analyses">
+        <a href="#/analyses" ng-show='(is_logged && !is_health_professional)' ng-click="$hide()">
+            <span><p><i class="fa fa-folder-open-o"></i>
+            Análisis</p></span>
+        </a></li>           
+    <li  ng-class="{active:('home' | routeSegmentStartsWith) }"data-match-route="/home">
+        <a href="#/home" ng-show='(is_logged && !is_health_professional)' ng-click="$hide()">
+            <span><p><i class="fa fa-bar-chart"></i>
+            Histórico</p></span>
+        </a></li>
+    <li ng-class="{active:('profileMeasurements' | routeSegmentStartsWith)}" data-match-route="/profileMeasurements">
+        <a href="#/profileMeasurements" ng-show='(is_logged && !is_health_professional)' ng-click="$hide()">
+            <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
+        </a></li>
+    <li  ng-class="{active:('compartidos' | routeSegmentStartsWith)}" data-match-route="/compartidos">
+        <a href="#/compartidos/0" ng-show='is_logged' ng-click="$hide()">
+            <span><p><i class="fa fa-share"></i>Compartidos</p></span>
+        </a></li>
+</ul>
+

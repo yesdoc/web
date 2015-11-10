@@ -9,8 +9,9 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/nvd3/build/nv.d3.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="bower_components/bootstrap-additions/dist/bootstrap-additions.css" />
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <link rel="stylesheet" href="bower_components/flexslider/flexslider.css" />
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
@@ -37,50 +38,89 @@
     <!-- Navbar vertical-->
     <div class="sidebar" data-color="green" data-image="images/pc3.png" ng-controller='NavCtrl'>    
         <div class="sidebar-wrapper" ng-cloak>
-            <div class="imglogo logo" >
-                    <img src="images/logoSticker.png"></img>
-            </div>
-            <ul class="nav" ng-show="is_logged">
-                <li ng-class="{active: ('analyses' | routeSegmentStartsWith)}"data-match-route="/analyses">
-                <a href="#/analyses" ng-show='(is_logged && !is_health_professional)'>
-                    <span><p><i class="fa fa-folder-open-o"></i>
-                        Análisis</p></span>
-                </a></li>           
-                <li  ng-class="{active:('home' | routeSegmentStartsWith) }"data-match-route="/home">
-                <a href="#/home" ng-show='(is_logged && !is_health_professional)'>
-                    <span><p><i class="fa fa-bar-chart"></i>
-                        Histórico</p></span>
-                </a></li>
-                <li ng-class="{active:('profileMeasurements' | routeSegmentStartsWith)}" data-match-route="/profileMeasurements">
-                <a href="#/profileMeasurements" ng-show='(is_logged && !is_health_professional)'>
-                    <span><p><i class="fa fa-file-text-o"></i>Resumen</p></span>
-                </a></li>
-                <li data-match-route="/compartidos">
-                <a href="#/compartidos/0" ng-show='is_logged'>
-                    <span><p><i class="fa fa-share-alt"></i>Compartidos</p></span>
-                </a></li>
-            </ul> 
-        </div> <!-- class= "sidebar-wrapper"-->
-    </div><!-- class="sidebar" -->
-
-    <!-- Navbar horizontal-->
+           
+            <a href="#/myProfileInformation">
+                <div class="imglogo logo" >
+                    <img src="/images/logoSticker.png"></img>
+                </div>
+            </a>   
+            <ng-include src="'views/partials/navbar_options.html'"></ng-include>
+        </div> <!--sedebar-wrapper -->
+       <div class="sidebar-background"></div>
+    </div> <!-- class="sidebar" -->
+ 
     <div class="main-panel">
         <nav class="navbar navbar-default navbar-fixed"> 
         <div class="container-fluid" >
-            <div class="navbar-header" style='width:100%;'>
-                <button type="button" class="navbar-toggle " data-toggle="collapse"
-                    data-target="#navigation-example-2">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <div class="navbar-brand hidden-lg" href="#">
-                    <img src="images/yesDoc2.png"></img>
-            </div><!-- /.navbar-header -->
+    
+            <!-- Mobile-->
+            <div class="navbar-header" data-color="green" style='width:100%;'>
+                
+                <div template-url="views/partials/vertical_navbar.html" bs-aside="aside"  
+                    data-container="body" ng-controller="NavCtrl"> 
+                    <button type="button" class="navbar-toggle " data-toggle="collapse"
+                        data-target="#navigation-example-2">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div> <!--/.template -->
+
+                <!-- Navbar horizontal mobile-->
+                <div class="navbar-brand hidden-lg" ng-controller='NavCtrl'>
+
+                    <ul class="nav  nav-pills" ng-cloak> 
+                        <li><a><img src="images/yesDoc2.png"></img></a></li>
+                        <!--
+                        <li ng-show='is_logged'>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-envelope"></i>
+                                <b class="caret"></b>
+                                <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                            <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
+                            </ul>
+                        </li>
+                        -->
+                        <li ng-show="is_logged" class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-globe"></i>
+                                <b class="caret"></b>
+                                <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
+                            </a>
+                            <ul class="dropdown-menu" style='width:30vw;'>
+                                <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
+                                <li ng-repeat="n in notifications">
+                                <div class="media">
+                                    <a href="" ng-click='redirect(n)' title='{{n.description}}'>
+                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                            <div class="media-heading">
+                                                <p>{{n.title}}</p>
+                                            </div>
+                                            <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                        </div>
+                                    </a>
+                                </div>
+                                </li>
+                                <li role="separator" class="divider" style='margin:3px;'></li>
+                                <li class='text-center'>
+                                <a ng-href='#/notifications'> Mostrar notificaciones antiguas</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div> <!-- /.navbar-brand hidden-lg -->
+
+           </div><!-- /.navbar-header -->
+
             <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
+                
+                <!-- Navbar horizontal desktop-->
                 <ul class="nav navbar-nav navbar-left" ng-show="is_logged" ng-cloak>
-                  <!--
+                    <!--
                     <li ng-show='is_logged'>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
@@ -91,7 +131,7 @@
                           <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
                         </ul>
                     </li>
-                  -->
+                    -->
                     <li ng-show="is_logged" class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
@@ -99,26 +139,27 @@
                             <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
                         </a>
                         <ul class="dropdown-menu" style='width:30vw;'>
-                        <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
-                          <li ng-repeat="n in notifications">
+                            <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
+                            <li ng-repeat="n in notifications">
                             <div class="media">
-                              <a href="" ng-click='redirect(n)' title='{{n.description}}'>
-                                <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                  <div class="media-heading">
-                                    <p>{{n.title}}</p>
-                                  </div>
-                                    <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
-                                </div>
-                              </a>
+                                <a href="" ng-click='redirect(n)' title='{{n.description}}'>
+                                    <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                        <div class="media-heading">
+                                            <p>{{n.title}}</p>
+                                        </div>
+                                        <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                    </div>
+                                </a>
                             </div>
-                          </li>
-                          <li role="separator" class="divider" style='margin:3px;'></li>
-                          <li class='text-center'>
+                            </li>
+                            <li role="separator" class="divider" style='margin:3px;'></li>
+                            <li class='text-center'>
                             <a ng-href='#/notifications'> Mostrar notificaciones antiguas</a>
-                          </li>
+                            </li>
                         </ul>
                     </li>
                 </ul>
+                <!-- Navbar vertical desktop-->
                 <ul class="nav navbar-nav navbar-right" >
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" ng-cloak>
@@ -183,18 +224,18 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/d3/d3.js"></script>
     <script src="bower_components/nvd3/build/nv.d3.js"></script>
     <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="bower_components/angular-route-segment/build/angular-route-segment.js"></script>
     <script src="bower_components/flexslider/jquery.flexslider.js"></script>
     <script src="bower_components/angular-flexslider/angular-flexslider.js"></script>
@@ -207,7 +248,6 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-        <script src="assets/js/light-bootstrap-dashboard.js"></script>
         <!--   Core JS Files   -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/about.js"></script>

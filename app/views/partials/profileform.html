@@ -4,9 +4,9 @@
 
     <div class = "col-sm-10" >
         <input name = "username" type = "text" ng-model = "user.username" class = "form-control" 
-            id = "username" placeholder = "Ingrese un nombre con el que desee identificarse" ng-pattern="/^[a-zA-Z]$/" required >
+            id = "username" placeholder = "Ingrese un nombre con el que desee identificarse" required >
         <p ng-show = "profileForm.username.$invalid && profileForm.username.$touched"
-            class = "help-block" > Debe ingresar un nombre de usuario y solo debe contener caracteres alfabéticos. </p>
+            class = "help-block" > Debe ingresar un nombre de usuario. </p>
         <p id='username_msg' class = "help-block"></p>
     </div>
 
@@ -18,7 +18,7 @@
 
     <div class="col-sm-10">
         <input name = "first_name" type = "text" ng-model = "profile.first_name" class = "form-control" 
-            id = "first_name" placeholder = "¿Cuál es su nombre?" ng-pattern="/^[a-zA-Z]$/" required >
+            id = "first_name" placeholder = "¿Cuál es su nombre?" ng-pattern="/^([a-z ñáéíóú]{1,60})$/i" required >
         <p ng-show = "profileForm.first_name.$invalid && profileForm.first_name.$touched"
             class = "help-block"> Debe ingresar su nombre y solo debe contener caracteres alfabéticos. </p>
         <p id='first_name_msg' class = "help-block"></p>
@@ -32,7 +32,7 @@
 
     <div class = "col-sm-10">
         <input name = "last_name" type = "text" ng-model = "profile.last_name" class = "form-control"
-            id = "last_name" placeholder = "¿Cuál es su apellido?" ng-pattern="/^[a-zA-Z]$/" required >
+            id = "last_name" placeholder = "¿Cuál es su apellido?" ng-pattern="/^([a-z ñáéíóú]{1,60})$/i" required >
         <p ng-show = "profileForm.last_name.$invalid && profileForm.last_name.$touched"
             class = "help-block"> Debe ingresar su apellido y solo debe contener caracteres alfabéticos. </p>
         <p id='last_name_msg' class = "help-block"></p>

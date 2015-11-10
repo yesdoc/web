@@ -1863,19 +1863,22 @@ body > .navbar-collapse[data-color="green"]:after {
 .card .category,
 .card label {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 600;
   color: #9A9A9A;
   margin-bottom: 0px;
 }
+
 .card .category i,
 .card label i {
   font-size: 16px;
 }
+
 .card label {
   font-size: 12px;
   margin-bottom: 5px;
   text-transform: uppercase;
 }
+
 .card .title {
   margin: 0;
   color: #333333;

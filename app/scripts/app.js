@@ -157,4 +157,50 @@ angular
       container: 'body',
       html: true
       });
-});
+  }).factory('myHttpInterceptor', function($q) {
+    var rtime;
+    var timeout = false;
+    var delta = 1000;
+    var request_finish = true;
+
+    function loadSpinner(){
+      //rtime: last request time
+      rtime = new Date();
+      $('.spinner').show();
+      setTimeout(spinnerEnd, delta);
+      request_finish = false;
+    }
+
+    function spinnerEnd() {
+      if (new Date() - rtime < delta) {
+        setTimeout(spinnerEnd, delta);
+      } else {
+        if(request_finish){
+          $('.spinner').hide();
+        }else{
+          setTimeout(spinnerEnd, delta);
+        }
+      }               
+    }
+
+  return {
+    'request': function(config) {
+      loadSpinner();
+      return config;
+    },
+    'requestError': function(rejection) {
+      loadSpinner();
+      return $q.reject(rejection);
+    },
+    'response': function(response) {
+      request_finish = true;
+      return response;
+    },
+    'responseError': function(rejection) {
+      request_finish = true;
+      return $q.reject(rejection);
+    }
+  };
+  }).config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('myHttpInterceptor');
+  }]);

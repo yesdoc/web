@@ -88,7 +88,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-globe"></i>
                                 <b class="caret"></b>
-                                <span ng-show="notifications.length>0" class="notification">{{notifications.length}}</span>
+                                <span ng-show="notifications.length>0" class="notification" ng-bind="notifications.length"></span>
                             </a>
                             <ul class="dropdown-menu" style='width:30vw;'>
                                 <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>

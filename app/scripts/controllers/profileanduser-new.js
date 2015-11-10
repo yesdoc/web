@@ -34,13 +34,13 @@ angular.module('saludWebApp')
             });
 
           $scope.addProfile = function(){
+              $('input').attr('disabled', true);
+              $('select').attr('disabled', true);
               // Guardo el perfil y solicitó el id para guardarlo en el usuario.
-              $scope.profile.$save(
-                  function(profile_data){
+              Profile.save($scope.profile,function(profile_data){
                       $scope.user.profile_id = profile_data.resource.id;
                       // Guardo el usuario
-                      $scope.user.$save(function(){
-                          alert("Saved");
+                      User.save($scope.user,function(){
                           $window.location = '#/login';
                           });
                       }); // /.$scope.profile.$save

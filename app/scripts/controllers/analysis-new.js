@@ -234,6 +234,13 @@ angular.module('saludWebApp')
 
         $scope.measurement.datetime = $scope.analysis.datetime;
 
+        // Seteamos los datos para el slider, porqué sinó no responde.
+        $scope.selected_unit={};
+        $scope.selected_unit.disabled=true;
+        $scope.selected_unit.value=0;
+        $scope.selected_unit.min=0;
+        $scope.selected_unit.max=100;
+
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(function(){
           $scope.type = type.resource;
@@ -285,6 +292,35 @@ angular.module('saludWebApp')
 
       $scope.submitMeasurement = onSubmit || addMeasurement;
 
+      }
+
+      $scope.updateMeasurementValue = function(){
+        $scope.measurement.value = $scope.selected_unit.value;
+      }
+
+      $scope.updateSelectedUnitValue = function(){
+        if (isNaN($scope.measurement.value)){
+          return;
+        }
+        if($scope.measurement.value > $scope.selected_unit.max){
+          $scope.selected_unit.value = $scope.selected_unit.max;
+          return;
+        }
+        if($scope.measurement.value < $scope.selected_unit.min){
+          $scope.selected_unit.value = $scope.selected_unit.min;
+          return;
+        }
+        $scope.selected_unit.value = $scope.measurement.value;
+      }
+
+      $scope.getValidation = function(){
+        $.each($scope.unit,function(i,u){
+          if (u.id == $scope.measurement.measurement_unit_id){
+            $scope.selected_unit.min = u.min_value;
+            $scope.selected_unit.max = u.max_value;
+            $scope.selected_unit.disabled=false;
+          }
+        });
       }
 
 

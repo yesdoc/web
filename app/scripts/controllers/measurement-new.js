@@ -25,6 +25,7 @@ angular.module('saludWebApp')
         
         // Seteamos los datos para el slider, porqué sinó no responde.
         $scope.selected_unit={};
+        $scope.selected_unit.disabled=true;
         $scope.selected_unit.value=0;
         $scope.selected_unit.min=0;
         $scope.selected_unit.max=100;
@@ -82,6 +83,7 @@ angular.module('saludWebApp')
             if (u.id == $scope.measurement.measurement_unit_id){
               $scope.selected_unit.min = u.min_value;
               $scope.selected_unit.max = u.max_value;
+              $scope.selected_unit.disabled=false;
             }
             });
           }

@@ -358,9 +358,9 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   text-transform: uppercase;
   font-weight: 600 !important;
 }
-
+/*Mobile Vertical Navbar */
 .aside .aside-dialog .aside-body .nav i{
-    margin-right: 15px;
+    margin-right: 15px; 
     line-height: 30px;
     width: 30px;
     text-align: center;
@@ -369,13 +369,14 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
  .aside-transparent{
   width: 250px;
   height:100%;
-  background: #6DC030;
-  background: -moz-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87CB16), color-stop(100%, #6dc030));
-  background: -webkit-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -o-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -ms-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: linear-gradient(to bottom, #6DC030 0%, #5CB85C 100%);
+  background: #307021; /*Antes: #87CB16*/
+  background: -moz-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -webkit-gradient(linear, left top, left bottom,
+  color-stop(0%, #87CB16), color-stop(100%, #307021));
+  background: -webkit-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -o-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -ms-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: linear-gradient(to bottom, #307021 0%, #5CB85C 100%);
   opacity: .77;
 }
 /* Accordion*/
@@ -396,5 +397,5 @@ color: #FFFFFF;
   background-color: #2E6DA4;
 }
 .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
-  background-color: #3C83C1;
+  background-color: #2E6DA4;
 }

@@ -22,6 +22,12 @@ angular.module('saludWebApp')
       MeasurementSource, 
       $routeParams, 
       $filter){
+        
+        // Seteamos los datos para el slider, porqué sinó no responde.
+        $scope.selected_unit={};
+        $scope.selected_unit.value=0;
+        $scope.selected_unit.min=0;
+        $scope.selected_unit.max=100;
 
         // Validamos si el usuario está Logueado
         Auth.isLogged(function(){
@@ -47,8 +53,34 @@ angular.module('saludWebApp')
                   {"id_type" : $scope.measurement.measurement_type_id},
                   function(){
                       $scope.unit = unit.resource;      
+                      $scope.updateSelectedUnitValue();
                   });                                                                       
             };
+
+        $scope.updateMeasurementValue = function(){
+          $scope.measurement.value = $scope.selected_unit.value;
+        }
+
+        $scope.updateSelectedUnitValue = function(){
+          if($scope.measurement.value > $scope.selected_unit.max){
+            $scope.selected_unit.value = $scope.selected_unit.max;
+            return;
+          }
+          if($scope.measurement.value < $scope.selected_unit.min){
+            $scope.selected_unit.value = $scope.selected_unit.min;
+            return;
+          }
+          $scope.selected_unit.value = $scope.measurement.value;
+        }
+
+        $scope.getValidation = function(){
+          $.each($scope.unit,function(i,u){
+            if (u.id == $scope.measurement.measurement_unit_id){
+              $scope.selected_unit.min = u.min_value;
+              $scope.selected_unit.max = u.max_value;
+            }
+            });
+          }
     
         /**************** Objeto Measurement ***************/
 

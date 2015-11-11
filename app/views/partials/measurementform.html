@@ -10,40 +10,45 @@
         Seleccione un tipo de medición.</p> 
     </div>
 </div>
-<div class="form-group"
-    ng-class="{'has-error':measurementForm.value.$invalid && !measurementForm.value.$pristine}" >
-    <label for="value" class="col-sm-2 control-label">Valor:</label>
-    <div class="col-sm-10">
-        <div class='col-sm-10'>
-          <rzslider rz-slider-model="measurement.value"
-                    rz-slider-floor="0"
-                    rz-slider-ceil="450"></rzslider>
-        </div>
-        <div class='col-sm-2'>
-        <input name="value" type="number" class="form-control" id="value" ng-model="measurement.value"
-        placeholder="Resultado de medición" required>
-        </div>
-        <p ng-show="measurementForm.value.$invalid && measurementForm.value.$touched" class="help-block">
-        Debe ingresar un valor númerico.</p>
-        <p ng-show="measurement.value < 0 || measurement.value > 1000" class="help-block">
-        Alerta! El valor ingresado esta fuera de nuestros parametros normales. Si está seguro que es correcto ignore este mensaje.</p>
-    </div>
-</div>
 
 <div class="form-group form-group-sm"
     ng-class="{'has-error':measurementForm.unit.$invalid && measurementForm.unit.$touched}">
     <label for="unit" class="col-sm-2 control-label">Unidad:</label>
     <div class="col-sm-10">
         <select name="unit" id="unit" class="form-control" 
-            ng-options="u.id as u.name for u in unit" 
+            ng-options="u.id as u.measurement_unit.name for u in unit" 
             ng-model="measurement.measurement_unit_id" 
-            ng-disabled="measurementForm.type.$invalid" required>
+            ng-disabled="measurementForm.type.$invalid" ng-change='getValidation()' required>
         </select>
             <p class="text-muted" ng-show="measurementForm.type.$invalid">Debe seleccionar un tipo de medición</p>
         <p ng-show="measurementForm.unit.$invalid && measurementForm.unit.$touched" class="help-block">
         Seleccione una unidad de medición.</p> 
     </div>
 </div>
+
+<div class="form-group"
+    ng-class="{'has-error':measurementForm.value.$invalid && !measurementForm.value.$pristine}" >
+    <label for="value" class="col-sm-2 control-label">Valor:</label>
+    <div class="col-sm-10">
+        <div class='col-sm-10'>
+          <rzslider rz-slider-model="selected_unit.value"
+                    rz-slider-floor="selected_unit.min"
+                    rz-slider-ceil="selected_unit.max"
+                    rz-slider-on-change="updateMeasurementValue()"
+                    rz-slider-disabled="false">
+          </rzslider>
+        </div>
+        <div class='col-sm-2'>
+        <input name="value" type="number" class="form-control" id="value" ng-model="measurement.value"
+        placeholder="Resultado de medición" ng-change="updateSelectedUnitValue()" required>
+        </div>
+        <p ng-show="measurementForm.value.$invalid && measurementForm.value.$touched" class="help-block">
+        Debe ingresar un valor númerico.</p>
+        <p ng-show="measurement.value < selected_unit.min || measurement.value > selected_unit.max" class="help-block">
+        Alerta! El valor ingresado esta fuera de nuestros parametros normales. Si está seguro que es correcto ignore este mensaje.</p>
+    </div>
+</div>
+
 <div class="form-group form-group-sm"
     ng-class="{'has-error':measurementForm.source.$invalid && measurementForm.source.$touched}">
     <label for="source" class="col-sm-2 control-label">Fuente:</label>

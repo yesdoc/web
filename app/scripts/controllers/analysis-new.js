@@ -284,7 +284,10 @@ angular.module('saludWebApp')
                 e.datetime = $scope.measurement.datetime;
 
                 $scope.mediciones.push(e);
-                $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
+                aMeasurementModal.$promise.then(aMeasurementModal.hide());
+                //$scope.showAMeasurementModal();
+                //$scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
+                
 
               });
             });

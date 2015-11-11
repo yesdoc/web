@@ -300,14 +300,6 @@ angular.module('saludWebApp')
 
       $scope.updateSelectedUnitValue = function(){
         if (isNaN($scope.measurement.value)){
-          if (!$scope.measurement.value) {
-            return;
-          }
-
-          $scope.measurement.value = String($scope.selected_unit.value).split('.')[0]
-            if (isNaN($scope.measurement.value)){
-              $scope.selected_unit.value = 0;
-            }
           return;
         }
         if($scope.measurement.value > $scope.selected_unit.max){

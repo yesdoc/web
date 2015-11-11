@@ -383,3 +383,18 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
     list-style:none;
 }
 
+.btn-success {
+background-color: #307021;
+border-color: #307021;
+color: #FFFFFF;
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
+  border-color: #049F0C;
+  color: #ffffff;
+}
+.btn-primary {
+  background-color: #2E6DA4;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  background-color: #3C83C1;
+}

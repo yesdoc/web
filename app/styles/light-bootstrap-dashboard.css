@@ -913,7 +913,6 @@ body > .navbar-collapse[data-color="green"]:after {
 .input-group-focus .input-group-addon {
   border-color: #9A9A9A;
 }
-
 .alert {
   border: 0;
   border-radius: 0;
@@ -977,14 +976,13 @@ body > .navbar-collapse[data-color="green"]:after {
   padding-left: 65px;
 }
 
+
 .alert-info {
   background-color: #63d8f1;
 }
-
 .alert-success {
-  background-color: #a1e82c;
+  background-color: #5CB85C;
 }
-
 .alert-warning {
   background-color: #ffbc67;
 }

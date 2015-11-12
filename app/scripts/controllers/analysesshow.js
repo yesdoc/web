@@ -16,6 +16,7 @@ angular.module('saludWebApp')
         AnalysisFile,
         PermissionTypes,
         Permissions,
+        Profile,
         User,
         AnalysisPermissions,
         AnalysisComments,
@@ -162,6 +163,15 @@ angular.module('saludWebApp')
                 return ($scope.comments.length + ' comentarios');
             }
           };
+
+          // Trae las imagenes del backend, se hace aparte de la conversión de
+          // fechas para que muestre los comentarios sin imagenes mientras se
+          // cargan estas.
+          $.each($scope.comments, function(i , c){
+            Profile.get({id:c.profile.id,element:'gravatar',size:'64'},function(response){
+              c.src = response.resource.gravatar_url;
+              })
+            });
 
           });
       }

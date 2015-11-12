@@ -39,17 +39,6 @@
  * speed
  * out
  * */
-  @keyframes lightSpeedOut {
-    0% {
-      opacity: 1;
-    }
-
-    100% {
-      transform: translate3d(100%, 0, 0) skewX(30deg);
-      transform: translate3d(100%, 0, 0) skewX(30deg);
-      opacity: 0;
-    }
-  }
 
   @keyframes lightSpeedOut {
     0% {
@@ -64,3 +53,25 @@
     }
   }
 
+/* fadeIn */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+
+    100% {
+      transition: all linear 1s;
+    }
+  }
+
+/* fadeOut */
+  @keyframes fadeOut {
+    0% {
+      opacity: 1;
+    }
+
+    100% {
+      transition: all linear 700ms;
+      opacity:0;
+    }
+  }

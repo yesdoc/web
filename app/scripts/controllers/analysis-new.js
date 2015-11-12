@@ -241,6 +241,11 @@ angular.module('saludWebApp')
         $scope.selected_unit.min=0;
         $scope.selected_unit.max=100;
 
+        // Para que no muestre que estamos en un valor por encima del maximo recomendado al editar
+        if (m.value){
+          $scope.selected_unit.max=m.value;
+        }
+
         //Consulta y asignación de tipo de medición.
         var type = MeasurementType.query(function(){
           $scope.type = type.resource;
@@ -251,14 +256,19 @@ angular.module('saludWebApp')
         var source = MeasurementSource.query(function(){                            
           $scope.source = source.resource;                           
           });
-
+        
         //Carga el select de la unidad de medicion a partir del tipo de medición seleccionado.
         $scope.getUnit = function(){
           var unit = MeasurementTypeUnit.get( {"id_type" : $scope.measurement.measurement_type_id}, function(){
             $scope.unit = unit.resource;      
+            $scope.getValidation();
+            $scope.updateSelectedUnitValue();
             });                                                                       
           };
         
+        if(m.measurement_type_id && m.measurement_source_id){
+          $scope.getUnit();
+        }
         //Función que guarda los datos y si todo es correcto muestra mensaje de "bien hecho" 
         var addMeasurement = function(){
             $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong>.</div>");
@@ -324,6 +334,7 @@ angular.module('saludWebApp')
             $scope.selected_unit.disabled=false;
           }
         });
+        $scope.updateSelectedUnitValue();
       }
 
 

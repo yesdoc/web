@@ -1,5 +1,17 @@
-<div class="container">
-    <form name="profileForm" class="form-horizontal" role="form" ng-submit="addProfile()">
-        <div ng-include="'views/partials/profileform.html'"></div>
-    </form>
+<div class='col-sm-12'>
+    <div class="card">
+        <div class='header' >
+            <h4 class='title'>
+                <span class="fa fa-user" aria-hidden="true"></span>
+                &nbsp; Nuevo Perfil
+            </h4> 
+        </div>
+        <div class="content">
+
+            <form name="profileForm" class="form-horizontal" role="form" ng-submit="addProfile()">
+                <div ng-include="'views/partials/profileform.html'"></div>
+            </form>
+
+        </div>
+    </div>
 </div>

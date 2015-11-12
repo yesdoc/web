@@ -262,7 +262,6 @@ angular.module('saludWebApp')
           var unit = MeasurementTypeUnit.get( {"id_type" : $scope.measurement.measurement_type_id}, function(){
             $scope.unit = unit.resource;      
             $scope.getValidation();
-            $scope.updateSelectedUnitValue();
             });                                                                       
           };
         

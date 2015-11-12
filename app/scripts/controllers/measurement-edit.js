@@ -22,6 +22,13 @@ angular.module('saludWebApp')
       MeasurementSource, 
       $routeParams) {
 
+        // Seteamos los datos para el slider, porqué sinó no responde.
+        $scope.selected_unit={};
+        $scope.selected_unit.disabled=true;
+        $scope.selected_unit.value=0;
+        $scope.selected_unit.min=0;
+        $scope.selected_unit.max=100;
+
         Auth.isLogged(function(){
 
         //Consulta y asignación de tipo de medición.
@@ -50,6 +57,37 @@ angular.module('saludWebApp')
                 );
 
 
+        $scope.updateMeasurementValue = function(){
+          $scope.measurement.value = $scope.selected_unit.value;
+        }
+
+        $scope.updateSelectedUnitValue = function(){
+
+          if (isNaN($scope.measurement.value)){
+            return;
+          }
+          if($scope.measurement.value > $scope.selected_unit.max){
+            $scope.selected_unit.value = $scope.selected_unit.max;
+            return;
+          }
+          if($scope.measurement.value < $scope.selected_unit.min){
+            $scope.selected_unit.value = $scope.selected_unit.min;
+            return;
+          }
+          $scope.selected_unit.value = $scope.measurement.value;
+        }
+
+        $scope.getValidation = function(){
+          $.each($scope.unit,function(i,u){
+            if (u.id == $scope.measurement.measurement_unit_id){
+              $scope.selected_unit.min = u.min_value;
+              $scope.selected_unit.max = u.max_value;
+              $scope.selected_unit.disabled=false;
+            }
+          });
+          $scope.updateSelectedUnitValue();
+        }
+
         //Función que permite guardar los datos de las mediciones,
         // y si todo es correcto redirecciona al perfil de mediciones.
         $scope.updateMeasurement = function(){
@@ -68,6 +106,7 @@ angular.module('saludWebApp')
                     {"id_type" : $scope.measurement.measurement_type_id},
                     function(){
                         $scope.unit = unit.resource;      
+                        $scope.getValidation();
                         }); 
             }; // /.getUnit()
 

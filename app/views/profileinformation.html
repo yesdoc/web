@@ -14,11 +14,8 @@
     </div>
     <div class="content" style='padding-top:0px;'>
       
-      <div ng-if="profile.src" style='width:120px; margin: 20px auto 20px;'>
+      <div ng-show="profile.src" style='width:120px; margin: 20px auto 20px;'>
         <img style='width:120px' src="{{profile.src}}" alt="" class="img-thumbnail">
-      </div>
-      <div ng-if="!profile.src" style='width:120px; margin: 20px auto 20px;'>
-        <img ng-if="!profile.src" style='width:120px' src="/images/logoSticker.png" alt="" class="img-thumbnail">
       </div>
 
       <div class="row ">

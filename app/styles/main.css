@@ -109,66 +109,7 @@ body {
     border-bottom: 0;
   }
 }
-/* Genera un contenedor sólo con un contorno y un borde izquierdo */
 
-.bs-callout {
-    padding: 20px;
-    margin: 2% 15%;
-    border: 1px solid #D6D6D6;/*#eeee*/
-    border-left-width: 5px;
-    border-radius: 3px;
-}
-/* Define las características de los componentes del contenedor*/
-.bs-callout h4 {
-    margin-top: 0;
-    margin-bottom: 5px;
-}
-.bs-callout p:last-child {
-    margin-bottom: 0;
-}
-.bs-callout code {
-    border-radius: 3px;
-}
-.bs-callout+.bs-callout {
-    margin-top: -5px;
-}
-/* Define los colores de los componentes del contenedor*/
-.bs-callout-default {
-    border-left-color: #777;
-}
-.bs-callout-default h4 {
-    color: #777;
-}
-.bs-callout-primary {
-    border-left-color: #428bca;
-}
-.bs-callout-primary h4 {
-    color: #428bca;
-}
-.bs-callout-success {
-    border-left-color: #5cb85c;
-}
-.bs-callout-success h4 {
-    color: #5cb85c;
-}
-.bs-callout-danger {
-    border-left-color: #d9534f;
-}
-.bs-callout-danger h4 {
-    color: #d9534f;
-}
-.bs-callout-warning {
-    border-left-color: #f0ad4e;
-}
-.bs-callout-warning h4 {
-    color: #f0ad4e;
-}
-.bs-callout-info {
-    border-left-color: #5bc0de;
-}
-.bs-callout-info h4 {
-    color: #5bc0de;
-}
 /* Angular strap */
 .datepicker.dropdown-menu {
   width: 250px;
@@ -417,9 +358,9 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
   text-transform: uppercase;
   font-weight: 600 !important;
 }
-
+/*Mobile Vertical Navbar */
 .aside .aside-dialog .aside-body .nav i{
-    margin-right: 15px;
+    margin-right: 15px; 
     line-height: 30px;
     width: 30px;
     text-align: center;
@@ -428,13 +369,14 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
  .aside-transparent{
   width: 250px;
   height:100%;
-  background: #6DC030;
-  background: -moz-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #87CB16), color-stop(100%, #6dc030));
-  background: -webkit-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -o-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: -ms-linear-gradient(top, #6DC030 0%, #5CB85C 100%);
-  background: linear-gradient(to bottom, #6DC030 0%, #5CB85C 100%);
+  background: #307021; /*Antes: #87CB16*/
+  background: -moz-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -webkit-gradient(linear, left top, left bottom,
+  color-stop(0%, #87CB16), color-stop(100%, #307021));
+  background: -webkit-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -o-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -ms-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: linear-gradient(to bottom, #307021 0%, #5CB85C 100%);
   opacity: .77;
 }
 /* Accordion*/
@@ -442,3 +384,18 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
     list-style:none;
 }
 
+.btn-success {
+background-color: #307021;
+border-color: #307021;
+color: #FFFFFF;
+}
+.btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open > .btn-success.dropdown-toggle {
+  border-color: #049F0C;
+  color: #ffffff;
+}
+.btn-primary {
+  background-color: #2E6DA4;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open > .btn-primary.dropdown-toggle {
+  background-color: #2E6DA4;
+}

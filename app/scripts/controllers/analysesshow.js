@@ -168,7 +168,7 @@ angular.module('saludWebApp')
           // fechas para que muestre los comentarios sin imagenes mientras se
           // cargan estas.
           $.each($scope.comments, function(i , c){
-            Profile.get({id:c.profile.id,element:'gravatar',size:'64'},function(response){
+            Profile.get({id:c.profile.id,element:'gravatar',size: 64},function(response){
               c.src = response.resource.gravatar_url;
               })
             });

@@ -37,7 +37,7 @@
 <div class="wrapper">
     <!-- Add your site or application content here -->
     <!-- Navbar vertical-->
-    <div class="sidebar" data-color="green" data-image="images/pc3.png" ng-controller='NavCtrl'>    
+    <div class="sidebar" ng-attr-data-color="{{is_health_professional && 'blue'||'green'}}" data-image="images/pc3.png" ng-controller='NavCtrl'>    
         <div class="sidebar-wrapper" ng-cloak>
            
             <a href="#/myProfileInformation">

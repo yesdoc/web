@@ -24,6 +24,7 @@ angular.module('saludWebApp')
       MyGroupMemberships,
       Groups,
       GroupsMembers,
+      MyGravatar,
       Auth,
       $location) {       
 
@@ -36,6 +37,10 @@ angular.module('saludWebApp')
           profile.gender=profile.gender.name;
           $scope.profile=profile;
           }); 
+
+        MyGravatar.get({size:120},function(response){
+          $scope.profile.src = response.resource.gravatar_url
+        });
 
         $scope.groups = [];
         $scope.sin_grupos=false;

@@ -13,21 +13,26 @@
       </h4> 
     </div>
     <div class="content" style='padding-top:0px;'>
+      
+      <div ng-show="profile.src" style='width:120px; margin: 20px auto 20px;'>
+        <img style='width:120px' src="{{profile.src}}" alt="" class="img-thumbnail">
+      </div>
+
       <div class="row ">
-        <div class="col-md-2">Nombre:</div>
-        <div class="col-md-4">{{profile.first_name}}</div>
+        <div class="col-md-6 text-right">Nombre:</div>
+        <div style='padding-left:0px' class="col-md-6">{{profile.first_name}}</div>
       </div>
       <div class="row">
-        <div class="col-md-2">Apellido:</div>
-        <div class="col-md-4">{{profile.last_name}}</div>
+        <div class="col-md-6 text-right">Apellido:</div>
+        <div style='padding-left:0px' class="col-md-6">{{profile.last_name}}</div>
       </div>
       <div class="row">
-        <div class="col-md-2">Nacimiento:</div>
-        <div class="col-md-4">{{profile.birthday}}</div>
+        <div class="col-md-6 text-right">Nacimiento:</div>
+        <div style='padding-left:0px' class="col-md-6">{{profile.birthday}}</div>
       </div>
       <div class="row">
-        <div class="col-md-2">Género:</div>
-        <div class="col-md-4">{{profile.gender}}</div>
+        <div class="col-md-6 text-right">Género:</div>
+        <div style='padding-left:0px' class="col-md-6">{{profile.gender}}</div>
       </div>
     </div>
   </div>

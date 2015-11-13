@@ -11,12 +11,11 @@ angular.module('saludWebApp')
   .factory('Profile', function (global, $resource) {
 
     // URL of specific API resource
-    var url = global.getApiUrl() + '/profiles/:id';
+    var url = global.getApiUrl() + '/profiles/:id/:element';
 
-    return $resource(
-        url,{
-            id: '@_id'
-            },{
+    return $resource(url,
+            { id: '@_id' , element: '@element' },
+            {
             update: {
                 method: 'PUT'
                 },

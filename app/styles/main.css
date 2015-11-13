@@ -298,10 +298,16 @@ margin:4px;
 
 
 /* when hiding the picture */
-.ng-hide-add         { animation:0.5s lightSpeedOut ease; }
+.ng-hide-add { 
+animation:1s fadeOut ease; 
+}
 
-/* when showing the picture */
-.ng-hide-remove      { animation:0.1s flipInX ease; }
+/* when showing the picture 
+*/
+.ng-hide-remove { 
+animation:1s fadeIn ease; 
+}
+
 
 /*Its the glory!!! fix dropdown typehead error on modal*/
 input + .typeahead.ng-hide { display: block !important; visibility: hidden !important; overflow: hidden; }

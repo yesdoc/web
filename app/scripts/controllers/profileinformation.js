@@ -31,11 +31,12 @@ angular.module('saludWebApp')
         Auth.isLogged(function(){
 
         $scope.group = {};
+        $scope.profile = {};
 
-        var dataProfile = MyProfile.get(function(){
-          var profile=dataProfile.resource;
-          profile.gender=profile.gender.name;
-          $scope.profile=profile;
+        MyProfile.get(function(response){
+          var profile = response.resource;
+          profile.gender = profile.gender.name;
+          $scope.profile = profile;
           }); 
 
         MyGravatar.get({size:120},function(response){

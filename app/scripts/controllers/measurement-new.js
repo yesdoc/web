@@ -54,7 +54,7 @@ angular.module('saludWebApp')
                   {"id_type" : $scope.measurement.measurement_type_id},
                   function(){
                       $scope.unit = unit.resource;      
-                      $scope.updateSelectedUnitValue();
+                      $scope.getValidation();
                   });                                                                       
             };
 
@@ -86,6 +86,7 @@ angular.module('saludWebApp')
               $scope.selected_unit.disabled=false;
             }
             });
+            $scope.updateSelectedUnitValue();
           }
     
         /**************** Objeto Measurement ***************/

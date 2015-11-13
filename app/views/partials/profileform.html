@@ -1,22 +1,27 @@
 <div class = "form-group" ng-class = "{'has-error': profileForm.username.$invalid &&
     !profileForm.username.$pristine}" >
     <label for = "username" class = "col-sm-2 control-label" > Nombre de usuario: </label>
+
     <div class = "col-sm-10" >
         <input name = "username" type = "text" ng-model = "user.username" class = "form-control" 
             id = "username" placeholder = "Ingrese un nombre con el que desee identificarse" required >
-            <p ng-show = "profileForm.username.$invalid && profileForm.username.$touched"
-            class = "help-block" > Debe ingresar su nombre de usuario. </p>
+        <p ng-show = "profileForm.username.$invalid && profileForm.username.$touched"
+            class = "help-block" > Debe ingresar un nombre de usuario. </p>
+        <p id='username_msg' class = "help-block"></p>
     </div>
+
 </div>
 
 <div class = "form-group" ng-class = "{'has-error': profileForm.first_name.$invalid &&
     !profileForm.first_name.$pristine}" >
     <label for = "first_name" class = "col-sm-2 control-label"> Nombre: </label>
+
     <div class="col-sm-10">
         <input name = "first_name" type = "text" ng-model = "profile.first_name" class = "form-control" 
-            id = "first_name" placeholder = "¿Cuál es su nombre?" required >
-            <p ng-show = "profileForm.first_name.$invalid && profileForm.first_name.$touched"
-            class = "help-block"> Debe ingresar su nombre. </p>
+            id = "first_name" placeholder = "¿Cuál es su nombre?" ng-pattern="/^([a-z ñáéíóú]{1,60})$/i" required >
+        <p ng-show = "profileForm.first_name.$invalid && profileForm.first_name.$touched"
+            class = "help-block"> Debe ingresar su nombre y sólo debe contener caracteres alfabéticos. </p>
+        <p id='first_name_msg' class = "help-block"></p>
     </div>
 </div>
 
@@ -24,27 +29,32 @@
 <div class = "form-group" ng-class = "{'has-error': profileForm.last_name.$invalid &&
     !profileForm.last_name.$pristine}">
     <label for = "last_name" class = "col-sm-2 control-label"> Apellido: </label>
+
     <div class = "col-sm-10">
         <input name = "last_name" type = "text" ng-model = "profile.last_name" class = "form-control"
-        id = "last_name" placeholder = "¿Cuál es su apellido?" required >
-            <p ng-show = "profileForm.last_name.$invalid && profileForm.last_name.$touched"
-            class = "help-block"> Debe ingresar su apellido. </p>
-        </div>
+            id = "last_name" placeholder = "¿Cuál es su apellido?" ng-pattern="/^([a-z ñáéíóú]{1,60})$/i" required >
+        <p ng-show = "profileForm.last_name.$invalid && profileForm.last_name.$touched"
+            class = "help-block"> Debe ingresar su apellido y sólo debe contener caracteres alfabéticos. </p>
+        <p id='last_name_msg' class = "help-block"></p>
+    </div>
 </div>
 
 <div class = "form-group" ng-class = "{'has-error': profileForm.birthday.$invalid && 
     !profileForm.birthday.$pristine}">
     <label for = "birthday" class = "col-sm-2 control-label"> Fecha de nacimiento: </label>
+
     <div class = "col-sm-10">
         <input autocomplete="off" name = "birthday" size = "10" class = "form-control" ng-model = "profile.birthday" data-autoclose = "1"
-        data-timezone = 'UTC' placeholder = "¿Cuándo nació?" bs-datepicker data-date-format = "dd-MM-yyyy" type = "text"required>
-        <p autocomplete="off" ng-show = "profileForm.birthday.$invalid && profileForm.birthday.$touched"
-        class = "help-block"> Debe ingresar su fecha de nacimiento. </p>
+            data-timezone = 'UTC' placeholder = "¿Cuándo nació?" bs-datepicker data-date-format = "dd-MM-yyyy" type = "text"required>
+        <p ng-show = "profileForm.birthday.$invalid && profileForm.birthday.$touched"
+            class = "help-block"> Debe ingresar su fecha de nacimiento. </p>
+        <p id='birthday_msg' class = "help-block"></p>
     </div>
 </div>
 
 <div class = "form-group form-group-sm">
     <label for = "gender" class = "col-sm-2 control-label"> Género </label>
+
     <div class = "col-sm-10">
         <select id = "gender" class = "form-control" 
             ng-options = "r.id as r.name for r in genders" 
@@ -57,6 +67,7 @@
     ng-class = "{ 'has-error': !profileForm.email.$pristine && profileForm.email.$touched && 
         profileForm.last_name.$invalid}"> 
     <label for = "email" class = "col-sm-2 control-label" > Email: </label>
+
     <div class = "col-sm-10" >
         <input name = "email" type = "email" ng-model = "user.email" class = "form-control"
             id = "email" placeholder = "correo electrónico" required >
@@ -64,8 +75,9 @@
             profileForm.email.$error.requerid"> Debe ingresar su email. </p>
         <!-- si lo q ingreso no es un mail le avisa -->
         <p ng-show = "profileForm.email.$error.email "
-             class = "help-block"> Ingrese un correo electrónico válido </p>
-    </div> 
+            class = "help-block"> Ingrese un correo electrónico válido </p>
+        <p id='email_msg' class = "help-block"></p>
+    </div>
 </div>
 
 <div class = "form-group" ng-class = "{'has-error': profileForm.password.$invalid && 
@@ -76,6 +88,7 @@
         placeholder = "contraseña" type = "password" required/>
         <p ng-show = "profileForm.password.$invalid && profileForm.password.$touched"
         class = "help-block"> Debe ingresar una contraseña. </p>
+        <p id='password_msg' class = "help-block"></p>
     </div>
 </div>
 

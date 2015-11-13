@@ -107,6 +107,11 @@
                                 <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
                                 <li ng-repeat="n in notifications">
                                 <div class="media">
+                                    <div class="media-left">
+                                      <a href="#">
+                                        <img class="media-object" src="{{n.src}}" alt="..." style='width:64px;height:auto'>
+                                      </a>
+                                    </div>
                                     <a href="" ng-click='redirect(n)' title='{{n.description}}'>
                                         <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
                                             <div class="media-heading">

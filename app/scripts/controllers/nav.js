@@ -8,7 +8,7 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global, MyProfile, $aside) {
+.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global, MyProfile, $aside, Profile) {
 
   var asideMobile = $aside({scope: $scope, templateUrl: 'views/partials/vertical_navbar.html',show:false});
 
@@ -49,6 +49,11 @@ angular.module('saludWebApp')
         $scope.notifications = response.resource;
         $.each($scope.notifications,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));
+
+          Profile.get({id: n.profile.id,element:'gravatar',size: 64},function(response){
+            n.src = response.resource.gravatar_url;
+            });
+
           });
         });
 

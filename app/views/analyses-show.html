@@ -59,13 +59,13 @@
                   </h5>
                 </td>
                 <td>
-                  <a target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
-                    Descargar
+                  <a class='btn btn-primary' target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
+                    <i class='fa fa-download'></i><span class='hidden-xs'>Descargar</span>
                   </a>
                 </td>
                 <td>
-                  <button class='btn btn-danger'>
-                    <i class='fa fa-trash'></i>
+                  <button class='btn btn-danger' ng-click='deleteAnalysisFile(af)'>
+                    <i class='fa fa-trash'></i><span class='hidden-xs'>Eliminar</span>
                   </button>
 
                 </td>
@@ -112,7 +112,7 @@
           <div class="media" ng-repeat='c in comments'>
             <div class="media-left">
               <a href="#">
-                <img ng-show='c.src' class="media-object" ng-src="{{c.src}}" alt="..." style='width:64px;height:auto'>
+                <img ng-show='c.src' class="media-object" ng-src="{{c.src}}" alt="" style='width:64px;height:auto'>
               </a>
             </div>
             <div class="media-body">

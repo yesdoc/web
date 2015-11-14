@@ -42,7 +42,7 @@ angular
   .config(function ($routeSegmentProvider , $routeProvider,$locationProvider) {
     $routeSegmentProvider.
       when('/about', 'about').
-      when('/home','home').
+      when('/home/:type','home').
       when('/home/height','home.height').
       when('/home/weight','home.weight').
       when('/logoff', 'logoff').

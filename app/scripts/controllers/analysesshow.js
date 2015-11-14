@@ -112,24 +112,28 @@ angular.module('saludWebApp')
       modalImage.$promise.then(modalImage.show);
     }
     
-    Auth.getAuth(function(token){
-      var g_a = Analysis.get({id : $routeParams.id},function(){
-        $scope.a = g_a.resource;
-        $scope.a.datetime = new Date($scope.a.datetime+'Z');
 
-        $scope.afs = []; //analysis files list
-        var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
-          $scope.aFiles = q_af.resource;
-          $.each($scope.aFiles,function(i,af){
-                af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
+    function getAnalysisFile(){
+      Auth.getAuth(function(token){
+        var g_a = Analysis.get({id : $routeParams.id},function(){
+          $scope.a = g_a.resource;
+          $scope.a.datetime = new Date($scope.a.datetime+'Z');
 
-                af.urlDownload = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token+'&download=true');
+          $scope.afs = []; //analysis files list
+          var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
+            $scope.aFiles = q_af.resource;
+            $.each($scope.aFiles,function(i,af){
+                  af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
 
-                $scope.afs.push(af);
+                  af.urlDownload = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token+'&download=true');
+
+                  $scope.afs.push(af);
+              });
             });
           });
         });
-      });
+      }
+      getAnalysisFile();
 
       $scope.measurements = [];
       var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
@@ -142,6 +146,34 @@ angular.module('saludWebApp')
 
       $scope.comments = [];
 
+      $scope.deleteAnalysisFile = function(af){
+          $scope.confirm = {};
+          $scope.confirm.class = 'danger';
+          $scope.confirm.message = 'Esta seguro que desea eliminar el archivo <b>'+ af.description + '</b> ?';
+
+          $scope.confirm.confirm = function(){
+            AnalysisFile.remove({id : af.id},function(response){
+
+              confirmDeleteModal.$promise.then(confirmDeleteModal.hide);
+              getAnalysisFile();
+
+              if(!$scope.$$phase) {
+                $scope.apply();
+                }
+
+              });
+            }
+
+          var confirmDeleteModal = $modal({ 
+            scope: $scope,
+            templateUrl: "views/partials/confirm.html", 
+            contentTemplate: false, 
+            html: true, 
+            show: false });
+
+          confirmDeleteModal.$promise.then(confirmDeleteModal.show);
+
+      }
       
       var updateComments = function(){
         var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){

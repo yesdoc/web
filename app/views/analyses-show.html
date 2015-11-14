@@ -50,18 +50,24 @@
                 <td>{{af.description}}</td>
                 <td>
                   <h5 style='margin:0px;' >
-                  <span ng-show='af.is_encrypted' title='Archivo encriptado' class="label label-success" style='padding-top:0.6em;padding-bottom:0.6em;'>
+                  <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
                     <i class='fa fa-lock fa-lg'></i>
-                  </span>
-                  <span ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="label label-warning" style='padding-top:0.6em;padding-bottom:0.6em;'>
+                  </button>
+                  <button ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="btn btn-warning" disabled >
                     <i class='fa fa-unlock fa-lg'></i>
-                  </span>
+                  </button>
                   </h5>
                 </td>
                 <td>
                   <a target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
                     Descargar
                   </a>
+                </td>
+                <td>
+                  <button class='btn btn-danger'>
+                    <i class='fa fa-trash'></i>
+                  </button>
+
                 </td>
               </tr>
             </tbody>

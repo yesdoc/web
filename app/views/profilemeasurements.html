@@ -1,10 +1,8 @@
-
-<div class='col-md-9'>
   <div class="card">
     <div class='header' >
       <h4 class='title'>
         <span class="fa fa-stethoscope fa-lg" aria-hidden="true"></span>
-        &nbsp; Mediciones
+        &nbsp; Últimas mediciones
         <div class="pull-right">
 
             <div class="btn-group" >
@@ -18,23 +16,39 @@
       </h4> 
     </div>
     <div class="content">
-      <div class="row " ng-repeat="measurement in measurements">
-        <div class="col-md-4">{{measurement.measurement_type.name}}:  {{measurement.value}} {{measurement.measurement_unit.symbol}}</div>
-        <div class="col-md-3">{{measurement.datetime | date:"yyyy-MM-dd HH:mm:ss"}}</div>
-        <div class="col-md-2">{{measurement.measurement_source.name}}</div>
-        <div class="col-md-1">
-          <a type="button" class="btn pull-right btn-xs" ng-href="#/measurements/{{measurement.id}}/edit">
-            <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
-          </a>
-        </div>
-        <div class="col-md-1">
-          <a type="button" class="btn pull-right btn-xs">
-            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>
-          </a>
-        </div>
+      <div class='table-responsive'>
+        <table class='table table-hover table-condensed'>
+          <thead>
+            <tr>
+              <th>Medición</th>
+              <th>Valor</th>
+              <th>Fecha</th>
+              <th>Hora</th>
+              <th>Análisis</th>
+              <th class='text-center'>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="measurement in measurements">
+              <td>{{measurement.measurement_type.name}}</td>
+              <td>{{measurement.value}} {{measurement.measurement_unit.symbol}}</td>
+              <td>{{measurement.datetime | date:"dd-MM-yyyy"}}</td>
+              <td>{{measurement.datetime | date:"HH:mm:ss"}}</td>
+              <td>
+                <a ng-href="#/analyses/{{measurement.analysis.id}}">
+                  {{measurement.analysis.description}}
+                </a>
+              </td>
+              <td class='text-center'>
+                <a type="button" ng-href="#/measurements/{{measurement.id}}/edit">
+                  <i class="fa fa-pencil-square-o fa-lg"></i>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
   </div>
-</div>
 

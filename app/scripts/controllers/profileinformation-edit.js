@@ -24,6 +24,7 @@ angular.module('saludWebApp')
       MyUser.get({},function(response){
         var user = response.resource;
         $scope.user = user;
+        $scope.user.edit = true;
 
         var p = MyProfile.get(
             function(){

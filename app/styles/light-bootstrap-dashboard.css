@@ -913,7 +913,7 @@ body > .navbar-collapse[data-color="green"]:after {
 .input-group-focus .input-group-addon {
   border-color: #9A9A9A;
 }
-/*
+
 .alert {
   border: 0;
   border-radius: 0;
@@ -979,7 +979,7 @@ body > .navbar-collapse[data-color="green"]:after {
 
 
 .alert-info {
-  background-color: #63d8f1;
+  background-color: #1F77D0;
 }
 .alert-success {
   background-color: #5CB85C;
@@ -989,9 +989,9 @@ body > .navbar-collapse[data-color="green"]:after {
 }
 
 .alert-danger {
-  background-color: #fc727a;
+  background-color: #D9534F;
 }
-*/
+
 .table .radio,
 .table .checkbox {
   position: relative;

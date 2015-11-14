@@ -205,5 +205,13 @@ angular.module('saludWebApp')
           return false;
         }
 
+        $scope.hideCollapse = function(selector){
+          $(selector).collapse("hide")
+        }
+
+        $scope.onShowNewMembership = function(){
+          $scope.group.group_membership_type_id = 0;
+        }
+
       });
     });

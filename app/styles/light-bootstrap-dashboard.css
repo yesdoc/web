@@ -370,20 +370,27 @@ body > .navbar-collapse:before {
   left: 0;
   z-index: 2;
 }
+.aside-transparent{
+  width: 250px;
+  height:100%;
+  opacity: .77;
+}
+
 .sidebar:before,
 body > .navbar-collapse:before {
   opacity: .33;
-  background: #000000;
+  background: #307021;
 }
 .sidebar:after,
 body > .navbar-collapse:after {
-  background: #787878;
-  background: -moz-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #787878), color-stop(100%, #343434));
-  background: -webkit-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -o-linear-gradient(top, #787878 0%, #343434 100%);
-  background: -ms-linear-gradient(top, #787878 0%, #343434 100%);
-  background: linear-gradient(to bottom, #787878 0%, #343434 100%);
+  background: #307021;
+  background: -moz-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -webkit-gradient(linear, left top, left bottom,
+  color-stop(0%, #87CB16), color-stop(100%, #307021));
+  background: -webkit-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -o-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: -ms-linear-gradient(top, #307021 0%, #5CB85C 100%);
+  background: linear-gradient(to bottom, #307021 0%, #5CB85C 100%);
   background-size: 150% 150%;
   z-index: 3;
   opacity: 1;
@@ -394,6 +401,7 @@ body > .navbar-collapse.has-image:after {
   opacity: .77;
 }
 
+.aside-transparent[data-color="green"],
 .sidebar[data-color="green"]:after,
 body > .navbar-collapse[data-color="green"]:after {
   background: #307021;
@@ -404,11 +412,22 @@ body > .navbar-collapse[data-color="green"]:after {
   background: -o-linear-gradient(top, #307021 0%, #5CB85C 100%);
   background: -ms-linear-gradient(top, #307021 0%, #5CB85C 100%);
   background: linear-gradient(to bottom, #307021 0%, #5CB85C 100%);
-
-
   background-size: 150% 150%;
 }
 
+.aside-transparent[data-color="blue"],
+.sidebar[data-color="blue"]:after,
+body > .navbar-collapse[data-color="blue"]:after {
+    background: #1F77D0;
+    background: -moz-linear-gradient(top, #1F77D0 0%, #6D7194 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1F77D0), 
+    color-stop(100%, #6D7194));
+    background: -webkit-linear-gradient(top, #1F77D0 0%, #6D7194 100%);
+    background: -o-linear-gradient(top, #1F77D0 0%, #6D7194 100%);
+    background: -ms-linear-gradient(top, #1F77D0 0%, #6D7194 100%);
+    background: linear-gradient(to bottom, #1F77D0 0%, #6D7194 100%);
+    background-size: 150% 150%;
+}
 .main-panel {
   background: rgba(203, 203, 210, 0.15);
   position: relative;
@@ -427,7 +446,6 @@ body > .navbar-collapse[data-color="green"]:after {
 .main-panel .navbar {
   margin-bottom: 0;
 }
-
 .sidebar,
 .main-panel {
   overflow: auto;

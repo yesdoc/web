@@ -372,19 +372,7 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
     text-align: center;
     font-size: 28px;
 }
- .aside-transparent{
-  width: 250px;
-  height:100%;
-  background: #307021; /*Antes: #87CB16*/
-  background: -moz-linear-gradient(top, #307021 0%, #5CB85C 100%);
-  background: -webkit-gradient(linear, left top, left bottom,
-  color-stop(0%, #87CB16), color-stop(100%, #307021));
-  background: -webkit-linear-gradient(top, #307021 0%, #5CB85C 100%);
-  background: -o-linear-gradient(top, #307021 0%, #5CB85C 100%);
-  background: -ms-linear-gradient(top, #307021 0%, #5CB85C 100%);
-  background: linear-gradient(to bottom, #307021 0%, #5CB85C 100%);
-  opacity: .77;
-}
+    
 /* Accordion*/
 .panel-body ul{
     list-style:none;

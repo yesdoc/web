@@ -37,7 +37,7 @@
 <div class="wrapper">
     <!-- Add your site or application content here -->
     <!-- Navbar vertical-->
-    <div class="sidebar" ng-attr-data-color="{{is_health_professional && 'blue'||'green'}}" data-image="images/pc3.png" ng-controller='NavCtrl'>    
+    <div class="sidebar" ng-attr-data-color="{{(is_health_professional && is_logged && 'blue')||'green'}}" data-image="images/pc3.png" ng-controller='NavCtrl'>    
         <div class="sidebar-wrapper" ng-cloak>
            
             <a href="#/myProfileInformation">
@@ -50,7 +50,7 @@
        <div class="sidebar-background"></div>
     </div> <!-- class="sidebar" -->
  
-    <div class="main-panel">
+    <div class="main-panel"> 
         <nav class="navbar navbar-default navbar-fixed"> 
         <div class="container-fluid" >
     

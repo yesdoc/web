@@ -163,19 +163,35 @@ angular.module('saludWebApp')
 
           $scope.member.is_admin = false;
 
-          GroupsMembers.save(
-              {group_id: $scope.member.group.id}, 
-              $scope.member,
-              function(response){
+          /* Guarda el miembro*/
+          function saveMember(){
+            GroupsMembers.save(
+                {group_id: $scope.member.group.id}, 
+                $scope.member,
+                function(response){
 
-            addMemberModal.$promise.then(addMemberModal.hide());
-            getGroupsAndMembers();
+              addMemberModal.$promise.then(addMemberModal.hide());
+              getGroupsAndMembers();
 
-            if(!$scope.$$phase) {
-              $scope.apply();
-              }
+              if(!$scope.$$phase) {
+                $scope.apply();
+                }
+              });
+          }
+
+          /* Se encarga de crear un nuevo memership en caso de ser necesario o
+           * directamente llamar a guardar grupo*/
+          if ($scope.member.newMembership){
+            var newMembership = {}
+            newMembership.name = $scope.member.newMembership;
+            GroupMembershipTypes.save(newMembership,function(response){
+              $scope.member.group_membership_type_id = response.resource.id;
+              saveMember();
             });
-        };
+          }else{
+              saveMember();
+          }
+        };// .addMember
 
         /* Eliminar Grupo */
         $scope.deleteGroup = function($index){

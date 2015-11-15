@@ -172,6 +172,7 @@ angular.module('saludWebApp')
 
               addMemberModal.$promise.then(addMemberModal.hide());
               getGroupsAndMembers();
+              $scope.group={};
 
               if(!$scope.$$phase) {
                 $scope.apply();
@@ -248,12 +249,14 @@ angular.module('saludWebApp')
         }
 
         $scope.hideCollapse = function(selector){
-          $scope.group.newMembership = null;
+          if($scope.group) $scope.group.newMembership = null;
+          if($scope.member) $scope.member.newMembership = null;
           $(selector).collapse("hide")
         }
 
         $scope.onShowNewMembership = function(){
-          $scope.group.group_membership_type_id = 0;
+          if ($scope.group) $scope.group.group_membership_type_id = 0;
+          if ($scope.member) $scope.member.group_membership_type_id = 0;
         }
 
       });

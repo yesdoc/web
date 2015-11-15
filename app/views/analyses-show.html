@@ -56,14 +56,12 @@
                 <td><i class='fa fa-file-image-o fa-lg'></i></td>
                 <td>{{af.description}}</td>
                <td>
-                  <h5 style='margin:0px;' >
                   <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
                     <i class='fa fa-lock fa-lg'></i>
                   </button>
                   <button ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="btn btn-warning" disabled >
                     <i class='fa fa-unlock fa-lg'></i>
                   </button>
-                  </h5>
                 </td>
                 <td>
                   <a class='btn btn-primary' target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>

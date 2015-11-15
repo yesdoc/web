@@ -162,7 +162,7 @@ angular.module('saludWebApp')
       $scope.deleteAnalysisFile = function(af,i){
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
-          $scope.confirm.message = 'Esta seguro que desea eliminar el archivo <b>'+ af.description + '</b> ?';
+          $scope.confirm.message = '¿Está seguro que desea eliminar el archivo <b>'+ af.description + '</b> ?';
 
           $scope.confirm.confirm = function(){
             AnalysisFile.remove({id : af.id},function(response){

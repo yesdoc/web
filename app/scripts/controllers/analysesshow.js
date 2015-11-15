@@ -191,14 +191,23 @@ angular.module('saludWebApp')
 
         $scope.aFile = a;
 
+        $scope.aFile.datetime = new Date();
+
         var addAdjunto = function(){
           $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong></div>");
 
           AnalysisFile.save($scope.aFile,function(){
+            getAnalysisFile();
+
+            if(!$scope.$$phase) {
+              $scope.apply();
+              }
+
+            /* Hide Analysis File Modal */
+            aFileModal.$promise.then(aFileModal.hide());
+
             });
 
-          /* Hide Analysis File Modal */
-          aFileModal.$promise.then(aFileModal.hide());
         }
 
         $scope.submitAdjunto = onSubmit || addAdjunto;
@@ -222,6 +231,16 @@ angular.module('saludWebApp')
             af.required = true;
             create_analysisFile(af);
       };
+
+      /* Set selected image(file input on views/partials/analysis-addAttachment) source on $scope.aFile.imageSrc. */
+      $scope.getFile = function(){
+        fileReader.readAsDataUrl($scope.aFile.image_file, $scope)
+          .then(function(result) {
+            $scope.aFile.imageSrc = result;
+          });
+        }
+
+
 
       /**************************** COMMENTS ******************************/
       $scope.comments = [];
@@ -275,14 +294,16 @@ angular.module('saludWebApp')
       /************************ MEASUREMENTS ***********************************/
 
       $scope.measurements = [];
-      var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
-        g_am = g_am.resource;
-        $.each(g_am, function(i , am){
-          am.datetime = new Date(am.datetime)
-          $scope.measurements.push(am);
-          });
-        });
 
+      function getMeasurements(){
+        Analysis.get({id: $routeParams.id , element:'measurements'},function(response){
+          $.each(response.resource, function(i , am){
+            am.datetime = new Date(am.datetime)
+            $scope.measurements.push(am);
+            });
+          });
+      }
+      getMeasurements();
 
       /* Modal Analysis Measurement */
       var aMeasurementModal = $modal({ 
@@ -371,12 +392,20 @@ angular.module('saludWebApp')
                   e.datetime = $scope.measurement.datetime;
 
                   e.$save(function(response){
+
+                    getMeasurements();
+
+                    if(!$scope.$$phase) {
+                      $scope.apply();
+                      }
+
                   });
                 });
 
                 aMeasurementModal.$promise.then(aMeasurementModal.hide());
                 //$scope.showAMeasurementModal();
                 //$scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
+                
                 
 
               });

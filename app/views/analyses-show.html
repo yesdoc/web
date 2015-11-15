@@ -13,7 +13,7 @@
     <div class="content" style='padding-top:0px;'>
 
       <flex-slider 
-        ng-if='afs'
+        ng-show='afs[0]'
         slider_id='carousel'
         flex-slide="s in afs track by $index" 
         animation="slide" 
@@ -37,7 +37,7 @@
             <caption>
               Archivos
               <a class='btn btn-success pull-right' ng-click='showAFileModal()' style='margin-top:-5px'>
-                <i class='fa fa-plus'></i><span class='hidden-xs'>Agregar archivo</span>
+                <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
               </a>
             </caption>
             <thead>
@@ -87,7 +87,7 @@
             <caption>
               Mediciones
               <a class='btn btn-success pull-right' ng-click='showAMeasurementModal()' style='margin-top:-5px'>
-                <i class='fa fa-plus'></i><span class='hidden-xs'>Agregar Mediciones</span>
+                <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
               </a>
             </caption>
             <thead>

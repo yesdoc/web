@@ -57,7 +57,7 @@ angular.module('saludWebApp')
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
           $scope.confirm.message =
-              'Esta seguro que desea eliminar el archivo adjunto <b>'
+              '¿Está seguro que desea eliminar el archivo adjunto <b>'
               +a.description+'</b> ?';
 
           $scope.confirm.confirm = function(){
@@ -218,8 +218,8 @@ angular.module('saludWebApp')
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
           $scope.confirm.message =
-              'Esta seguro que desea eliminar la medición <b>'
-              +m.tipo.nombre+' '+ m.value+' '+ m.unidad.nombre+' </b> ?';
+              '¿Está seguro que desea eliminar la medición <b>'
+              +m.tipo.nombre+': '+ m.value+' ('+ m.unidad.nombre+') </b> ?';
 
           $scope.confirm.confirm = function(){
               $scope.mediciones.splice($index, 1);

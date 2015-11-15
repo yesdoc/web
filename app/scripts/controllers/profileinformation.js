@@ -91,15 +91,35 @@ angular.module('saludWebApp')
             });
           });
         
-        $scope.submitGroup = function(){
-          Groups.save($scope.group ,function(response,status){
-              addGroupModal.$promise.then(addGroupModal.hide);
-              getGroupsAndMembers();
 
-              if(!$scope.$$phase) {
-                $scope.apply();
-                }
+        /* Crear grupo */
+        $scope.submitGroup = function(){
+
+          /* Se encarga de guardar el grupo*/
+          function saveGroup(){
+            Groups.save($scope.group ,function(response,status){
+                addGroupModal.$promise.then(addGroupModal.hide);
+                getGroupsAndMembers();
+
+                if(!$scope.$$phase) {
+                  $scope.apply();
+                  }
+              });
+          }
+
+          /* Se encarga de crear un nuevo memership en caso de ser necesario o
+           * directamente llamar a guardar grupo*/
+          if ($scope.group.newMembership){
+            var newMembership = {}
+            newMembership.name = $scope.group.newMembership;
+            GroupMembershipTypes.save(newMembership,function(response){
+              $scope.group.group_membership_type_id = response.resource.id;
+              saveGroup();
             });
+          }else{
+            saveGroup();
+          }
+
           }//end submitGroup
         };// end showAddGroup
 
@@ -112,6 +132,7 @@ angular.module('saludWebApp')
           show: false });
       
 
+        /* Mostrar modal para agregar nuevo miembro*/
         $scope.showAddMember = function($index){
           $scope.member = {};
           $scope.member.group = $scope.groups[$index];
@@ -132,6 +153,7 @@ angular.module('saludWebApp')
             addMemberModal.$promise.then(addMemberModal.show);
           }
 
+        /* Agregar Nuevo Miembro */
         $scope.addMember = function (){
           $.each($scope.users,function(i,u){
             if (u.username.toLowerCase() == $scope.member.user.toLowerCase()){
@@ -142,20 +164,38 @@ angular.module('saludWebApp')
 
           $scope.member.is_admin = false;
 
-          GroupsMembers.save(
-              {group_id: $scope.member.group.id}, 
-              $scope.member,
-              function(response){
+          /* Guarda el miembro*/
+          function saveMember(){
+            GroupsMembers.save(
+                {group_id: $scope.member.group.id}, 
+                $scope.member,
+                function(response){
 
-            addMemberModal.$promise.then(addMemberModal.hide());
-            getGroupsAndMembers();
+              addMemberModal.$promise.then(addMemberModal.hide());
+              getGroupsAndMembers();
+              $scope.group={};
 
-            if(!$scope.$$phase) {
-              $scope.apply();
-              }
+              if(!$scope.$$phase) {
+                $scope.apply();
+                }
+              });
+          }
+
+          /* Se encarga de crear un nuevo memership en caso de ser necesario o
+           * directamente llamar a guardar grupo*/
+          if ($scope.member.newMembership){
+            var newMembership = {}
+            newMembership.name = $scope.member.newMembership;
+            GroupMembershipTypes.save(newMembership,function(response){
+              $scope.member.group_membership_type_id = response.resource.id;
+              saveMember();
             });
-        };
+          }else{
+              saveMember();
+          }
+        };// .addMember
 
+        /* Eliminar Grupo */
         $scope.deleteGroup = function($index){
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
@@ -186,6 +226,7 @@ angular.module('saludWebApp')
         }
 
 
+        /* Eliminar miembro */
         $scope.deleteMember = function(member){
           GroupMembers.remove({id : member.id},function(){
               getGroupsAndMembers();
@@ -196,6 +237,8 @@ angular.module('saludWebApp')
               });
           }
 
+        /* Tengo permisos para eliminar el miembro del grupo (pasados por
+         * parametros)*/
         $scope.canExpulse = function(group,member){
           if (group.is_admin){
             return true;
@@ -204,6 +247,17 @@ angular.module('saludWebApp')
             return true;
             }
           return false;
+        }
+
+        $scope.hideCollapse = function(selector){
+          if($scope.group) $scope.group.newMembership = null;
+          if($scope.member) $scope.member.newMembership = null;
+          $(selector).collapse("hide")
+        }
+
+        $scope.onShowNewMembership = function(){
+          if ($scope.group) $scope.group.group_membership_type_id = 0;
+          if ($scope.member) $scope.member.group_membership_type_id = 0;
         }
 
       });

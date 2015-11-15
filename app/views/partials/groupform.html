@@ -15,7 +15,7 @@
     <label for="description" class="col-sm-2 control-label"> Description: </label>
     <div class="col-sm-10">
         <input name="description" type="text" class="form-control" id="description" ng-model="group.description"
-        placeholder="Una descripción">
+        placeholder="Una descripción" />
         <p ng-show="groupForm.description.$invalid && groupForm.description.$touched" class="help-block">
         Debe ingresar una descripción.</p>
     </div>
@@ -25,10 +25,19 @@
     ng-class="{'has-error':groupForm.membership_type.$invalid && groupForm.membership_type.$touched}">
     <label for="membership_type" class="col-sm-2 control-label"> Tipo de membresía: </label>
     <div class="col-sm-10">
-        <select name="membership_type"  id="membership_type" class="form-control" 
-            ng-options="t.id as t.name for t in membership_types" 
-            ng-model="group.group_membership_type_id  " ng-change="getUnit()" required >
-        </select>
+      <button type="button" name="membership_type"  id="membership_type" class="btn btn-default col-sm-6" ng-click='hideCollapse("#newMembershipCollapse")' 
+            ng-model="group.group_membership_type_id" data-html="1" placeholder='Elija un tipo de membresía'
+            bs-options="t.id as t.name for t in membership_types" bs-select>
+            <span class="caret"></span>
+          </button>
+          <button class="btn btn-sm btn-success" style='margin-left:10px;margin-bottom:-12px;' type="button" data-toggle="collapse" ng-click='onShowNewMembership()'
+            data-target="#newMembershipCollapse" aria-expanded="false" aria-controls="collapseExample">
+              <i class='fa fa-plus'></i>
+          </button>
+        <div class="collapse" style='margin-top:20px;' id="newMembershipCollapse">
+          <input name="newMembership" type="text" class="form-control" id="newMembership" ng-model="group.newMembership"
+          placeholder="Nombre de la nueva membresía" />
+        </div>
         <p ng-show="groupForm.membership_type.$invalid && groupForm.membership_type.$touched" class="help-block">
         Seleccione un tipo de membresía.</p> 
     </div>

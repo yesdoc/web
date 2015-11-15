@@ -59,6 +59,7 @@ angular
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
       when('/notifications','notifications').
+      when('/messages','messages').
       when('/collapseOne','collapseOne').
       when('/compartidos/:id','compartidos').
       segment('login',{
@@ -139,6 +140,10 @@ angular
       segment('notifications',{
         templateUrl: 'views/notifications.html',
         controller: 'NotificationsCtrl'
+      }).
+      segment('messages',{
+        templateUrl: 'views/notifications.html',
+        controller: 'MessagesCtrl'
       }).
       segment('compartidos',{
         templateUrl: 'views/compartidos.html',

@@ -73,18 +73,34 @@
 
                     <ul class="nav  nav-pills" ng-cloak> 
                         <li><a><img src="images/yesDoc2.png"></img></a></li>
-                        <!--
                         <li ng-show='is_logged'>
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-envelope"></i>
-                                <b class="caret"></b>
-                                <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
-                            </a>
-                            <ul class="dropdown-menu">
-                            <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
-                            </ul>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-envelope"></i>
+                            <b class="caret"></b>
+                            <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
+                        </a>
+                        <ul class="dropdown-menu" style='width:30vw'>
+                            <li class='text-center' ng-show="msgs.length==0">
+                                <i style='color:#999'>No hay mensajes nuevos</i>
+                            </li>
+                            <li ng-repeat="m in msgs">
+                            <div class="media">
+                                    <a href="" ng-click='redirect(m)' title='{{m.description}}'>
+                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                            <div class="media-heading">
+                                                <p>{{m.title}}</p>
+                                            </div>
+                                            <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider" style='margin:3px;'></li>
+                                <li class='text-center'>
+                                <a ng-href="#/messages"> Mostrar mensajes antiguos</a>
+                            </li>
+                        </ul>
                         </li>
-                        -->
                         <li ng-show="is_logged" class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-globe"></i>
@@ -128,18 +144,34 @@
                 
                 <!-- Navbar horizontal desktop-->
                 <ul class="nav navbar-nav navbar-left">
-                    <!--
-                    <li ng-show='is_logged'>
+                    <li ng-show='is_logged' ng-cloak class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>
                             <b class="caret"></b>
                             <span ng-show="msgs.length>0" class="notification">{{msgs.length}}</span>
                         </a>
-                        <ul class="dropdown-menu">
-                          <li ng-repeat="m in msgs"><a href="#">{{m}}</a></li>
+                        <ul class="dropdown-menu" style='width:30vw'>
+                            <li class='text-center' ng-show="msgs.length==0">
+                                <i style='color:#999'>No hay mensajes nuevos</i>
+                            </li>
+                            <li ng-repeat="m in msgs">
+                            <div class="media">
+                                    <a href="" ng-click='redirect(m)' title='{{m.description}}'>
+                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                            <div class="media-heading">
+                                                <p>{{m.title}}</p>
+                                            </div>
+                                            <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
+                                        </div>
+                                    </a>
+                                </div>
+                            </li>
+                            <li role="separator" class="divider" style='margin:3px;'></li>
+                                <li class='text-center'>
+                                <a ng-href='#/messages'> Mostrar mensajes antiguos</a>
+                            </li>
                         </ul>
                     </li>
-                    -->
                     <li ng-show="is_logged" ng-cloak class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-globe"></i>
@@ -283,6 +315,7 @@
         <script src="scripts/controllers/dropbox-auth-start.js"></script>
         <script src="scripts/controllers/nav.js"></script>
         <script src="scripts/controllers/notifications.js"></script>
+        <script src="scripts/controllers/messages.js"></script>
         <script src="scripts/controllers/analysis-new.js"></script>
         <script src="scripts/controllers/analyses.js"></script>
         <script src="scripts/controllers/analysesshow.js"></script>

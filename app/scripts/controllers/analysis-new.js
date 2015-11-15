@@ -54,8 +54,30 @@ angular.module('saludWebApp')
 
       /* Delete Analysis File object */
       $scope.deleteAdjunto = function($index,a){
-          $scope.adjuntos.splice($index, 1);
-        }
+          $scope.confirm = {};
+          $scope.confirm.class = 'danger';
+          $scope.confirm.message =
+              '¿Está seguro que desea eliminar el archivo adjunto <b>'
+              +a.description+'</b> ?';
+
+          $scope.confirm.confirm = function(){
+
+              $scope.adjuntos.splice($index, 1);
+              confirmDeleteModal.$promise.then(confirmDeleteModal.hide);
+
+          }
+
+          var confirmDeleteModal = $modal({ 
+            scope: $scope,
+            templateUrl: "views/partials/confirm.html", 
+            contentTemplate: false, 
+            html: true, 
+            show: false });
+
+          confirmDeleteModal.$promise.then(confirmDeleteModal.show);
+
+
+        };
 
       /* Edit Analysis File object */
       $scope.editAdjunto = function($index,a){
@@ -193,8 +215,28 @@ angular.module('saludWebApp')
 
       /* Delete Analyisis Measurement Modal */
       $scope.deleteMedicion = function ($index, m) {
-          $scope.mediciones.splice($index, 1);
+          $scope.confirm = {};
+          $scope.confirm.class = 'danger';
+          $scope.confirm.message =
+              '¿Está seguro que desea eliminar la medición <b>'
+              +m.tipo.nombre+': '+ m.value+' ('+ m.unidad.nombre+') </b> ?';
+
+          $scope.confirm.confirm = function(){
+              $scope.mediciones.splice($index, 1);
+              confirmDeleteModal.$promise.then(confirmDeleteModal.hide);
+          }
+
+          var confirmDeleteModal = $modal({ 
+            scope: $scope,
+            templateUrl: "views/partials/confirm.html", 
+            contentTemplate: false, 
+            html: true, 
+            show: false });
+
+          confirmDeleteModal.$promise.then(confirmDeleteModal.show);
+
           };
+
 
       /* Edit Analyisis Measurement Modal */
       $scope.editMedicion = function($index,a){

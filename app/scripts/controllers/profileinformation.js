@@ -159,7 +159,7 @@ angular.module('saludWebApp')
         $scope.deleteGroup = function($index){
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
-          $scope.confirm.message = 'Esta seguro que desea eliminar el grupo <b>'+ $scope.groups[$index].name + '</b> ?';
+          $scope.confirm.message = '¿Está seguro que desea eliminar el grupo <b>'+ $scope.groups[$index].name + '</b> ?';
 
           $scope.confirm.confirm = function(){
             Groups.remove({id: $scope.groups[$index].id},function(response){

@@ -26,7 +26,7 @@
                 <div class="col-sm-10">
 
                   <button type="button" name="membership_type"  id="membership_type" class="btn btn-default col-sm-6" ng-click='hideCollapse("#newMembershipCollapse")' 
-                        ng-model="member.group_membership_type_id" data-html="1" placeholder='Elija un tipo de memebresía'
+                        ng-model="member.group_membership_type_id" data-html="1" placeholder='Elija un tipo de mebresía'
                         bs-options="t.id as t.name for t in membership_types" bs-select>
                         <span class="caret"></span>
                   </button>
@@ -38,7 +38,7 @@
 
                   <div class="collapse" style='margin-top:20px;' id="newMembershipCollapse">
                     <input name="newMembership" type="text" class="form-control" id="newMembership" ng-model="member.newMembership"
-                    placeholder="Nombre de la nueva membresía" \>
+                    placeholder="Nombre de la nueva membresía" />
                   </div>
 
                   <p ng-show="groupForm.membership_type.$invalid && groupForm.membership_type.$touched" class="help-block">

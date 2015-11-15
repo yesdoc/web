@@ -12,6 +12,13 @@ angular.module('saludWebApp')
         $scope,
         global,
         MyMeasurements,
+        MyProfile,
+        Measurement,
+        MeasurementType,
+        MeasurementTypeUnit,
+        MeasurementUnit,
+        MeasurementSource,
+        $sce,
         $routeParams,
         AnalysisFile,
         PermissionTypes,
@@ -30,6 +37,9 @@ angular.module('saludWebApp')
 
     var analysis_id = $routeParams.id;
 
+
+    /*********************** PERMISOS  ****************************/
+    /* Obtener Tipos permisos */
     function getPermissionTypes(){
 
       $scope.permissions_type = [];
@@ -51,6 +61,8 @@ angular.module('saludWebApp')
       });
     }
 
+
+    /* Guardar permisos para un usuario */
     $scope.addConfig = function(){
       $.each($scope.users,function(i,u){
         
@@ -70,6 +82,7 @@ angular.module('saludWebApp')
       });
     }
 
+    /* Eliminar permisos para un usuario */
     $scope.removePerms = function(usuario_perms,$index){
       Permissions.remove({id:usuario_perms.id},function(){
           $scope.permissions.splice($index, 1);
@@ -101,6 +114,9 @@ angular.module('saludWebApp')
         configModal.$promise.then(configModal.show);
     };
 
+
+    /************************* ANALYSIS FILE *************************************/
+
     /* Show Analysis File Image on a new Modal */
     $scope.showImage = function($index,a){
       var af = $scope.afs[$index];
@@ -113,6 +129,7 @@ angular.module('saludWebApp')
     }
     
 
+    /* Obtiene la lista de archivos asociados a un analisis */
     function getAnalysisFile(){
       Auth.getAuth(function(token){
         var g_a = Analysis.get({id : $routeParams.id},function(){
@@ -133,18 +150,8 @@ angular.module('saludWebApp')
           });
         });
       }
+
       getAnalysisFile();
-
-      $scope.measurements = [];
-      var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
-        g_am = g_am.resource;
-        $.each(g_am, function(i , am){
-          am.datetime = new Date(am.datetime)
-          $scope.measurements.push(am);
-          });
-        });
-
-      $scope.comments = [];
 
       $scope.deleteAnalysisFile = function(af){
           $scope.confirm = {};
@@ -174,6 +181,50 @@ angular.module('saludWebApp')
           confirmDeleteModal.$promise.then(confirmDeleteModal.show);
 
       }
+
+
+      function create_analysisFile(a, onSubmit){
+
+        $scope.msg = '';
+        
+        a.analysis_id = analysis_id;
+
+        $scope.aFile = a;
+
+        var addAdjunto = function(){
+          $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong></div>");
+
+          AnalysisFile.save($scope.aFile,function(){
+            });
+
+          /* Hide Analysis File Modal */
+          aFileModal.$promise.then(aFileModal.hide());
+        }
+
+        $scope.submitAdjunto = onSubmit || addAdjunto;
+
+      }
+
+
+      /* Analysis File Modal */
+      var aFileModal = $modal({ 
+        scope: $scope,
+        templateUrl: "views/partials/analysis-addAttachment.html", 
+        contentTemplate: false, 
+        html: true, 
+        show: false });
+      
+      /* Show Analysis File Modal */
+      $scope.showAFileModal = function () {
+            aFileModal.$promise.then(aFileModal.show);
+            // It creates a new AnalysisFile object
+            var af = new AnalysisFile();
+            af.required = true;
+            create_analysisFile(af);
+      };
+
+      /**************************** COMMENTS ******************************/
+      $scope.comments = [];
       
       var updateComments = function(){
         var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){
@@ -219,6 +270,152 @@ angular.module('saludWebApp')
           $scope.c={};
           });
       };
+
+
+      /************************ MEASUREMENTS ***********************************/
+
+      $scope.measurements = [];
+      var g_am =  Analysis.get({id: $routeParams.id , element:'measurements'},function(){
+        g_am = g_am.resource;
+        $.each(g_am, function(i , am){
+          am.datetime = new Date(am.datetime)
+          $scope.measurements.push(am);
+          });
+        });
+
+
+      /* Modal Analysis Measurement */
+      var aMeasurementModal = $modal({ 
+        scope: $scope,
+        templateUrl: "views/partials/analysis-addMeasurement.html", 
+        contentTemplate: false, 
+        html: true, 
+        show: false });
+
+      /* Show Analysis Measurement Modal */
+      $scope.showAMeasurementModal = function () {
+          aMeasurementModal.$promise.then(aMeasurementModal.show);
+          create_measurement(new Measurement());
+          };
+
+
+
+      function create_measurement(m , onSubmit){
+
+        $scope.msg= '';
+
+        $scope.measurement = m;
+
+        $scope.measurement.datetime = new Date();
+
+        // Seteamos los datos para el slider, porqué sinó no responde.
+        $scope.selected_unit={};
+        $scope.selected_unit.disabled=true;
+        $scope.selected_unit.value=0;
+        $scope.selected_unit.min=0;
+        $scope.selected_unit.max=100;
+
+        // Para que no muestre que estamos en un valor por encima del maximo recomendado al editar
+        if (m.value){
+          $scope.selected_unit.max=m.value;
+        }
+
+        //Consulta y asignación de tipo de medición.
+        var type = MeasurementType.query(function(){
+          $scope.type = type.resource;
+          });                                                                 
+
+
+        //Consulta y asignación de fuente de medición.
+        var source = MeasurementSource.query(function(){                            
+          $scope.source = source.resource;                           
+          });
+        
+        //Carga el select de la unidad de medicion a partir del tipo de medición seleccionado.
+        $scope.getUnit = function(){
+          var unit = MeasurementTypeUnit.get( {"id_type" : $scope.measurement.measurement_type_id}, function(){
+            $scope.unit = unit.resource;      
+            $scope.getValidation();
+            });                                                                       
+          };
+        
+        if(m.measurement_type_id && m.measurement_source_id){
+          $scope.getUnit();
+        }
+
+        // Función que guarda los datos y si todo es correcto muestra mensaje de "bien hecho" 
+        var addMeasurement = function(){
+            $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong>.</div>");
+            var type_id = $scope.measurement.measurement_type_id,
+              unit_id = $scope.measurement.measurement_unit_id,
+              source_id = $scope.measurement.measurement_source_id;
+
+
+            var type_name = MeasurementType.get({'id':type_id},function(){
+              type_name = type_name.resource.name;
+              var unit_name = MeasurementUnit.get({'id':unit_id},function(){
+
+                unit_name = unit_name.resource.symbol;
+
+                var e = new Measurement();
+                MyProfile.get(function(response){
+                  e.profile_id = response.resource.id;
+                  e.analysis_id = analysis_id;
+                  e.tipo = {id : type_id , nombre : type_name};
+                  e.unidad= {id : unit_id , nombre : unit_name};
+                  e.source= {id: source_id ,nombre: 'Manual'};
+                  e.value= $scope.measurement.value;
+                  e.measurement_source_id = source_id;
+                  e.measurement_type_id = type_id;
+                  e.measurement_unit_id = unit_id;
+                  e.datetime = $scope.measurement.datetime;
+
+                  e.$save(function(response){
+                  });
+                });
+
+                aMeasurementModal.$promise.then(aMeasurementModal.hide());
+                //$scope.showAMeasurementModal();
+                //$scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Bien hecho!</strong> Se cargó una medición.</div>");
+                
+
+              });
+            });
+          }
+
+      $scope.submitMeasurement = onSubmit || addMeasurement;
+
+      }
+
+      $scope.updateMeasurementValue = function(){
+        $scope.measurement.value = $scope.selected_unit.value;
+      }
+
+      $scope.updateSelectedUnitValue = function(){
+        if (isNaN($scope.measurement.value)){
+          return;
+        }
+        if($scope.measurement.value > $scope.selected_unit.max){
+          $scope.selected_unit.value = $scope.selected_unit.max;
+          return;
+        }
+        if($scope.measurement.value < $scope.selected_unit.min){
+          $scope.selected_unit.value = $scope.selected_unit.min;
+          return;
+        }
+        $scope.selected_unit.value = $scope.measurement.value;
+      }
+
+      $scope.getValidation = function(){
+        $.each($scope.unit,function(i,u){
+          if (u.id == $scope.measurement.measurement_unit_id){
+            $scope.selected_unit.min = u.min_value;
+            $scope.selected_unit.max = u.max_value;
+            $scope.selected_unit.disabled=false;
+          }
+        });
+        $scope.updateSelectedUnitValue();
+      }
 
     });
   

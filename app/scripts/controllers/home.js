@@ -16,9 +16,10 @@ angular.module('saludWebApp')
       MeasurementType,
       ProfileMeasurements,
       $compile,
-      $rootScope,
-      $routeParams) {
+      $rootScope) {
 
+      // Este controlador se puede consumir pasando el parametro type con el id
+      // del tipo de medición,por ejemplo #/home?type=peso
         
         // variable que contiene los datos a mostrar por la grafica
         $scope.data=[];
@@ -34,7 +35,6 @@ angular.module('saludWebApp')
                           var d = response.resource;
                           // Lista de valores de la gráfica
                           var vList=[];
-                          console.log(d[0]);
                           var symbol=d[0].measurement_unit.symbol;
 
                           $.each(d,function(i,m){
@@ -68,20 +68,25 @@ angular.module('saludWebApp')
 
 
 
+          var selectedTypeId = $location.search().type;
+
           /* La primera vez que se ejecuta el controlador, debe traer a partir
            * del nombre pasado por parametro un tipo de medición*/
           MeasurementType.query( function(response){
-              var selectedTypeName = $routeParams.type;
 
               // mts : MeasurmentTypes
               $scope.mts = response.resource;
 
-              $.each($scope.mts,function (i,mt){
-                  if (mt.name.toLowerCase() == selectedTypeName.toLowerCase()){
-                      $scope.selectType(mt);
-                      return; //break;
-                      }
-                  });// .each
+              if (selectedTypeId){
+                $.each($scope.mts,function (i,mt){
+                    if (mt.id == selectedTypeId){
+                        $scope.selectType(mt);
+                        return; //break;
+                        }
+                    });// .each
+              }else{
+                  $scope.selectType($scope.mts[0]);
+              }
 
               });// .measurementType.query
 

@@ -42,7 +42,7 @@ angular
   .config(function ($routeSegmentProvider , $routeProvider,$locationProvider) {
     $routeSegmentProvider.
       when('/about', 'about').
-      when('/home/:type','home').
+      when('/home','home').
       when('/logoff', 'logoff').
       when('/profileInformation/new','profileInformation/new').
       when('/myProfileInformation','myProfileInformation').

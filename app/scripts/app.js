@@ -43,8 +43,6 @@ angular
     $routeSegmentProvider.
       when('/about', 'about').
       when('/home','home').
-      when('/home/height','home.height').
-      when('/home/weight','home.weight').
       when('/logoff', 'logoff').
       when('/profileInformation/new','profileInformation/new').
       when('/myProfileInformation','myProfileInformation').
@@ -74,17 +72,6 @@ angular
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       }).
-        within().
-            segment('weight',{
-            default: true,
-            templateUrl:'views/weight.html',
-            controller:'WeightCtrl'
-            }).
-            segment('height',{
-            templateUrl:'views/height.html',
-            controller:'HeightCtrl'
-            }).
-            up().
       segment('analyses',{
         templateUrl: 'views/analyses.html',
         controller: 'AnalysesCtrl'

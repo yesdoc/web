@@ -34,7 +34,7 @@ angular.module('saludWebApp')
       $scope.is_logged = true;
 
 
-      Notifications.query({quantity:10,type:"event",unread:true},function(response){
+      Notifications.query({quantity:6,type:"event",unread:true},function(response){
         $scope.notifications = response.resource;
         $.each($scope.notifications,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));

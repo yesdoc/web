@@ -16,7 +16,7 @@ angular.module('saludWebApp')
      $scope.title='Mensajes';
 
       $scope.items = [];
-      Notifications.query({quantity:20,type:"message",unread:true},function(response){
+      Notifications.query({quantity:20,type:"message"},function(response){
         $scope.items = response.resource;
         console.log($scope.items);
         $.each($scope.items,function(i,n){

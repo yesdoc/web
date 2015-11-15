@@ -16,7 +16,7 @@ angular.module('saludWebApp')
       $scope.title='Notificaciones';
       
       $scope.items = [];
-      Notifications.query({quantity:20,type:"event",unread:true},function(response){
+      Notifications.query({quantity:20,type:"event"},function(response){
         $scope.items = response.resource;
         $.each($scope.items,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));

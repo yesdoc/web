@@ -396,13 +396,13 @@ angular.module('saludWebApp')
                         });
                       });  
 
-                $.each($scope.adjuntos , function( i , a ){
-                  a.analysis_id = analysis_id;
-                  AnalysisFile.save(a, function(result) {
-                      console.log('sé guardó el archivo' + a.real_name);
-                    });
+                  $.each($scope.adjuntos , function( i , a ){
+                    a.analysis_id = analysis_id;
+                    AnalysisFile.save(a, function(result) {
+                        console.log('sé guardó el archivo' + a.real_name);
+                      });
 
-                  });
+                    });
 
                   $location.path('/#/myProfileInformation');
 

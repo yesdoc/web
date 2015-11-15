@@ -12,6 +12,7 @@
     </div>
     <div class="content" style='padding-top:0px;'>
 
+      <div id='slides_flex'>
       <flex-slider 
         slider_id='carousel'
         flex-slide="s in afs track by $index" 
@@ -22,18 +23,24 @@
         pause-on-hover="true" 
         item-width="210" 
         item-margin="5">
-        <li>
+      <li id='slide_{{$index}}'>
           <a href='' ng-click='showImage($index)'>
             <div style=" width:210px;height:150px;background : url({{s.imageSrc}}) no-repeat 50% 10%;background-size: 100% auto;">
             </div>
           </a>
         </li>
       </flex-slider>
+      </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-show='aFiles'>
         <div class="panel-body">
           <table class="table">
-            <caption>Archivos</caption>
+            <caption>
+              Archivos
+              <a class='btn btn-success pull-right' ng-click='showAFileModal()' style='margin-top:-5px'>
+                <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
+              </a>
+            </caption>
             <thead>
               <tr>
                 <th>#</th>
@@ -48,20 +55,24 @@
                 <th scope="row">{{($index+1)}}</th>
                 <td><i class='fa fa-file-image-o fa-lg'></i></td>
                 <td>{{af.description}}</td>
-                <td>
-                  <h5 style='margin:0px;' >
-                  <span ng-show='af.is_encrypted' title='Archivo encriptado' class="label label-success" style='padding-top:0.6em;padding-bottom:0.6em;'>
+               <td>
+                  <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
                     <i class='fa fa-lock fa-lg'></i>
-                  </span>
-                  <span ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="label label-warning" style='padding-top:0.6em;padding-bottom:0.6em;'>
+                  </button>
+                  <button ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="btn btn-warning" disabled >
                     <i class='fa fa-unlock fa-lg'></i>
-                  </span>
-                  </h5>
+                  </button>
                 </td>
                 <td>
-                  <a target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
-                    Descargar
+                  <a class='btn btn-primary' target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
+                    <i class='fa fa-download'></i><span class='hidden-xs'>Descargar</span>
                   </a>
+                </td>
+                <td>
+                  <button class='btn btn-danger' ng-click='deleteAnalysisFile(af,$index)'>
+                    <i class='fa fa-trash'></i><span class='hidden-xs'>Eliminar</span>
+                  </button>
+
                 </td>
               </tr>
             </tbody>
@@ -69,10 +80,15 @@
         </div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-show='aFiles && measurements'>
         <div class="panel-body">
           <table class="table">
-            <caption>Mediciones</caption>
+            <caption>
+              Mediciones
+              <a class='btn btn-success pull-right' ng-click='showAMeasurementModal()' style='margin-top:-5px'>
+                <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
+              </a>
+            </caption>
             <thead>
               <tr>
                 <th>#</th>
@@ -98,7 +114,7 @@
       </div>
 
 
-      <div class="panel panel-default" style='margin-top:30px;'>
+      <div class="panel panel-default" style='margin-top:30px;' ng-show='aFiles && measurements && comments'>
         <div class="panel-heading"><strong>{{commentsLength()}}</strong></div>
 
         <div class="panel-body">
@@ -106,7 +122,7 @@
           <div class="media" ng-repeat='c in comments'>
             <div class="media-left">
               <a href="#">
-                <img ng-show='c.src' class="media-object" ng-src="{{c.src}}" alt="..." style='width:64px;height:auto'>
+                <img ng-show='c.src' class="media-object" ng-src="{{c.src}}" alt="" style='width:64px;height:auto'>
               </a>
             </div>
             <div class="media-body">

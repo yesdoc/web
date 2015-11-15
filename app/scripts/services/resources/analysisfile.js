@@ -11,7 +11,7 @@ angular.module('saludWebApp')
   .factory('AnalysisFile', function (global, $resource) {
 
     // URL of specific API resource
-    var url=global.getApiUrl()+'/analysis_files';
+    var url=global.getApiUrl()+'/analysis_files/:id';
 
     return $resource( url,
         { id: '@_id' },

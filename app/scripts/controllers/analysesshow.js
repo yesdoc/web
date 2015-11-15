@@ -243,10 +243,10 @@ angular.module('saludWebApp')
 
 
       /**************************** COMMENTS ******************************/
-      $scope.comments = [];
       
       var updateComments = function(){
         var g_com = Analysis.get({id:$routeParams.id , element: 'comments'},function(){
+          $scope.comments = [];
 
 
           $scope.comments = g_com.resource;
@@ -293,10 +293,10 @@ angular.module('saludWebApp')
 
       /************************ MEASUREMENTS ***********************************/
 
-      $scope.measurements = [];
 
       function getMeasurements(){
         Analysis.get({id: $routeParams.id , element:'measurements'},function(response){
+          $scope.measurements = [];
           $.each(response.resource, function(i , am){
             am.datetime = new Date(am.datetime)
             $scope.measurements.push(am);

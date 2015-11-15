@@ -30,7 +30,7 @@
         </li>
       </flex-slider>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-show='aFiles'>
         <div class="panel-body">
           <table class="table">
             <caption>
@@ -80,7 +80,7 @@
         </div>
       </div>
 
-      <div class="panel panel-default">
+      <div class="panel panel-default" ng-show='aFiles && measurements'>
         <div class="panel-body">
           <table class="table">
             <caption>
@@ -114,7 +114,7 @@
       </div>
 
 
-      <div class="panel panel-default" style='margin-top:30px;'>
+      <div class="panel panel-default" style='margin-top:30px;' ng-show='aFiles && measurements && comments'>
         <div class="panel-heading"><strong>{{commentsLength()}}</strong></div>
 
         <div class="panel-body">

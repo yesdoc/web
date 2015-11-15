@@ -1,3 +1,78 @@
+<script type="text/javascript">
+// Your Client ID can be retrieved from your project in the Google
+// Developer Console, https://console.developers.google.com
+var CLIENT_ID = '689551037361-4ek6qsjkkur87tccvad3eo08dk57nil8.apps.googleusercontent.com';
+
+var SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+
+/**
+ * Check if current user has authorized this application.
+ */
+function onApiLoad(){
+  gapi.load('auth', {'callback': onAuthApiLoad});
+
+  /*
+  gapi.auth.authorize(
+      {
+        'client_id': CLIENT_ID,
+        'scope': SCOPES.join(' '),
+        'immediate': true
+      }, handleAuthResult);
+  */
+}
+
+function onAuthApiLoad() {
+  window.gapi.auth.authorize({
+    'client_id': CLIENT_ID,
+    'scope': SCOPES
+  }, handleAuthResult);
+}
+
+/**
+ * Handle response from authorization server.
+ *
+ * @param {Object} authResult Authorization result.
+ */
+function handleAuthResult(authResult) {
+  var authorizeDiv = document.getElementById('authorize-div');
+  if (authResult && !authResult.error) {
+    // Hide auth UI, then load client library.
+    authorizeDiv.style.display = 'none';
+    loadDriveApi();
+  } else {
+    // Show auth UI, allowing the user to initiate authorization by
+    // clicking authorize button.
+    authorizeDiv.style.display = 'inline';
+  }
+}
+
+/**
+ * Initiate auth flow in response to user clicking authorize button.
+ *
+ * @param {Event} event Button click event.
+ */
+function handleAuthClick(event) {
+  gapi.auth.authorize(
+      {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+      handleAuthResult);
+  return false;
+}
+
+</script>
+<script src="https://apis.google.com/js/api.js?onload=onApiLoad">
+</script>
+  <div id="authorize-div" style="display: none">
+    <span>Authorize access to Drive API</span>
+    <!--Button for the user to click to initiate auth
+      sequence -->
+      <button id="authorize-button" onclick="handleAuthClick(event)">
+        Authorize
+      </button>
+  </div>
+  <pre id="output"></pre>
+
+
+
 <div class=jumbotron>
   <div class="container">
     <h1>La información es tuya!</h1>

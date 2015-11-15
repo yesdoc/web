@@ -30,6 +30,7 @@ angular.module('saludWebApp')
           var parseDate = d3.time.format.iso.parse;
 
           $scope.selectType = function(selectedMeasurementType){
+                  $scope.selectedTypeName = selectedMeasurementType.name;
 
                   ProfileMeasurements.get({type: selectedMeasurementType.id},function(response){
                           var d = response.resource;
@@ -71,7 +72,7 @@ angular.module('saludWebApp')
           var selectedTypeId = $location.search().type;
 
           /* La primera vez que se ejecuta el controlador, debe traer a partir
-           * del nombre pasado por parametro un tipo de medición*/
+           * del id pasado por parametro un tipo de medición*/
           MeasurementType.query( function(response){
 
               // mts : MeasurmentTypes

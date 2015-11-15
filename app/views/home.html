@@ -17,8 +17,9 @@
                 <li class="dropdown">
                   <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <b class="caret"></b>
-                    <span>Peso</span>
+                    <span ng-bind-html='selectedTypeName' ></span>
                   </button>
+
                   <ul class="dropdown-menu">
                     <li ng-repeat='mt in mts'>
                       <a href="" ng-click='selectType(mt)'>&nbsp;{{mt.name}}</a>
@@ -86,13 +87,3 @@
 
     </div>
   </div>
-
-    <script >
-            $(function(){
-
-              $(".dropdown-menu").on('click', 'li a', function(){
-                $(".btn:first-child > span").text($(this).text());
-              });
-
-            });
-    </script>

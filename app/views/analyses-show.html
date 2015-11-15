@@ -12,6 +12,7 @@
     </div>
     <div class="content" style='padding-top:0px;'>
 
+      <div id='slides_flex'>
       <flex-slider 
         slider_id='carousel'
         flex-slide="s in afs track by $index" 
@@ -22,13 +23,14 @@
         pause-on-hover="true" 
         item-width="210" 
         item-margin="5">
-        <li>
+      <li id='slide_{{$index}}'>
           <a href='' ng-click='showImage($index)'>
             <div style=" width:210px;height:150px;background : url({{s.imageSrc}}) no-repeat 50% 10%;background-size: 100% auto;">
             </div>
           </a>
         </li>
       </flex-slider>
+      </div>
 
       <div class="panel panel-default" ng-show='aFiles'>
         <div class="panel-body">
@@ -53,7 +55,7 @@
                 <th scope="row">{{($index+1)}}</th>
                 <td><i class='fa fa-file-image-o fa-lg'></i></td>
                 <td>{{af.description}}</td>
-                <td>
+               <td>
                   <h5 style='margin:0px;' >
                   <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
                     <i class='fa fa-lock fa-lg'></i>
@@ -69,7 +71,7 @@
                   </a>
                 </td>
                 <td>
-                  <button class='btn btn-danger' ng-click='deleteAnalysisFile(af)'>
+                  <button class='btn btn-danger' ng-click='deleteAnalysisFile(af,$index)'>
                     <i class='fa fa-trash'></i><span class='hidden-xs'>Eliminar</span>
                   </button>
 

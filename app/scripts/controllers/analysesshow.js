@@ -31,6 +31,7 @@ angular.module('saludWebApp')
         $modal,
         MyUser,
         Auth,
+        $compile,
         fileReader) {
 
     Auth.isLogged(function(){
@@ -129,16 +130,16 @@ angular.module('saludWebApp')
     }
     
 
+    $scope.afs = []; //analysis files list
     /* Obtiene la lista de archivos asociados a un analisis */
     function getAnalysisFile(){
       Auth.getAuth(function(token){
-        var g_a = Analysis.get({id : $routeParams.id},function(){
-          $scope.a = g_a.resource;
+        Analysis.get({id : $routeParams.id},function(response){
+          $scope.a = response.resource;
           $scope.a.datetime = new Date($scope.a.datetime+'Z');
 
-          $scope.afs = []; //analysis files list
-          var q_af = Analysis.get({id : $routeParams.id , element : 'files'},function(){
-            $scope.aFiles = q_af.resource;
+          Analysis.get({id : $routeParams.id , element : 'files'},function(response){
+            $scope.aFiles = response.resource;
             $.each($scope.aFiles,function(i,af){
                   af.imageSrc = ( global.getApiUrl() + '/analysis_files/' + af.id + '/thumbnail_by_query?token='+token);
 
@@ -146,14 +147,19 @@ angular.module('saludWebApp')
 
                   $scope.afs.push(af);
               });
-            });
-          });
-        });
-      }
+
+            if(!$scope.$$phase) {
+              $scope.apply();
+              }
+
+            }); //.Analysis.get element files
+          }); // .Analysis.get
+        }); // .getAuth
+      } // .getAnalysisFile
 
       getAnalysisFile();
 
-      $scope.deleteAnalysisFile = function(af){
+      $scope.deleteAnalysisFile = function(af,i){
           $scope.confirm = {};
           $scope.confirm.class = 'danger';
           $scope.confirm.message = 'Esta seguro que desea eliminar el archivo <b>'+ af.description + '</b> ?';
@@ -162,12 +168,11 @@ angular.module('saludWebApp')
             AnalysisFile.remove({id : af.id},function(response){
 
               confirmDeleteModal.$promise.then(confirmDeleteModal.hide);
-              getAnalysisFile();
 
-              if(!$scope.$$phase) {
-                $scope.apply();
-                }
-
+              $scope.aFiles.splice(i,1)
+              $scope.afs.splice(i,1)
+              slideUpdate();
+              
               });
             }
 
@@ -182,6 +187,31 @@ angular.module('saludWebApp')
 
       }
 
+      function slideUpdate(){
+        $('#slides_flex').empty();
+
+        var element = (
+            '<flex-slider ' +
+            'slider_id="carousel"'+
+            'flex-slide="s in afs track by $index" '+
+            'animation="slide" '+
+            'control-nav="false"' +
+            'slideshow-speed= "4000"' +
+            'animation-loop="true" ' +
+            'pause-on-hover="true" ' +
+            'item-width="210" ' +
+            'item-margin="5">' +
+            '<li id="slide_{{$index}}">'+
+            '<a href="" ng-click="showImage($index)">'+
+            '<div style=" width:210px;height:150px;background : url({{s.imageSrc}}) no-repeat 50% 10%;background-size: 100% auto;">'+
+            '</div>'+
+            '</a>'+
+            '</li>'+
+            '</flex-slider>');
+
+        angular.element(document.getElementById('slides_flex')).append($compile(element)($scope))
+
+      }
 
       function create_analysisFile(a, onSubmit){
 
@@ -197,14 +227,12 @@ angular.module('saludWebApp')
           $scope.msg = $sce.trustAsHtml("<div class='alert alert-success' role='alert'><strong>Cargando...</strong></div>");
 
           AnalysisFile.save($scope.aFile,function(){
-            getAnalysisFile();
-
-            if(!$scope.$$phase) {
-              $scope.apply();
-              }
-
             /* Hide Analysis File Modal */
             aFileModal.$promise.then(aFileModal.hide());
+
+            $scope.afs = []; //analysis files list
+            getAnalysisFile();
+
 
             });
 

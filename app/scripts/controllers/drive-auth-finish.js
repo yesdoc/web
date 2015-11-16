@@ -14,7 +14,6 @@ angular.module('saludWebApp')
     var credential = new StorageCredentials;
     credential.token = $location.hash().split('&')[0];
     StorageLocations.query(function(response,status){
-      if(status='200'){
         var stLocations = response.resource;
         $.each(stLocations,function(i,st){
 
@@ -34,10 +33,8 @@ angular.module('saludWebApp')
               });
             }
           });
-        }
-      else{
+      },function(response){
         onFail();
-        }
       });
 
     var onSuccess = function(){

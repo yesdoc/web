@@ -5,7 +5,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>YesDoc</title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
+     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -55,24 +55,20 @@
         <div class="container-fluid" >
     
             <!-- Mobile-->
-            <div class="navbar-header">
+            <div class="navbar-header" ng-controller="NavCtrl">
                 
-                <div template-url="views/partials/vertical_navbar.html" bs-aside="aside"  
-                    data-container="body" ng-controller="NavCtrl"> 
-                    <button type="button" class="navbar-toggle " data-toggle="collapse"
-                        data-target="#navigation-example-2">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                </div> <!--/.template -->
+                <button type="button" class="navbar-toggle " data-toggle="collapse" ng-click='showAside()'>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
                 <!-- Navbar horizontal mobile-->
-                <div class="navbar-brand hidden-lg" ng-controller='NavCtrl'>
+                <div class="navbar-brand hidden-lg">
 
                     <ul class="nav  nav-pills" ng-cloak> 
-                        <li><a><img src="images/yesDoc2.png"></img></a></li>
+                        <!-- <li><a><img
+                          src="images/yesDoc2.png"></img></a></li> -->
                         <li ng-show='is_logged'>
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-envelope"></i>

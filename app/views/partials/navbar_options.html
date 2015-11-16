@@ -18,7 +18,7 @@
             <span><p><i class="fa fa-share-alt fa-lg"></i>Compartidos</p></span>
         </a></li>
     <li  ng-class="{active:('patients' | routeSegmentStartsWith)}" data-match-route="/patients">
-        <a href="#/patients" ng-show='(is_logged && is_health_professional)' ng-click="$hide()">
+        <a ng-href="#/patients" ng-show='(is_logged && is_health_professional)'>
             <span><p><i class="fa fa-users fa-lg"></i>Pacientes</p></span>
         </a></li>
 </ul>

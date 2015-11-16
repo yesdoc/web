@@ -23,17 +23,13 @@ angular.module('saludWebApp')
       ProfileMeasurementsLatest) {
           Auth.isLogged(function(){
 
-              Auth.getAuth(function(token){
-                  
-                  MySharedProfiles.query(function(response){
-                      $scope.patients = response.resource;
-                      $.each($scope.patients,function(i , c){
-                        Profile.get({id:c.id,element:'gravatar',size: 64},function(response){
+              MySharedProfiles.query(function(response){
+                  $scope.patients = response.resource;
+                  $.each($scope.patients,function(i , c){
+                      Profile.get({id:c.id,element:'gravatar',size: 64},function(response){
                           c.src = response.resource.gravatar_url;
-                        });
                       });
                   });
-                  
               });
 
           }); 

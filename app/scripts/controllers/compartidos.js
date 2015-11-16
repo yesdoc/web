@@ -72,7 +72,7 @@ angular.module('saludWebApp')
                 });
             }
 
-        if(!($scope.profile_id == 0)){ 
+        if($scope.profile_id != 0){ 
             get_analyses($scope.profile_id);
             }
 

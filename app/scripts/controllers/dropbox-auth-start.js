@@ -25,7 +25,7 @@ angular.module('saludWebApp')
             $scope.locations.dropbox.msg ='Dropbox ya está conectado';
             $scope.locations.dropbox.isConnected = true
             break;
-          case 'drive':
+          case 'google drive':
             $scope.locations.drive.msg = 'Google Drive ya está conectado';
             $scope.locations.drive.isConnected = true
             break;
@@ -46,33 +46,7 @@ angular.module('saludWebApp')
     window.handleAuthResult = function(authResult) {
       if (authResult && !authResult.error) {
         console.log(authResult);
-
-        var credential = new StorageCredentials;
-        credential.token = authResult.access_token;
-
-        StorageLocations.query(function(response,status){
-          if(status='200'){
-            var stLocations = response.resource;
-            $.each(stLocations,function(i,st){
-
-              if (st.name.toLowerCase()=='google drive'){
-                credential.storage_location_id = st.id;
-                MyUser.get({},function(response){
-                  credential.owner_id = response.resource.id;
-                  if (credential.token){
-                    var p_sc = credential.$save(function(){
-                      alert('Todo bien vieja!');
-                    });
-                  }
-                  else{
-                    alert('fallo');
-                  }
-                });
-              }
-            });
-          }
-
-        });
+        window.location = "/#/drive-auth-finish#"+authResult.access_token;
       }
     }
 

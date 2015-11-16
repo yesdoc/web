@@ -14,7 +14,7 @@
                 <li class="dropdown">
                   <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <b class="caret"></b>
-                    <span>Usuario</span>
+                    <span id='name_user'>Usuario</span>
                   </button>
                   <ul class="dropdown-menu" style='cursor:pointer'>
                     <li ng-repeat='p in profiles'>
@@ -57,4 +57,14 @@
     </div>
 
   </div>
-</div>
+  </div>
+  <script>
+      $(function(){
+
+          $(".dropdown-menu").on('click', 'li a', function(){
+              $("#name_user").text($(this).text());
+          });
+
+      }); 
+     </script>
+

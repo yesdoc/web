@@ -404,7 +404,7 @@ angular.module('saludWebApp')
 
                     });
 
-                  $location.path('/#/myProfileInformation');
+                  $location.path('#/myProfileInformation');
 
                 });
 

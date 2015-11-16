@@ -9,7 +9,7 @@
  */
 angular.module('saludWebApp')
   .factory('Auth',
-          function ($http, $cookies, $rootScope, global, $location, $window, MyProfile) {
+          function ($http,$rootScope, global, $location, $window, MyProfile,localStorageService) {
 
     /*
      * Recurso encargado de generar la codificación en Base 64.
@@ -95,7 +95,7 @@ angular.module('saludWebApp')
      */
     function setCookie(authdata){
         var token = ' Basic ' + authdata;
-        $cookies.put('Token',token);
+        localStorageService.set('Token',token);
         $http.defaults.headers.common['Authorization'] = token;
         return token;
         }
@@ -107,7 +107,7 @@ angular.module('saludWebApp')
      * la API 'Authorization:<token>' 
      */
     function isLogged( onSuccessCallback, redirectURL){
-        var token = $cookies.get('Token');
+        var token = localStorageService.get('Token');
         $http.defaults.headers.common['Authorization'] = token;
 
         $http.get(global.getApiUrl() + '/token')

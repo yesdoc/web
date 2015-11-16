@@ -8,12 +8,23 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global, MyProfile) {
+.controller('NavCtrl', function ($scope,Auth,$rootScope,Notifications , global, MyProfile, $aside) {
 
+  var asideMobile = $aside({scope: $scope, templateUrl: 'views/partials/vertical_navbar.html',show:false});
+
+  $scope.showAside = function(){
+    asideMobile.$promise.then(function() {
+      asideMobile.show();
+    })
+  }
 
   // Evento informante del estado de logueo del usuario. 
   // (ver archivo services/authorization.js)
   $rootScope.$on('isLoggedEvent', function(event, args) {
+
+    asideMobile.$promise.then(function() {
+      asideMobile.hide();
+    })
     
     // El usuario está logueado
     if (args[0]){

@@ -3390,10 +3390,6 @@ body > .navbar-collapse[data-color="blue"]:after {
     overflow: visible;
   }
 
-  .hidden-lg{
-    display:none !important;
-  }
-
  .aside-backdrop.am-fade{
     display:none !important;
  }

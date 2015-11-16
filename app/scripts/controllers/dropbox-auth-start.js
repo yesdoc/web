@@ -8,13 +8,13 @@
  * Controller of the saludWebApp
  */
 angular.module('saludWebApp')
-  .controller('DropboxAuthStartCtrl', function ($scope,Auth,MyStorageCredentials) {
+  .controller('DropboxAuthStartCtrl', function ($scope,Auth,MyStorageCredentials ,$window,StorageLocations,StorageCredentials,MyUser) {
 
     Auth.isLogged(function(){
 
     $scope.locations = {
       'dropbox':{'msg':'Conectar con mi Dropbox', 'isConnected':false},
-      'drive':{'msg':'Conectar con mi Google Drive','isConnected':true} // está en true para que quede deshabilitado
+      'drive':{'msg':'Conectar con mi Google Drive','isConnected':false} // está en true para que quede deshabilitado
       }
     MyStorageCredentials.query(function(response){
       var credentials = response.resource;
@@ -25,7 +25,7 @@ angular.module('saludWebApp')
             $scope.locations.dropbox.msg ='Dropbox ya está conectado';
             $scope.locations.dropbox.isConnected = true
             break;
-          case 'drive':
+          case 'google drive':
             $scope.locations.drive.msg = 'Google Drive ya está conectado';
             $scope.locations.drive.isConnected = true
             break;
@@ -42,5 +42,12 @@ angular.module('saludWebApp')
         }
       }
 
-    });
+
+    window.handleAuthResult = function(authResult) {
+      if (authResult && !authResult.error) {
+        window.location = "/#/drive-auth-finish#"+authResult.access_token;
+      }
+    }
+
+  });
   });

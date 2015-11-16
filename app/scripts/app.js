@@ -57,6 +57,7 @@ angular
       when('/analyses/:id','analyses-show').
       when('/dropbox-auth-start','dropbox-st').
       when('/dropbox-auth-finish','dropbox-fn').
+      when('/drive-auth-finish','drive-fn').
       when('/notifications','notifications').
       when('/messages','messages').
       when('/collapseOne','collapseOne').
@@ -124,6 +125,10 @@ angular
       segment('dropbox-fn',{
         templateUrl: 'views/dropbox-auth-finish.html',
         controller: 'DropboxAuthFinishCtrl'
+      }).
+      segment('drive-fn',{
+        templateUrl: 'views/drive-auth-finish.html',
+        controller: 'DriveAuthFinishCtrl'
       }).
       segment('notifications',{
         templateUrl: 'views/notifications.html',

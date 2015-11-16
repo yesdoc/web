@@ -1,3 +1,40 @@
+<script type="text/javascript">
+// Your Client ID can be retrieved from your project in the Google
+// Developer Console, https://console.developers.google.com
+var CLIENT_ID = '689551037361-4ek6qsjkkur87tccvad3eo08dk57nil8.apps.googleusercontent.com';
+
+var SCOPES = ['https://www.googleapis.com/auth/drive.file'];
+
+/**
+ * Check if current user has authorized this application.
+ */
+function checkAuth() {
+  gapi.load('auth', {'callback': handleAuthResult});
+}
+
+/**
+ * Handle response from authorization server.
+ *
+ * @param {Object} authResult Authorization result.
+ */
+var handleAuthResult;
+
+/**
+ * Initiate auth flow in response to user clicking authorize button.
+ *
+ * @param {Event} event Button click event.
+ */
+function handleAuthClick(event) {
+  gapi.auth.authorize(
+      {client_id: CLIENT_ID, scope: SCOPES, immediate: false},
+      handleAuthResult);
+  return false;
+}
+
+</script>
+<script src="https://apis.google.com/js/api.js?onload=checkAuth">
+</script>
+
 <div class=jumbotron>
   <div class="container">
     <h1>La información es tuya!</h1>
@@ -6,7 +43,8 @@
       href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
       <i class="fa fa-dropbox"></i>
       {{locations.dropbox.msg}}</a>
-    <a class='btn btn-warning {{isDisabled("drive")}}'><img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
+    <a class='btn btn-warning {{isDisabled("drive")}}' id="authorize-button" 
+      onclick="handleAuthClick(event)" ><img src='/images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
       {{locations.drive.msg}}</a>
   </div>
 </div>

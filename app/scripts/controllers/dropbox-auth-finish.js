@@ -16,30 +16,27 @@ angular.module('saludWebApp')
     credential.token = credential.token.split('=')[1];
 
     StorageLocations.query(function(response,status){
-      if(status='200'){
-        var stLocations = response.resource;
-        $.each(stLocations,function(i,st){
+      var stLocations = response.resource;
+      $.each(stLocations,function(i,st){
 
-          if (st.name.toLowerCase()=='dropbox'){
-            credential.storage_location_id=st.id;
-            var g_u = MyUser.get({},function(){
-              g_u = g_u.resource;
-              credential.owner_id = g_u.id;
-              if (credential.token){
-                var p_sc = credential.$save(function(){
-                  onSuccess();
-                  });
-                }
-              else{
-                onFail();
-                }
-              });
-            }
-          });
-        }
-      else{
+        if (st.name.toLowerCase()=='dropbox'){
+          credential.storage_location_id=st.id;
+          var g_u = MyUser.get({},function(){
+            g_u = g_u.resource;
+            credential.owner_id = g_u.id;
+            if (credential.token){
+              var p_sc = credential.$save(function(){
+                onSuccess();
+                });
+              }
+            else{
+              onFail();
+              }
+            });
+          }
+        });
+      },function(response){
         onFail();
-        }
       });
 
     var onSuccess = function(){

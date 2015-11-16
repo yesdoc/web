@@ -34,10 +34,10 @@
     <p class="Firefox">You are using an <strong>outdated</strong> browser.
     Please <a href="https://www.mozilla.org/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-<div class="wrapper">
+<div class="wrapper" ng-controller='NavCtrl'>
     <!-- Add your site or application content here -->
     <!-- Navbar vertical-->
-    <div class="sidebar" ng-attr-data-color="{{(is_health_professional && is_logged && 'blue')||'green'}}" data-image="images/pc3.png" ng-controller='NavCtrl'>    
+    <div class="sidebar" ng-attr-data-color="{{(is_health_professional && is_logged && 'blue')||'green'}}" data-image="images/pc3.png">    
         <div class="sidebar-wrapper" ng-cloak>
            
             <a href="#/myProfileInformation">
@@ -55,7 +55,7 @@
         <div class="container-fluid" >
     
             <!-- Mobile-->
-            <div class="navbar-header" ng-controller="NavCtrl">
+            <div class="navbar-header">
                 
                 <button type="button" class="navbar-toggle " data-toggle="collapse" ng-click='showAside()'>
                     <span class="icon-bar"></span>
@@ -136,7 +136,7 @@
 
            </div><!-- /.navbar-header -->
 
-            <div class="collapse navbar-collapse" ng-controller='NavCtrl'> 
+            <div class="collapse navbar-collapse" > 
                 
                 <!-- Navbar horizontal desktop-->
                 <ul class="nav navbar-nav navbar-left">

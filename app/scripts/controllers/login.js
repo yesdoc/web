@@ -37,7 +37,7 @@ angular.module('saludWebApp')
         // Solicita la información del perfil 
         MyProfile.get(
           function(){
-            $window.location='/#/myProfileInformation'
+            $window.location='#/myProfileInformation'
           },
           function(response) {
 

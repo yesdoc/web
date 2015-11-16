@@ -30,9 +30,10 @@
               <td>{{p.first_name}}</td>
               <td>{{p.birthday | date:"dd-MM-yyyy"}}</td>
               <td>
-                <a ng-href="#/analyses/{{measurement.analysis.id}}">
-                  {{measurement.analysis.description}}
+                <a class='btn btn-success' ng-href="#/compartidos/{{p.id}}">
+                    <i class='fa fa-folder-open-o'></i><span class='hidden-xs'>Análisis</span>
                 </a>
+
               </td>
             </tr>
           </tbody>

@@ -5,16 +5,22 @@
   <div class="card">
     <div class='header' >
       <h4 class='title'>
+        <span>&nbsp; </span> 
+        <div class="pull-left">
         <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
-        &nbsp; Mis Análisis Compartidos
-        <div class="pull-right" style='margin-right: 5%;'>
+        &nbsp; Mis Análisis Compartidos por
+        </div>
+         <span>&nbsp; </span> 
+   
+        <div class="pull-left" style="margin-left:10px">
 
             <div class="btn-group" >
               <ul class="nav navbar-nav" >
                 <li class="dropdown">
                   <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
                     <b class="caret"></b>
-                    <span id='name_user'>Usuario</span>
+                    <span ng-if='selected'>{{selected.first_name}} {{selected.last_name}}</span>
+                    <span ng-if='!selected'>Usuario</span>
                   </button>
                   <ul class="dropdown-menu" style='cursor:pointer'>
                     <li ng-repeat='p in profiles'>
@@ -25,7 +31,7 @@
               </ul>
             </div>
 
-        </div>
+        </div> <!-- ./class="pull-left" -->
       </h4> 
   </div> 
   <div class="content">
@@ -58,13 +64,4 @@
 
   </div>
   </div>
-  <script>
-      $(function(){
-
-          $(".dropdown-menu").on('click', 'li a', function(){
-              $("#name_user").text($(this).text());
-          });
-
-      }); 
-     </script>
 

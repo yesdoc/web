@@ -20,13 +20,13 @@ angular.module('saludWebApp')
       fileReader,
       global,
       User,
+      Profile,
       $http,
       $filter){
 
     Auth.isLogged(function(){
 
       Auth.getAuth(function(token){
-        
         
         $scope.profile_id = $routeParams.id;
         $scope.analyses = [];
@@ -40,25 +40,28 @@ angular.module('saludWebApp')
         }
 
         function get_analyses(profile_id){
-    
-          MySharedAnalyses.get({profile : profile_id},function(response){
-            $scope.analyses = response.resource;
+          
+            Profile.query({id:profile_id},function(response){
+              $scope.selected = response.resource;
+              });
 
-            $.each($scope.analyses,function(i,a){
-                a.datetime = a.datetime+'Z'; 
-                var q_af = Analysis.get({id:a.id,element:'files'},function(){
-                $.each(q_af.resource,function(i,af){
-                    a.af_id = af.id 
-                });
-                if ( a.af_id ){
-                    a.imageSrc = ( global.getApiUrl() + '/analysis_files/' + a.af_id + '/thumbnail_by_query?token='+token);
-                }
-                else{
-                    a.imageSrc = 'images/escul.jpeg';
-                }
-                });
+            MySharedAnalyses.get({profile : profile_id},function(response){
+                $scope.analyses = response.resource;
 
-                a.datetime = new Date(a.datetime)
+                $.each($scope.analyses,function(i,a){
+                    a.datetime = a.datetime+'Z'; 
+                    var q_af = Analysis.get({id:a.id,element:'files'},function(){
+                        $.each(q_af.resource,function(i,af){
+                            a.af_id = af.id 
+                        });
+                        if ( a.af_id ){
+                            a.imageSrc = ( global.getApiUrl() + '/analysis_files/' + a.af_id + '/thumbnail_by_query?token='+token);
+                        }
+                        else{
+                            a.imageSrc = 'images/escul.jpeg';
+                        }
+                    });
+                    a.datetime = new Date(a.datetime)
 
                 });
 
@@ -66,9 +69,12 @@ angular.module('saludWebApp')
                     $scope.apply();
                     }
 
-            });
-        }
-        get_analyses($scope.profile_id);
+                });
+            }
+
+        if(!($scope.profile_id == 0)){ 
+            get_analyses($scope.profile_id);
+            }
 
       });
     });

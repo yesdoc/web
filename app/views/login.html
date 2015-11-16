@@ -1,38 +1,54 @@
-<div class = "container">
-    
-    <form name = "validateUser" class = "form-horizontal" role = "form" ng-submit = "login()" novalidate >
-        
-        <div class = "form-group" ng-class = "{'has-error' : validateUser.username.$invalid
-            && !validateUser.username.$pristine}" >
-            <label for = "username" class = "col-sm-2 control-label"> Nombre de usuario: </label>
-                <div class = "col-sm-10" required >
-                    <input  name = "username" type = "text" ng-model = "username" class = "form-control"
-                    id = "id" placeholder = "" required >
-                    <p ng-show = "validateUser.username.$invalid && validateUser.username.$touched"
-                    class = "help-block"> Debe ingresar un usuario. </p>
-                </div> <!-- /.col-sm-10 -->
-        </div> <!-- form-group -->
+<div class="container">
 
-        <div class = "form-group" ng-class = "{ 'has-error' : validateUser.password.$invalid
-            && !validateUser.password.$pristine }" >
-            <label for = "password" class = "col-sm-2 control-label"> Contraseña: </label>
-                <div class = "col-sm-10"required >
-                    <input  name = "password" type = "password" ng-model = "password" class = "form-control"
-                    id = "id" placeholder = "" required >
-                    <p ng-show = "validateUser.password.$invalid && validateUser.password.$touched"
-                    class = "help-block"> Debe ingresar una contraseña. </p>
-                    <p class = "text-danger">{{message}}</p>
-                </div> <!-- col-sm-10 -->
-            </div> <!-- form-group -->
+  <form name="validateUser" class="form-horizontal" role="form" ng-submit="login()" novalidate>
 
-        <div class = "form-group">
-            <div class = "col-sm-offset-2 col-sm-10">
-                <input type = "submit" id = 'submit' class = "btn btn-success" value = "Ingresar"
-                ng-disabled = "validateUser.$invalid" >
-                <a class = "btn btn-primary" ng-href = "#/profileInformation/new"> Nuevo Perfíl </a>
-            </div> <!-- col-sm-offset-2 -->
-        </div> <!-- form-group -->
+    <div class="form-group" ng-class="{'has-error' : validateUser.username.$invalid
+            && !validateUser.username.$pristine}">
+      <label for="username" class="col-sm-3 control-label"> Nombre de usuario </label>
 
-    </form>
+      <div class="col-sm-9" required>
+        <input name="username" type="text" ng-model="username" class="form-control"
+               id="username" placeholder="" required>
+
+        <p ng-show="validateUser.username.$invalid && validateUser.username.$touched"
+           class="help-block"> Debe ingresar un nombre de usuario. </p>
+      </div>
+      <!-- /.col-sm-9 -->
+    </div>
+    <!-- form-group -->
+
+    <div class="form-group" ng-class="{ 'has-error' : validateUser.password.$invalid
+            && !validateUser.password.$pristine }">
+      <label for="password" class="col-sm-3 control-label"> Contraseña </label>
+
+      <div class="col-sm-9" required>
+        <input name="password" type="password" ng-model="password" class="form-control"
+               id="password" placeholder="" required>
+
+        <p ng-show="validateUser.password.$invalid && validateUser.password.$touched"
+           class="help-block"> Debe ingresar una contraseña. </p>
+
+        <p class="text-danger">{{message}}</p>
+      </div>
+      <!-- col-sm-9 -->
+    </div>
+    <!-- form-group -->
+
+    <div class="form-group">
+      <div class="col-sm-offset-3 col-sm-9">
+        <div class="pull-right">
+          <a class="btn btn-primary" ng-href="#/profileInformation/new">
+            <i class="fa fa-user-plus"></i> Nuevo perfil
+          </a>
+          <button type="submit" class="btn btn-success" ng-disabled="validateUser.$invalid">
+            <i class="fa fa-sign-in"></i></i> Ingresar
+          </button>
+        </div>
+      </div>
+      <!-- col-sm-offset-3 -->
+    </div>
+    <!-- form-group -->
+
+  </form>
 
 </div>

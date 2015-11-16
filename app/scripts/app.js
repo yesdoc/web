@@ -21,6 +21,7 @@ angular
     'ngTouch',
     'angular-flexslider',
     'mgcrea.ngStrap',
+    'LocalStorageModule',
     'rzModule',
     'nvd3ChartDirectives'
   ]).run(function(amMoment) {

@@ -16,8 +16,6 @@ angular.module('saludWebApp')
     credential.token = credential.token.split('=')[1];
 
     StorageLocations.query(function(response,status){
-      console.log(status);
-      console.log(response);
       var stLocations = response.resource;
       $.each(stLocations,function(i,st){
 

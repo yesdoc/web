@@ -45,7 +45,6 @@ angular.module('saludWebApp')
 
     window.handleAuthResult = function(authResult) {
       if (authResult && !authResult.error) {
-        console.log(authResult);
         window.location = "/#/drive-auth-finish#"+authResult.access_token;
       }
     }

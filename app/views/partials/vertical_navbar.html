@@ -4,7 +4,7 @@
         
             <div class="aside-header" >
                 <a class="close" ng-click="$hide()">&times;</a>
-                 <a href="#/myProfileInformation"><div class="imglogo logo" >
+                 <a ng-href="#/myProfileInformation"><div class="imglogo logo" >
                     <img src="/images/logoSticker.png"></img>
                     </div>
                 </a>
@@ -20,7 +20,7 @@
                         <!-- Mi cuenta -->
                         <li role="tab" id="headingOne">
                             <a role="button" data-toggle="collapse"
-                                data-parent="#accordion" href="#collapseOne"
+                                data-parent="#accordion" ng-href="#collapseOne"
                                 aria-controls="collapseOne">
                                 <span><p> <i class="fa fa-user"></i>
                                     Mi cuenta
@@ -32,13 +32,13 @@
                                 <div class="panel-body">
 
                                     <ul ng-if='is_logged' >
-                                        <li><a href="#/myProfileInformation" ><i class='fa fa-user'></i> Información Personal</a></li>
-                                        <li><a href="#/dropbox-auth-start" ><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
+                                        <li><a ng-href="#/myProfileInformation" ><i class='fa fa-user'></i> Información Personal</a></li>
+                                        <li><a ng-href="#/dropbox-auth-start" ><i class='fa fa-hdd-o'></i> Configurar almacenamiento</a></li>
                                         <li role="separator" class="divider"></li>
-                                        <li><a href="#/logoff"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
+                                        <li><a ng-href="#/logoff"><i class='fa fa-sign-out'></i> Cerrar Sesión</a></li>
                                     </ul>
                                     <ul ng-if='!is_logged' >
-                                        <li><a href="#/login"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
+                                        <li><a ng-href="#/login"><i class='fa fa-sign-in'></i> Iniciar Sesión</a></li>
                                     </ul>
 
                                 </div><!-- panel-body-->

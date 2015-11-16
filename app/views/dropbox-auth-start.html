@@ -8,24 +8,8 @@ var SCOPES = ['https://www.googleapis.com/auth/drive.file'];
 /**
  * Check if current user has authorized this application.
  */
-function onApiLoad(){
-  gapi.load('auth', {'callback': onAuthApiLoad});
-
-  /*
-  gapi.auth.authorize(
-      {
-        'client_id': CLIENT_ID,
-        'scope': SCOPES.join(' '),
-        'immediate': true
-      }, handleAuthResult);
-  */
-}
-
-function onAuthApiLoad() {
-  window.gapi.auth.authorize({
-    'client_id': CLIENT_ID,
-    'scope': SCOPES
-  }, handleAuthResult);
+function checkAuth() {
+  gapi.load('auth', {'callback': handleAuthResult});
 }
 
 /**
@@ -33,18 +17,7 @@ function onAuthApiLoad() {
  *
  * @param {Object} authResult Authorization result.
  */
-function handleAuthResult(authResult) {
-  var authorizeDiv = document.getElementById('authorize-div');
-  if (authResult && !authResult.error) {
-    // Hide auth UI, then load client library.
-    authorizeDiv.style.display = 'none';
-    loadDriveApi();
-  } else {
-    // Show auth UI, allowing the user to initiate authorization by
-    // clicking authorize button.
-    authorizeDiv.style.display = 'inline';
-  }
-}
+var handleAuthResult;
 
 /**
  * Initiate auth flow in response to user clicking authorize button.
@@ -59,19 +32,8 @@ function handleAuthClick(event) {
 }
 
 </script>
-<script src="https://apis.google.com/js/api.js?onload=onApiLoad">
+<script src="https://apis.google.com/js/api.js?onload=checkAuth">
 </script>
-  <div id="authorize-div" style="display: none">
-    <span>Authorize access to Drive API</span>
-    <!--Button for the user to click to initiate auth
-      sequence -->
-      <button id="authorize-button" onclick="handleAuthClick(event)">
-        Authorize
-      </button>
-  </div>
-  <pre id="output"></pre>
-
-
 
 <div class=jumbotron>
   <div class="container">
@@ -81,7 +43,8 @@ function handleAuthClick(event) {
       href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
       <i class="fa fa-dropbox"></i>
       {{locations.dropbox.msg}}</a>
-    <a class='btn btn-warning {{isDisabled("drive")}}'><img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
+    <a class='btn btn-warning {{isDisabled("drive")}}' id="authorize-button" 
+      onclick="handleAuthClick(event)" ><img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
       {{locations.drive.msg}}</a>
   </div>
 </div>

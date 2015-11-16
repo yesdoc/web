@@ -13,7 +13,6 @@ angular.module('saludWebApp')
     function (
       $scope,
       $window,
-      $cookies,
       MyProfile, 
       Auth,
       $location, 

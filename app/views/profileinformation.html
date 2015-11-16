@@ -18,22 +18,49 @@
         <img style='width:120px' ng-src="{{profile.src}}" alt="" class="img-thumbnail">
       </div>
 
-      <div class="row ">
-        <div class="col-md-6 text-right">Nombre:</div>
-        <div style='padding-left:0px' class="col-md-6">{{profile.first_name}}</div>
+      <div class='visible-lg'>
+        <div class="row ">
+          <div class="col-md-6 text-right">Nombre:</div>
+          <div style='padding-left:0px' class="col-md-6">{{profile.first_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 text-right">Apellido:</div>
+          <div style='padding-left:0px' class="col-md-6">{{profile.last_name}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 text-right">Nacimiento:</div>
+          <div style='padding-left:0px' class="col-md-6">{{profile.birthday | date:'dd-MM-yyyy'}}</div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 text-right">Género:</div>
+          <div style='padding-left:0px' class="col-md-6">{{profile.gender}}</div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 text-right">Apellido:</div>
-        <div style='padding-left:0px' class="col-md-6">{{profile.last_name}}</div>
+
+      <div class='hidden-lg'>
+        <div class="row">
+          <div class="col-md-6">
+            <div class='text-center'>
+              {{profile.first_name}} &nbsp; {{profile.last_name}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class='text-center'>
+              {{profile.birthday | date:'dd-MM-yyyy'}}
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class='text-center'>
+              {{profile.gender}}
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="row">
-        <div class="col-md-6 text-right">Nacimiento:</div>
-        <div style='padding-left:0px' class="col-md-6">{{profile.birthday | date:'dd-MM-yyyy'}}</div>
-      </div>
-      <div class="row">
-        <div class="col-md-6 text-right">Género:</div>
-        <div style='padding-left:0px' class="col-md-6">{{profile.gender}}</div>
-      </div>
+
     </div>
   </div>
 </div>

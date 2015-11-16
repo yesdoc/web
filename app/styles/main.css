@@ -333,6 +333,7 @@ input + .typeahead.ng-hide { display: block !important; visibility: hidden !impo
 .aside, .aside-dialog, .aside-content, .aside-transparente{
   height:100%;
   position:absolute;
+  overflow:auto;
 }
 .aside .right {
   right: 0;

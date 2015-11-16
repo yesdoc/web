@@ -157,15 +157,19 @@ angular.module('saludWebApp')
         isLogged: function(){
 
           // isLogged(onSuccessCallback)
-          if (arguments.length == 1) 
+          if (arguments.length == 1){ 
             isLogged(arguments[0]);
+            return;
+          }
 
           // isLogged(redirectURL,onSuccessCallback)
           if (arguments.length > 1){ 
             isLogged(arguments[1], arguments[0]);
+            return;
           }else{ 
           // isLogged(onSuccessCallback)
             isLogged(function(){});
+            return;
             }
           }
 

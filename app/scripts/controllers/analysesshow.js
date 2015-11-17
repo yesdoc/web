@@ -19,6 +19,7 @@ angular.module('saludWebApp')
         MeasurementUnit,
         MeasurementSource,
         $sce,
+        GroupPermissions,
         $routeParams,
         AnalysisFile,
         PermissionTypes,
@@ -30,6 +31,7 @@ angular.module('saludWebApp')
         Analysis,
         $modal,
         MyUser,
+        MyGroups,
         Auth,
         $compile,
         fileReader) {
@@ -114,6 +116,62 @@ angular.module('saludWebApp')
         
         configModal.$promise.then(configModal.show);
     };
+
+
+
+
+    /* Show Config Modal */
+    $scope.showGroupPerms = function () {
+        var configModal = $modal({ 
+          scope: $scope,
+          templateUrl: "views/partials/groupperms.html", 
+          contentTemplate: false, 
+          html: true, 
+          show: false });
+
+        Analysis.get({id : $routeParams.id,element:'group_permissions'},function(response){
+          $scope.permissions = response.resource;
+        });
+        $scope.perm = {};
+
+        MyGroups.get(function(response){
+          $scope.groups = response.resource;
+        });
+
+        configModal.$promise.then(configModal.show);
+    };
+
+    $scope.addGroupPerm = function(){
+      Analysis.save({id : $routeParams.id,element:'group_permissions'},$scope.perm,function(response){
+        $scope.perm={};
+
+        Analysis.get({id : $routeParams.id,element:'group_permissions'},function(response){
+          $scope.permissions = response.resource;
+        });
+
+        $scope.perm = {};
+
+        MyGroups.get(function(response){
+          $scope.groups = response.resource;
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
+        });
+
+      });
+    }
+
+    /* Eliminar permisos para un grupo */
+    $scope.removePermsGroup = function(group,$index){
+      GroupPermissions.remove({id:group.id},function(){
+          $scope.permissions.splice($index, 1);
+          if(!$scope.$$phase) {
+            $scope.apply();
+            }
+      });
+    }
+
+
 
 
     /************************* ANALYSIS FILE *************************************/

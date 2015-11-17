@@ -1,0 +1,130 @@
+<div class="card">
+  <div class='header'>
+    <h4 class='title'>
+      <span>&nbsp; </span>
+
+      <div class="pull-left">
+        <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
+        &nbsp; Mediciones compartidas por
+      </div>
+      <span>&nbsp; </span>
+
+      <div class="pull-left" style="margin-left:10px">
+
+        <div class="btn-group">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <b class="caret"></b>
+                <span ng-if='selected'>{{selected.first_name}} {{selected.last_name}}</span>
+                <span ng-if='!selected'>Usuario</span>
+              </button>
+              <ul class="dropdown-menu" style='cursor:pointer'>
+                <li ng-repeat='p in profiles'>
+                  <a ng-click='load(p.id)'>{{p.first_name}} {{p.last_name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- ./class="pull-left" -->
+
+      <br/>
+      <br/>
+
+      <span>&nbsp; </span>
+
+      <div class="pull-left">
+        <span class="fa fa-bar-chart fa-lg" aria-hidden="true"></span>
+        &nbsp; Histórico de
+      </div>
+
+      <div class="pull-left" style='margin-left:10px;'>
+
+
+        <div class="btn-group">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <button class='btn btn-default' href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <b class="caret"></b>
+                <span ng-bind-html='selectedTypeName'></span>
+              </button>
+
+              <ul class="dropdown-menu">
+                <li ng-repeat='mt in mts'>
+                  <a href="" ng-click='selectType(mt)'>&nbsp;{{mt.name}}</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+    </h4>
+  </div>
+</div>
+
+
+<div ng-show="show_measurements">
+  <!-- Gráfica de mediciones de un mismo tipo -->
+  <div class="card">
+    <div class='header'>
+      <h5 class='title'>
+        <span>&nbsp; </span>
+
+        <div class="pull-left">
+          <span class="fa fa-area-chart fa-lg" aria-hidden="true"></span>
+          &nbsp; Gráfica
+        </div>
+      </h5>
+    </div>
+    <div class="content">
+
+      <div linegraph id='chart'>
+        <svg></svg>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div ng-show="show_measurements">
+  <!-- Tabla de mediciones de un mismo tipo -->
+  <div class="card">
+    <div class='header'>
+      <h5 class='title'>
+        <span>&nbsp; </span>
+
+        <div class="pull-left">
+          <span class="fa fa-table fa-lg" aria-hidden="true"></span>
+          &nbsp; Mediciones
+        </div>
+      </h5>
+    </div>
+    <div class="content">
+
+      <table class="table table-hover table-condensed">
+        <thead>
+        <tr>
+          <th>#</th>
+          <th>Valor</th>
+          <th>Fuente</th>
+          <th>Fecha</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="measurement in measurements">
+          <th scope="row"> {{$index + 1}}</th>
+          <td>{{measurement.value}} {{measurement.measurement_unit.symbol}}</td>
+          <td>{{measurement.measurement_source.name}}</td>
+          <td>{{measurement.datetime | date:"dd-MM-yyyy HH:mm:ss"}}</td>
+        </tr>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+</div>

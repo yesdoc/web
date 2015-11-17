@@ -26,10 +26,10 @@
     <!--  Light Bootstrap Table core CSS    -->
     <link rel="stylesheet" href="styles/light-bootstrap-dashboard.css" />
     <!-- endbuild -->
- 
+
 </head>
 <body ng-app="saludWebApp">
-      
+
     <!--[if lt IE 7]>
     <p class="Firefox">You are using an <strong>outdated</strong> browser.
     Please <a href="https://www.mozilla.org/">upgrade your browser</a> to improve your experience.</p>
@@ -37,26 +37,26 @@
 <div class="wrapper" ng-controller='NavCtrl'>
     <!-- Add your site or application content here -->
     <!-- Navbar vertical-->
-    <div class="sidebar" ng-attr-data-color="{{(is_health_professional && is_logged && 'blue')||'green'}}" data-image="images/pc3.png">    
+    <div class="sidebar" ng-attr-data-color="{{(is_health_professional && is_logged && 'blue')||'green'}}" data-image="images/pc3.png">
         <div class="sidebar-wrapper" ng-cloak>
-           
+
             <a ng-href="#/myProfileInformation">
                 <div class="imglogo logo" >
                     <img src="/images/logoSticker.png"></img>
                 </div>
-            </a>   
+            </a>
             <ng-include src="'views/partials/navbar_options.html'"></ng-include>
         </div> <!--sedebar-wrapper -->
        <div class="sidebar-background"></div>
     </div> <!-- class="sidebar" -->
- 
-    <div class="main-panel"> 
-        <nav class="navbar navbar-default navbar-fixed"> 
+
+    <div class="main-panel">
+        <nav class="navbar navbar-default navbar-fixed">
         <div class="container-fluid" >
-    
+
             <!-- Mobile-->
             <div class="navbar-header">
-                
+
                 <button type="button" class="navbar-toggle " data-toggle="collapse" ng-click='showAside()'>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
@@ -66,7 +66,7 @@
                 <!-- Navbar horizontal mobile-->
                 <div class="navbar-brand hidden-lg">
 
-                    <ul class="nav  nav-pills" ng-cloak> 
+                    <ul class="nav  nav-pills" ng-cloak>
                         <!-- <li><a><img
                           src="images/yesDoc2.png"></img></a></li> -->
                         <li ng-show='is_logged'>
@@ -126,7 +126,7 @@
                         <!-- Spinner on mobile -->
                         <li class='dropdown'>
                               <a class="dropdown-toggle spinner">
-                                <i class="fa fa-spinner fa-pulse"></i> 
+                                <i class="fa fa-spinner fa-pulse"></i>
                               </a>
                         </li>
                     </ul>
@@ -136,8 +136,8 @@
 
            </div><!-- /.navbar-header -->
 
-            <div class="collapse navbar-collapse" > 
-                
+            <div class="collapse navbar-collapse" >
+
                 <!-- Navbar horizontal desktop-->
                 <ul class="nav navbar-nav navbar-left visible-lg">
                     <li ng-show='is_logged' ng-cloak class="dropdown">
@@ -197,7 +197,7 @@
                   <!-- Spinner on Desktop -->
                   <li class='dropdown'>
                         <a class="dropdown-toggle spinner">
-                          <i class="fa fa-spinner fa-pulse"></i> 
+                          <i class="fa fa-spinner fa-pulse"></i>
                         </a>
                   </li>
                 </ul>
@@ -316,6 +316,7 @@
         <script src="scripts/controllers/analysesshow.js"></script>
         <script src="scripts/controllers/compartidos.js"></script>
         <script src="scripts/controllers/patients.js"></script>
+        <script src="scripts/controllers/shared-graphs.js"></script>
         <script src="scripts/services/resources/measurementunit.js"></script>
         <script src="scripts/services/resources/measurementsource.js"></script>
         <script src="scripts/services/resources/measurementtype.js"></script>
@@ -350,6 +351,7 @@
         <script src="scripts/services/resources/mysharedanalyses.js"></script>
         <script src="scripts/services/resources/mysharedprofiles.js"></script>
         <script src="scripts/services/resources/mygravatar.js"></script>
+        <script src="scripts/services/resources/profilemeasurements2.js"></script>
         <script src="scripts/services/global.js"></script>
         <script src="scripts/services/d3service.js"></script>
         <script src="scripts/services/global.js"></script>

@@ -1,0 +1,54 @@
+
+
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title"> Compartir con un Grupo</h4>
+      </div>
+      <div class='well' style='margin-bottom: 0px;'>
+
+        <form name="groupPermsForm" class="form-horizontal" role="form" ng-submit="addGroupPerm()">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-btn">
+                    <button type="button" class="btn btn-default col-md-8" placeholder='Seleccione un grupo' ng-model="perm.group_id" 
+                            data-html="1" bs-options="g.id as g.name for g in groups" bs-select>
+                      <span class="caret"></span>
+                    </button>
+                    <input type="submit" class="btn btn-success" value="Guardar" ng-disabled="groupPermsForm.$invalid">
+                  </div><!-- /btn-group -->
+                </div><!-- /input-group -->
+              </div><!-- /form-group -->
+
+              <div class="form-group">
+                <div class="col-sm-10">
+                </div>
+              </div>
+        </form>
+        <table class="table">
+          <caption>Grupos con permisos asignados:</caption>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat='p in permissions'>
+              <th scope="row">{{($index+1)}}</th>
+              <td>{{p.group.name}}</td>
+              <td>
+                <a class='text-danger' title='Quitar Permisos' style='padding:3px;margin-top:-5px;' href='' ng-click='removePermsGroup(p,$index)'>
+                  <span class='fa fa-remove'></span>
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</div>

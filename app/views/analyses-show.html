@@ -3,10 +3,16 @@
       <h4 class='title'>
         <span class="fa fa-heartbeat fa-lg" aria-hidden="true"></span>
         &nbsp; {{a.description}}  <small class='text-right'>{{a.datetime | date:'fullDate'}}</small>
+
         <div class="pull-right">
+          <a href='' ng-click='showGroupPerms()' class='btn btn-default' style='float:right;margin-left:10px;'>
+            <i class="fa fa-group fa-lg"></i>
+          </a>
+
           <a href='' ng-click='showConfig()' class='btn btn-default' style='float:right;'>
             <i class="fa fa-share-alt fa-lg"></i>
           </a>
+
         </div>
       </h4> 
     </div>
@@ -14,6 +20,7 @@
 
       <div id='slides_flex'>
       <flex-slider 
+        ng-if='afs'
         slider_id='carousel'
         flex-slide="s in afs track by $index" 
         animation="slide" 

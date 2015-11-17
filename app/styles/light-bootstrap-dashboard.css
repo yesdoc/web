@@ -1900,6 +1900,7 @@ body > .navbar-collapse[data-color="blue"]:after {
   margin: 0;
   color: #333333;
   font-weight: 300;
+  overflow: hidden;
 }
 .card .avatar {
   width: 30px;
@@ -3388,10 +3389,6 @@ body > .navbar-collapse[data-color="blue"]:after {
 
   .table-responsive {
     overflow: visible;
-  }
-
-  .hidden-lg{
-    display:none !important;
   }
 
  .aside-backdrop.am-fade{

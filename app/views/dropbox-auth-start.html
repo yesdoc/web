@@ -37,14 +37,31 @@ function handleAuthClick(event) {
 
 <div class=jumbotron>
   <div class="container">
-    <h1>La información es tuya!</h1>
+    <h1 class='hidden-xs'>La información es tuya!</h1>
+    <h2 class='visible-xs'>La información es tuya!</h2>
     <p>Guardala en tu gestor de archivos preferido</p>
-    <a class='btn btn-primary {{isDisabled("dropbox")}}'
-      href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
-      <i class="fa fa-dropbox"></i>
-      {{locations.dropbox.msg}}</a>
-    <a class='btn btn-warning {{isDisabled("drive")}}' id="authorize-button" 
-      onclick="handleAuthClick(event)" ><img src='/images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
-      {{locations.drive.msg}}</a>
+    <div class='hidden-xs'>
+      <a class='btn btn-lg btn-primary {{isDisabled("dropbox")}}'
+        href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
+        <i class="fa fa-dropbox"></i>
+        <span>{{locations.dropbox.msg}}</span>
+      </a>
+      <a class='btn btn-warning {{isDisabled("drive")}}' id="authorize-button" 
+        onclick="handleAuthClick(event)" >
+        <img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
+        <span>{{locations.drive.msg}}</span>
+      </a>
+    </div>
+
+    <div class='visible-xs'>
+      <a class='btn btn-lg btn-primary btn-xs {{isDisabled("dropbox")}}'
+        href='https://www.dropbox.com/1/oauth2/authorize?response_type=token&client_id=i7u47ht1t730nar&redirect_uri=https://yesdoc.herokuapp.com/dropbox-auth-finish.html'>
+        <i class="fa fa-dropbox"></i>
+      </a>
+      <a class='btn btn-warning {{isDisabled("drive")}}' id="authorize-button" 
+        onclick="handleAuthClick(event)" >
+        <img src='images/drive-white.png' style='width:23px;height:23px;padding-bottom: 1px;'></img>
+      </a>
+    </div>
   </div>
 </div>

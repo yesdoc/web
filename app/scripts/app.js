@@ -27,16 +27,16 @@ angular
   ]).run(function(amMoment) {
         amMoment.changeLocale('es');
   })
-  
+
   /* FIXME redireccion \login
   .run(['$http', '$cookies', '$rootScope', 'global', '$location', '$window',
-      function ($http, $cookies, $rootScope, global, $location, $window) {  
-          var token = $cookies.get('Token');                                      
-          $http.defaults.headers.common['Authorization'] = token;                 
+      function ($http, $cookies, $rootScope, global, $location, $window) {
+          var token = $cookies.get('Token');
+          $http.defaults.headers.common['Authorization'] = token;
                   alert($location.url()==" ");
-              if (!token && $location.url()) {                                         
-                  // $location.path('/login');                                        
-                  $window.location="login.html";    
+              if (!token && $location.url()) {
+                  // $location.path('/login');
+                  $window.location="login.html";
               }
       }])
   */
@@ -63,6 +63,7 @@ angular
       when('/collapseOne','collapseOne').
       when('/patients','patients').
       when('/compartidos/:id','compartidos').
+      when('/shared_graphs/:id','shared-graphs').
       segment('login',{
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
@@ -146,6 +147,10 @@ angular
       segment('compartidos',{
         templateUrl: 'views/compartidos.html',
         controller: 'CompartidosCtrl'
+      }).
+      segment('shared-graphs',{
+        templateUrl: 'views/shared-graphs.html',
+        controller: 'SharedGraphsCtrl'
       });
 
      $routeProvider.otherwise({redirectTo: '/profileMeasurements'});
@@ -184,7 +189,7 @@ angular
         }else{
           setTimeout(spinnerEnd, delta);
         }
-      }               
+      }
     }
 
   return {

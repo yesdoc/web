@@ -6,14 +6,14 @@
         <div class="pull-right">
 
             <div class="btn-group" >
-            <a class="btn btn-default btn-sm" style='margin-left:10px' ng-href="#/measurements/new">
+            <a class="btn btn-success btn-sm" style='margin-left:10px' ng-href="#/measurements/new">
               <span class="fa fa-plus-circle fa-lg" aria-hidden="true"></span>
               Nueva
             </a>
             </div>
 
         </div>
-      </h4> 
+      </h4>
     </div>
     <div class="content">
       <div class='table-responsive'>
@@ -35,13 +35,23 @@
               <td>{{measurement.datetime | date:"dd-MM-yyyy"}}</td>
               <td>{{measurement.datetime | date:"HH:mm:ss"}}</td>
               <td>
-                <a ng-href="#/analyses/{{measurement.analysis.id}}">
-                  {{measurement.analysis.description}}
-                </a>
+                <div ng-switch on='measurement.analysis.id'>
+                  <div ng-switch-when="0">
+                    Fuente: {{measurement.measurement_source.name}}
+                  </div>
+                  <div ng-switch-default>
+                    <a ng-href="#/analyses/{{measurement.analysis.id}}" class="text-primary">
+                      {{measurement.analysis.description}}
+                    </a>
+                  </div>
+                </div>
               </td>
               <td class='text-center'>
-                <a type="button" ng-href="#/measurements/{{measurement.id}}/edit">
-                  <i class="fa fa-pencil-square-o fa-lg"></i>
+                <a class='btn btn-primary' target="_self" ng-href="#/home?type={{measurement.measurement_type.id}}">
+                  <i class='fa fa-bar-chart fa-lg'></i><span class='hidden-xs'>&nbsp;&nbsp;Ver gráfica</span>
+                </a>
+                <a class='btn btn-warning' target="_self" ng-href="#/measurements/{{measurement.id}}/edit">
+                  <i class="fa fa-pencil-square-o fa-lg"></i><span class='hidden-xs'>&nbsp;&nbsp;Editar</span>
                 </a>
               </td>
             </tr>

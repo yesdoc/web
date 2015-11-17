@@ -61,6 +61,7 @@ angular
       when('/notifications','notifications').
       when('/messages','messages').
       when('/collapseOne','collapseOne').
+      when('/patients','patients').
       when('/compartidos/:id','compartidos').
       segment('login',{
         templateUrl: 'views/login.html',
@@ -137,6 +138,10 @@ angular
       segment('messages',{
         templateUrl: 'views/notifications.html',
         controller: 'MessagesCtrl'
+      }).
+      segment('patients',{
+        templateUrl: 'views/patients.html',
+        controller: 'PatientsCtrl'
       }).
       segment('compartidos',{
         templateUrl: 'views/compartidos.html',

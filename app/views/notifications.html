@@ -1,5 +1,4 @@
 
-<div class='col-md-8'>
   <div class="card">
     <div class='header' >
       <h4 class='title'>
@@ -8,18 +7,20 @@
       </h4> 
     </div>
     <div class="content">
-
+      
         <div class="media" ng-repeat="n in items">
-        <a href="" ng-click='redirect(n)'>
-          <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-            <div class="media-heading">
-              <p>{{n.description}}</p>
-            </div>
-            <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
-          </div>
-        </a>
-      </div>
+          <a href="" ng-click='redirect(n)' title='{{n.description}}'>
+              <div class="media-left">
+                <img class="media-object" ng-src="{{n.src}}" alt="">
+              </div>
+              <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                <div class="media-heading">
+                  <p>{{n.description}}</p>
+                </div>
+                <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+              </div>
+          </a>
+        </div>
 
     </div>
   </div>
-</div>

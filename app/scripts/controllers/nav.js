@@ -50,7 +50,7 @@ angular.module('saludWebApp')
         $.each($scope.notifications,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));
 
-          Profile.get({id: n.profile.id,element:'gravatar',size: 64},function(response){
+          Profile.get({id: n.notification_author.id,element:'gravatar',size: 64},function(response){
             n.src = response.resource.gravatar_url;
             });
 
@@ -61,6 +61,11 @@ angular.module('saludWebApp')
         $scope.msgs= response.resource;
         $.each($scope.msgs,function(i,n){
           n.created_datetime = (new Date(n.created_datetime+'Z'));
+
+          Profile.get({id: n.notification_author.id,element:'gravatar',size: 64},function(response){
+            n.src = response.resource.gravatar_url;
+            });
+
           });
         });
 

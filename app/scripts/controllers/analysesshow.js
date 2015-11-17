@@ -384,7 +384,8 @@ angular.module('saludWebApp')
         Analysis.get({id: $routeParams.id , element:'measurements'},function(response){
           $scope.measurements = [];
           $.each(response.resource, function(i , am){
-            am.datetime = new Date(am.datetime)
+            am.datetime = new Date(am.datetime+'Z')
+
             $scope.measurements.push(am);
             });
           });

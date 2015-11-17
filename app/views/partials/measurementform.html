@@ -16,7 +16,7 @@
     <label for="unit" class="col-sm-2 control-label">Unidad:</label>
     <div class="col-sm-10">
         <select name="unit" id="unit" class="form-control" 
-            ng-options="u.id as u.measurement_unit.name for u in unit" 
+            ng-options="u.measurement_unit.id as u.measurement_unit.name for u in unit" 
             ng-model="measurement.measurement_unit_id" 
             ng-disabled="measurementForm.type.$invalid" ng-change='getValidation()' required>
         </select>

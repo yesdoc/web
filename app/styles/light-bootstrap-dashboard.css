@@ -1900,7 +1900,7 @@ body > .navbar-collapse[data-color="blue"]:after {
   margin: 0;
   color: #333333;
   font-weight: 300;
-  overflow: hidden;
+  overflow: visible;
 }
 .card .avatar {
   width: 30px;

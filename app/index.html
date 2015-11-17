@@ -80,15 +80,16 @@
                                 <i style='color:#999'>No hay mensajes nuevos</i>
                             </li>
                             <li ng-repeat="m in msgs">
-                            <div class="media">
-                                    <a href="" ng-click='redirect(m)' title='{{m.description}}'>
-                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                            <div class="media-heading">
-                                                <p>{{m.title}}</p>
-                                            </div>
-                                            <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
-                                        </div>
-                                    </a>
+                                <div class="media" ng-click='redirect(m)' style='cursor:pointer;margin:10px;' title='{{m.description}}'>
+                                    <div class="media-left">
+                                      <img class="media-object" ng-src="{{m.src}}" alt="">
+                                    </div>
+                                    <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                      <div class="media-heading">
+                                        <p>{{m.title}}</p>
+                                      </div>
+                                      <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
+                                    </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider" style='margin:3px;'></li>
@@ -106,15 +107,16 @@
                             <ul class="dropdown-menu" style='width:30vw;'>
                                 <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
                                 <li ng-repeat="n in notifications">
-                                <div class="media">
-                                    <a href="" ng-click='redirect(n)' title='{{n.description}}'>
-                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                            <div class="media-heading">
-                                                <p>{{n.title}}</p>
-                                            </div>
-                                            <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
-                                        </div>
-                                    </a>
+                                <div class="media" ng-click='redirect(n)' style='cursor:pointer;margin:10px;' title='{{n.description}}'>
+                                      <div class="media-left">
+                                        <img class="media-object" ng-src="{{n.src}}" alt="">
+                                      </div>
+                                      <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                          <div class="media-heading">
+                                              <p>{{n.title}}</p>
+                                          </div>
+                                          <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                      </div>
                                 </div>
                                 </li>
                                 <li role="separator" class="divider" style='margin:3px;'></li>
@@ -151,15 +153,14 @@
                                 <i style='color:#999'>No hay mensajes nuevos</i>
                             </li>
                             <li ng-repeat="m in msgs">
-                            <div class="media">
-                                    <a href="" ng-click='redirect(m)' title='{{m.description}}'>
-                                        <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                            <div class="media-heading">
-                                                <p>{{m.title}}</p>
-                                            </div>
-                                            <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
-                                        </div>
-                                    </a>
+                                <div class="media" ng-click='redirect(m)' style='cursor:pointer;margin:10px;' title='{{m.description}}'>
+                                      <div class="media-left">
+                                        <img class="media-object" ng-src="{{m.src}}" alt="">
+                                      </div>
+                                      <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                              <p>{{m.title}}</p>
+                                          <small class='pull-right'><span style='color:#777' am-time-ago="m.created_datetime"></span></small>
+                                      </div>
                                 </div>
                             </li>
                             <li role="separator" class="divider" style='margin:3px;'></li>
@@ -177,16 +178,15 @@
                         <ul class="dropdown-menu" style='width:30vw;'>
                             <li class='text-center' ng-show="notifications.length==0"><i style='color:#999'>No hay notificaciones nuevas</i></li>
                             <li ng-repeat="n in notifications">
-                            <div class="media">
-                                <a href="" ng-click='redirect(n)' title='{{n.description}}'>
-                                    <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
-                                        <div class="media-heading">
-                                            <p>{{n.title}}</p>
-                                        </div>
-                                        <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
-                                    </div>
-                                </a>
-                            </div>
+                                <div class="media" ng-click='redirect(n)' style='cursor:pointer;margin:10px;' title='{{m.description}}'>
+                                      <div class="media-left">
+                                          <img class="media-object" ng-src="{{n.src}}" alt="">
+                                      </div>
+                                      <div class="media-body" style='padding:5px;border-bottom: 1px #eee solid;'>
+                                              <p>{{n.title}}</p>
+                                          <small class='pull-right'><span style='color:#777' am-time-ago="n.created_datetime"></span></small>
+                                      </div>
+                                </div>
                             </li>
                             <li role="separator" class="divider" style='margin:3px;'></li>
                             <li class='text-center'>

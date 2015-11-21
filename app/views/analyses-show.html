@@ -14,6 +14,7 @@
           </a>
 
         </div>
+        <span class="clearfix"></span>
       </h4> 
     </div>
     <div class="content" style='padding-top:0px;'>
@@ -41,82 +42,88 @@
 
       <div class="panel panel-default" ng-show='aFiles'>
         <div class="panel-body">
-          <table class="table">
             <caption>
               Archivos
               <a class='btn btn-success pull-right' ng-click='showAFileModal()' style='margin-top:-5px'>
                 <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
               </a>
+              <span class="clearfix"></span>
             </caption>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th></th>
-                <th>Descripción</th>
-                <th>Encriptado</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat='af in aFiles'>
-                <th scope="row">{{($index+1)}}</th>
-                <td><i class='fa fa-file-image-o fa-lg'></i></td>
-                <td>{{af.description}}</td>
-               <td>
-                  <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
-                    <i class='fa fa-lock fa-lg'></i>
-                  </button>
-                  <button ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="btn btn-warning" disabled >
-                    <i class='fa fa-unlock fa-lg'></i>
-                  </button>
-                </td>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th></th>
+                  <th>Descripción</th>
+                  <th>Encriptado</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat='af in aFiles'>
+                  <th scope="row">{{($index+1)}}</th>
+                  <td><i class='fa fa-file-image-o fa-lg'></i></td>
+                  <td>{{af.description}}</td>
                 <td>
-                  <a class='btn btn-primary' target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
-                    <i class='fa fa-download'></i><span class='hidden-xs'>Descargar</span>
-                  </a>
-                </td>
-                <td>
-                  <button class='btn btn-danger' ng-click='deleteAnalysisFile(af,$index)'>
-                    <i class='fa fa-trash'></i><span class='hidden-xs'>Eliminar</span>
-                  </button>
+                    <button ng-show='af.is_encrypted' title='Archivo encriptado' class="btn btn-success" disabled >
+                      <i class='fa fa-lock fa-lg'></i>
+                    </button>
+                    <button ng-show='!af.is_encrypted' title='Archivo NO encriptado' class="btn btn-warning" disabled >
+                      <i class='fa fa-unlock fa-lg'></i>
+                    </button>
+                  </td>
+                  <td>
+                    <a class='btn btn-primary' target="_self" href="{{af.urlDownload}}" download='{{af.description}}'>
+                      <i class='fa fa-download'></i><span class='hidden-xs'>Descargar</span>
+                    </a>
+                  </td>
+                  <td>
+                    <button class='btn btn-danger' ng-click='deleteAnalysisFile(af,$index)'>
+                      <i class='fa fa-trash'></i><span class='hidden-xs'>Eliminar</span>
+                    </button>
 
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       <div class="panel panel-default" ng-show='aFiles && measurements'>
         <div class="panel-body">
-          <table class="table">
-            <caption>
-              Mediciones
-              <a class='btn btn-success pull-right' ng-click='showAMeasurementModal()' style='margin-top:-5px'>
-                <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
-              </a>
-            </caption>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Tipo</th>
-                <th>Valor</th>
-                <th>Unidad</th>
-                <th>Fuente</th>
-                <th>Fecha</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat='m in measurements'>
-                <th scope="row">{{($index+1)}}</th>
-                <td>{{m.measurement_type.name}}</td>
-                <td>{{m.value}}{{m.measurement_unit.symbol}}</td>
-                <td>{{m.measurement_unit.name}}</td>
-                <td>{{m.measurement_source.name}}</td>
-                <td>{{m.datetime | date:'dd/MM/yyyy HH:mm'}}</td>
-              </tr>
-            </tbody>
-          </table>
+              <caption>
+                Mediciones
+                <a class='btn btn-success pull-right' ng-click='showAMeasurementModal()' style='margin-top:-5px'>
+                  <i class='fa fa-plus'></i><span class='hidden-xs'>Nuevo</span>
+                </a>
+                <span class="clearfix"></span>
+              </caption>
+          <div class="table-responsive">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Tipo</th>
+                  <th>Valor</th>
+                  <th>Unidad</th>
+                  <th>Fuente</th>
+                  <th>Fecha</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat='m in measurements'>
+                  <th scope="row">{{($index+1)}}</th>
+                  <td>{{m.measurement_type.name}}</td>
+                  <td>{{m.value}}{{m.measurement_unit.symbol}}</td>
+                  <td>{{m.measurement_unit.name}}</td>
+                  <td>{{m.measurement_source.name}}</td>
+                  <td>{{m.datetime | date:'dd/MM/yyyy HH:mm'}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

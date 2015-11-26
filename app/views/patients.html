@@ -3,7 +3,7 @@
       <h4 class='title'>
         <span class="fa fa-users fa-lg" aria-hidden="true"></span>
         &nbsp; Pacientes
-      </h4> 
+      </h4>
     </div>
     <div class="content">
       <div class='table-responsive'>
@@ -31,7 +31,9 @@
                 <a class='btn btn-success' ng-href="#/compartidos/{{p.id}}">
                     <i class='fa fa-folder-open-o fa-lg'></i> &nbsp;<span class='hidden-xs'>Análisis</span>
                 </a>
-
+                <a class='btn btn-primary' ng-href="#/shared_graphs/{{p.id}}">
+                  <i class='fa fa-bar-chart fa-lg'></i> &nbsp;<span class='hidden-xs'>Gráficas</span>
+                </a>
               </td>
             </tr>
           </tbody>

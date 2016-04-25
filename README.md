@@ -1,7 +1,6 @@
 salud-web
 ===========
-Web app for YesDoc [https://yesdoc.herokuapp.com/]
-(https://yesdoc.herokuapp.com/)
+AngularJS webapp for YesDoc, deployed at [https://yesdoc.herokuapp.com/]
 
 Build & development
 -------------------
